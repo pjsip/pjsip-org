@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>Open Source SIP stack, media stack, STUN, TURN, and ICE for Symbian OS</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+  </head>
+  <body>
+	<!--#include file="header.html" -->
+<p><A HREF="/">Home</A> --&gt; <A HREF="/docs.htm">Documentations</A> --&gt; <A HREF="">Symbian</A></p>
+<TABLE border="0" width="90%">
+<TR><TD>
+
+<p>&nbsp;</p>
+<H1>Porting PJSIP and PJMEDIA Stack to SymbianOS</H1>
+<TABLE BORDER="0" width="100%">
+<TR>
+ <TD><p>[Last Update: $Date: 2007-12-31 11:11:32 +0000 (Mon, 31 Dec 2007) $]</p></TD>
+ <TD><p align="right"><a href="/cgi-bin/showpage.cgi?sip_symbian">Print Friendly Page</a></p></TD>
+</TR>
+</TABLE>
+<HR>
+<p>This article gives some information about porting and using PJSIP on Symbian OS platforms.</p>
+
+
+<TABLE cellSpacing="2" cellPadding="4" width="90%" border="0">
+<TR><TD bgColor="beige">
+<strong>NEW!!</strong>
+<DL>
+<DT>December 2007
+<DD>
+Carbide C++ version 1.2 is now supported for S60 3rd Edition. See the tutorial on <b><A HREF="/trac/wiki/DevelopingSymbianAppWithCarbide">Building and Debugging PJSIP on Symbian S60 3rd Edition Device using Carbide C++</A></b>.<BR>&nbsp;
+</DL>
+</TD>
+</TR>
+</TABLE>
+
+<p>&nbsp;</p>
+<H2>Table of Contents</H2>
+<p>&nbsp;<b><A HREF="#dev_status">1. Development Status</A></b></p><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#sdk">Platforms and SDKs</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#tools">Development Tools</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#porting_status">Porting Status</A></p>
+
+<p>&nbsp;<b><A HREF="#getting_building">2. Getting and Building the Source</A></b></p><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#getting">Getting the Source</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#req">Build Requirements and Installations</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#build">Building the Source</A><BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#running">Running the Test and Sample Programs</A></p>
+
+<p>&nbsp;<b><A HREF="#changes">3. Design Changes</A></b></p>
+
+<p>&nbsp;<b><A HREF="#porting_details">4. Porting Details</A></b></p>
+
+<p>&nbsp;<b><A HREF="#issues">5. Application Notes and Known Issues</A></b></p>
+
+
+<p>&nbsp;</p>
+<A NAME="dev_status"></A><H2>1. Development Status</H2>
+<A NAME="sdk"></A><H3>Platforms and SDKs</H3>
+<HR>
+
+<p>The porting effort is done on the following platforms/SDKs:</p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="90%" border="0">
+<TR><TD bgColor="beige">
+<DL>
+<DT><b>S60 3rd Edition SDK</b>
+<DD><p>This is the main target of the porting effort, therefore it's the one that will be most tested. Versions of SDK that have been tested are:</p>
+ <UL>
+ <LI>S60 3rd Edition</LI>
+ <LI>S60 3rd Edition MR (Maintenance Release)</LI>
+ </UL>
+
+<p>Other versions may work, but we have not tested them.</p>
+<p>S60 3rd Edition SDK can be downloaded from <A HREF="http://forum.nokia.com/"><b>Forum Nokia</b></A> website, in <A HREF="http://www.forum.nokia.com/info/sw.nokia.com/id/4a7149a5-95a5-4726-913a-3c6f21eb65a5/S60-SDK-0616-3.0-mr.html"><b>S60 Platform SDKs for Symbian OS, for C++</b></A> page.</p>
+
+<DT><b>UIQ 3.0 SDK</b>
+<DD><p>The initial porting effort was done on UIQ SDK 3.0 and it worked. More over PJ doesn't use any features provided outside Symbian OS standard features, so it should work with any Symbian OS SDK (with the exception of audio device abstraction, which currently uses Audio Streaming API/plug-in and this may not be available on certain Symbian SDK).</p>
+<p>UIQ 3.0 SDK can be downloaded from <A HREF="http://developer.uiq.com/index.html"><b>UIQ Developer Community</b></A> website.
+
+</DL>
+</TD></TR>
+</TABLE>
+
+
+
+<p>&nbsp;</p>
+<A NAME="tools"></A><H3>Development Tools</H3>
+<HR>
+
+<p>The build system that we use is the .MMP based project definition, so we only use development tools that can import the project from this file. The following tools are known to work:</p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="90%" border="0">
+<TR><TD bgColor="beige">
+<DL>
+<DT><b>Command Line (ABLD)</b>
+<DD><p>The Symbian command line build system is supported for both S60 and UIQ SDK.</p>
+
+<DT><b>CodeWarrior for Symbian OS 3.1</b>
+<DD><p>CodeWarrior is supported, but be aware that Nokia has announced that <A HREF="http://www.forum.nokia.com/main/resources/tools_and_sdks/codewarrior/">developers will not be able to purchase new licenses after 2007</A>. Developers working on S60 SDK should probably use Carbide C++ instead.</p>
+
+<DT><b>Visual Studio 6</b>
+<DD><p>Both command line and VS6 are supported for development with UIQ 3.0 SDK.</p>
+
+<DT><b>Carbide C++ version 1.2</b>
+<DD><p>Carbide C++ is now supported. But please note that version 1.0 will not work with PJSIP, and version 1.1 was not tested.</p>
+<p>Carbide C++ Express Edition is free, but developers who want on-device debugging will need to purchase the Developer edition license for about 300 Euros (21 days evaluation is available).</p>
+<p>Carbide C++ can be downloaded from <A HREF="http://www.forum.nokia.com/main/resources/tools_and_sdks/carbide_cpp/index.html">Forum Nokia: Carbide Development Tools for Symbian OS C++</A> page.
+
+</DL>
+</TD></TR>
+</TABLE>
+
+<p>&nbsp;</p>
+<p>Note that <b>Carbide VS is not supported for building the libraries</b> because it has a very annoying "bug" that rejects directory name with dash ('-') character (we tested this in early 2007, so the situation may have changed now).</p>
+
+
+
+<p>&nbsp;</p>
+<A NAME="porting_status"></A><H3>Porting Status</H3>
+<HR>
+<p>As of December 2007, the Symbian porting effort is mostly complete. The port has been tested both on S60 3rd Edition emulator and device.</p>
+
+<CENTER>
+<IMG SRC="/images/symbian.jpg" ALT="Symbian emulator screenshot">
+<p>Screenshot of symbian_ua application on S60 emulator</p>
+</CENTER>
+
+
+<p>&nbsp;</p>
+<A NAME="getting_building"></A><H2>2. Getting and Building the Source</H2>
+<A NAME="getting"></A><H3>Getting the Source</H3>
+<HR>
+<p>The Symbian port is available in the SVN trunk. Please see the <A HREF="/download.htm">download page</A> for more info.</p>
+
+
+<p>&nbsp;</p>
+<A NAME="req"></A><H3>Build Requirements and Preparations</H3>
+<HR>
+<H4>Requirements</H4>
+<p>Please see <A HREF="#sdk">Platforms and SDK</A> and <A HREF="#tools">Development Tools</A> above for SDK and development tools requirements.</p>
+
+
+<H4>SDK Installation</H4>
+<p>Install the SDK in the same drive as PJ's source tree (Symbian build system does not support placing SDK and source files on separate drives), and install it on <tt><i>drive:</i></tt><b>\Symbian</b> directory (for example "C:\Symbian"), because this is the path configured in PJ's batch files. </p>
+
+<H4>Prepare Your config_site.h</H4>
+<p>Some recommended settings for Symbian are provided in <tt>config_site_sample.h</tt>, you should include this file in your <tt>config_site.h</tt> file:</p>
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<BR>
+<b><tt>#include &lt;pj/config_site_sample.h&gt;</tt></b><BR>
+<BR>
+</TD></TR>
+</TABLE>
+
+
+
+<p>&nbsp;</p>
+<A NAME="build"></A><H3>Building Simple Symbian SIP User Agent Application</H3>
+<HR>
+<p>The Symbian specific build files are located in <tt><b>build.symbian</b></tt> directory under PJ's source tree. The project files are organized as <tt><b>.mmp</b></tt> files, with each library and executable having its own .mmp file. As usual, these .mmp files are put in <tt><b>bld.inf</b></tt> file.</p>
+
+
+<H4>Library List</H4>
+<p>These are the list of libraries to be built:</p>
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<UL>
+<LI><b>pjlib.mmp</b>, the platform abstraction and framework.</LI>
+<LI><b>pjlib-util.mmp</b>, for text scanner, encryption, DNS, XML, etc.</LI>
+<LI><b>pjnath.mmp</b>, for STUN, TURN, ICE, etc.</LI>
+<LI><b>symbian_audio.mmp</b>, Symbian audio device abstraction implementaton.</LI>
+<LI><b>pjmedia.mmp</b>, the media framework (codec, conference bridge, RTP/RTCP, and the likes).</LI>
+<LI><b>pjsdp.mmp</b>, part of pjmedia related to SDP.</LI>
+<LI><b>pjsip.mmp</b>, SIP core stack.</LI>
+<LI><b>pjsip-ua.mmp</b>, SIP user agent functionality.</LI>
+<LI><b>pjsip-simple.mmp</b>, SIP SIMPLE for presence, IM, etc.</LI>
+<LI><b>pjsua-lib.mmp</b>, the high level user agent library integrating SIP, media, and NAT.</LI>
+</UL>
+</TD></TR>
+</TABLE>
+
+
+<H4>Applications</H4>
+<p>The source distribution provides a simple command line based SIP application based on <A HREF="/pjsip/docs/html/group__PJSUA__LIB.htm">PJSUA-LIB</A>, called <b>symbian_ua</b>, which sources are in <tt>pjsip-apps/src/symbian_ua</tt> directory.</p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<UL>
+<LI><b>pjlib-test.mmp</b>, for testing pjlib under Symbian.</LI>
+<LI><b>symbian_ua.mmp</b>, the simple, command-line based SIP user agent application for Symbian.</LI>
+<LI><b>symsndtest.mmp</b>, for testing the sound device abstraction.</LI>
+</UL>
+</TD></TR>
+</TABLE>
+
+
+<H4>Building with Command Line Tools</H4>
+
+<p>The Symbian command line tools can be used to build the libraries for both S60 and UIQ SDK.  To build the libraries and application:</p>
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR>
+  <TD bgColor="beige">
+	<P>c:\&gt; cd $(PJDIR)<BR>
+           c:\&gt; <b>cd build.symbian</b><BR>
+	   c:\&gt; <b>set EPOCROOT=\Symbian\UIQ3SDK\</b><BR>
+	   c:\&gt; <b>00.bat</b><BR>
+	   c:\&gt; <b>01.bat gcce urel</b><BR>
+        </P>
+  </TD>
+</TR>
+</TABLE>
+
+<DL>
+<DT><b>Note</b>
+<DT>
+<UL>
+<LI>Set <b>EPOCROOT</b> to the appropriate SDK location.</LI>
+<LI>The <b>01.bat</b> can take target argument, for example <b>01.bat winscw udeb</b>. If called without arguments, it will build the libraries for all targets as specified in <b>BLD.INF</b>.</LI>
+</UL>
+</DL>
+
+
+<H4>Building for UIQ 3 SDK with Visual Studio 6</H4>
+<p>Alternatively, you can open the VS6 workspace files created by <tt>00.BAT</tt> batch file, located under <tt><b>\Symbian\UIQ3SDK\epoc32\BUILD\$(PJDIR)</b></tt> directory, and build all projects under VS6.</p>
+
+
+<H4>Building for S60 3rd Edition SDK with CodeWarrior</H4>
+<p>Steps for building the libraries/programs with CodeWarrior are pretty easy:</p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<UL>
+<LI>Run CodeWarrior for Symbian OS</LI>
+<LI>Import each .MMP file into CodeWarrior project:
+  <OL>
+    <LI>Select File ==&gt; Import Project from .mmp File..</LI>
+    <LI>Select the appropriate S60 SDK from "Symbian Importer - SDK Selection" dialog, and press Next.</LI>
+    <LI>Browse the .mmp file to import from $(PJDIR)/build.symbian directory, leave other settings unchanged, and press Next</LI>
+    <LI>Leave "Default Symbian Project Import Template", and press Finish</LI>
+    <LI>CodeWarrior will create a project from the .mmp file.</LI>
+  </OL>
+</LI>
+<LI>Build the project by selecting Project ==&gt; Make from the menu.</LI>
+<LI>Repeat above steps for other libraries (as listed in Library List above).</LI>
+</UL>
+</TD></TR>
+</TABLE>
+
+
+<H4>Building for S60 3rd Edition SDK with Carbide C++</H4>
+
+<p>A complete tutorial on using Carbide C++ for PJSIP is available, please see <b><A HREF="/trac/wiki/DevelopingSymbianAppWithCarbide">Building and Debugging PJSIP on Symbian S60 3rd Edition Device using Carbide C++</A></b>.</p>
+
+
+<p>&nbsp;</p>
+<A NAME="running"></A><H3>Running/Debugging the Test or Sample Programs</H3>
+<HR>
+<H4>Emulator Configuration</H4>
+<p>Currently most test or sample programs are built as Symbian console programs. To enable console mode in the emulator:<p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<UL>
+<LI>Open <tt>$(SDK)\epoc32\data\epoc.ini</tt> file</LI>
+<LI>add <tt><b>TextShell</b></tt> line at the end of the file. With this settings, the emulator will now start in Console mode (and it will start faster too!).</LI>
+<LI>Enlarge the console screen size, by changing <tt>ScreenWidth</tt> to 640, and <tt>ScreenHeight</tt> to 480.</LI>
+</UL>
+
+</TD></TR>
+</TABLE>
+
+<H4>Running Applications with Emulator</H4>
+<p>To run the application, just run <tt><b>\Symbian\$(SDK)\epoc32\release\winscw\udeb\symbian_ua.exe</b></tt> file.</p>
+<p>Note however that debugging is not possible with this approach.</p>
+
+
+<H4>Running Applications with Visual Studio</H4>
+<p>Open the VS6 project workspace generated by Symbian <tt>abld</tt> command (invoked by 00.BAT and 01.BAT) for the application, and build the project. All libraries that the application depends (such as PJLIB, PJLIB-UTIL, PJSIP, etc.) must have been built before the application can be built.</p>
+
+<p>After the application has been built, you can run the application in the Emulator by pressing <b>Debug</b> button from Visual Studio. This will launch the Emulator and you should see the output of PJLIB's log in the Emulator.</p>
+
+<p>With this IDE configuration, you can also set breakpoints, watches, and perform step-by-step debugging as usual.</p>
+
+<p>Note that there are some <A HREF="#issues">known issues</A> with some applications that you may want to know before running the applications.</p>
+
+<H4>Running Applications with CodeWarrior</H4>
+<p>Change the executable for the debug session by: </p>
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<UL>
+<LI>selecting Edit ==&gt; WINSCW UDEB Settings from the menu,</LI>
+<LI>select Target ==&gt; Runtime Settings from the tree,</LI>
+<LI>browse <b>symbian_ua.exe</b> executable from the right pane.</LI>
+</UL>
+</TD></TR>
+</TABLE>
+
+<p>Debug the project by selecting Project ==&gt; Debug from the menu.</p>
+
+<p>Note that there are some <A HREF="#issues">known issues</A> with some applications that you may want to know before running the applications.</p>
+
+
+<H4>Running/Debugging Applications with Carbide C++</H4>
+
+<p>A complete tutorial on using Carbide C++ for PJSIP is available, please see <b><A HREF="/trac/wiki/DevelopingSymbianAppWithCarbide">Building and Debugging PJSIP on Symbian S60 3rd Edition Device using Carbide C++</A></b>.</p>
+
+
+<p>&nbsp;</p>
+<A NAME="changes"></A><A NAME="changes"></A><H2>3. Design Changes</H2>
+<HR>
+<p>The Symbian port requires the following design changes to be made on all libraries and applications. Please see <A HREF="#porting_details">Porting Details</A> section below on the detailed explanation of these.</p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+<TR><TD bgColor="beige">
+<DL>
+<DT><b>Threading is Not Supported</b>
+<DD><p>Multithreading is not supported. Applications MUST run on a single thread only.</p>
+<DT><b>No Polling</b>
+<DD><p>Polling is not necessary for Symbian, since ioqueue and timer heap are implemented as Active Objects. Application just needs to call <tt><b>CActiveScheduler::WaitForAnyRequest()</b></tt> to poll the whole application (not only PJ) in a single place.</p>
+<DT><b>Sources are Compiled as C++ Sources</b>
+<DD><p>Because PJLIB's PJ_TRY/PJ_CATCH framework is implemented with C++'s <tt>try/catch</tt> construct, all sources which include <tt>&lt;pjlib.h&gt; or &lt;pjlib/except.h&gt;</tt> MUST be compiled as C++ source. Practically, now all libraries are compiled as C++ sources.</p>
+<DT><b>Constant global variables are evil!</b>
+<DD><p>For Symbian 9 (S60 3rd Edition included), the libraries may be built as <b>.DSO</b> (Dynamic Shared Object, Symbian term for Dynamic Link Library/DLL). This is controlled by the #ifdef macro in the .MMP files.</p>
+<p>With .DSO, Symbian does not really want us to use (const) global variables. If we try to access these variables (that are exported from a .DSO) from application, we will get garbage values since the variables are not initialized properly.</p>
+<p>Unfortunately, the libraries do have some (const) global variables. Things like PJ_VERSION, PJ_AF_INET, PJ_SOCK_STREAM, they're all const global variables. So Symbian application can no longer access these const global variables anymore. Instead, it must access these variable through their accessor functions (for example, pj_get_version(), pj_AF_INET(), pj_SOCK_STREAM(), etc.)</p>
+</DL>
+</TD></TR>
+</TABLE>
+
+
+<p>&nbsp;</p>
+<A NAME="porting_details"></A><H2>4. Porting Details</H2>
+<H3>PJLIB</H3>
+<HR>
+<p>PJLIB has been implemented and tested successfully (it has passed <b>pjlib-test</b> testing). The following components have been re-implemented specificly for SymbianOS:</p>
+
+<TABLE cellSpacing="2" cellPadding="4" width="90%" border="0">
+<TR><TD bgColor="beige">
+
+<DL>
+<DT><b><tt>PjSymbianOS</tt> Singleton Class</b>
+<DD>
+<p>File: <tt>src/os_symbian.h, src/os_core_symbian.cpp</tt></p>
+<p>The <tt>PjSymbianOS</tt> class is a singleton class to keep global objects such as <tt>RSocketServ</tt> and <tt>RHostResolver</tt> instances, and is initialized in <tt>pj_init()</tt> function. This class also provides other utility functions such as Unicode conversion and socket address conversion between Symbian's <tt>TInetAddr</tt> and PJLIB's <tt>pj_sockaddr_in</tt>.</p>
+
+<DT><b>Threading, Synchronization Objects, and Thread Local Storage (TLS)</b>
+<DD>
+<p>File: <tt>src/os_core_symbian.cpp</tt></p>
+<p>For this initial porting effort, it was decided that <b>threading will not be supported</b>, which means that <tt>pj_thread_create()</tt> will always return failure. Synchronization object APIs (such as mutex and semaphores) are implemented as dummy functions which always return success. Thread local storage (or thread specific data) and atomic variables are supported with emulation, since these functionalities are needed by upper layer libraries.</p>
+
+<p>The decision to disable thread support was made to enable building the libraries as static libraries. If PJLIB has to support Symbian threads, it has to use the <b>Dll</b> namespace, which can only be used by DLL targets.</p>
+
+<p>In the future, it is possible that PJLIB will provide "virtual" threading (cooperative multitasking) by using Active Objects, however it is unlikely that this will be implemented in this first release.</p>
+
+
+
+<DT><b>Address Resolution (gethostbyname())</b>
+<DD>
+<p>File: <tt>src/addr_resolv_symbian.cpp</tt></p>
+<p>The address resolution API provides <tt>pj_gethostbyname()</tt> function to resolve host's IP addresses. The function uses Symbian's <tt>RHostResolver::GetByName()</tt> API to perform the resolution. A global RHostResolver instance is kept by <tt>PjSymbianOS</tt> singleton object.</p>
+
+
+<DT><b>Exception Framework (PJ_TRY, PJ_CATCH_ANY)</b>
+<DD>
+<p>File: <tt>include/except.h, src/exception_symbian.cpp</tt></p>
+<p>This is one of the major pain in the porting effort. Symbian OS does not support <tt>setjmp()/longjmp()</tt> very well, and there is no equivalent exception handling framework for the C language (many articles <b>wrongly</b> say that Symbian's Leave/Trap mechanism is equivalent to setjmp()/longjmp(), but clearly it's not!).</p>
+
+<p>The only working solution now seems to map PJ_TRY/PJ_CATCH into C++'s <b><tt>try/catch</tt></b> mechanism. Not all PJLIB's exception constructs are supported, however. For this release, <b><tt>PJ_CATCH</tt> macro is not supported</b> (only <tt>PJ_CATCH_ANY</tt> is supported).</p>
+
+<p>As the implication of this, all sources have been patched to compile cleanly as C++ programs.</p>
+
+<DT><b>Socket Address Byte Ordering</b>
+<DD>
+<p>File: <tt>src/sock_symbian.cpp</tt></p>
+<p>IP address and port in <tt>pj_sockaddr_in</tt> are stored in network byte order, consistent with other PJLIB targets. These values will be converted to host byte order when PJLIB needs to call Symbian native socket API (and vice versa).</p>
+
+<DT><b>Socket API</b>
+<DD>
+<p>File: <tt>src/sock_symbian.cpp</tt></p>
+<p>PJLIB socket API provides BSD style abstraction for performing socket operations, such as <tt>pj_sock_socket(), pj_sock_bind(), pj_sock_send(), pj_sock_sendto(), pj_sock_recv(), pj_sock_recvfrom()</tt>, etc. The implementation for SymbianOS is provided in <tt>src/sock_symbian.cpp</tt> file.</p>
+
+<p>The <tt>pj_sock_t</tt> socket descriptor is mapped to <tt>CPjSocket</tt> class (declared in <tt>src/os_symbian.h</tt> file), which is a class to wrap Symbian's <tt>RSocket</tt>. The <tt>CPjSocket</tt> class abstraction is needed because pj_sock_t needs to work with PJLIB's <tt>select()</tt> API, which Symbian doesn't provide.</p>
+
+<p><b>Note that there is 1500 bytes compile time limitation on the receive buffer when the socket is used with <tt>pj_select()</tt></b>. This limitation only affects the socket when it's used with <tt>pj_select()</tt>; there is no such limitation when the socket is used directly (with pj_sock_recv() or pj_sock_recvfrom()) or when IOQueue is used. </p>
+
+<DT><b>Socket select() API</b>
+<DD>
+<p>File: <tt>src/sock_select_symbian.cpp</tt></p>
+<p>PJLIB implements <tt>select()</tt> abstraction with the usual <tt>pj_sock_select()</tt> API.</p>
+<p>Note that it's not recommended to mix <tt>pj_select()</tt> call with IOqueue call, since when <tt>pj_ioqueue_recv()/pj_ioqueue_recvfrom()</tt> is called, the flag and socket internal buffer used by <tt>select()</tt> will be cleared, and this will cause packet already received to be dropped..</p>
+
+<DT><b>IOQueue</b>
+<DD>
+<p>File: <tt>src/ioqueue_symbian.cpp</tt></p>
+<p>The PJLIB's IOQueue is reimplemented for Symbian OS. Currently only socket receive and socket accept are implemented asynchronously (non-blocking); socket connect() and socket sending operations are done synchronously (blocking).</p>
+
+<DT><b>Timer Heap</b>
+<DD>
+<p>File: <tt>src/timer_symbian.cpp</tt></p>
+<p>The timer heap is reimplemented to use Symbian's Active Object.</p>
+
+<DT><b>OS Error Reporting</b>
+<DD>
+<p>File: <tt>src/os_error_symbian.cpp</tt></p>
+<p>This file contains function to retrieve the error string associated with Symbian error codes.</p>
+
+<DT><b>Pool Allocation Backend</b>
+<DD>
+<p>File: <tt>src/pool_policy_new.cpp</tt></p>
+<p>The default memory allocation/deallocation backend for SymbianOS is using <tt>new/delete</tt> operator instead of the traditional <tt>malloc()/free()</tt>.</p>
+
+<DT><b>Unicode</b>
+<DD>
+<p>File: <tt>src/unicode_symbian.cpp</tt></p>
+<p>Unicode - ANSI conversion is implemented with Symbian <tt>CnvUtfConverter::ConvertToUnicodeFromUtf8</tt> and <tt>CnvUtfConverter::ConvertFromUnicodeToUtf8</tt> functions.</p>
+
+<DT><b>vsnprintf (Lack Of)</b>
+<DD>
+<p>File: <tt>src/compat/string_compat.c</tt></p>
+<p>Since there's no <tt>vsnprintf</tt> function in Symbian, an implementation is provided which just maps the call to <tt>vsprintf</tt>.</p>
+
+</DL>
+
+</TD></TR>
+</TABLE>
+
+<H3>PJLIB-UTIL</H3>
+<HR>
+<p>There's no Symbian specific part in this library.</p>
+
+<H3>PJNATH</H3>
+<HR>
+<p>There's no Symbian specific part in this library.</p>
+
+<H3>PJSIP</H3>
+<HR>
+<p>There's no Symbian specific part in this library.</p>
+
+<H3>PJSIP-UA</H3>
+<HR>
+<p>There's no Symbian specific part in this library.</p>
+
+<H3>PJSIP-SIMPLE</H3>
+<HR>
+<p>There's no Symbian specific part in this library.</p>
+
+<H3>PJMEDIA</H3>
+<HR>
+<TABLE cellSpacing="2" cellPadding="4" width="90%" border="0">
+<TR><TD bgColor="beige">
+<DL>
+<DT><b>No SDP</b>
+<DD> <p>The SDP related functionalities have been put into PJSDP library, separated from PJMEDIA (to allow PJMEDIA to be compiled as C project rather than C++ project).</p>
+
+<DT><b>Sound Device</b>
+<DD> <p>Sound device abstraction also has been split into separate project (e.g. symbian_audio.mmp and null_audio.mmp) to allow target specific sound device implementation.</p>
+</DL>
+
+</TD></TR>
+</TABLE>
+
+<H3>PJSDP</H3>
+<HR>
+<p>There's no Symbian specific part in this library.</p>
+
+<H3>PJSUA-LIB</H3>
+<HR>
+<TABLE cellSpacing="2" cellPadding="4" width="90%" border="0">
+<TR><TD bgColor="beige">
+<DL>
+<DT><b>No Polling</b>
+<DD><p>There are couple of places in <tt>pjsua_core.c</tt> where <tt>pjsip_endpt_handle_events()</tt> call is replaced by <tt>pj_thread_sleep()</tt>, since there is no polling for Symbian.</p>
+</DL>
+</TD></TR>
+</TABLE>
+
+
+
+<p>&nbsp;</p>
+<A NAME="issues"></A><H2>5. Known Issues</H2>
+<H3>Application Notes</H3>
+<HR>
+<H4>Memory Leaks</H4>
+<p>No memory leak is reported as of now. However, in addition to performing the general shutdown procedure, application must also call <b><tt>CloseSTDLIB()</tt></b> to ensure that STDLIB resources are properly released since PJLIB does use STDLIB.</p>
+
+<p>For sample code to properly shutdown the application, please see <b><tt>pjsua_destroy()</tt></b> implementation in <A HREF="http://www.pjsip.org/trac/browser/pjproject/trunk/pjsip/src/pjsua-lib/pjsua_core.c"><tt>pjsua_core.c</tt></A> file (part of PJSUA-LIB).</p>
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<HR>
+<CENTER>
+Symbian Open Source SIP and media stack porting is a work in progress.<BR>
+Please send your feedback to <b>pjsip<IMG SRC="/images/at.GIF" ALT="at">pjsip.org</b> mailing-list or to the author:<BR>
+(C)2003-2007 Benny Prijono &lt;bennylp<IMG SRC="/images/at.GIF" ALT="at">pjsip.org&gt;
+</CENTER>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</TABLE>
+
+	<!--#include file="footer.html" -->
+  </body>
+</html>
+

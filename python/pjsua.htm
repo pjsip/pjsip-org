@@ -1,0 +1,1862 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pjsua</title>
+	<LINK href="/style/style.css" type="text/css" rel="stylesheet">
+</head><body bgcolor="#f0f0f8">
+
+<!--#include virtual="/header.html" -->
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pjsua</strong></big></big></font></td
+><td align=right valign=bottom >
+</td></tr></table>
+    <p><tt>Multimedia&nbsp;communication&nbsp;client&nbsp;library&nbsp;based&nbsp;on&nbsp;SIP&nbsp;protocol.<br>
+&nbsp;<br>
+This&nbsp;implements&nbsp;a&nbsp;fully&nbsp;featured&nbsp;multimedia&nbsp;communication&nbsp;client&nbsp;<br>
+library&nbsp;based&nbsp;on&nbsp;PJSIP&nbsp;stack&nbsp;(<a href="http://www.pjsip.org">http://www.pjsip.org</a>)<br>
+&nbsp;<br>
+&nbsp;<br>
+1.&nbsp;FEATURES<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;Session&nbsp;Initiation&nbsp;Protocol&nbsp;(SIP)&nbsp;features:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Basic&nbsp;registration&nbsp;and&nbsp;call<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Multiple&nbsp;accounts<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<a href="#Call">Call</a>&nbsp;hold,&nbsp;attended&nbsp;and&nbsp;unattended&nbsp;call&nbsp;transfer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Presence<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Instant&nbsp;messaging<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Multiple&nbsp;SIP&nbsp;accounts<br>
+&nbsp;&nbsp;-&nbsp;Media&nbsp;features:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Audio<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Conferencing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Narrowband&nbsp;and&nbsp;wideband<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Codecs:&nbsp;PCMA,&nbsp;PCMU,&nbsp;GSM,&nbsp;iLBC,&nbsp;Speex,&nbsp;G.722,&nbsp;L16<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;RTP/RTCP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Secure&nbsp;RTP&nbsp;(SRTP)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;WAV&nbsp;playback,&nbsp;recording,&nbsp;and&nbsp;playlist<br>
+&nbsp;&nbsp;-&nbsp;NAT&nbsp;traversal&nbsp;features<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Symmetric&nbsp;RTP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;STUN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;TURN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;ICE<br>
+&nbsp;<br>
+&nbsp;<br>
+2.&nbsp;USING<br>
+&nbsp;<br>
+See&nbsp;<a href="http://www.pjsip.org/trac/wiki/Python_SIP_Tutorial">http://www.pjsip.org/trac/wiki/Python_SIP_Tutorial</a>&nbsp;for&nbsp;a&nbsp;more&nbsp;thorough<br> tutorial.&nbsp;
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;
+
+<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#Account">Account</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#AccountCallback">AccountCallback</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#AccountConfig">AccountConfig</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#AccountInfo">AccountInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#AuthCred">AuthCred</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#Buddy">Buddy</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#BuddyCallback">BuddyCallback</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#BuddyInfo">BuddyInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#Call">Call</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#CallCallback">CallCallback</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#CallInfo">CallInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#CallRole">CallRole</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#CallState">CallState</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#CodecInfo">CodecInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#CodecParameter">CodecParameter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#Error">Error</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#Lib">Lib</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#LogConfig">LogConfig</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#MediaConfig">MediaConfig</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#MediaDir">MediaDir</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#MediaState">MediaState</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#PresenceActivity">PresenceActivity</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#SIPUri">SIPUri</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#SoundDeviceInfo">SoundDeviceInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#SubscriptionState">SubscriptionState</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#TURNConnType">TURNConnType</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#Transport">Transport</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#TransportConfig">TransportConfig</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#TransportFlag">TransportFlag</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#TransportInfo">TransportInfo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#TransportType">TransportType</a>
+</font></dt><dt><font face="helvetica, arial"><a href="#UAConfig">UAConfig</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Account">class <strong>Account</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;describes&nbsp;SIP&nbsp;account&nbsp;class.<br>
+&nbsp;<br>
+PJSUA&nbsp;accounts&nbsp;provide&nbsp;identity&nbsp;(or&nbsp;identities)&nbsp;of&nbsp;the&nbsp;user&nbsp;who&nbsp;is&nbsp;<br>
+currently&nbsp;using&nbsp;the&nbsp;application.&nbsp;In&nbsp;SIP&nbsp;terms,&nbsp;the&nbsp;identity&nbsp;is&nbsp;used&nbsp;<br>
+as&nbsp;the&nbsp;From&nbsp;header&nbsp;in&nbsp;outgoing&nbsp;requests.<br>
+&nbsp;<br>
+<a href="#Account">Account</a>&nbsp;may&nbsp;or&nbsp;may&nbsp;not&nbsp;have&nbsp;client&nbsp;registration&nbsp;associated&nbsp;with&nbsp;it.&nbsp;<br>
+An&nbsp;account&nbsp;is&nbsp;also&nbsp;associated&nbsp;with&nbsp;route&nbsp;set&nbsp;and&nbsp;some&nbsp;authentication&nbsp;<br>
+credentials,&nbsp;which&nbsp;are&nbsp;used&nbsp;when&nbsp;sending&nbsp;SIP&nbsp;request&nbsp;messages&nbsp;using&nbsp;<br>
+the&nbsp;account.&nbsp;An&nbsp;account&nbsp;also&nbsp;has&nbsp;presence's&nbsp;online&nbsp;status,&nbsp;which&nbsp;<br>
+will&nbsp;be&nbsp;reported&nbsp;to&nbsp;remote&nbsp;peer&nbsp;when&nbsp;they&nbsp;subscribe&nbsp;to&nbsp;the&nbsp;account's&nbsp;<br>
+presence,&nbsp;or&nbsp;which&nbsp;is&nbsp;published&nbsp;to&nbsp;a&nbsp;presence&nbsp;server&nbsp;if&nbsp;presence&nbsp;<br>
+publication&nbsp;is&nbsp;enabled&nbsp;for&nbsp;the&nbsp;account.<br>
+&nbsp;<br>
+<a href="#Account">Account</a>&nbsp;is&nbsp;created&nbsp;with&nbsp;<a href="#Lib">Lib</a>.create_account().&nbsp;At&nbsp;least&nbsp;one&nbsp;account&nbsp;<br>
+MUST&nbsp;be&nbsp;created.&nbsp;If&nbsp;no&nbsp;user&nbsp;association&nbsp;is&nbsp;required,&nbsp;application&nbsp;can&nbsp;<br>
+create&nbsp;a&nbsp;userless&nbsp;account&nbsp;by&nbsp;calling&nbsp;<a href="#Lib">Lib</a>.create_account_for_transport().<br>
+A&nbsp;userless&nbsp;account&nbsp;identifies&nbsp;local&nbsp;endpoint&nbsp;instead&nbsp;of&nbsp;a&nbsp;particular&nbsp;<br>
+user,&nbsp;and&nbsp;it&nbsp;correspond&nbsp;with&nbsp;a&nbsp;particular&nbsp;transport&nbsp;instance.<br>
+&nbsp;<br>
+Also&nbsp;one&nbsp;account&nbsp;must&nbsp;be&nbsp;set&nbsp;as&nbsp;the&nbsp;default&nbsp;account,&nbsp;which&nbsp;is&nbsp;used&nbsp;as&nbsp;<br>
+the&nbsp;account&nbsp;to&nbsp;use&nbsp;when&nbsp;PJSUA&nbsp;fails&nbsp;to&nbsp;match&nbsp;a&nbsp;request&nbsp;with&nbsp;any&nbsp;other<br>
+accounts.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Account-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Account-__init__"><strong>__init__</strong></a>(self, lib, id, cb<font color="#909090">=None</font>)</dt><dd><tt>Construct&nbsp;this&nbsp;class.&nbsp;This&nbsp;is&nbsp;normally&nbsp;called&nbsp;by&nbsp;<a href="#Lib">Lib</a>&nbsp;class&nbsp;and<br>
+not&nbsp;by&nbsp;application.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+lib&nbsp;--&nbsp;the&nbsp;<a href="#Lib">Lib</a>&nbsp;instance.<br>
+id&nbsp;&nbsp;--&nbsp;the&nbsp;pjsua&nbsp;account&nbsp;ID.<br>
+cb&nbsp;&nbsp;--&nbsp;<a href="#AccountCallback">AccountCallback</a>&nbsp;instance&nbsp;to&nbsp;receive&nbsp;events&nbsp;from&nbsp;this&nbsp;<a href="#Account">Account</a>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;callback&nbsp;is&nbsp;not&nbsp;specified&nbsp;here,&nbsp;it&nbsp;must&nbsp;be&nbsp;set&nbsp;later<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;<a href="#Account-set_callback">set_callback</a>().</tt></dd></dl>
+
+<dl><dt><a name="Account-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Account-add_buddy"><strong>add_buddy</strong></a>(self, uri, cb<font color="#909090">=None</font>)</dt><dd><tt>Add&nbsp;new&nbsp;buddy.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;URI&nbsp;of&nbsp;the&nbsp;buddy<br>
+cb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#BuddyCallback">BuddyCallback</a>&nbsp;instance&nbsp;to&nbsp;be&nbsp;installed&nbsp;to&nbsp;the&nbsp;newly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created&nbsp;<a href="#Buddy">Buddy</a>&nbsp;object.&nbsp;If&nbsp;this&nbsp;callback&nbsp;is&nbsp;not&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.&nbsp;None&nbsp;is&nbsp;given),&nbsp;it&nbsp;must&nbsp;be&nbsp;installed&nbsp;later&nbsp;using<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buddy.<a href="#Account-set_callback">set_callback</a>().<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Buddy">Buddy</a>&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Account-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="Account-info"><strong>info</strong></a>(self)</dt><dd><tt>Retrieve&nbsp;<a href="#AccountInfo">AccountInfo</a>&nbsp;for&nbsp;this&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="Account-is_default"><strong>is_default</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;this&nbsp;account&nbsp;is&nbsp;the&nbsp;default&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="Account-is_valid"><strong>is_valid</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;this&nbsp;account&nbsp;is&nbsp;still&nbsp;valid.</tt></dd></dl>
+
+<dl><dt><a name="Account-make_call"><strong>make_call</strong></a>(self, dst_uri, cb<font color="#909090">=None</font>, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Make&nbsp;outgoing&nbsp;call&nbsp;to&nbsp;the&nbsp;specified&nbsp;URI.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+dst_uri&nbsp;&nbsp;--&nbsp;Destination&nbsp;SIP&nbsp;URI.<br>
+cb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#CallCallback">CallCallback</a>&nbsp;instance&nbsp;to&nbsp;be&nbsp;installed&nbsp;to&nbsp;the&nbsp;newly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created&nbsp;<a href="#Call">Call</a>&nbsp;object.&nbsp;If&nbsp;this&nbsp;<a href="#CallCallback">CallCallback</a>&nbsp;is&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specified&nbsp;(i.e.&nbsp;None&nbsp;is&nbsp;given),&nbsp;it&nbsp;must&nbsp;be&nbsp;installed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;later&nbsp;using&nbsp;call.<a href="#Account-set_callback">set_callback</a>().<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;outgoing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INVITE<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Call">Call</a>&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Account-pres_notify"><strong>pres_notify</strong></a>(self, pres_obj, state, reason<font color="#909090">=''</font>, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;NOTIFY&nbsp;to&nbsp;inform&nbsp;account&nbsp;presence&nbsp;status&nbsp;or&nbsp;to&nbsp;terminate<br>
+server&nbsp;side&nbsp;presence&nbsp;subscription.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+pres_obj&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;The&nbsp;subscription&nbsp;object&nbsp;from&nbsp;on_incoming_subscribe()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback<br>
+state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Subscription&nbsp;state,&nbsp;from&nbsp;<a href="#SubscriptionState">SubscriptionState</a><br>
+reason&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;reason&nbsp;phrase.<br>
+hdr_list&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;header&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Account-set_basic_status"><strong>set_basic_status</strong></a>(self, is_online)</dt><dd><tt>Set&nbsp;basic&nbsp;presence&nbsp;status&nbsp;of&nbsp;this&nbsp;account.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+is_online&nbsp;&nbsp;&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;basic&nbsp;presence&nbsp;availability.</tt></dd></dl>
+
+<dl><dt><a name="Account-set_callback"><strong>set_callback</strong></a>(self, cb)</dt><dd><tt>Register&nbsp;callback&nbsp;to&nbsp;receive&nbsp;notifications&nbsp;from&nbsp;this&nbsp;object.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+cb&nbsp;&nbsp;--&nbsp;<a href="#AccountCallback">AccountCallback</a>&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Account-set_default"><strong>set_default</strong></a>(self)</dt><dd><tt>Set&nbsp;this&nbsp;account&nbsp;as&nbsp;default&nbsp;account&nbsp;to&nbsp;send&nbsp;outgoing&nbsp;requests<br>
+and&nbsp;as&nbsp;the&nbsp;account&nbsp;to&nbsp;receive&nbsp;incoming&nbsp;requests&nbsp;when&nbsp;more&nbsp;exact<br>
+matching&nbsp;criteria&nbsp;fails.</tt></dd></dl>
+
+<dl><dt><a name="Account-set_presence_status"><strong>set_presence_status</strong></a>(self, is_online, activity<font color="#909090">=0</font>, pres_text<font color="#909090">=''</font>, rpid_id<font color="#909090">=''</font>)</dt><dd><tt>Set&nbsp;presence&nbsp;status&nbsp;of&nbsp;this&nbsp;account.&nbsp;<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+is_online&nbsp;&nbsp;&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;basic&nbsp;presence&nbsp;availability<br>
+activity&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;value&nbsp;from&nbsp;<a href="#PresenceActivity">PresenceActivity</a><br>
+pres_text&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;string&nbsp;to&nbsp;convey&nbsp;additional&nbsp;information&nbsp;about<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;activity&nbsp;(such&nbsp;as&nbsp;"On&nbsp;the&nbsp;phone")<br>
+rpid_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;string&nbsp;to&nbsp;be&nbsp;placed&nbsp;as&nbsp;RPID&nbsp;ID.</tt></dd></dl>
+
+<dl><dt><a name="Account-set_registration"><strong>set_registration</strong></a>(self, renew)</dt><dd><tt>Manually&nbsp;renew&nbsp;registration&nbsp;or&nbsp;unregister&nbsp;from&nbsp;the&nbsp;server.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+renew&nbsp;&nbsp;&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;whether&nbsp;registration&nbsp;is&nbsp;renewed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setting&nbsp;this&nbsp;value&nbsp;for&nbsp;False&nbsp;will&nbsp;trigger&nbsp;unregistration.</tt></dd></dl>
+
+<dl><dt><a name="Account-set_transport"><strong>set_transport</strong></a>(self, transport)</dt><dd><tt>Set&nbsp;this&nbsp;account&nbsp;to&nbsp;only&nbsp;use&nbsp;the&nbsp;specified&nbsp;transport&nbsp;to&nbsp;send<br>
+outgoing&nbsp;requests.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+transport&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#Transport">Transport</a>&nbsp;object.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AccountCallback">class <strong>AccountCallback</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;to&nbsp;receive&nbsp;notifications&nbsp;on&nbsp;account's&nbsp;events.<br>
+&nbsp;<br>
+Derive&nbsp;a&nbsp;class&nbsp;from&nbsp;this&nbsp;class&nbsp;and&nbsp;register&nbsp;it&nbsp;to&nbsp;the&nbsp;<a href="#Account">Account</a>&nbsp;object<br>
+using&nbsp;<a href="#Account">Account</a>.set_callback()&nbsp;to&nbsp;start&nbsp;receiving&nbsp;events&nbsp;from&nbsp;the&nbsp;<a href="#Account">Account</a><br>
+object.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+account&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#Account">Account</a>&nbsp;object.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AccountCallback-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AccountCallback-__init__"><strong>__init__</strong></a>(self, account<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="AccountCallback-on_incoming_call"><strong>on_incoming_call</strong></a>(self, call)</dt><dd><tt>Notification&nbsp;about&nbsp;incoming&nbsp;call.<br>
+&nbsp;<br>
+Unless&nbsp;this&nbsp;callback&nbsp;is&nbsp;implemented,&nbsp;the&nbsp;default&nbsp;behavior&nbsp;is&nbsp;to<br>
+reject&nbsp;the&nbsp;call&nbsp;with&nbsp;default&nbsp;status&nbsp;code.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+call&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;new&nbsp;incoming&nbsp;call</tt></dd></dl>
+
+<dl><dt><a name="AccountCallback-on_incoming_subscribe"><strong>on_incoming_subscribe</strong></a>(self, buddy, from_uri, contact_uri, pres_obj)</dt><dd><tt>Notification&nbsp;when&nbsp;incoming&nbsp;SUBSCRIBE&nbsp;request&nbsp;is&nbsp;received.&nbsp;<br>
+&nbsp;<br>
+Application&nbsp;may&nbsp;use&nbsp;this&nbsp;callback&nbsp;to&nbsp;authorize&nbsp;the&nbsp;incoming&nbsp;<br>
+subscribe&nbsp;request&nbsp;(e.g.&nbsp;ask&nbsp;user&nbsp;permission&nbsp;if&nbsp;the&nbsp;request&nbsp;<br>
+should&nbsp;be&nbsp;granted)<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+buddy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;The&nbsp;buddy&nbsp;object,&nbsp;if&nbsp;buddy&nbsp;is&nbsp;found.&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;value&nbsp;is&nbsp;None.<br>
+from_uri&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;The&nbsp;URI&nbsp;string&nbsp;of&nbsp;the&nbsp;sender.<br>
+pres_obj&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Opaque&nbsp;presence&nbsp;subscription&nbsp;object,&nbsp;which&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;needed&nbsp;by&nbsp;<a href="#Account">Account</a>.pres_notify()<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tuple&nbsp;(code,&nbsp;reason),&nbsp;where:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;status&nbsp;code.&nbsp;If&nbsp;code&nbsp;is&nbsp;&gt;=&nbsp;300,&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;is&nbsp;rejected.&nbsp;If&nbsp;code&nbsp;is&nbsp;200,&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;is&nbsp;accepted&nbsp;and&nbsp;NOTIFY&nbsp;will&nbsp;be&nbsp;sent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;automatically.&nbsp;If&nbsp;code&nbsp;is&nbsp;202,&nbsp;application<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;must&nbsp;accept&nbsp;or&nbsp;reject&nbsp;the&nbsp;request&nbsp;later&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Account">Account</a>.press_notify().<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reason:&nbsp;&nbsp;&nbsp;&nbsp;Optional&nbsp;reason&nbsp;phrase,&nbsp;or&nbsp;None&nbsp;to&nbsp;use&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;reasoh&nbsp;phrase&nbsp;for&nbsp;the&nbsp;status&nbsp;code.</tt></dd></dl>
+
+<dl><dt><a name="AccountCallback-on_pager"><strong>on_pager</strong></a>(self, from_uri, contact, mime_type, body)</dt><dd><tt>Notification&nbsp;that&nbsp;incoming&nbsp;instant&nbsp;message&nbsp;is&nbsp;received&nbsp;on<br>
+this&nbsp;account.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+from_uri&nbsp;&nbsp;&nbsp;--&nbsp;sender's&nbsp;URI<br>
+contact&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;sender's&nbsp;Contact&nbsp;URI<br>
+mime_type&nbsp;&nbsp;--&nbsp;MIME&nbsp;type&nbsp;of&nbsp;the&nbsp;instant&nbsp;message&nbsp;body<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;instant&nbsp;message&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="AccountCallback-on_pager_status"><strong>on_pager_status</strong></a>(self, to_uri, body, im_id, code, reason)</dt><dd><tt>Notification&nbsp;about&nbsp;the&nbsp;delivery&nbsp;status&nbsp;of&nbsp;previously&nbsp;sent<br>
+instant&nbsp;message.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+to_uri&nbsp;&nbsp;--&nbsp;the&nbsp;destination&nbsp;URI&nbsp;of&nbsp;the&nbsp;message<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;message&nbsp;body<br>
+im_id&nbsp;&nbsp;&nbsp;--&nbsp;message&nbsp;ID<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;code<br>
+reason&nbsp;&nbsp;--&nbsp;SIP&nbsp;reason&nbsp;phrase</tt></dd></dl>
+
+<dl><dt><a name="AccountCallback-on_reg_state"><strong>on_reg_state</strong></a>(self)</dt><dd><tt>Notification&nbsp;that&nbsp;the&nbsp;registration&nbsp;status&nbsp;has&nbsp;changed.</tt></dd></dl>
+
+<dl><dt><a name="AccountCallback-on_typing"><strong>on_typing</strong></a>(self, from_uri, contact, is_typing)</dt><dd><tt>Notification&nbsp;that&nbsp;remote&nbsp;is&nbsp;typing&nbsp;or&nbsp;stop&nbsp;typing.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+buddy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#Buddy">Buddy</a>&nbsp;object&nbsp;for&nbsp;the&nbsp;sender,&nbsp;if&nbsp;found.&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;will&nbsp;be&nbsp;None<br>
+from_uri&nbsp;&nbsp;--&nbsp;sender's&nbsp;URI&nbsp;of&nbsp;the&nbsp;indication<br>
+contact&nbsp;&nbsp;&nbsp;--&nbsp;sender's&nbsp;contact&nbsp;URI<br>
+is_typing&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;whether&nbsp;remote&nbsp;is&nbsp;currently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing&nbsp;an&nbsp;instant&nbsp;message.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>account</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AccountConfig">class <strong>AccountConfig</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;describes&nbsp;account&nbsp;configuration&nbsp;to&nbsp;create&nbsp;an&nbsp;account.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+priority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;account&nbsp;priority&nbsp;for&nbsp;matching&nbsp;incoming<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messages.<br>
+id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;URI&nbsp;of&nbsp;this&nbsp;account.&nbsp;This&nbsp;setting&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mandatory.<br>
+force_contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;force&nbsp;to&nbsp;use&nbsp;this&nbsp;URI&nbsp;as&nbsp;Contact&nbsp;URI.&nbsp;Setting<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;value&nbsp;is&nbsp;generally&nbsp;not&nbsp;recommended.<br>
+reg_uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;registrar&nbsp;URI.&nbsp;Mandatory&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;registration&nbsp;is&nbsp;required.<br>
+reg_timeout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;SIP&nbsp;registration&nbsp;refresh&nbsp;interval<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;seconds.<br>
+require_100rel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;if&nbsp;reliable&nbsp;provisional&nbsp;response&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;enforced&nbsp;(with&nbsp;Require&nbsp;header).<br>
+publish_enabled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;if&nbsp;PUBLISH&nbsp;should&nbsp;be&nbsp;used.&nbsp;When<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled,&nbsp;the&nbsp;PUBLISH&nbsp;will&nbsp;be&nbsp;sent&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;registrar.<br>
+pidf_tuple_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optionally&nbsp;specify&nbsp;the&nbsp;tuple&nbsp;ID&nbsp;in&nbsp;outgoing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PIDF&nbsp;document.<br>
+proxy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;list&nbsp;of&nbsp;proxy&nbsp;URI.<br>
+auth_cred&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;list&nbsp;of&nbsp;<a href="#AuthCred">AuthCred</a>&nbsp;containing&nbsp;credentials&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authenticate&nbsp;against&nbsp;the&nbsp;registrars&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;proxies.<br>
+auth_initial_send&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;if&nbsp;empty&nbsp;Authorization&nbsp;header&nbsp;should&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sent.&nbsp;May&nbsp;be&nbsp;needed&nbsp;for&nbsp;IMS.<br>
+auth_initial_algorithm&nbsp;&nbsp;--&nbsp;when&nbsp;auth_initial_send&nbsp;is&nbsp;enabled,&nbsp;optionally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specify&nbsp;the&nbsp;authentication&nbsp;algorithm&nbsp;to&nbsp;use.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Valid&nbsp;values&nbsp;are&nbsp;"md5",&nbsp;"akav1-md5",&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"akav2-md5".&nbsp;<br>
+transport_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optionally&nbsp;specify&nbsp;the&nbsp;transport&nbsp;ID&nbsp;to&nbsp;be&nbsp;used<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;this&nbsp;account.&nbsp;Shouldn't&nbsp;be&nbsp;needed&nbsp;unless<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;specific&nbsp;requirements&nbsp;(e.g.&nbsp;in&nbsp;multi-homed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scenario).<br>
+allow_contact_rewrite&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;whether&nbsp;the&nbsp;account&nbsp;should&nbsp;learn&nbsp;its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact&nbsp;address&nbsp;from&nbsp;REGISTER&nbsp;response&nbsp;and&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update&nbsp;the&nbsp;registration&nbsp;accordingly.&nbsp;Default&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True.<br>
+ka_interval&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;interval&nbsp;to&nbsp;send&nbsp;NAT&nbsp;keep-alive&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;packet.<br>
+ka_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;NAT&nbsp;keep-alive&nbsp;packet&nbsp;contents.<br>
+use_srtp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;SRTP&nbsp;usage&nbsp;policy.&nbsp;Valid&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are:&nbsp;0=disable,&nbsp;1=optional,&nbsp;2=mandatory.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;is&nbsp;0.<br>
+srtp_secure_signaling&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;signaling&nbsp;security&nbsp;level&nbsp;required<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;SRTP.&nbsp;Valid&nbsp;values&nbsp;are:&nbsp;0=no&nbsp;secure&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transport&nbsp;is&nbsp;required,&nbsp;1=hop-by-hop&nbsp;secure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transport&nbsp;such&nbsp;as&nbsp;TLS&nbsp;is&nbsp;required,&nbsp;2=end-to-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;secure&nbsp;transport&nbsp;is&nbsp;required&nbsp;(i.e.&nbsp;"sips").<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AccountConfig-__init__"><strong>__init__</strong></a>(self, domain<font color="#909090">=''</font>, username<font color="#909090">=''</font>, password<font color="#909090">=''</font>, display<font color="#909090">=''</font>, registrar<font color="#909090">=''</font>, proxy<font color="#909090">=''</font>)</dt><dd><tt>Construct&nbsp;account&nbsp;config.&nbsp;If&nbsp;domain&nbsp;argument&nbsp;is&nbsp;specified,&nbsp;<br>
+a&nbsp;typical&nbsp;configuration&nbsp;will&nbsp;be&nbsp;built.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+domain&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;domain&nbsp;name&nbsp;of&nbsp;the&nbsp;server.<br>
+username&nbsp;&nbsp;--&nbsp;user&nbsp;name.<br>
+password&nbsp;&nbsp;--&nbsp;plain-text&nbsp;password.<br>
+display&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;display&nbsp;name&nbsp;for&nbsp;the&nbsp;user&nbsp;name.<br>
+registrar&nbsp;--&nbsp;the&nbsp;registrar&nbsp;URI.&nbsp;If&nbsp;domain&nbsp;name&nbsp;is&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;this&nbsp;argument&nbsp;is&nbsp;empty,&nbsp;the&nbsp;registrar&nbsp;URI<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from&nbsp;the&nbsp;domain&nbsp;name.<br>
+proxy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;proxy&nbsp;URI.&nbsp;If&nbsp;domain&nbsp;name&nbsp;is&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;this&nbsp;argument&nbsp;is&nbsp;empty,&nbsp;the&nbsp;proxy&nbsp;URI<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from&nbsp;the&nbsp;domain&nbsp;name.</tt></dd></dl>
+
+<dl><dt><a name="AccountConfig-build_config"><strong>build_config</strong></a>(self, domain, username, password, display<font color="#909090">=''</font>, registrar<font color="#909090">=''</font>, proxy<font color="#909090">=''</font>)</dt><dd><tt>Construct&nbsp;account&nbsp;config.&nbsp;If&nbsp;domain&nbsp;argument&nbsp;is&nbsp;specified,&nbsp;<br>
+a&nbsp;typical&nbsp;configuration&nbsp;will&nbsp;be&nbsp;built.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+domain&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;domain&nbsp;name&nbsp;of&nbsp;the&nbsp;server.<br>
+username&nbsp;&nbsp;--&nbsp;user&nbsp;name.<br>
+password&nbsp;&nbsp;--&nbsp;plain-text&nbsp;password.<br>
+display&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;display&nbsp;name&nbsp;for&nbsp;the&nbsp;user&nbsp;name.<br>
+registrar&nbsp;--&nbsp;the&nbsp;registrar&nbsp;URI.&nbsp;If&nbsp;domain&nbsp;name&nbsp;is&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;this&nbsp;argument&nbsp;is&nbsp;empty,&nbsp;the&nbsp;registrar&nbsp;URI<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from&nbsp;the&nbsp;domain&nbsp;name.<br>
+proxy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;proxy&nbsp;URI.&nbsp;If&nbsp;domain&nbsp;name&nbsp;is&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;this&nbsp;argument&nbsp;is&nbsp;empty,&nbsp;the&nbsp;proxy&nbsp;URI<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;constructed&nbsp;from&nbsp;the&nbsp;domain&nbsp;name.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>allow_contact_rewrite</strong> = True</dl>
+
+<dl><dt><strong>auth_cred</strong> = []</dl>
+
+<dl><dt><strong>auth_initial_algorithm</strong> = ''</dl>
+
+<dl><dt><strong>auth_initial_send</strong> = False</dl>
+
+<dl><dt><strong>force_contact</strong> = ''</dl>
+
+<dl><dt><strong>id</strong> = ''</dl>
+
+<dl><dt><strong>ka_data</strong> = '<font color="#c040c0">\r\n</font>'</dl>
+
+<dl><dt><strong>ka_interval</strong> = 15</dl>
+
+<dl><dt><strong>pidf_tuple_id</strong> = ''</dl>
+
+<dl><dt><strong>priority</strong> = 0</dl>
+
+<dl><dt><strong>proxy</strong> = []</dl>
+
+<dl><dt><strong>publish_enabled</strong> = False</dl>
+
+<dl><dt><strong>reg_timeout</strong> = 0</dl>
+
+<dl><dt><strong>reg_uri</strong> = ''</dl>
+
+<dl><dt><strong>require_100rel</strong> = False</dl>
+
+<dl><dt><strong>srtp_secure_signaling</strong> = 1</dl>
+
+<dl><dt><strong>transport_id</strong> = -1</dl>
+
+<dl><dt><strong>use_srtp</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AccountInfo">class <strong>AccountInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;describes&nbsp;<a href="#Account">Account</a>&nbsp;info.&nbsp;Application&nbsp;retrives&nbsp;account&nbsp;info<br>
+with&nbsp;<a href="#Account">Account</a>.info().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+is_default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;the&nbsp;default&nbsp;account.<br>
+uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;account&nbsp;URI.<br>
+reg_active&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;True&nbsp;if&nbsp;registration&nbsp;is&nbsp;active&nbsp;for&nbsp;this&nbsp;account.<br>
+reg_expires&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;contains&nbsp;the&nbsp;current&nbsp;registration&nbsp;expiration&nbsp;value,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;seconds.<br>
+reg_status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;registration&nbsp;status.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;less&nbsp;than<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;700,&nbsp;it&nbsp;specifies&nbsp;SIP&nbsp;status&nbsp;code.&nbsp;Value&nbsp;greater&nbsp;than<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;specifies&nbsp;the&nbsp;error&nbsp;code.<br>
+reg_reason&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;contains&nbsp;the&nbsp;registration&nbsp;status&nbsp;text&nbsp;(e.g.&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error&nbsp;message).<br>
+online_status&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;account's&nbsp;presence&nbsp;online&nbsp;status,&nbsp;True&nbsp;if&nbsp;it's&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;publishing&nbsp;itself&nbsp;as&nbsp;online.<br>
+online_text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;account's&nbsp;presence&nbsp;status&nbsp;text.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AccountInfo-__init__"><strong>__init__</strong></a>(self, ai)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>is_default</strong> = False</dl>
+
+<dl><dt><strong>online_status</strong> = False</dl>
+
+<dl><dt><strong>online_text</strong> = ''</dl>
+
+<dl><dt><strong>reg_active</strong> = False</dl>
+
+<dl><dt><strong>reg_expires</strong> = -1</dl>
+
+<dl><dt><strong>reg_reason</strong> = ''</dl>
+
+<dl><dt><strong>reg_status</strong> = 0</dl>
+
+<dl><dt><strong>uri</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AuthCred">class <strong>AuthCred</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Authentication&nbsp;credential&nbsp;for&nbsp;SIP&nbsp;or&nbsp;TURN&nbsp;account.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+scheme&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;authentication&nbsp;scheme&nbsp;(default&nbsp;is&nbsp;"Digest")<br>
+realm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;realm<br>
+username&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;username<br>
+passwd_type&nbsp;--&nbsp;password&nbsp;encoding&nbsp;(zero&nbsp;for&nbsp;plain-text)<br>
+passwd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;password<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AuthCred-__init__"><strong>__init__</strong></a>(self, realm, username, passwd, scheme<font color="#909090">='Digest'</font>, passwd_type<font color="#909090">=0</font>)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>passwd</strong> = ''</dl>
+
+<dl><dt><strong>passwd_type</strong> = 0</dl>
+
+<dl><dt><strong>realm</strong> = '*'</dl>
+
+<dl><dt><strong>scheme</strong> = 'Digest'</dl>
+
+<dl><dt><strong>username</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Buddy">class <strong>Buddy</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#Buddy">Buddy</a>&nbsp;represents&nbsp;person&nbsp;or&nbsp;remote&nbsp;agent.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;provides&nbsp;functions&nbsp;to&nbsp;subscribe&nbsp;to&nbsp;buddy's&nbsp;presence&nbsp;and<br>
+to&nbsp;send&nbsp;or&nbsp;receive&nbsp;instant&nbsp;messages&nbsp;from&nbsp;the&nbsp;buddy.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Buddy-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Buddy-__init__"><strong>__init__</strong></a>(self, lib, id, account, cb)</dt></dl>
+
+<dl><dt><a name="Buddy-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Buddy-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Remove&nbsp;this&nbsp;buddy&nbsp;from&nbsp;the&nbsp;buddy&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Buddy-info"><strong>info</strong></a>(self)</dt><dd><tt>Get&nbsp;buddy&nbsp;info&nbsp;as&nbsp;<a href="#BuddyInfo">BuddyInfo</a>.</tt></dd></dl>
+
+<dl><dt><a name="Buddy-send_pager"><strong>send_pager</strong></a>(self, text, im_id<font color="#909090">=0</font>, content_type<font color="#909090">='text/plain'</font>, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;instant&nbsp;message&nbsp;to&nbsp;remote&nbsp;buddy.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Instant&nbsp;message&nbsp;to&nbsp;be&nbsp;sent<br>
+im_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;instant&nbsp;message&nbsp;ID&nbsp;to&nbsp;identify&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instant&nbsp;message&nbsp;when&nbsp;delivery&nbsp;status&nbsp;callback<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;called.<br>
+content_type&nbsp;--&nbsp;MIME&nbsp;type&nbsp;identifying&nbsp;the&nbsp;instant&nbsp;message<br>
+hdr_list&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="Buddy-send_typing_ind"><strong>send_typing_ind</strong></a>(self, is_typing<font color="#909090">=True</font>, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;typing&nbsp;indication&nbsp;to&nbsp;remote&nbsp;buddy.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+is_typing&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;wheter&nbsp;user&nbsp;is&nbsp;typing.<br>
+hdr_list&nbsp;&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="Buddy-set_callback"><strong>set_callback</strong></a>(self, cb)</dt><dd><tt>Install&nbsp;callback&nbsp;to&nbsp;receive&nbsp;notifications&nbsp;from&nbsp;this&nbsp;object.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+cb&nbsp;&nbsp;--&nbsp;<a href="#BuddyCallback">BuddyCallback</a>&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Buddy-subscribe"><strong>subscribe</strong></a>(self)</dt><dd><tt>Subscribe&nbsp;to&nbsp;buddy's&nbsp;presence&nbsp;status&nbsp;notification.</tt></dd></dl>
+
+<dl><dt><a name="Buddy-unsubscribe"><strong>unsubscribe</strong></a>(self)</dt><dd><tt>Unsubscribe&nbsp;from&nbsp;buddy's&nbsp;presence&nbsp;status&nbsp;notification.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BuddyCallback">class <strong>BuddyCallback</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;receive&nbsp;notifications&nbsp;about&nbsp;<a href="#Buddy">Buddy</a>'s<br>
+presence&nbsp;status&nbsp;change.&nbsp;Application&nbsp;needs&nbsp;to&nbsp;derive&nbsp;a&nbsp;class&nbsp;from<br>
+this&nbsp;class,&nbsp;and&nbsp;register&nbsp;the&nbsp;instance&nbsp;with&nbsp;<a href="#Buddy">Buddy</a>.set_callback().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+buddy&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#Buddy">Buddy</a>&nbsp;object.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BuddyCallback-__init__"><strong>__init__</strong></a>(self, buddy<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="BuddyCallback-on_pager"><strong>on_pager</strong></a>(self, mime_type, body)</dt><dd><tt>Notification&nbsp;that&nbsp;incoming&nbsp;instant&nbsp;message&nbsp;is&nbsp;received&nbsp;from<br>
+this&nbsp;buddy.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+mime_type&nbsp;&nbsp;--&nbsp;MIME&nbsp;type&nbsp;of&nbsp;the&nbsp;instant&nbsp;message&nbsp;body<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;instant&nbsp;message&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="BuddyCallback-on_pager_status"><strong>on_pager_status</strong></a>(self, body, im_id, code, reason)</dt><dd><tt>Notification&nbsp;about&nbsp;the&nbsp;delivery&nbsp;status&nbsp;of&nbsp;previously&nbsp;sent<br>
+instant&nbsp;message.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;message&nbsp;body<br>
+im_id&nbsp;&nbsp;&nbsp;--&nbsp;message&nbsp;ID<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;code<br>
+reason&nbsp;&nbsp;--&nbsp;SIP&nbsp;reason&nbsp;phrase</tt></dd></dl>
+
+<dl><dt><a name="BuddyCallback-on_state"><strong>on_state</strong></a>(self)</dt><dd><tt>Notification&nbsp;that&nbsp;buddy's&nbsp;presence&nbsp;state&nbsp;has&nbsp;changed.&nbsp;Application<br>
+may&nbsp;then&nbsp;retrieve&nbsp;the&nbsp;new&nbsp;status&nbsp;with&nbsp;<a href="#Buddy">Buddy</a>.info()&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="BuddyCallback-on_typing"><strong>on_typing</strong></a>(self, is_typing)</dt><dd><tt>Notification&nbsp;that&nbsp;remote&nbsp;is&nbsp;typing&nbsp;or&nbsp;stop&nbsp;typing.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+is_typing&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;whether&nbsp;remote&nbsp;is&nbsp;currently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing&nbsp;an&nbsp;instant&nbsp;message.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>buddy</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BuddyInfo">class <strong>BuddyInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;contains&nbsp;information&nbsp;about&nbsp;<a href="#Buddy">Buddy</a>.&nbsp;Application&nbsp;may&nbsp;<br>
+retrieve&nbsp;this&nbsp;information&nbsp;by&nbsp;calling&nbsp;<a href="#Buddy">Buddy</a>.info().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#Buddy">Buddy</a>&nbsp;URI.<br>
+contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#Buddy">Buddy</a>&nbsp;Contact&nbsp;URI,&nbsp;if&nbsp;available.<br>
+online_status&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;presence&nbsp;online&nbsp;status.<br>
+online_text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;presence&nbsp;online&nbsp;status&nbsp;text.<br>
+activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#PresenceActivity">PresenceActivity</a><br>
+subscribed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;whether&nbsp;buddy's&nbsp;presence&nbsp;status&nbsp;is&nbsp;currently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;being&nbsp;subscribed.<br>
+sub_state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#SubscriptionState">SubscriptionState</a><br>
+sub_term_reason&nbsp;--&nbsp;The&nbsp;termination&nbsp;reason&nbsp;string&nbsp;of&nbsp;the&nbsp;last&nbsp;presence<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subscription&nbsp;to&nbsp;this&nbsp;buddy,&nbsp;if&nbsp;any.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BuddyInfo-__init__"><strong>__init__</strong></a>(self, pjsua_bi<font color="#909090">=None</font>)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>activity</strong> = 0</dl>
+
+<dl><dt><strong>contact</strong> = ''</dl>
+
+<dl><dt><strong>online_status</strong> = 0</dl>
+
+<dl><dt><strong>online_text</strong> = ''</dl>
+
+<dl><dt><strong>sub_state</strong> = 0</dl>
+
+<dl><dt><strong>sub_term_reason</strong> = ''</dl>
+
+<dl><dt><strong>subscribed</strong> = False</dl>
+
+<dl><dt><strong>uri</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Call">class <strong>Call</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;represents&nbsp;SIP&nbsp;call.<br>
+&nbsp;<br>
+Application&nbsp;initiates&nbsp;outgoing&nbsp;call&nbsp;with&nbsp;<a href="#Account">Account</a>.make_call(),&nbsp;and<br>
+incoming&nbsp;calls&nbsp;are&nbsp;reported&nbsp;in&nbsp;<a href="#AccountCallback">AccountCallback</a>.on_incoming_call().<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Call-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Call-__init__"><strong>__init__</strong></a>(self, lib, call_id, cb<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Call-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Call-answer"><strong>answer</strong></a>(self, code<font color="#909090">=200</font>, reason<font color="#909090">=''</font>, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;provisional&nbsp;or&nbsp;final&nbsp;response&nbsp;to&nbsp;incoming&nbsp;call.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;code.<br>
+reason&nbsp;&nbsp;&nbsp;--&nbsp;Reason&nbsp;phrase.&nbsp;Put&nbsp;empty&nbsp;to&nbsp;send&nbsp;default&nbsp;reason<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phrase&nbsp;for&nbsp;the&nbsp;status&nbsp;code.<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INVITE&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="Call-attach_to_id"><strong>attach_to_id</strong></a>(self, call_id)</dt></dl>
+
+<dl><dt><a name="Call-dial_dtmf"><strong>dial_dtmf</strong></a>(self, digits)</dt><dd><tt>Send&nbsp;DTMF&nbsp;digits&nbsp;with&nbsp;RTP&nbsp;event&nbsp;package.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+digits&nbsp;&nbsp;--&nbsp;DTMF&nbsp;digit&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="Call-dump_status"><strong>dump_status</strong></a>(self, with_media<font color="#909090">=True</font>, indent<font color="#909090">=''</font>, max_len<font color="#909090">=1024</font>)</dt><dd><tt>Dump&nbsp;the&nbsp;call&nbsp;status.</tt></dd></dl>
+
+<dl><dt><a name="Call-hangup"><strong>hangup</strong></a>(self, code<font color="#909090">=603</font>, reason<font color="#909090">=''</font>, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Terminate&nbsp;the&nbsp;call.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;code.<br>
+reason&nbsp;&nbsp;&nbsp;--&nbsp;Reason&nbsp;phrase.&nbsp;Put&nbsp;empty&nbsp;to&nbsp;send&nbsp;default&nbsp;reason<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phrase&nbsp;for&nbsp;the&nbsp;status&nbsp;code.<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="Call-hold"><strong>hold</strong></a>(self, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Put&nbsp;the&nbsp;call&nbsp;on&nbsp;hold.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="Call-info"><strong>info</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;<a href="#CallInfo">CallInfo</a>.</tt></dd></dl>
+
+<dl><dt><a name="Call-is_valid"><strong>is_valid</strong></a>(self)</dt><dd><tt>Check&nbsp;if&nbsp;this&nbsp;call&nbsp;is&nbsp;still&nbsp;valid.</tt></dd></dl>
+
+<dl><dt><a name="Call-reinvite"><strong>reinvite</strong></a>(self, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;re-INVITE&nbsp;and&nbsp;optionally&nbsp;offer&nbsp;new&nbsp;codecs&nbsp;to&nbsp;use.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+hdr_list&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="Call-send_request"><strong>send_request</strong></a>(self, method, hdr_list<font color="#909090">=None</font>, content_type<font color="#909090">=None</font>, body<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;arbitrary&nbsp;request&nbsp;to&nbsp;remote&nbsp;call.&nbsp;<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;useful&nbsp;for&nbsp;example&nbsp;to&nbsp;send&nbsp;INFO&nbsp;request.&nbsp;Note&nbsp;that&nbsp;this&nbsp;<br>
+function&nbsp;should&nbsp;not&nbsp;be&nbsp;used&nbsp;to&nbsp;send&nbsp;request&nbsp;that&nbsp;will&nbsp;change&nbsp;the&nbsp;<br>
+call&nbsp;state&nbsp;such&nbsp;as&nbsp;CANCEL&nbsp;or&nbsp;BYE.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;method&nbsp;name.<br>
+hdr_list&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;header&nbsp;list&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the&nbsp;request.<br>
+content_type&nbsp;--&nbsp;Content&nbsp;type&nbsp;to&nbsp;describe&nbsp;the&nbsp;body,&nbsp;if&nbsp;the&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;present<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;SIP&nbsp;message&nbsp;body.</tt></dd></dl>
+
+<dl><dt><a name="Call-set_callback"><strong>set_callback</strong></a>(self, cb)</dt><dd><tt>Set&nbsp;callback&nbsp;object&nbsp;to&nbsp;retrieve&nbsp;event&nbsp;notifications&nbsp;from&nbsp;this&nbsp;call.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+cb&nbsp;&nbsp;--&nbsp;<a href="#CallCallback">CallCallback</a>&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Call-transfer"><strong>transfer</strong></a>(self, dest_uri, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Transfer&nbsp;the&nbsp;call&nbsp;to&nbsp;new&nbsp;destination.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+dest_uri&nbsp;--&nbsp;Specify&nbsp;the&nbsp;SIP&nbsp;URI&nbsp;to&nbsp;transfer&nbsp;the&nbsp;call&nbsp;to.<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="Call-transfer_to_call"><strong>transfer_to_call</strong></a>(self, call, hdr_list<font color="#909090">=None</font>, options<font color="#909090">=0</font>)</dt><dd><tt>Attended&nbsp;call&nbsp;transfer.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+call&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;The&nbsp;<a href="#Call">Call</a>&nbsp;object&nbsp;to&nbsp;transfer&nbsp;call&nbsp;to.<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.<br>
+options&nbsp;&nbsp;--&nbsp;Must&nbsp;be&nbsp;zero&nbsp;for&nbsp;now.</tt></dd></dl>
+
+<dl><dt><a name="Call-unhold"><strong>unhold</strong></a>(self, hdr_list<font color="#909090">=None</font>)</dt><dd><tt>Release&nbsp;the&nbsp;call&nbsp;from&nbsp;hold.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+hdr_list&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="Call-update"><strong>update</strong></a>(self, hdr_list<font color="#909090">=None</font>, options<font color="#909090">=0</font>)</dt><dd><tt>Send&nbsp;UPDATE&nbsp;and&nbsp;optionally&nbsp;offer&nbsp;new&nbsp;codecs&nbsp;to&nbsp;use.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+hdr_list&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;list&nbsp;of&nbsp;headers&nbsp;to&nbsp;be&nbsp;sent&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.<br>
+options&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Must&nbsp;be&nbsp;zero&nbsp;for&nbsp;now.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CallCallback">class <strong>CallCallback</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;to&nbsp;receive&nbsp;event&nbsp;notification&nbsp;from&nbsp;<a href="#Call">Call</a>&nbsp;objects.&nbsp;<br>
+&nbsp;<br>
+Use&nbsp;<a href="#Call">Call</a>.set_callback()&nbsp;method&nbsp;to&nbsp;install&nbsp;instance&nbsp;of&nbsp;this&nbsp;callback&nbsp;<br>
+class&nbsp;to&nbsp;receive&nbsp;event&nbsp;notifications&nbsp;from&nbsp;the&nbsp;call&nbsp;object.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+call&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#Call">Call</a>&nbsp;object.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CallCallback-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CallCallback-__init__"><strong>__init__</strong></a>(self, call<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="CallCallback-on_dtmf_digit"><strong>on_dtmf_digit</strong></a>(self, digits)</dt><dd><tt>Notification&nbsp;on&nbsp;incoming&nbsp;DTMF&nbsp;digits.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+digits&nbsp;&nbsp;--&nbsp;string&nbsp;containing&nbsp;the&nbsp;received&nbsp;digits.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_media_state"><strong>on_media_state</strong></a>(self)</dt><dd><tt>Notification&nbsp;that&nbsp;the&nbsp;call's&nbsp;media&nbsp;state&nbsp;has&nbsp;changed.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_pager"><strong>on_pager</strong></a>(self, mime_type, body)</dt><dd><tt>Notification&nbsp;that&nbsp;incoming&nbsp;instant&nbsp;message&nbsp;is&nbsp;received&nbsp;on<br>
+this&nbsp;call.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+mime_type&nbsp;&nbsp;--&nbsp;MIME&nbsp;type&nbsp;of&nbsp;the&nbsp;instant&nbsp;message&nbsp;body.<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;instant&nbsp;message&nbsp;body.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_pager_status"><strong>on_pager_status</strong></a>(self, body, im_id, code, reason)</dt><dd><tt>Notification&nbsp;about&nbsp;the&nbsp;delivery&nbsp;status&nbsp;of&nbsp;previously&nbsp;sent<br>
+instant&nbsp;message.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+body&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;message&nbsp;body<br>
+im_id&nbsp;&nbsp;&nbsp;--&nbsp;message&nbsp;ID<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;code<br>
+reason&nbsp;&nbsp;--&nbsp;SIP&nbsp;reason&nbsp;phrase</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_replace_request"><strong>on_replace_request</strong></a>(self, code, reason)</dt><dd><tt>Notification&nbsp;when&nbsp;incoming&nbsp;INVITE&nbsp;with&nbsp;Replaces&nbsp;header&nbsp;is&nbsp;received.&nbsp;<br>
+&nbsp;<br>
+Application&nbsp;may&nbsp;reject&nbsp;the&nbsp;request&nbsp;by&nbsp;returning&nbsp;value&nbsp;greather&nbsp;than<br>
+or&nbsp;equal&nbsp;to&nbsp;500.&nbsp;The&nbsp;default&nbsp;behavior&nbsp;is&nbsp;to&nbsp;accept&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;default&nbsp;status&nbsp;code&nbsp;to&nbsp;return<br>
+reason&nbsp;&nbsp;--&nbsp;default&nbsp;reason&nbsp;phrase&nbsp;to&nbsp;return<br>
+&nbsp;<br>
+Return:<br>
+The&nbsp;callback&nbsp;should&nbsp;return&nbsp;(code,&nbsp;reason)&nbsp;tuple.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_replaced"><strong>on_replaced</strong></a>(self, new_call)</dt><dd><tt>Notification&nbsp;that&nbsp;this&nbsp;call&nbsp;will&nbsp;be&nbsp;replaced&nbsp;with&nbsp;new_call.&nbsp;<br>
+After&nbsp;this&nbsp;callback&nbsp;is&nbsp;called,&nbsp;this&nbsp;call&nbsp;will&nbsp;be&nbsp;disconnected.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+new_call&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;new&nbsp;call&nbsp;that&nbsp;will&nbsp;replace&nbsp;this&nbsp;call.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_state"><strong>on_state</strong></a>(self)</dt><dd><tt>Notification&nbsp;that&nbsp;the&nbsp;call's&nbsp;state&nbsp;has&nbsp;changed.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_transfer_request"><strong>on_transfer_request</strong></a>(self, dst, code)</dt><dd><tt>Notification&nbsp;that&nbsp;call&nbsp;is&nbsp;being&nbsp;transfered&nbsp;by&nbsp;remote&nbsp;party.&nbsp;<br>
+&nbsp;<br>
+Application&nbsp;can&nbsp;decide&nbsp;to&nbsp;accept/reject&nbsp;transfer&nbsp;request&nbsp;by&nbsp;returning<br>
+code&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;500.&nbsp;The&nbsp;default&nbsp;behavior&nbsp;is&nbsp;to&nbsp;accept&nbsp;<br>
+the&nbsp;transfer&nbsp;by&nbsp;returning&nbsp;202.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+dst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;string&nbsp;containing&nbsp;the&nbsp;destination&nbsp;URI<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;suggested&nbsp;status&nbsp;code&nbsp;to&nbsp;return&nbsp;to&nbsp;accept&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+Return:<br>
+the&nbsp;callback&nbsp;should&nbsp;return&nbsp;202&nbsp;to&nbsp;accept&nbsp;the&nbsp;request,&nbsp;or&nbsp;300-699&nbsp;to<br>
+reject&nbsp;the&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_transfer_status"><strong>on_transfer_status</strong></a>(self, code, reason, final, cont)</dt><dd><tt>Notification&nbsp;about&nbsp;the&nbsp;status&nbsp;of&nbsp;previous&nbsp;call&nbsp;transfer&nbsp;request.&nbsp;<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+code&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;code&nbsp;to&nbsp;indicate&nbsp;completion&nbsp;status.<br>
+text&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;status&nbsp;reason&nbsp;phrase.<br>
+final&nbsp;&nbsp;&nbsp;--&nbsp;if&nbsp;True&nbsp;then&nbsp;this&nbsp;is&nbsp;a&nbsp;final&nbsp;status&nbsp;and&nbsp;no&nbsp;further<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notifications&nbsp;will&nbsp;be&nbsp;sent&nbsp;for&nbsp;this&nbsp;call&nbsp;transfer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status.<br>
+cont&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;suggested&nbsp;return&nbsp;value.<br>
+&nbsp;<br>
+Return:<br>
+If&nbsp;the&nbsp;callback&nbsp;returns&nbsp;false&nbsp;then&nbsp;no&nbsp;further&nbsp;notification&nbsp;will<br>
+be&nbsp;sent&nbsp;for&nbsp;the&nbsp;transfer&nbsp;request&nbsp;for&nbsp;this&nbsp;call.</tt></dd></dl>
+
+<dl><dt><a name="CallCallback-on_typing"><strong>on_typing</strong></a>(self, is_typing)</dt><dd><tt>Notification&nbsp;that&nbsp;remote&nbsp;is&nbsp;typing&nbsp;or&nbsp;stop&nbsp;typing.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+is_typing&nbsp;--&nbsp;boolean&nbsp;to&nbsp;indicate&nbsp;whether&nbsp;remote&nbsp;is&nbsp;currently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing&nbsp;an&nbsp;instant&nbsp;message.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>call</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CallInfo">class <strong>CallInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;structure&nbsp;contains&nbsp;various&nbsp;information&nbsp;about&nbsp;<a href="#Call">Call</a>.<br>
+&nbsp;<br>
+Application&nbsp;may&nbsp;retrieve&nbsp;this&nbsp;information&nbsp;with&nbsp;<a href="#Call">Call</a>.info().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#CallRole">CallRole</a><br>
+account&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#Account">Account</a>&nbsp;object.<br>
+uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;SIP&nbsp;URI&nbsp;of&nbsp;local&nbsp;account.<br>
+contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;local&nbsp;Contact&nbsp;URI.<br>
+remote_uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;remote&nbsp;SIP&nbsp;URI.<br>
+remote_contact&nbsp;&nbsp;--&nbsp;remote&nbsp;Contact&nbsp;URI<br>
+sip_call_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;call's&nbsp;<a href="#Call">Call</a>-ID&nbsp;identification<br>
+state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#CallState">CallState</a><br>
+state_text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;state&nbsp;text.<br>
+last_code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;last&nbsp;SIP&nbsp;status&nbsp;code<br>
+last_reason&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;text&nbsp;phrase&nbsp;for&nbsp;last_code<br>
+media_state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#MediaState">MediaState</a><br>
+media_dir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#MediaDir">MediaDir</a><br>
+conf_slot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;conference&nbsp;slot&nbsp;number&nbsp;for&nbsp;this&nbsp;call.<br>
+call_time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;call's&nbsp;connected&nbsp;duration&nbsp;in&nbsp;seconds.<br>
+total_time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;total&nbsp;call&nbsp;duration&nbsp;in&nbsp;seconds.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CallInfo-__init__"><strong>__init__</strong></a>(self, lib<font color="#909090">=None</font>, ci<font color="#909090">=None</font>)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>account</strong> = None</dl>
+
+<dl><dt><strong>call_time</strong> = 0</dl>
+
+<dl><dt><strong>conf_slot</strong> = -1</dl>
+
+<dl><dt><strong>contact</strong> = ''</dl>
+
+<dl><dt><strong>last_code</strong> = 0</dl>
+
+<dl><dt><strong>last_reason</strong> = ''</dl>
+
+<dl><dt><strong>media_dir</strong> = 0</dl>
+
+<dl><dt><strong>media_state</strong> = 0</dl>
+
+<dl><dt><strong>remote_contact</strong> = ''</dl>
+
+<dl><dt><strong>remote_uri</strong> = ''</dl>
+
+<dl><dt><strong>role</strong> = 0</dl>
+
+<dl><dt><strong>sip_call_id</strong> = ''</dl>
+
+<dl><dt><strong>state</strong> = 0</dl>
+
+<dl><dt><strong>state_text</strong> = ''</dl>
+
+<dl><dt><strong>total_time</strong> = 0</dl>
+
+<dl><dt><strong>uri</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CallRole">class <strong>CallRole</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Call">Call</a>&nbsp;role&nbsp;constants.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+CALLER&nbsp;&nbsp;--&nbsp;role&nbsp;is&nbsp;caller<br>
+CALLEE&nbsp;&nbsp;--&nbsp;role&nbsp;is&nbsp;callee<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>CALLEE</strong> = 1</dl>
+
+<dl><dt><strong>CALLER</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CallState">class <strong>CallState</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Call">Call</a>&nbsp;state&nbsp;constants.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+NULL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;call&nbsp;is&nbsp;not&nbsp;initialized.<br>
+CALLING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;initial&nbsp;INVITE&nbsp;is&nbsp;sent.<br>
+INCOMING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;initial&nbsp;INVITE&nbsp;is&nbsp;received.<br>
+EARLY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;provisional&nbsp;response&nbsp;has&nbsp;been&nbsp;sent&nbsp;or&nbsp;received.<br>
+CONNECTING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;200/OK&nbsp;response&nbsp;has&nbsp;been&nbsp;sent&nbsp;or&nbsp;received.<br>
+CONFIRMED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;ACK&nbsp;has&nbsp;been&nbsp;sent&nbsp;or&nbsp;received.<br>
+DISCONNECTED&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;call&nbsp;is&nbsp;disconnected.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>CALLING</strong> = 1</dl>
+
+<dl><dt><strong>CONFIRMED</strong> = 5</dl>
+
+<dl><dt><strong>CONNECTING</strong> = 4</dl>
+
+<dl><dt><strong>DISCONNECTED</strong> = 6</dl>
+
+<dl><dt><strong>EARLY</strong> = 3</dl>
+
+<dl><dt><strong>INCOMING</strong> = 2</dl>
+
+<dl><dt><strong>NULL</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CodecInfo">class <strong>CodecInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;describes&nbsp;codec&nbsp;info.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;codec&nbsp;name<br>
+priority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;codec&nbsp;priority&nbsp;(0-255)<br>
+clock_rate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;clock&nbsp;rate<br>
+channel_count&nbsp;&nbsp;&nbsp;--&nbsp;number&nbsp;of&nbsp;channels<br>
+avg_bps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;average&nbsp;bandwidth&nbsp;in&nbsp;bits&nbsp;per&nbsp;second<br>
+frm_ptime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;base&nbsp;frame&nbsp;length&nbsp;in&nbsp;milliseconds<br>
+ptime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;RTP&nbsp;frame&nbsp;length&nbsp;in&nbsp;milliseconds.<br>
+pt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;payload&nbsp;type.<br>
+vad_enabled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;if&nbsp;Voice&nbsp;Activity&nbsp;Detection&nbsp;is&nbsp;currently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled.<br>
+plc_enabled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;if&nbsp;Packet&nbsp;Lost&nbsp;Concealment&nbsp;is&nbsp;currently<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CodecInfo-__init__"><strong>__init__</strong></a>(self, codec_info, codec_param)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>avg_bps</strong> = 0</dl>
+
+<dl><dt><strong>channel_count</strong> = 0</dl>
+
+<dl><dt><strong>clock_rate</strong> = 0</dl>
+
+<dl><dt><strong>frm_ptime</strong> = 0</dl>
+
+<dl><dt><strong>name</strong> = ''</dl>
+
+<dl><dt><strong>plc_enabled</strong> = False</dl>
+
+<dl><dt><strong>priority</strong> = 0</dl>
+
+<dl><dt><strong>pt</strong> = 0</dl>
+
+<dl><dt><strong>ptime</strong> = 0</dl>
+
+<dl><dt><strong>vad_enabled</strong> = False</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CodecParameter">class <strong>CodecParameter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;specifies&nbsp;various&nbsp;parameters&nbsp;that&nbsp;can&nbsp;be&nbsp;configured&nbsp;for&nbsp;codec.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+ptime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;outgoing&nbsp;RTP&nbsp;packet&nbsp;length&nbsp;in&nbsp;milliseconds.<br>
+vad_enabled&nbsp;--&nbsp;specify&nbsp;if&nbsp;VAD&nbsp;should&nbsp;be&nbsp;enabled.<br>
+plc_enabled&nbsp;--&nbsp;specify&nbsp;if&nbsp;PLC&nbsp;should&nbsp;be&nbsp;enabled.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CodecParameter-__init__"><strong>__init__</strong></a>(self, codec_param)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>plc_enabled</strong> = False</dl>
+
+<dl><dt><strong>ptime</strong> = 0</dl>
+
+<dl><dt><strong>vad_enabled</strong> = False</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Error">class <strong>Error</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Error">Error</a>&nbsp;exception&nbsp;class.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+op_name&nbsp;&nbsp;--&nbsp;name&nbsp;of&nbsp;the&nbsp;operation&nbsp;that&nbsp;generated&nbsp;this&nbsp;error.<br>
+obj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;object&nbsp;that&nbsp;generated&nbsp;this&nbsp;error.<br>
+err_code&nbsp;--&nbsp;the&nbsp;error&nbsp;code.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Error-__init__"><strong>__init__</strong></a>(self, op_name, obj, err_code, err_msg<font color="#909090">=''</font>)</dt></dl>
+
+<dl><dt><a name="Error-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Error-err_msg"><strong>err_msg</strong></a>(self)</dt><dd><tt>Retrieve&nbsp;the&nbsp;description&nbsp;of&nbsp;the&nbsp;error.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>err_code</strong> = -1</dl>
+
+<dl><dt><strong>obj</strong> = None</dl>
+
+<dl><dt><strong>op_name</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Lib">class <strong>Lib</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Library&nbsp;instance.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Lib-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Lib-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Lib-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Lib-auto_lock"><strong>auto_lock</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Lib-conf_connect"><strong>conf_connect</strong></a>(self, src_slot, dst_slot)</dt><dd><tt>Establish&nbsp;unidirectional&nbsp;media&nbsp;flow&nbsp;from&nbsp;souce&nbsp;to&nbsp;sink.&nbsp;<br>
+&nbsp;<br>
+One&nbsp;source&nbsp;may&nbsp;transmit&nbsp;to&nbsp;multiple&nbsp;destinations/sink.&nbsp;And&nbsp;if&nbsp;<br>
+multiple&nbsp;sources&nbsp;are&nbsp;transmitting&nbsp;to&nbsp;the&nbsp;same&nbsp;sink,&nbsp;the&nbsp;media&nbsp;<br>
+will&nbsp;be&nbsp;mixed&nbsp;together.&nbsp;Source&nbsp;and&nbsp;sink&nbsp;may&nbsp;refer&nbsp;to&nbsp;the&nbsp;same&nbsp;ID,&nbsp;<br>
+effectively&nbsp;looping&nbsp;the&nbsp;media.<br>
+&nbsp;<br>
+If&nbsp;bidirectional&nbsp;media&nbsp;flow&nbsp;is&nbsp;desired,&nbsp;application&nbsp;needs&nbsp;to&nbsp;call<br>
+this&nbsp;function&nbsp;twice,&nbsp;with&nbsp;the&nbsp;second&nbsp;one&nbsp;having&nbsp;the&nbsp;arguments&nbsp;<br>
+reversed.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+src_slot&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;source/transmitter.<br>
+dst_slot&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;destination/receiver.</tt></dd></dl>
+
+<dl><dt><a name="Lib-conf_disconnect"><strong>conf_disconnect</strong></a>(self, src_slot, dst_slot)</dt><dd><tt>Disconnect&nbsp;media&nbsp;flow&nbsp;from&nbsp;the&nbsp;source&nbsp;to&nbsp;destination&nbsp;port.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+src_slot&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;source/transmitter.<br>
+dst_slot&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;destination/receiver.</tt></dd></dl>
+
+<dl><dt><a name="Lib-conf_get_max_ports"><strong>conf_get_max_ports</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;conference&nbsp;bridge&nbsp;capacity.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;conference&nbsp;bridge&nbsp;capacity.</tt></dd></dl>
+
+<dl><dt><a name="Lib-conf_get_signal_level"><strong>conf_get_signal_level</strong></a>(self, slot)</dt><dd><tt>Get&nbsp;last&nbsp;signal&nbsp;level&nbsp;transmitted&nbsp;to&nbsp;or&nbsp;received&nbsp;from&nbsp;the&nbsp;<br>
+specified&nbsp;port.&nbsp;The&nbsp;signal&nbsp;levels&nbsp;are&nbsp;float&nbsp;values&nbsp;from&nbsp;0.0&nbsp;to&nbsp;1.0,<br>
+with&nbsp;0.0&nbsp;indicates&nbsp;no&nbsp;signal,&nbsp;and&nbsp;1.0&nbsp;indicates&nbsp;the&nbsp;loudest&nbsp;signal<br>
+level.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+slot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number.<br>
+&nbsp;<br>
+Return&nbsp;value:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(tx_level,&nbsp;rx_level)&nbsp;tuple.</tt></dd></dl>
+
+<dl><dt><a name="Lib-conf_set_rx_level"><strong>conf_set_rx_level</strong></a>(self, slot, level)</dt><dd><tt>Adjust&nbsp;the&nbsp;signal&nbsp;level&nbsp;to&nbsp;be&nbsp;received&nbsp;from&nbsp;the&nbsp;specified&nbsp;port<br>
+(to&nbsp;the&nbsp;bridge)&nbsp;by&nbsp;making&nbsp;it&nbsp;louder&nbsp;or&nbsp;quieter.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+slot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number.<br>
+level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Signal&nbsp;level&nbsp;adjustment.&nbsp;Value&nbsp;1.0&nbsp;means&nbsp;no&nbsp;level<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adjustment,&nbsp;while&nbsp;value&nbsp;0&nbsp;means&nbsp;to&nbsp;mute&nbsp;the&nbsp;port.</tt></dd></dl>
+
+<dl><dt><a name="Lib-conf_set_tx_level"><strong>conf_set_tx_level</strong></a>(self, slot, level)</dt><dd><tt>Adjust&nbsp;the&nbsp;signal&nbsp;level&nbsp;to&nbsp;be&nbsp;transmitted&nbsp;from&nbsp;the&nbsp;bridge&nbsp;to&nbsp;<br>
+the&nbsp;specified&nbsp;port&nbsp;by&nbsp;making&nbsp;it&nbsp;louder&nbsp;or&nbsp;quieter.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+slot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;integer&nbsp;to&nbsp;identify&nbsp;the&nbsp;conference&nbsp;slot&nbsp;number.<br>
+level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Signal&nbsp;level&nbsp;adjustment.&nbsp;Value&nbsp;1.0&nbsp;means&nbsp;no&nbsp;level<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adjustment,&nbsp;while&nbsp;value&nbsp;0&nbsp;means&nbsp;to&nbsp;mute&nbsp;the&nbsp;port.</tt></dd></dl>
+
+<dl><dt><a name="Lib-create_account"><strong>create_account</strong></a>(self, acc_config, set_default<font color="#909090">=True</font>, cb<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;local&nbsp;pjsua&nbsp;account&nbsp;using&nbsp;the&nbsp;specified&nbsp;configuration.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+acc_config&nbsp;&nbsp;--&nbsp;<a href="#AccountConfig">AccountConfig</a><br>
+set_default&nbsp;--&nbsp;boolean&nbsp;to&nbsp;specify&nbsp;whether&nbsp;to&nbsp;use&nbsp;this&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;account.<br>
+cb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#AccountCallback">AccountCallback</a>&nbsp;instance.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Account">Account</a>&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Lib-create_account_for_transport"><strong>create_account_for_transport</strong></a>(self, transport, set_default<font color="#909090">=True</font>, cb<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;local&nbsp;pjsua&nbsp;transport&nbsp;for&nbsp;the&nbsp;specified&nbsp;transport.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+transport&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;<a href="#Transport">Transport</a>&nbsp;instance.<br>
+set_default&nbsp;--&nbsp;boolean&nbsp;to&nbsp;specify&nbsp;whether&nbsp;to&nbsp;use&nbsp;this&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;account.<br>
+cb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#AccountCallback">AccountCallback</a>&nbsp;instance.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Account">Account</a>&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Lib-create_player"><strong>create_player</strong></a>(self, filename, loop<font color="#909090">=False</font>)</dt><dd><tt>Create&nbsp;WAV&nbsp;file&nbsp;player.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments<br>
+filename&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;WAV&nbsp;file&nbsp;name<br>
+loop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;boolean&nbsp;to&nbsp;specify&nbsp;whether&nbsp;playback&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;automatically&nbsp;restart&nbsp;upon&nbsp;EOF<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WAV&nbsp;player&nbsp;ID</tt></dd></dl>
+
+<dl><dt><a name="Lib-create_playlist"><strong>create_playlist</strong></a>(self, filelist, label<font color="#909090">='playlist'</font>, loop<font color="#909090">=True</font>)</dt><dd><tt>Create&nbsp;WAV&nbsp;playlist.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+filelist&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;List&nbsp;of&nbsp;WAV&nbsp;file&nbsp;names.<br>
+label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Optional&nbsp;name&nbsp;to&nbsp;be&nbsp;assigned&nbsp;to&nbsp;the&nbsp;playlist<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object&nbsp;(useful&nbsp;for&nbsp;logging)<br>
+loop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;boolean&nbsp;to&nbsp;specify&nbsp;whether&nbsp;playback&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;automatically&nbsp;restart&nbsp;upon&nbsp;EOF<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;playlist_id</tt></dd></dl>
+
+<dl><dt><a name="Lib-create_recorder"><strong>create_recorder</strong></a>(self, filename)</dt><dd><tt>Create&nbsp;WAV&nbsp;file&nbsp;recorder.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments<br>
+filename&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;WAV&nbsp;file&nbsp;name<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WAV&nbsp;recorder&nbsp;ID</tt></dd></dl>
+
+<dl><dt><a name="Lib-create_transport"><strong>create_transport</strong></a>(self, type, cfg<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;SIP&nbsp;transport&nbsp;instance&nbsp;of&nbsp;the&nbsp;specified&nbsp;type.&nbsp;<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+type&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;transport&nbsp;type&nbsp;from&nbsp;<a href="#TransportType">TransportType</a>&nbsp;constant.<br>
+cfg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<a href="#TransportConfig">TransportConfig</a>&nbsp;instance<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Transport">Transport</a>&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Lib-destroy"><strong>destroy</strong></a>(self)</dt><dd><tt>Destroy&nbsp;the&nbsp;library,&nbsp;and&nbsp;pjsua.</tt></dd></dl>
+
+<dl><dt><a name="Lib-enum_codecs"><strong>enum_codecs</strong></a>(self)</dt><dd><tt>Return&nbsp;list&nbsp;of&nbsp;codecs&nbsp;supported&nbsp;by&nbsp;pjsua.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;<a href="#CodecInfo">CodecInfo</a></tt></dd></dl>
+
+<dl><dt><a name="Lib-enum_snd_dev"><strong>enum_snd_dev</strong></a>(self)</dt><dd><tt>Enumerate&nbsp;sound&nbsp;devices&nbsp;in&nbsp;the&nbsp;system.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;<a href="#SoundDeviceInfo">SoundDeviceInfo</a>.&nbsp;The&nbsp;index&nbsp;of&nbsp;the&nbsp;element&nbsp;specifies<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;device&nbsp;ID&nbsp;for&nbsp;the&nbsp;device.</tt></dd></dl>
+
+<dl><dt><a name="Lib-get_codec_parameter"><strong>get_codec_parameter</strong></a>(self, name)</dt><dd><tt>Get&nbsp;codec&nbsp;parameter&nbsp;for&nbsp;the&nbsp;specified&nbsp;codec.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;codec&nbsp;name.</tt></dd></dl>
+
+<dl><dt><a name="Lib-get_snd_dev"><strong>get_snd_dev</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;device&nbsp;IDs&nbsp;of&nbsp;current&nbsp;sound&nbsp;devices&nbsp;used&nbsp;by&nbsp;pjsua.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(capture_dev_id,&nbsp;playback_dev_id)&nbsp;tuple</tt></dd></dl>
+
+<dl><dt><a name="Lib-handle_events"><strong>handle_events</strong></a>(self, timeout<font color="#909090">=50</font>)</dt><dd><tt>Poll&nbsp;the&nbsp;events&nbsp;from&nbsp;underlying&nbsp;pjsua&nbsp;library.<br>
+&nbsp;<br>
+Application&nbsp;must&nbsp;poll&nbsp;the&nbsp;stack&nbsp;periodically&nbsp;if&nbsp;worker&nbsp;thread<br>
+is&nbsp;disable&nbsp;when&nbsp;starting&nbsp;the&nbsp;library.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+timeout&nbsp;--&nbsp;in&nbsp;milliseconds.</tt></dd></dl>
+
+<dl><dt><a name="Lib-hangup_all"><strong>hangup_all</strong></a>(self)</dt><dd><tt>Hangup&nbsp;all&nbsp;calls.</tt></dd></dl>
+
+<dl><dt><a name="Lib-init"><strong>init</strong></a>(self, ua_cfg<font color="#909090">=None</font>, log_cfg<font color="#909090">=None</font>, media_cfg<font color="#909090">=None</font>)</dt><dd><tt>Initialize&nbsp;pjsua&nbsp;with&nbsp;the&nbsp;specified&nbsp;configurations.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+ua_cfg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;<a href="#UAConfig">UAConfig</a>&nbsp;instance<br>
+log_cfg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;<a href="#LogConfig">LogConfig</a>&nbsp;instance<br>
+media_cfg&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;<a href="#MediaConfig">MediaConfig</a>&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="Lib-player_destroy"><strong>player_destroy</strong></a>(self, player_id)</dt><dd><tt>Destroy&nbsp;the&nbsp;WAV&nbsp;player.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+player_id&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;WAV&nbsp;player&nbsp;ID.</tt></dd></dl>
+
+<dl><dt><a name="Lib-player_get_slot"><strong>player_get_slot</strong></a>(self, player_id)</dt><dd><tt>Get&nbsp;the&nbsp;conference&nbsp;port&nbsp;ID&nbsp;for&nbsp;the&nbsp;specified&nbsp;player.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+player_id&nbsp;&nbsp;--&nbsp;the&nbsp;WAV&nbsp;player&nbsp;ID<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Conference&nbsp;slot&nbsp;number&nbsp;for&nbsp;the&nbsp;player</tt></dd></dl>
+
+<dl><dt><a name="Lib-player_set_pos"><strong>player_set_pos</strong></a>(self, player_id, pos)</dt><dd><tt>Set&nbsp;WAV&nbsp;playback&nbsp;position.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+player_id&nbsp;&nbsp;&nbsp;--&nbsp;WAV&nbsp;player&nbsp;ID<br>
+pos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;playback&nbsp;position,&nbsp;in&nbsp;samples</tt></dd></dl>
+
+<dl><dt><a name="Lib-playlist_destroy"><strong>playlist_destroy</strong></a>(self, playlist_id)</dt><dd><tt>Destroy&nbsp;the&nbsp;WAV&nbsp;playlist.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+playlist_id&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;WAV&nbsp;playlist&nbsp;ID.</tt></dd></dl>
+
+<dl><dt><a name="Lib-playlist_get_slot"><strong>playlist_get_slot</strong></a>(self, playlist_id)</dt><dd><tt>Get&nbsp;the&nbsp;conference&nbsp;port&nbsp;ID&nbsp;for&nbsp;the&nbsp;specified&nbsp;playlist.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+playlist_id&nbsp;&nbsp;--&nbsp;the&nbsp;WAV&nbsp;playlist&nbsp;ID<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Conference&nbsp;slot&nbsp;number&nbsp;for&nbsp;the&nbsp;playlist</tt></dd></dl>
+
+<dl><dt><a name="Lib-recorder_destroy"><strong>recorder_destroy</strong></a>(self, rec_id)</dt><dd><tt>Destroy&nbsp;the&nbsp;WAV&nbsp;recorder.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+rec_id&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;WAV&nbsp;recorder&nbsp;ID.</tt></dd></dl>
+
+<dl><dt><a name="Lib-recorder_get_slot"><strong>recorder_get_slot</strong></a>(self, rec_id)</dt><dd><tt>Get&nbsp;the&nbsp;conference&nbsp;port&nbsp;ID&nbsp;for&nbsp;the&nbsp;specified&nbsp;recorder.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+rec_id&nbsp;&nbsp;--&nbsp;the&nbsp;WAV&nbsp;recorder&nbsp;ID<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Conference&nbsp;slot&nbsp;number&nbsp;for&nbsp;the&nbsp;recorder</tt></dd></dl>
+
+<dl><dt><a name="Lib-set_codec_parameter"><strong>set_codec_parameter</strong></a>(self, name, param)</dt><dd><tt>Modify&nbsp;codec&nbsp;parameter&nbsp;for&nbsp;the&nbsp;specified&nbsp;codec.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;codec&nbsp;name<br>
+param&nbsp;&nbsp;&nbsp;--&nbsp;codec&nbsp;parameter.</tt></dd></dl>
+
+<dl><dt><a name="Lib-set_codec_priority"><strong>set_codec_priority</strong></a>(self, name, priority)</dt><dd><tt>Change&nbsp;the&nbsp;codec&nbsp;priority.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Codec&nbsp;name<br>
+priority&nbsp;--&nbsp;Codec&nbsp;priority,&nbsp;which&nbsp;range&nbsp;is&nbsp;0-255.</tt></dd></dl>
+
+<dl><dt><a name="Lib-set_null_snd_dev"><strong>set_null_snd_dev</strong></a>(self)</dt><dd><tt>Disable&nbsp;the&nbsp;sound&nbsp;devices.&nbsp;This&nbsp;is&nbsp;useful&nbsp;if&nbsp;the&nbsp;system<br>
+does&nbsp;not&nbsp;have&nbsp;sound&nbsp;device&nbsp;installed.</tt></dd></dl>
+
+<dl><dt><a name="Lib-set_snd_dev"><strong>set_snd_dev</strong></a>(self, capture_dev, playback_dev)</dt><dd><tt>Change&nbsp;the&nbsp;current&nbsp;sound&nbsp;devices.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments:<br>
+capture_dev&nbsp;&nbsp;--&nbsp;the&nbsp;device&nbsp;ID&nbsp;of&nbsp;capture&nbsp;device&nbsp;to&nbsp;be&nbsp;used<br>
+playback_dev&nbsp;--&nbsp;the&nbsp;device&nbsp;ID&nbsp;of&nbsp;playback&nbsp;device&nbsp;to&nbsp;be&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="Lib-start"><strong>start</strong></a>(self, with_thread<font color="#909090">=True</font>)</dt><dd><tt>Start&nbsp;the&nbsp;library.&nbsp;<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+with_thread&nbsp;--&nbsp;specify&nbsp;whether&nbsp;the&nbsp;module&nbsp;should&nbsp;create&nbsp;worker<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;thread.</tt></dd></dl>
+
+<dl><dt><a name="Lib-verify_sip_url"><strong>verify_sip_url</strong></a>(self, sip_url)</dt><dd><tt>Verify&nbsp;that&nbsp;the&nbsp;specified&nbsp;string&nbsp;is&nbsp;a&nbsp;valid&nbsp;URI.&nbsp;<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+sip_url&nbsp;--&nbsp;the&nbsp;URL&nbsp;string.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;is&nbsp;the&nbsp;the&nbsp;URI&nbsp;is&nbsp;valid,&nbsp;otherwise&nbsp;the&nbsp;appropriate&nbsp;error&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;code&nbsp;is&nbsp;returned.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Lib-instance"><strong>instance</strong></a>()</dt><dd><tt>Return&nbsp;singleton&nbsp;instance&nbsp;of&nbsp;<a href="#Lib">Lib</a>.</tt></dd></dl>
+
+<dl><dt><a name="Lib-strerror"><strong>strerror</strong></a>(err)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LogConfig">class <strong>LogConfig</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Logging&nbsp;configuration&nbsp;to&nbsp;be&nbsp;specified&nbsp;in&nbsp;<a href="#Lib">Lib</a>.init().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+msg_logging&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;if&nbsp;SIP&nbsp;messages&nbsp;should&nbsp;be&nbsp;logged.&nbsp;Set&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True.<br>
+level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;input&nbsp;verbosity&nbsp;level.<br>
+console_level&nbsp;--&nbsp;specify&nbsp;the&nbsp;output&nbsp;verbosity&nbsp;level.<br>
+decor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;log&nbsp;decoration.<br>
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;log&nbsp;filename.<br>
+callback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;callback&nbsp;to&nbsp;be&nbsp;called&nbsp;to&nbsp;write&nbsp;the&nbsp;logging<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messages.&nbsp;Sample&nbsp;function:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;log_cb(level,&nbsp;str,&nbsp;len):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;str,<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="LogConfig-__init__"><strong>__init__</strong></a>(self, level<font color="#909090">=-1</font>, filename<font color="#909090">=''</font>, callback<font color="#909090">=None</font>, console_level<font color="#909090">=-1</font>)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>callback</strong> = None</dl>
+
+<dl><dt><strong>console_level</strong> = 5</dl>
+
+<dl><dt><strong>decor</strong> = 0</dl>
+
+<dl><dt><strong>filename</strong> = ''</dl>
+
+<dl><dt><strong>level</strong> = 5</dl>
+
+<dl><dt><strong>msg_logging</strong> = True</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MediaConfig">class <strong>MediaConfig</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Media&nbsp;configuration&nbsp;to&nbsp;be&nbsp;specified&nbsp;in&nbsp;<a href="#Lib">Lib</a>.init().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+clock_rate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;core&nbsp;clock&nbsp;rate&nbsp;of&nbsp;the&nbsp;audio,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;most&nbsp;notably&nbsp;the&nbsp;conference&nbsp;bridge.<br>
+snd_clock_rate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optionally&nbsp;specify&nbsp;different&nbsp;clock&nbsp;rate&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;sound&nbsp;device.<br>
+snd_auto_close_time&nbsp;--&nbsp;specify&nbsp;the&nbsp;duration&nbsp;in&nbsp;seconds&nbsp;when&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sound&nbsp;device&nbsp;should&nbsp;be&nbsp;closed&nbsp;after&nbsp;inactivity<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;period.<br>
+channel_count&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;number&nbsp;of&nbsp;channels&nbsp;to&nbsp;open&nbsp;the&nbsp;sound<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device&nbsp;and&nbsp;the&nbsp;conference&nbsp;bridge.<br>
+audio_frame_ptime&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;length&nbsp;of&nbsp;audio&nbsp;frames&nbsp;in&nbsp;millisecond.<br>
+max_media_ports&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;maximum&nbsp;number&nbsp;of&nbsp;audio&nbsp;ports&nbsp;to&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supported&nbsp;by&nbsp;the&nbsp;conference&nbsp;bridge.<br>
+quality&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;audio&nbsp;quality&nbsp;setting&nbsp;(1-10)<br>
+ptime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;audio&nbsp;packet&nbsp;length&nbsp;of&nbsp;transmitted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTP&nbsp;packet.<br>
+no_vad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;disable&nbsp;Voice&nbsp;Activity&nbsp;Detector&nbsp;(VAD)&nbsp;or&nbsp;Silence<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detector&nbsp;(SD)<br>
+ilbc_mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;iLBC&nbsp;codec&nbsp;mode&nbsp;(must&nbsp;be&nbsp;30&nbsp;for&nbsp;now)<br>
+tx_drop_pct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;randomly&nbsp;drop&nbsp;transmitted&nbsp;RTP&nbsp;packets&nbsp;(for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simulation).&nbsp;Number&nbsp;is&nbsp;in&nbsp;percent.<br>
+rx_drop_pct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;randomly&nbsp;drop&nbsp;received&nbsp;RTP&nbsp;packets&nbsp;(for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simulation).&nbsp;Number&nbsp;is&nbsp;in&nbsp;percent.<br>
+ec_options&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Echo&nbsp;Canceller&nbsp;option&nbsp;(specify&nbsp;zero).<br>
+ec_tail_len&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;Echo&nbsp;Canceller&nbsp;tail&nbsp;length&nbsp;in&nbsp;milliseconds.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;zero&nbsp;will&nbsp;disable&nbsp;the&nbsp;echo&nbsp;canceller.<br>
+jb_min&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;minimum&nbsp;jitter&nbsp;buffer&nbsp;size&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;milliseconds.&nbsp;Put&nbsp;-1&nbsp;for&nbsp;default.<br>
+jb_max&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;maximum&nbsp;jitter&nbsp;buffer&nbsp;size&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;milliseconds.&nbsp;Put&nbsp;-1&nbsp;for&nbsp;default.<br>
+enable_ice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;enable&nbsp;Interactive&nbsp;Connectivity&nbsp;Establishment&nbsp;(ICE)<br>
+enable_turn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;enable&nbsp;TURN&nbsp;relay.&nbsp;TURN&nbsp;server&nbsp;settings&nbsp;must&nbsp;also<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;configured.<br>
+turn_server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;the&nbsp;domain&nbsp;or&nbsp;hostname&nbsp;or&nbsp;IP&nbsp;address&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;TURN&nbsp;server,&nbsp;in&nbsp;"host[:port]"&nbsp;format.<br>
+turn_conn_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;connection&nbsp;type&nbsp;to&nbsp;the&nbsp;TURN&nbsp;server,&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;<a href="#TURNConnType">TURNConnType</a>&nbsp;constant.<br>
+turn_cred&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;specify&nbsp;<a href="#AuthCred">AuthCred</a>&nbsp;for&nbsp;the&nbsp;TURN&nbsp;credential.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MediaConfig-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>audio_frame_ptime</strong> = 20</dl>
+
+<dl><dt><strong>channel_count</strong> = 1</dl>
+
+<dl><dt><strong>clock_rate</strong> = 16000</dl>
+
+<dl><dt><strong>ec_options</strong> = 0</dl>
+
+<dl><dt><strong>ec_tail_len</strong> = 256</dl>
+
+<dl><dt><strong>enable_ice</strong> = True</dl>
+
+<dl><dt><strong>enable_turn</strong> = False</dl>
+
+<dl><dt><strong>ilbc_mode</strong> = 30</dl>
+
+<dl><dt><strong>jb_max</strong> = -1</dl>
+
+<dl><dt><strong>jb_min</strong> = -1</dl>
+
+<dl><dt><strong>max_media_ports</strong> = 32</dl>
+
+<dl><dt><strong>no_vad</strong> = False</dl>
+
+<dl><dt><strong>ptime</strong> = 0</dl>
+
+<dl><dt><strong>quality</strong> = 6</dl>
+
+<dl><dt><strong>rx_drop_pct</strong> = 0</dl>
+
+<dl><dt><strong>snd_auto_close_time</strong> = 5</dl>
+
+<dl><dt><strong>snd_clock_rate</strong> = 0</dl>
+
+<dl><dt><strong>turn_conn_type</strong> = 17</dl>
+
+<dl><dt><strong>turn_cred</strong> = None</dl>
+
+<dl><dt><strong>turn_server</strong> = ''</dl>
+
+<dl><dt><strong>tx_drop_pct</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MediaDir">class <strong>MediaDir</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Media&nbsp;direction&nbsp;constants.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+NULL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;media&nbsp;is&nbsp;not&nbsp;active<br>
+ENCODING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;media&nbsp;is&nbsp;active&nbsp;in&nbsp;transmit/encoding&nbsp;direction&nbsp;only.<br>
+DECODING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;media&nbsp;is&nbsp;active&nbsp;in&nbsp;receive/decoding&nbsp;direction&nbsp;only<br>
+ENCODING_DECODING&nbsp;--&nbsp;media&nbsp;is&nbsp;active&nbsp;in&nbsp;both&nbsp;directions.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>DECODING</strong> = 2</dl>
+
+<dl><dt><strong>ENCODING</strong> = 1</dl>
+
+<dl><dt><strong>ENCODING_DECODING</strong> = 3</dl>
+
+<dl><dt><strong>NULL</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MediaState">class <strong>MediaState</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Call">Call</a>&nbsp;media&nbsp;state&nbsp;constants.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+NULL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;media&nbsp;is&nbsp;not&nbsp;available.<br>
+ACTIVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;media&nbsp;is&nbsp;active.<br>
+LOCAL_HOLD&nbsp;&nbsp;--&nbsp;media&nbsp;is&nbsp;put&nbsp;on-hold&nbsp;by&nbsp;local&nbsp;party.<br>
+REMOTE_HOLD&nbsp;--&nbsp;media&nbsp;is&nbsp;put&nbsp;on-hold&nbsp;by&nbsp;remote&nbsp;party.<br>
+ERROR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;media&nbsp;error&nbsp;(e.g.&nbsp;ICE&nbsp;negotiation&nbsp;failure).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>ACTIVE</strong> = 1</dl>
+
+<dl><dt><strong>ERROR</strong> = 4</dl>
+
+<dl><dt><strong>LOCAL_HOLD</strong> = 2</dl>
+
+<dl><dt><strong>NULL</strong> = 0</dl>
+
+<dl><dt><strong>REMOTE_HOLD</strong> = 3</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PresenceActivity">class <strong>PresenceActivity</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Presence&nbsp;activities&nbsp;constants.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+UNKNOWN&nbsp;--&nbsp;the&nbsp;person&nbsp;activity&nbsp;is&nbsp;unknown<br>
+AWAY&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;person&nbsp;is&nbsp;currently&nbsp;away<br>
+BUSY&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;person&nbsp;is&nbsp;currently&nbsp;engaging&nbsp;in&nbsp;other&nbsp;activity<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>AWAY</strong> = 1</dl>
+
+<dl><dt><strong>BUSY</strong> = 2</dl>
+
+<dl><dt><strong>UNKNOWN</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SIPUri">class <strong>SIPUri</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Helper&nbsp;class&nbsp;to&nbsp;parse&nbsp;the&nbsp;most&nbsp;important&nbsp;components&nbsp;of&nbsp;SIP&nbsp;URI.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+scheme&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;URI&nbsp;scheme&nbsp;("sip"&nbsp;or&nbsp;"sips")<br>
+user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;user&nbsp;part&nbsp;of&nbsp;the&nbsp;URI&nbsp;(may&nbsp;be&nbsp;empty)<br>
+host&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;host&nbsp;name&nbsp;part<br>
+port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;optional&nbsp;port&nbsp;number&nbsp;(zero&nbsp;if&nbsp;port&nbsp;is&nbsp;not&nbsp;specified).<br>
+transport&nbsp;--&nbsp;transport&nbsp;parameter,&nbsp;or&nbsp;empty&nbsp;if&nbsp;transport&nbsp;is&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specified.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SIPUri-__init__"><strong>__init__</strong></a>(self, uri<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SIPUri-decode"><strong>decode</strong></a>(self, uri)</dt><dd><tt>Parse&nbsp;SIP&nbsp;URL.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+uri&nbsp;--&nbsp;the&nbsp;URI&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="SIPUri-encode"><strong>encode</strong></a>(self)</dt><dd><tt>Encode&nbsp;this&nbsp;object&nbsp;into&nbsp;SIP&nbsp;URI&nbsp;string.<br>
+&nbsp;<br>
+Return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;URI&nbsp;string.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>host</strong> = ''</dl>
+
+<dl><dt><strong>port</strong> = 0</dl>
+
+<dl><dt><strong>scheme</strong> = ''</dl>
+
+<dl><dt><strong>transport</strong> = ''</dl>
+
+<dl><dt><strong>user</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SoundDeviceInfo">class <strong>SoundDeviceInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;described&nbsp;the&nbsp;sound&nbsp;device&nbsp;info.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;device&nbsp;name.<br>
+input_channels&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;number&nbsp;of&nbsp;capture&nbsp;channels&nbsp;supported.<br>
+output_channels&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;number&nbsp;of&nbsp;playback&nbsp;channels&nbsp;supported.<br>
+default_clock_rate&nbsp;&nbsp;--&nbsp;default&nbsp;sampling&nbsp;rate.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SoundDeviceInfo-__init__"><strong>__init__</strong></a>(self, sdi)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>default_clock_rate</strong> = 0</dl>
+
+<dl><dt><strong>input_channels</strong> = 0</dl>
+
+<dl><dt><strong>name</strong> = ''</dl>
+
+<dl><dt><strong>output_channels</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SubscriptionState">class <strong>SubscriptionState</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Presence&nbsp;subscription&nbsp;state&nbsp;constants.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>ACCEPTED</strong> = 2</dl>
+
+<dl><dt><strong>ACTIVE</strong> = 4</dl>
+
+<dl><dt><strong>NULL</strong> = 0</dl>
+
+<dl><dt><strong>PENDING</strong> = 3</dl>
+
+<dl><dt><strong>SENT</strong> = 1</dl>
+
+<dl><dt><strong>TERMINATED</strong> = 5</dl>
+
+<dl><dt><strong>UNKNOWN</strong> = 6</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TURNConnType">class <strong>TURNConnType</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>These&nbsp;constants&nbsp;specifies&nbsp;the&nbsp;connection&nbsp;type&nbsp;to&nbsp;TURN&nbsp;server.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+UDP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;use&nbsp;UDP&nbsp;transport.<br>
+TCP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;use&nbsp;TCP&nbsp;transport.<br>
+TLS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;use&nbsp;TLS&nbsp;transport.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>TCP</strong> = 6</dl>
+
+<dl><dt><strong>TLS</strong> = 255</dl>
+
+<dl><dt><strong>UDP</strong> = 17</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Transport">class <strong>Transport</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>SIP&nbsp;transport&nbsp;class.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Transport-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Transport-__init__"><strong>__init__</strong></a>(self, lib, id)</dt></dl>
+
+<dl><dt><a name="Transport-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Transport-close"><strong>close</strong></a>(self, force<font color="#909090">=False</font>)</dt><dd><tt>Close&nbsp;and&nbsp;destroy&nbsp;this&nbsp;transport.<br>
+&nbsp;<br>
+Keyword&nbsp;argument:<br>
+force&nbsp;&nbsp;&nbsp;--&nbsp;force&nbsp;deletion&nbsp;of&nbsp;this&nbsp;transport&nbsp;(not&nbsp;recommended).</tt></dd></dl>
+
+<dl><dt><a name="Transport-disable"><strong>disable</strong></a>(self)</dt><dd><tt>Disable&nbsp;this&nbsp;transport.</tt></dd></dl>
+
+<dl><dt><a name="Transport-enable"><strong>enable</strong></a>(self)</dt><dd><tt>Enable&nbsp;this&nbsp;transport.</tt></dd></dl>
+
+<dl><dt><a name="Transport-info"><strong>info</strong></a>(self)</dt><dd><tt>Get&nbsp;<a href="#TransportInfo">TransportInfo</a>.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TransportConfig">class <strong>TransportConfig</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>SIP&nbsp;transport&nbsp;configuration&nbsp;class.<br>
+&nbsp;<br>
+Member&nbsp;configuration:<br>
+&nbsp;<br>
+port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;port&nbsp;number.<br>
+bound_addr&nbsp;&nbsp;--&nbsp;optionally&nbsp;specify&nbsp;the&nbsp;address&nbsp;to&nbsp;bind&nbsp;the&nbsp;socket&nbsp;to.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;is&nbsp;empty&nbsp;to&nbsp;bind&nbsp;to&nbsp;INADDR_ANY.<br>
+public_addr&nbsp;--&nbsp;optionally&nbsp;override&nbsp;the&nbsp;published&nbsp;address&nbsp;for&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transport.&nbsp;If&nbsp;empty,&nbsp;the&nbsp;default&nbsp;behavior&nbsp;is&nbsp;to&nbsp;get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;public&nbsp;address&nbsp;from&nbsp;STUN&nbsp;or&nbsp;from&nbsp;the&nbsp;selected<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;interface.&nbsp;Format&nbsp;is&nbsp;"host:port".<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TransportConfig-__init__"><strong>__init__</strong></a>(self, port<font color="#909090">=5060</font>, bound_addr<font color="#909090">=''</font>, public_addr<font color="#909090">=''</font>)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>bound_addr</strong> = ''</dl>
+
+<dl><dt><strong>port</strong> = 0</dl>
+
+<dl><dt><strong>public_addr</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TransportFlag">class <strong>TransportFlag</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Transport">Transport</a>&nbsp;flags&nbsp;to&nbsp;indicate&nbsp;the&nbsp;characteristics&nbsp;of&nbsp;the&nbsp;transport.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+RELIABLE&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;transport&nbsp;is&nbsp;reliable.<br>
+SECURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;transport&nbsp;is&nbsp;secure.<br>
+DATAGRAM&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;transport&nbsp;is&nbsp;datagram&nbsp;based.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>DATAGRAM</strong> = 4</dl>
+
+<dl><dt><strong>RELIABLE</strong> = 1</dl>
+
+<dl><dt><strong>SECURE</strong> = 2</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TransportInfo">class <strong>TransportInfo</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>SIP&nbsp;transport&nbsp;info.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;transport&nbsp;type,&nbsp;from&nbsp;<a href="#TransportType">TransportType</a>&nbsp;constants.<br>
+description&nbsp;--&nbsp;longer&nbsp;description&nbsp;for&nbsp;this&nbsp;transport.<br>
+is_reliable&nbsp;--&nbsp;True&nbsp;if&nbsp;transport&nbsp;is&nbsp;reliable.<br>
+is_secure&nbsp;&nbsp;&nbsp;--&nbsp;True&nbsp;if&nbsp;transport&nbsp;is&nbsp;secure.<br>
+is_datagram&nbsp;--&nbsp;True&nbsp;if&nbsp;transport&nbsp;is&nbsp;datagram&nbsp;based.<br>
+host&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;IP&nbsp;address&nbsp;of&nbsp;this&nbsp;transport.<br>
+port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;port&nbsp;number.<br>
+ref_cnt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;number&nbsp;of&nbsp;objects&nbsp;referencing&nbsp;this&nbsp;transport.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TransportInfo-__init__"><strong>__init__</strong></a>(self, ti)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>description</strong> = ''</dl>
+
+<dl><dt><strong>host</strong> = ''</dl>
+
+<dl><dt><strong>is_datagram</strong> = False</dl>
+
+<dl><dt><strong>is_reliable</strong> = False</dl>
+
+<dl><dt><strong>is_secure</strong> = False</dl>
+
+<dl><dt><strong>port</strong> = 0</dl>
+
+<dl><dt><strong>ref_cnt</strong> = 0</dl>
+
+<dl><dt><strong>type</strong> = ''</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TransportType">class <strong>TransportType</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>SIP&nbsp;transport&nbsp;type&nbsp;constants.<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+UNSPECIFIED&nbsp;--&nbsp;transport&nbsp;type&nbsp;is&nbsp;unknown&nbsp;or&nbsp;unspecified<br>
+UDP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;UDP&nbsp;transport<br>
+TCP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;TCP&nbsp;transport<br>
+TLS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;TLS&nbsp;transport<br>
+IPV6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;this&nbsp;is&nbsp;not&nbsp;a&nbsp;transport&nbsp;type&nbsp;but&nbsp;rather&nbsp;a&nbsp;flag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;select&nbsp;the&nbsp;IPv6&nbsp;version&nbsp;of&nbsp;a&nbsp;transport<br>
+UDP_IPV6&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;IPv6&nbsp;UDP&nbsp;transport<br>
+TCP_IPV6&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;IPv6&nbsp;TCP&nbsp;transport<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>IPV6</strong> = 128</dl>
+
+<dl><dt><strong>TCP</strong> = 2</dl>
+
+<dl><dt><strong>TCP_IPV6</strong> = 130</dl>
+
+<dl><dt><strong>TLS</strong> = 3</dl>
+
+<dl><dt><strong>UDP</strong> = 1</dl>
+
+<dl><dt><strong>UDP_IPV6</strong> = 129</dl>
+
+<dl><dt><strong>UNSPECIFIED</strong> = 0</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UAConfig">class <strong>UAConfig</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>User&nbsp;agent&nbsp;configuration&nbsp;to&nbsp;be&nbsp;specified&nbsp;in&nbsp;<a href="#Lib">Lib</a>.init().<br>
+&nbsp;<br>
+Member&nbsp;documentation:<br>
+&nbsp;<br>
+max_calls&nbsp;&nbsp;&nbsp;--&nbsp;maximum&nbsp;number&nbsp;of&nbsp;calls&nbsp;to&nbsp;be&nbsp;supported.<br>
+nameserver&nbsp;&nbsp;--&nbsp;list&nbsp;of&nbsp;nameserver&nbsp;hostnames&nbsp;or&nbsp;IP&nbsp;addresses.&nbsp;Nameserver<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;must&nbsp;be&nbsp;configured&nbsp;if&nbsp;DNS&nbsp;SRV&nbsp;resolution&nbsp;is&nbsp;desired.<br>
+stun_domain&nbsp;--&nbsp;if&nbsp;nameserver&nbsp;is&nbsp;configured,&nbsp;this&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;STUN&nbsp;server&nbsp;with&nbsp;DNS&nbsp;SRV.<br>
+stun_host&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;hostname&nbsp;or&nbsp;IP&nbsp;address&nbsp;of&nbsp;the&nbsp;STUN&nbsp;server.&nbsp;This&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;also&nbsp;be&nbsp;used&nbsp;if&nbsp;DNS&nbsp;SRV&nbsp;resolution&nbsp;for&nbsp;stun_domain&nbsp;fails.<br>
+user_agent&nbsp;&nbsp;--&nbsp;Optionally&nbsp;specify&nbsp;the&nbsp;user&nbsp;agent&nbsp;name.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>max_calls</strong> = 4</dl>
+
+<dl><dt><strong>nameserver</strong> = []</dl>
+
+<dl><dt><strong>stun_domain</strong> = ''</dl>
+
+<dl><dt><strong>stun_host</strong> = ''</dl>
+
+<dl><dt><strong>user_agent</strong> = 'pjsip python'</dl>
+
+</td></tr></table></td></tr></table>
+<!--#include virtual="/footer.html" -->
+</body></html>

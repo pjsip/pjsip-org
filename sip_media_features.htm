@@ -1,0 +1,1096 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>Open Source Embedded SIP Stack and Media Stack Features</title>
+	<LINK href="/style/style.css" type="text/css" rel="stylesheet"></head>
+  <body>
+	<!--#include virtual="/header.html" -->
+	  <TABLE id="ContentSubTable" cellSpacing="6" cellPadding="4" width="100%" border="0">
+		<TR>
+		  <TD>
+			<H1>SIP and Media Features</H1>
+<TABLE BORDER="0" width="100%">
+<TR>
+ <TD><p>[Last Update: $Date: 2007-12-12 16:19:32 +0000 (Wed, 12 Dec 2007) $]</p></TD>
+ <TD></TD>
+</TR>
+</TABLE>
+			  <HR width="100%" SIZE="1">
+		  </TD>
+		  <TD></TD>
+		</TR>
+		<TR>
+		  <TD vAlign="top">
+			<H2><A name="general"></A>General Features
+			</H2>
+			  <TABLE class="fancy" id="Table1" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="104"><STRONG>Open Source</STRONG></TD>
+				  <TD vAlign="top">Source is available for public scrutiny.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="104"><STRONG>High Performance</STRONG></TD>
+				  <TD vAlign="top">Thousands of calls can be processed per second on a typical 
+					Intel P4/2.4GHz desktop machine. More can be expected with proper server 
+					hardware and more or higher processor specs.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="104"><STRONG>Small Footprint, Very Scalable</STRONG></TD>
+				  <TD vAlign="top">Scale down to low profile/embedded/small footprint SIP devices, 
+					or scale up to servers with mutlple processors&nbsp;using&nbsp;the 
+					same SIP stack source tree.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="104"><STRONG>Portable</STRONG></TD>
+				  <TD vAlign="top">
+					<P>32bit, 64bit, big/little endian, any OS.&nbsp;</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="104"><STRONG>Extensive Documentation</STRONG></TD>
+				  <TD vAlign="top">There can never be enough documentation, so we try to provide 
+					readers with hundreds of pages worth of documentations (some are generated from 
+					the source, some are handwritten documents).</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<H3><A name="platforms">Target Platforms</A></H3>
+			  <TABLE class="fancy" id="Table2" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TH vAlign="top" width="102">
+					Processor</TH>
+				  <TH vAlign="top">
+					Operating Systems</TH>
+				  <TH vAlign="top">
+					Status</TH>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>alpha</STRONG></TD>
+				  <TD vAlign="top">
+					Linux, gcc</TD>
+				  <TD vAlign="top">Worked once</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>armv4</STRONG></TD>
+				  <TD vAlign="top">
+					Linux/uC-Linux, gcc</TD>
+				  <TD vAlign="top">Works</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>armv4</STRONG></TD>
+				  <TD vAlign="top">RTEMS, gcc</TD>
+				  <TD vAlign="top">Supported, and reported to work</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>armv4</STRONG></TD>
+				  <TD vAlign="top">Symbian, gcc</TD>
+				  <TD vAlign="top">As of May 2007, all have been ported except sound device.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>armv4</STRONG></TD>
+				  <TD vAlign="top">Microsoft Windows Mobile family, Embedded Visual C++ 4
+					for targets such as Windows CE (WinCE), PocketPC, and 
+					SmartPhone. Microsoft Visual Studio 2005 has also been
+					reported to work.</TD>
+				  <TD vAlign="top">Works (WMME sound)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>armv5b</STRONG></TD>
+				  <TD vAlign="top">linux-2.6/XScale</TD>
+				  <TD vAlign="top">Supported, and reported to work</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>Blackfin</STRONG></TD>
+				  <TD vAlign="top">
+					uC-Linux, gcc</TD>
+				  <TD vAlign="top">underway</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>i386</STRONG></TD>
+				  <TD vAlign="top">Linux, gcc</TD>
+				  <TD vAlign="top">Works (OSS or ALSA sound)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>i386</STRONG></TD>
+				  <TD vAlign="top"><p>Windows 95 family (win95/win98/winME)</p>
+													 <p>WinNT family (WinNT/2000/XP/2003/Vista)</p>
+													 <p>Development tools: MSVC 6, VS.NET 2003, VC Express 2005</p>
+													 <p>Please see <A HREF="/trac/wiki/Windows98_Support">enabling Windows 95/98/ME support page</A> about specific instructions on enabling Win95/Win98/ME support in the software.</p>
+					</TD>
+				  <TD vAlign="top">Works (WMME or DirectSound sound backend)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>i386</STRONG></TD>
+				  <TD vAlign="top"><p>Mingw with gcc, via autoconf.</p><p>Cygwin may compile with <tt>./configure-legacy</tt> configuration.</p></TD>
+				  <TD vAlign="top">Works (WMME sound backend)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>i386</STRONG></TD>
+				  <TD vAlign="top">BSD/FreeBSD 6.1</TD>
+				  <TD vAlign="top">Compiles and seems to work (sound disabled with --disable-sound)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>i386</STRONG></TD>
+				  <TD vAlign="top">Linux kernel mode, gcc</TD>
+				  <TD vAlign="top">Worked once.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>ia64/Itanium II</STRONG></TD>
+				  <TD vAlign="top">
+					Debian 3.1/GNU Linux 2.6.8, gcc-3.3.5</TD>
+				  <TD vAlign="top">Works (media/audio untested)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>ia64/Itanium II</STRONG></TD>
+				  <TD vAlign="top">
+					BSD/FreeBSD 6.1, gcc-3.4.4, gmake</TD>
+				  <TD vAlign="top">Compiles and seems to work (using null audio, media untested)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>mips</STRONG></TD>
+				  <TD vAlign="top">Linux/uC-Linux, gcc, big-endian/little-endian</TD>
+				  <TD vAlign="top">Works</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>powerpc</STRONG></TD>
+				  <TD vAlign="top">MacOS X 10.2 or later, gcc</TD>
+				  <TD vAlign="top">Works (CoreAudio sound backend)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>powerpc</STRONG></TD>
+				  <TD vAlign="top">RTEMS, gcc</TD>
+				  <TD vAlign="top">Supported, and reported to work</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>powerpc</STRONG></TD>
+				  <TD vAlign="top">uC-Linux, gcc</TD>
+				  <TD vAlign="top">Reported to work</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>sparc</STRONG></TD>
+				  <TD vAlign="top">SunOS/Sparc, gcc</TD>
+				  <TD vAlign="top">Worked once</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102"><STRONG>x86_64/AMD64</STRONG></TD>
+				  <TD vAlign="top">
+					GNU Linux, gcc</TD>
+				  <TD vAlign="top">Works (media/audio untested)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="102">Other</TD>
+				  <TD vAlign="top">
+					Other people have ported PJSIP to various platforms, including Nintendo DS, iPod Touch, and Texas Instruments DSP.</TD>
+				  <TD vAlign="top">&nbsp;</TD>
+				</TR>
+			  </TABLE>
+			<P>Note: some PJMEDIA features may not be available or suitable&nbsp;for some 
+			  platforms (for example, because of lacks of floating point support).</P>
+			<P>&nbsp;</P>
+			  <H3><A name="lang"></A>Language Bindings</H3>
+			  <TABLE class="fancy" id="Table3" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="106"><STRONG>C</STRONG></TD>
+				  <TD vAlign="top">All libraries are written in C.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="106"><STRONG>C++</STRONG></TD>
+				  <TD vAlign="top">There's C++ wrapper for PJLIB (pj++ library), but it's not 
+					maintained and probably will be removed in the future.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="106"><STRONG>Python</STRONG></TD>
+				  <TD vAlign="top">The Python binding for PJSUA-LIB has been implemented in 0.5.10 release. The documentation for Python is integrated in <A HREF="/pjsip/docs/html/group__PJSUA__LIB.htm">PJSUA-API Documentation</A>.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="106"><STRONG>ActiveX</STRONG></TD>
+				  <TD vAlign="top">
+					<P>This would open possibility to write SIP User Agents in Visual Basic (VB) or C# .NET. Once we had an experimental ActiveX component for pjsua-lib, but the development has been cancelled. Please see the <A HREF="apps.htm">projects</A> page for open source project that wraps PJSIP as .NET component.</P>
+					<P>(If you'd like to download the old code, get the revision 492 of pjproject trunk. The ActiveX source code is in pjsip-apps/src/activex-pjsua directory).</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<H2><A name="sip_features"></A>Session Initiation Protocol (SIP) Features</H2>
+			  <HR width="100%" SIZE="1">
+			<H3>Core Session Initiation Protocol (SIP) Features (RFC 3261)</H3>
+			  <TABLE class="fancy" id="Table5" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG> Classification</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The core SIP stack (pjsip-core) complies with basic and intermedia feature 
+					  classification according to <A href="http://www.cs.columbia.edu/sip/sipit/classification.html"> SIPIT UA classification</A>, with the following exception:</P>
+					<UL>
+					  <LI>
+					  redirections are handled by application code (not the stack).
+					  <LI>
+						no HTTP basic authentication (deprecated).</LI></UL>
+					<P>Most advanced features are supported by upper layer libraries (or 
+					  adjunct libraries such as PJMEDIA) or by applications.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>SIP Methods</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The <STRONG>core</STRONG> SIP stack has framework to support INVITE, ACK, BYE, 
+					  CANCEL, REGISTER, and OPTIONS.</P>
+					<P>Upper layer libraries will define more methods to support specific SIP 
+					  extension. See next section for details.</P>
+					<P>In addition, application can define their own SIP methods during run-time 
+					  without needing to recompile the stack (so probably this means support for INFO 
+					  as well).</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>SIP Headers</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The <STRONG>core</STRONG> stack correctly generates, parses, interprets, and 
+					  handles the following headers:</P>
+					<UL>
+					  <LI>
+						Authorization, Call-ID, Content-Length, CSeq, Contact, Content-Type, Expires, 
+						From, Max-Forwards, Proxy-Authenticate, Proxy-Authorization, Record-Route, 
+						Route, Retry-After, Supported, To, Via, and WWW-Authenticate.</LI></UL>
+					<P>The following headers are recognized but not necessarily interpreted nor 
+					  handled (the handling may be left to higher layer):</P>
+					<UL>
+					  <LI>
+						Accept, Allow, Min-Expires, Proxy-Require, Require, Unsupported, Warning.</LI></UL>
+					<P>The following headers are parsed according to generic header classes (for 
+					  example, as generic integer, generic string, generic array of strings, etc.) 
+					  and are not interpreted or handled by the core stack. Application can still 
+					  generate or handle these headers:</P>
+					<UL>
+					  <LI>
+						Accept-Encoding, Accept-Language, Alert-Info, Authentication-Info, Call-Info, 
+						Content-Disposition, Content-Encoding, Content-Language, Date, Error-Info, 
+						In-Reply-To, MIME-Version, Organization, Priority, Reply-To, Server, Subject, 
+						Timestamp, User-Agent.</LI></UL>
+					<P>Upper layer libraries&nbsp;may define more&nbsp;headers to support specific 
+					  SIP extension. See next section for details.</P>
+					<P>In addition, application can&nbsp;create their own custom SIP 
+					  headers&nbsp;when sending any requests/responses.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>Transports</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The core SIP stack provides transport layer and extensible transport
+					   management, with the following transports are provided:</P>
+					<UL>
+					  <LI>UDP</LI>
+						<LI>TCP</LI>
+					  <LI>TLS</LI>
+						</UL>
+					<P>Upper layer libraries or applications may extend PJSIP with their own custom transport without having to recompile the library.</P>
+					<P>DNS SRV resolution is implemented in the library.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>Transactions</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The SIP core stack fully implement SIP transaction and SIP transaction
+					   finite state machine (FSM), which handles:</P>
+					   <UL>
+						<LI>matching requests/responses to the appropriate transactions,</LI>
+						<LI>retransmissions for non-reliable transport,</LI>
+						<LI>fail-over to secondary transport destination (according to
+						    rules in RFC 3261) when the transport layer fails to deliver
+						    a message to current destination.</LI>
+					   </UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>Dialog Core</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The SIP core stack (via the user agent layer) implements the core
+					   dialog management which will be used by upper layer functionality
+					   such as INVITE session and SIP event session (SUBSCRIBE/NOTIFY).
+					</P>
+					<P>The core dialog framework supports multiple sessions (or dialog usages)
+					   in a single dialog, and also handles forked responses.
+					</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>INVITE Session</STRONG></TD>
+				  <TD vAlign="top">
+					<P>PJSIP provides high-level INVITE session management in pjsip-ua
+					   library, which: </P>
+					<UL>
+					<LI>handles management of INVITE session state,</LI>
+					<LI>handles SDP negotiation,</LI>
+					<LI>utilizes the dialog core framework to enable multiple dialog usages
+					    in a single dialog,</LI>
+					<LI>provides mechanism to plug-in SIP extensions related to INVITE
+					    session (such as PRACK, UPDATE, or session-timer).</LI>
+					</UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="107"><STRONG>Authentication</STRONG></TD>
+				  <TD vAlign="top">
+					<P>The SIP core stack provides reusable component for performing client
+					   authentication and managing client authentication session.
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;</P>
+			<H3><A name="sip_extensions"></A>SIP/SDP Features by RFCs</H3>
+			<P>The table below attemps to describe some SIP features/extensions that PJSIP 
+			  supports.</P>
+			<P>But even if&nbsp;the extension&nbsp;is not mentioned in the table, PJSIP 
+			  should/may be able to support it since application can always insert/modify any 
+			  SIP headers or generate any SIP methods at any stage, and have access to all 
+			  message elements in incoming messages.</P>
+			<P>In general, I only mention the SIP extension in the list when 
+			  there's&nbsp;really something useful&nbsp;that PJSIP specificly do to support 
+			  it (rather than just the ability to generate/parse some headers).</P>
+			<P>&nbsp;</P>
+			  <TABLE class="fancy" id="Table6" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc2327.txt">RFC 2327</A> (obsoleted by <A HREF="http://www.ietf.org/rfc/rfc4566.txt">RFC 4566</A>)</STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 2327/4566: SDP: Session Description Protocol</STRONG></P>
+					<P>Most SDP features&nbsp;are supported by &lt;pjmedia/sdp.h&gt;.</P>
+					<P>In addition, PJMEDIA also has helper object to automate SDP negotiation 
+					  process. See <STRONG>RFC 3264</STRONG> section below<STRONG>.</STRONG></P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc2543.txt">RFC 2543</A></STRONG></TD>
+				  <TD vAlign="top">Although the core library was designed to support this older SIP 
+					specification, this was rarely tested because most SIP software are RFC 3261 
+					compliant anyway. In general, it's not well supported/tested.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc2617.txt">RFC 2617</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 2617: HTTP Authentication: Basic and Digest Access Authentication</STRONG></P>
+					<P>HTTP digest authentication is supported, and more over, PJSIP has implemented 
+					  framework to manage client and server authentication session in 
+					  &lt;pjsip/sip_auth.h&gt;.</P>
+					<P>The client authentication can be used to authenticate against multiple 
+					  challenges issued by multiple downstream proxies or servers,&nbsp;and 
+					  supports&nbsp;multiple credentials for a single request.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc2976.txt">RFC 2976</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 2976: The SIP INFO Method</STRONG></P>
+					<P>SIP does not define specific handling 
+						for INFO, so since PJSIP can generate/handle arbitrary SIP methods, support for 
+						INFO is implicitly there in PJSIP. Application can send/receive INFO inside or 
+						outside dialog context.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3262.txt">RFC 3262</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3262: Reliability of Provisional Responses in Session Initiation 
+						Protocol (SIP)</STRONG></P>
+					<P>Reliable provisional support (100rel and PRACK) is supported since late September 2007 (see ticket <A HREF="http://www.pjsip.org/trac/ticket/385">385</A> for the implementation notes). This support includes the management of offer/answer session related to the use of PRACK request.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3263.txt">RFC 3263</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3263: Locating SIP Server</STRONG></P>
+					<P>PJSIP supports asynchronous DNS SRV and A record resolution
+				     as specified in RFC 3263 and RFC 2782. Please see these links
+				     for details:</P>
+					<UL>
+					<LI><A HREF="/pjsip/docs/html/group__PJSIP__RESOLVE.htm">High Level SIP Resolver</A></LI>
+					<LI><A HREF="/pjlib-util/docs/html/group__PJ__DNS__RESOLVER.htm">PJLIB-UTIL DNS Asynchronous/Caching Resolver Engine</A></LI>
+					</UL>
+					<p>Currently PJSIP does not support DNS NAPTR records.</p>
+				  </TD>
+				</TR>
+
+				<TR>
+				  <TD vAlign="top" width="100">
+					<P><STRONG><A HREF="http://www.ietf.org/rfc/rfc3264.txt">RFC 3264</A></STRONG></P>
+					<P><STRONG><A HREF="http://www.ietf.org/rfc/rfc4317.txt">RFC 4317</A></STRONG></P>
+				  </TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3264: An Offer/Answer Model with Session Description Protocol (SDP)</STRONG></P>
+					<P><STRONG>RFC 4317: Session Description Protocol (SDP) Offer/Answer Examples</STRONG></P>
+					<P>SDP offer/answer negotiation is performed automatically by the stack. This 
+					  functionality is implemented by negotiator session API as declared by 
+					  &lt;pjmedia/sdp_neg.h&gt;, and is&nbsp;embedded in SIP INVITE session 
+					  management (pjsip-ua/sip_inv.h).</P>
+					<P>With the negotiator helps, applications need not to worry about all those SDP 
+					  negotiation quirks, and can just receive the final, negotiated SDP to create 
+					  the media. Having said that, the negotiator is still flexible enough to be used 
+					  to implement applications such as&nbsp; Back to Back User Agents (B2BUA) or 
+					  those Session Border Controllers (SBC).</P>
+					<P>Several (mostly the tricky ones) offer/answer examples in the RFCs were copied 
+					  into the&nbsp;negotiator compliance test program 
+					  (pjmedia/src/test/sdp_neg_test.c).</P>
+						<p>Links:</p>
+						<UL>
+						<LI><A HREF="/pjmedia/docs/html/group__PJMEDIA__SDP__NEG.htm">SDP Negotiator State Machine</A></LI>
+						<LI><A HREF="/pjsip/docs/html/group__PJSIP__INV.htm">High Level SIP INVITE Session</A> containing the SDP negotiator</LI>
+						</UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3265.txt">RFC 3265</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3265: Session Initiation Protocol (SIP)-Specific Event Notification</STRONG></P>
+					<P>SIP event is fully supported, and PJSIP has generic event framework&nbsp;to 
+					  manage event subscriptions (client or server side).&nbsp;See 
+					  &lt;pjsip-simple/evsub.h&gt; for details. This framework is currently used by 
+					  presence and call transfer module.</P>
+					<P>The PJSIP event framework adds the following supports to PJSIP core:</P>
+					<UL>
+					  <LI>
+					  SUBSCRIBE and NOTIFY methods,
+					  <LI>
+						Allow-Events, Event, and Subscription-State headers along with all relevant 
+						parameters are handled automatically by the framework.</LI></UL>
+					<P>Please find detailed info on PJSIP Event Framework in PJSIP Developer's Guide PDF page.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3266.txt">RFC 3266</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3266: Support for IPv6 in Session Description Protocol (SDP)</STRONG></P>
+					<P>PJSIP supports IPv6 in SDP</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3310.txt">RFC 3310</A><BR>
+																						   <A HREF="http://www.ietf.org/rfc/rfc4169.txt">RFC 4169</A>
+					</STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3310: Hypertext Transfer Protocol (HTTP) Digest Authentication Using Authentication and Key Agreement (AKA)</STRONG></P>
+					<P><STRONG>RFC 4169: Hypertext Transfer Protocol (HTTP) Digest Authentication Using Authentication and Key Agreement (AKA) Version-2</STRONG></P>
+					<P>Support for HTTP digest AKA version 1 and 2 (AKAv1-MD5 and AKAv2-MD5) for SIP authentication against 3GPP/IMS servers has been implemented in version 0.7.1. Please see <A HREF="/pjsip/docs/html/group__PJSIP__AUTH__AKA__API.htm">PJSIP Digest AKAv1 and AKAv2 Authentication API</A> for more information.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3311.txt">RFC 3311</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3311: The Session Initiation Protocol (SIP) UPDATE Method</STRONG></P>
+					<P>PJSIP fully supports generation and handling of UPDATE request inside invite session, for both early and confirmed dialog (see ticket <A HREF="http://www.pjsip.org/trac/ticket/5">#5</A> for the implementation notes). This support includes the management of offer/answer session related to the use of UPDATE request.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3420.txt">RFC 3420</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3420 - Internet Media Type message/sipfrag</STRONG></P>
+					<P>Support for <tt>message/sipfrag</tt> message payload is implemented in the <A HREF="/pjsip/docs/html/group__PJSUA__XFER.htm">call transfer module</A>.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3428.txt">RFC 3428</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3428 - Session Initiation Protocol (SIP) Extension for Instant 
+						Messaging</STRONG></P>
+					<P>Application can send/receive MESSAGE requests inside or outside dialog. The 
+					  higher layer PJSUA-LIB provides high level API for sending MESSAGE (IM or 
+					  typing indication) inside dialog or outside any dialogs.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3489.txt">RFC 3489</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3489: STUN - Simple Traversal of User Datagram Protocol (UDP) 
+						Through Network Address Translators (NATs)</STRONG></P>
+					<P>PJLIB-UTIL has support to handle subset of STUN transactions, enough to 
+					  implement a typical STUN client. The higher layer PJSUA-LIB provides easy to 
+					  use API to create SIP or RTP/RTCP media transports with the addresses/ports 
+					  resolved through STUN.</P>
+					<P>Please find more info on STUN client library in <A HREF="/pjlib-util/docs/html/group__PJLIB__UTIL__STUN__CLIENT.htm">PJLIB-UTIL STUN Client</A> reference.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><STRONG><A HREF="http://www.ietf.org/rfc/rfc3515.txt">RFC 3515</A></STRONG></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3515: The Session Initiation Protocol (SIP) Refer Method</STRONG></P>
+					<P>PJSIP supports call transfer&nbsp;according to this specification&nbsp;and 
+					  declares call transfer API in &lt;pjsip-ua/xfer.h&gt;. The PJSIP call transfer 
+					  functionality uses PJSIP event framework to manage call status reporting via 
+					  NOTIFY requests.</P>
+					<P>The PJSIP call transfer module extends PJSIP core and PJSIP-SIMPLE by 
+					  supporting the following SIP components:</P>
+					<UL>
+					  <LI>
+					  REFER method to establish event subscription,
+					  <LI>
+					  Refer-To header.
+					  <LI>
+						"noresource" event subscription termination reason.</LI></UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3581.txt">RFC 3581</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3581: An Extension to the Session Initiation Protocol (SIP) for 
+						Symmetric Response Routing</STRONG></P>
+					<P>PJSIP always generates <STRONG>rport</STRONG>
+						Via parameter for outgoing requests and correctly handles rport in incoming 
+						requests. This functionality is implemented in PJSIP transport layer 
+						(sip_transport.c).</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3605.txt">RFC 3605</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3605: Real Time Control Protocol (RTCP) attribute in Session 
+						Description Protocol (SDP)</STRONG></P>
+					<P>PJMEDIA by default generates RTCP attribute in outgoing SDP, and obeys the 
+					  RTCP attribute in incoming SDP.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3608.txt">RFC 3608</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3608: Session Initiation Protocol (SIP) Extension Header Field for Service Route Discovery During Registration</STRONG></P>
+					<P>Service-Route header processing is done at PJSUA-LIB level. Upon receiving successful REGISTER response, PJSUA-LIB will check the presence of Service-Route header and update the route set for the specified account.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3856.txt">RFC 3856</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3856: A Presence Event Package for the Session Initiation Protocol 
+						(SIP)</STRONG></P>
+					<P>PJSIP SIMPLE library (pjsip-simple) supports this RFC by implementing presence 
+					  management API, which is declared in &lt;pjsip-simple/presence.h&gt;. The 
+					  presence API uses PJSIP generic event subscription management framework which 
+					  is declared in &lt;pjsip-simple/evsub.h&gt;.</P>
+					<P>The PJSIP presence implementation extends PJSIP by supporting the following 
+					  SIP components:</P>
+					<UL>
+					  <LI>
+					  "application/pidf+xml" and "application/xpidf+xml" content type.
+					  <LI>
+						"presence" event type in Allow-Events header.</LI></UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3863.txt">RFC 3863</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3863: Presence Information Data Format (PIDF)</STRONG></P>
+					<P>PJSIP SIMPLE library (pjsip-simple) 
+						implements API to generate and parse "<STRONG>application/pidf+xml</STRONG>" 
+						content type as defined by this RFC. The low-level parsing/generation API is 
+						declared in &lt;pjsip-simple/pidf.h&gt;, but application should use the high 
+						level presence management API as declared by &lt;pjsip-simple/presence.h&gt;.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3891.txt">RFC 3891</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3891: The Session Initiation Protocol (SIP) "Replaces" Header</STRONG></P>
+					<P>PJSIP UA library (pjsip-ua) implements API to verify incoming INVITE request with <b>Replaces</b> header. Application can use this building block to implement features such as Attended Call Transfer, Call Pickup, etc.</P>
+					<P>For more information, see <A HREF="/pjsip/docs/html/group__PJSIP__REPLACES.htm">Replaces Support in PJSIP</A> reference documentation.</p>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3892.txt">RFC 3892</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3892 - The Session Initiation Protocol (SIP) Referred-By Mechanism</STRONG></P>
+					<P>PJSIP has limited support for Referred-By header field. The <A HREF="/pjsip/docs/html/group__PJSUA__LIB.htm">PJSUA-API</A> by default emits Referred-By header when it sends outgoing REFER request, and copies the Referred-By header onto outgoing INVITE request initiated from the REFER request.</P>
+					<p>The Referred-By header at the moment is treated and parsed as a generic string header.</p>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3903.txt">RFC 3903</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3903: Session Initiation Protocol (SIP) Extension for Event State 
+						Publication</STRONG></P>
+					<P>PJSIP SIMPLE library (pjsip-simple) has&nbsp;API to create, manage, and 
+					  maintain generic event state publication. This API extends PJSIP by providing 
+					  support for PUBLISH request.</P>
+					<P>The API for managing client state event publication is declared in 
+					  &lt;pjsip-simple/publish.h&gt;.</P>
+					<P>In addition, PJSUA-LIB has a high level presence event publication, which hide 
+					  the details of presence publication and presence subscription into a very high 
+					  level API.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3966.txt">RFC 3966</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3966: The tel URI for Telephone Numbers</STRONG></P>
+					<P>Tel URI parsing and generation is 
+						supported, and application may specify this in&nbsp;relevant SIP headers where 
+						appropriate. See &lt;pjsip/sip_tel_uri.h&gt; for details.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3994.txt">RFC 3994</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3994: Indication of Message Composition for Instant Messaging</STRONG></P>
+					<P>PJSIP SIMPLE library (pjsip-simple) 
+						implements API to generate and parse "<STRONG>application/im-iscomposing+xml</STRONG>" 
+						content type as defined by this RFC. See &lt;pjsip-simple/iscomposing.h&gt; for 
+						details.</P>
+					<P>In addition, the higher layer PJSUA-LIB provides high level and very easy to 
+					  use API for sending typing indication inside dialog or outside any dialogs.</P>
+				  </TD>
+				</TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc4028.txt">RFC 4028</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 4028: Session Timers in the Session Initiation Protocol (SIP)</STRONG></P>
+					<P>Support for SIP Session Timers was added in release 1.4. Application can configure Session Timer on per invite session basis with PJSIP API, or per account basis with PJSUA-LIB API.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc4320.txt">RFC 4320</A><BR><A HREF="http://www.ietf.org/rfc/rfc4321.txt">RFC 4321</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 4320: Actions Addressing Identified Issues with the Session Initiation Protocol's (SIP) Non-INVITE Transaction</STRONG></P>
+					<P><STRONG>RFC 4321: Problems Identified Associated with the Session Initiation Protocol's (SIP) Non-INVITE Transaction</STRONG></P>
+					<P>This has been considered in the design, and the stack never tries to be clever and send any responses (provisional or final) on its own. The only exception is 400 (Bad Request) and 481 (Call/Transaction Does Not Exist) responses, which the stack may send when it receives malfunction requests or when it cannot find matching transaction/dialog for incoming request.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc4480.txt">RFC 4480</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RPID: Rich Presence Extensions to the Presence Information Data Format (PIDF)</STRONG></P>
+					<P>PJSIP implements subset of RPID for specifying custom presence status text.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc4488.txt">RFC 4488</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 4488: Suppression of Session Initiation Protocol (SIP) REFER Method 
+						Implicit Subscription</STRONG></P>
+					<P>Support for "norefersub" is implemented in PJSUA-LIB. Application&nbsp;may 
+					  send REFER request with "Refer-Sub: false" header, and incoming REFER with 
+					  "Refer-Sub: false" will be obeyed. The "norefersub" tag also is registered 
+					  correctly in Supported header.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc5057.txt">RFC 5057</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG><STRONG>RFC 5057: </STRONG>Multiple Dialog Usages in the Session Initiation Protocol</STRONG></P>
+					<P>The core PJSIP dialog (pjsip/sip_dialog.h) has been designed to support dialog 
+					  usages, and indeed PJSIP can support multiple usages for single dialog. The 
+					  PJSIP high layer INVITE session management &lt;pjsip-ua/sip_inv.h&gt; and PJSIP 
+					  event subscription management &lt;pjsip-simple/evsub.h&gt; are implemented as 
+					  dialog usages on top of dialog core, thus can reside in a single dialog if 
+					  necessary.</P>
+					<P>Please find detailed info on PJSIP dialog usage management in PJSIP Developer's Guide PDF page.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG>xpidf</STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG><STRONG>draft-rosenberg-impp-pidf-00.txt: </STRONG>A Data Format for 
+						Presence Using XML</STRONG></P>
+					<P>PJSIP also supports the old (and deprecated) version of presence data format 
+					  (known as "<STRONG>application/xpidf+xml</STRONG>") since this format is still 
+					  used by some user agents.</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<H3><A name="upcoming"></A>Planned Features</H3>
+			<P>Features that are planned (or not planned) to be supported in the future:</P>
+			<P>
+			  <TABLE class="fancy" id="Table7a" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Anything else</STRONG></TD>
+				  <TD vAlign="top">Not enough demands/encouragements, or they're just simply too 
+					difficult to implement.</TD>
+				</TR>
+			  </TABLE>
+			<P>Any feedbacks/hints regarding what features are "hot" and should be 
+			  prioritized would be greatly appreciated.</P>
+			<P>&nbsp;</P>
+
+			<H2><A name="media"></A><A name="media_features"></A>Media Features</H2>
+		  <H3>Media Features</H3>
+			  <HR width="100%" SIZE="1">
+			  <TABLE class="fancy" id="Table8" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="110" height="90"><STRONG>Any Clock Rate, Any Channels</STRONG></TD>
+				  <TD vAlign="top" height="90">
+					<P>PJMEDIA components work with any clock rate/sampling rate, where applicable 
+					  (i.e. not limited to mere 8KHz narrowband quality).</P>
+					<P>PJMEDIA supports stereo audio encoding (or even n-channels) all the way 
+					  throughout the library, where applicable.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Adaptive Jitter Buffer</STRONG></TD>
+				  <TD vAlign="top">An effective jitter buffer implementation&nbsp;with configurable 
+					prefetch settings, which can also be&nbsp;adapted to operate in fixed jitter 
+					mode. The jitter buffer provides sufficient status&nbsp;to trigger&nbsp;Packet 
+					Lost Concealment (PLC) invocation.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Adaptive Silence Detector</STRONG></TD>
+				  <TD vAlign="top">Can utilize both VAD feature that&nbsp;provided&nbsp;by codec 
+					(such as Speex's encoder VAD) or PJMEDIA's own adaptive silence detection 
+					implementation for codecs that don't have silence detection (such as G.711, 
+					GSM, or iLBC).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Codecs</STRONG></TD>
+				  <TD vAlign="top">
+					<P>PJMEDIA supports:</P>
+					<UL>
+					  <LI>
+					  G.711 family codec (PCMA, PCMU),
+					  <LI>
+					  Speex/8000 (narrowband), Speex/16000 (wideband), and Speex/32000 
+					  (ultra-wideband) with fix bit rate and adjustable quality/complexity settings. 
+					  Fixed mode implementation will be used for targets which lack floating point 
+					  unit.
+					  <LI>
+					  iLBC in 20&nbsp;or 30ms mode, with&nbsp;encoder mode is adjusted based on 
+					  remote's SDP (decoder mode is adjustable during initialization only).
+					  <LI>
+					  GSM.
+					  <LI>
+					  G.722
+					  <LI>
+					  G.722.1 and G.722.1C licensed from Polycom
+					  <LI>
+					  More codecs provided by Intel IPP: G.723.1, G.726, G.728, G.729A, AMR, and AMR-WB
+					  <LI>
+					  More codecs provided by Nokia APS/VAS on Nokia handsets: AMR, G.729, iLBC, and PCMU/PCMA 
+					  <LI>
+						L16 family of codecs, mono or stereo&nbsp;(good for debugging).</LI></UL>
+					<P>
+					  The list of codecs are not exhaustive as more codecs will be supported in the 
+					  future. All codecs except G.711 are packaged in <STRONG>pjmedia-codec</STRONG> static 
+					  library,&nbsp;and the build process should only link the specific codecs that 
+					  application explicitly&nbsp;wants (to minimize footprint).</P>
+					<P>The codec framework recognizes the following features in the codec, and allows 
+					  application to override the settings on per call basis:</P>
+					<UL>
+					  <LI>
+					  Voice Activity Detector (VAD),
+					  <LI>
+					  Comfort Noise Generator (CNG),
+					  <LI>
+					  Perceptual Enhancement (PENH),
+					  <LI>
+						Packet Lost Concealment (PLC).</LI></UL>
+					<P>Applications&nbsp;also can&nbsp;register their own (probably proprietary) 
+					  codecs into the framework during run-time.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Conference Bridge</STRONG></TD>
+				  <TD vAlign="top">
+					<P>PJMEDIA has powerful conference bridge implementation, with the following 
+					  features:</P>
+					<UL>
+					  <LI>
+					  can efficiently/happily hold conference with more than a hundred participants 
+					  on Intel P4 systems, with still loads of CPU to spare&nbsp;(note: only PCM 
+					  codec is used during the test).
+					  <LI>
+					  supports participants with different clock rate
+					  <LI>
+					  supports participants with different frame size/ptime.
+					  <LI>
+						supports stereo or even n-channels (note: channel settings must be uniform for 
+						all participants).</LI></UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>DSP Friendly</STRONG></TD>
+				  <TD vAlign="top">Media flow is by default driven by the sound card (the behavior 
+					can be changed by application designer). From experience, this is the ideal 
+					design for DSP types of hardware, since media flow is ideally driven by data 
+					capture interrupt (which should be most time accurate).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Echo Cancellation (AEC)</STRONG></TD>
+				  <TD vAlign="top">Front-end API/implementation for Speex Acoustic Echo Canceller (AEC) or simple but effective echo suppressor for targets with low processing capability (such as PDAs, smartphones, etc.). The backend algorithm is selectable during both compile-time and run-time.
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>File Playback and Recording with WAV Files</STRONG></TD>
+				  <TD vAlign="top">
+					<P>Playback and recording PCM samples from/to WAV files are supported, and samples will be correctly converted to host endianness.</P>
+					<P>PJMEDIA also supports playback and recording to memory buffers, for devices without filesystems.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>File Playlist</STRONG></TD>
+				  <TD vAlign="top">
+					<P>Playback of multiple WAV files in a playlist.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Media Port Framework</STRONG></TD>
+				  <TD vAlign="top">
+					<P>PJMEDIA provides extensibility by means of media ports, which is an adaptation 
+					  of component based filter (as found for example in DirectShow SDK and 
+					  GStreamer) to better suit telephony domain (although of course PJMEDIA is by no 
+					  means limited to work only in telephony domain). The adaptation was mainly 
+					  designed to better support integration of telephony cards into the framework.</P>
+					<P>Application designers can create and arrange media ports interconnection to 
+					  include specific PJMEDIA features needed to process the media flow.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>NAT Traversal (STUN and ICE)</STRONG></TD>
+				  <TD vAlign="top">
+					<P>A NAT traversal functionality for the media, supporting STUN, TURN, and ICE, 
+					   is provided by <A HREF="/pjnath/docs/html/index.htm">PJNATH - NAT Traversal Helper Library</A></P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Packet Lost Concealment (PLC)</STRONG></TD>
+				  <TD vAlign="top">
+					<P>PJMEDIA can&nbsp;utilize PLC that comes with the codec (e.g. Speex, iLBC) or 
+					  its own PLC implementation for codecs that don't have built in PLC (such as 
+					  G.711 or GSM).</P>
+					<P>For targets that has low processing capability, a simple PLC based on frame 
+					  replay algorithm can be selected.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110" height="58"><STRONG>Resampling</STRONG></TD>
+				  <TD vAlign="top" height="58">
+					<P>High quality resampling based from resample-1.8.tar.gz&nbsp;and adapted to 
+					  handle&nbsp;frame based resampling. Quality can be tuned to processing 
+					  performance availability.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110" height="59"><STRONG>RFC 2833</STRONG></TD>
+				  <TD vAlign="top" height="59">PJMEDIA supports the generation and parsing of RFC 
+					2833/telephone-events payload in both RTP and SDP.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110" height="59"><STRONG>RTP</STRONG></TD>
+				  <TD vAlign="top" height="59">The RTP implementation is&nbsp;tiny&nbsp;in 
+					footprint (just a tad bit over 1KB), and is designed only to provide 
+					packetization and parsing only (because sometimes we don't want to transmit RTP 
+					with socket, but rather pass it to another processor (e.g. host processor). 
+					Again, DSP friendly. ;-) ).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110" height="59">
+					<P><STRONG>RTCP</STRONG></P>
+					<P><STRONG>.. and Media Quality Analysis</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" height="59">
+					<P>PJMEDIA not only generates and parses RTCP packets, but it provides good media 
+					  analysis and statistics to both local application and remote peer (via RTCP), 
+					  for the following stat:
+					</P>
+					<UL>
+					  <LI>
+					  total packets and bytes,
+					  <LI>
+					  jitter (min/avg/max),
+					  <LI>
+					  lost/loss, reordered, duplicate packets,
+					  <LI>
+						round-trip delay (min/avg/max).</LI></UL>
+					<P>The media statistic has been tested extensively (including against commercial 
+					  high profile testing hardware) and proven to be very accurate (as accurate as 
+					  the operating system allows).</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Secure</STRONG></TD>
+				  <TD vAlign="top">
+					<P>Secure RTP and RTCP (SRTP and SRTCP) is supported. Please see 
+						<A HREF="http://trac.pjsip.org/repos/wiki/SRTP">SRTP Support in PJSIP</A> page 
+						for more info.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Sound Device Abstraction</STRONG></TD>
+				  <TD vAlign="top">
+					<P>Portable&nbsp;sound device abstraction with support for low-delay DirectSound 
+					  audio on Win32, or PortAudio for other platforms (Unix, MacOS X, etc.). Support 
+					  for OSS and ALSA is available via PortAudio for Linux target.</P>
+					<P>The sound device abstraction&nbsp;is easy to implement and is suitable for DSP 
+					  implementation (with&nbsp;interrupt driven style callback).</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Stream</STRONG></TD>
+				  <TD vAlign="top">
+					<P>Stream abstraction for managing remote media communication. The stream 
+					  integrates codec, jitter buffer, RFC 2833 events, and RTP/RTCP (de)framing and 
+					  statistics into an integrated&nbsp;session, and&nbsp;can&nbsp;be&nbsp;created 
+					  from SDP negotiation results.</P>
+					<P>Stream does not directly manage UDP sockets, but instead it communicates to 
+					  external endpoints via media transports. This would make the stream processing 
+					  independent of the underlying transport.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Tone Generator</STRONG></TD>
+				  <TD vAlign="top">
+				  <P>Inband tone generation, with some of the features:</P>
+				   <UL>
+					<LI>can generate single sinusoidal/sine wave or dual
+					    frequency tones,</LI>
+					<LI>fixed point or floating point,</LI>
+					<LI>can enqueue multiple tones/DTMF digits with single
+					    API call,</LI>
+					<LI>configurable on/off duration and volume for
+					    each individual tones/DTMF digits,</LI>
+					<LI>programmable digit-map, with default digit mapping
+					    set to DTMF frequencies.</LI>
+				   </UL>
+				  </TD>
+				  </TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>Transport for Media</STRONG></TD>
+				  <TD vAlign="top">Application may use their custom transport for transporting 
+					RTP/RTCP packets, or instead just use PJMEDIA's built-in transport.</TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;</P>
+			<H3><A name="media_rfc"></A>Media Features by RFCs</H3>
+			<P>Below are the RFCs support for media related features:</P>
+			<P>
+			  <TABLE class="fancy" id="Table7b" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="100" height="59"><STRONG><A HREF="http://www.ietf.org/rfc/rfc2833.txt">RFC 2833</A></STRONG></TD>
+				  <TD vAlign="top" height="59">
+					<P><STRONG>RFC 2833: RTP Payload for DTMF Digits, Telephony Tones and Telephony Signals</STRONG></P>
+					<P>PJMEDIA supports the generation and parsing of RFC 2833/telephone-events payload in both RTP and SDP.</P></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3550.txt">RFC 3550</A>/3551<BR>(RFC 1889/1890)</STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3550: A Transport Protocol for Real-Time Applications</STRONG></P>
+					<P><STRONG>RFC 3551: RTP Profile for Audio and Video Conferences with Minimal Control</STRONG></P>
+					<P>PJMEDIA has a highly portable RTP/RTCP implementation which is decoupled from the network/socket operations, making it modular and ideal for supporting any transports.</P>
+					<P>In addition, PJMEDIA utilizes RTCP to send and retrieve media quality feedback and can display detailed statistical report about stream quality, such as jitter, packet loss/reordered/late, RTT, etc., with the time calculated in sub-milisecond precision.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3605.txt">RFC 3605</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3605: Real Time Control Protocol (RTCP) attribute in Session 
+						Description Protocol (SDP)</STRONG></P>
+					<P>PJMEDIA by default generates RTCP attribute in outgoing SDP, and obeys the 
+					  RTCP attribute in incoming SDP.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3611.txt">RFC 3611</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3611: RTP Control Protocol Extended Reports (RTCP XR)</STRONG></P>
+					<P>PJMEDIA implements several RTCP XR report blocks in <A HREF="/pjmedia/docs/html/group__PJMED__RTCP__XR.htm">RTCP XR module</A>.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3711.txt">RFC 3711</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3711: The Secure Real-time Transport Protocol (SRTP)</STRONG></P>
+					<P>PJMEDIA supports SRTP/SRTCP, please see <A HREF="http://trac.pjsip.org/repos/wiki/SRTP">SRTP Support in PJSIP</A> page for more info.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc3951.txt">RFC 3951</A><BR>
+						<A HREF="http://www.ietf.org/rfc/rfc3952.txt">RFC 3952</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 3951: Internet Low Bit Rate Codec (iLBC)</STRONG></P>
+					<P><STRONG>RFC 3952: Real-time Transport Protocol (RTP) Payload Format for internet Low Bit Rate Codec (iLBC) Speech</STRONG></P>
+					<P>Support for iLBC codec is implemented in PJMEDIA-CODEC library. In particular, the implementation correctly performs the negotiation of <tt>mode</tt> parameter in the SDP.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/rfc/rfc4568.txt">RFC 4568</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>RFC 4568: Session Description Protocol (SDP) Security Descriptions for Media Streams</STRONG></P>
+					<P>PJMEDIA/PJSIP supports SDESC as means for exchanging SRTP keys, please see <A HREF="http://trac.pjsip.org/repos/wiki/SRTP">SRTP Support in PJSIP</A> page for more info.</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/internet-drafts/draft-ietf-behave-rfc3489bis-15.txt">draft-ietf-behave-rfc3489bis-15</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>Session Traversal Utilities for NAT (STUN)</STRONG></P>
+					<P>A NAT traversal functionality for the media, supporting STUN, TURN, and ICE, 
+					   is provided by <A HREF="/pjnath/docs/html/index.htm">PJNATH - NAT Traversal Helper Library</A></P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/internet-drafts/draft-ietf-behave-turn-07.txt">draft-ietf-behave-turn-07</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>Obtaining Relay Addresses from Simple Traversal Underneath NAT (STUN)</STRONG></P>
+					<P>A NAT traversal functionality for the media, supporting STUN, TURN, and ICE, 
+					   is provided by <A HREF="/pjnath/docs/html/index.htm">PJNATH - NAT Traversal Helper Library</A></P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="100"><STRONG><A HREF="http://www.ietf.org/internet-drafts/draft-ietf-mmusic-ice-19.txt">draft-ietf-mmusic-ice-19.txt</A></STRONG></TD>
+				  <TD vAlign="top">
+					<P><STRONG>Interactive Connectivity Establishment (ICE): A Methodology for Network Address Translator (NAT) Traversal for Offer/Answer Protocols</STRONG></P>
+					<P>A NAT traversal functionality for the media, supporting STUN, TURN, and ICE, 
+					   is provided by <A HREF="/pjnath/docs/html/index.htm">PJNATH - NAT Traversal Helper Library</A></P>
+				  </TD>
+				</TR>
+				</TABLE>
+
+			<P>&nbsp;</P>
+			<H3><A name="other"></A>Other Features</H3>
+			<P>Other features:</P>
+			<P>
+			  <TABLE class="fancy" id="Table7a" cellSpacing="4" cellPadding="8" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>RFC 1035</STRONG></TD>
+				  <TD vAlign="top">RFC 1035: DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION. Asynchronous DNS resolver is implemented in PJLIB-UTIL.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="110"><STRONG>RFC 2782</STRONG></TD>
+				  <TD vAlign="top">RFC 2782:A DNS RR for specifying the location of services (DNS SRV). </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+
+		  </TD>
+
+		  <TD vAlign="top">
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+			<P>
+			  <TABLE class="news" id="Table4" cellSpacing="0" cellPadding="2" width="126"
+				border="1">
+				<TR bgColor="#000099">
+				  <TH height="22">
+					<P align="center"><STRONG><FONT color="#ffffff">Features TOC</FONT></STRONG></P>
+				  </TH>
+				</TR>
+				<TR>
+				  <TD vAlign="top">
+					<P><STRONG><A href="#general">General Features:</A></STRONG><BR>
+					  - <A href="#general">General Features</A><BR>
+					  - <A href="#platforms">Target Platforms</A><BR>
+					  - <A href="#lang">Language Bindings</A><BR>
+					  <BR>
+					  <STRONG><A href="#sip_features">SIP Features:</A></STRONG><BR>
+					  - <A href="#sip_features">SIP Core Features</A>
+					  <BR>
+					  - <A href="#sip_extensions">SIP Extensions</A>
+					  <BR>
+					  - <A href="#upcoming">Planned Features</A>
+					  <BR>
+					  <BR>
+					  <STRONG><A href="#media">Media Features</A></STRONG></P>
+				  </TD>
+				</TR>
+			  </TABLE>
+
+
+		  </TD>
+		</TR>
+	  </TABLE>
+	<P>&nbsp;</P>
+	<!--#include virtual="/footer.html" -->
+  </body>
+</html>

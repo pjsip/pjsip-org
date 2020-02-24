@@ -1,0 +1,1033 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+  
+
+
+  
+  <title>Porting SIP and Media Stack to Embedded Systems - pjsip.org</title>
+  <link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+
+
+<body>
+
+
+<!--#include file="header.html" -->
+<p><a href="/">Home</a> --&gt; <a href="/docs.htm">Documentations</a> --&gt; Porting
+Guide</p>
+
+
+<table id="ContentSubTable" border="0" cellpadding="4" cellspacing="6" width="100%">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td>
+      
+      <h1><a class="mozTocH1" name="mozTocId810898"></a>Porting SIP and Media Stack to Embedded Systems</h1>
+
+
+      <br>
+
+
+      
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+
+
+        <tbody>
+
+
+          <tr>
+
+
+            <td>Last Update: $Date: 2007-01-20 04:23:13 +0000 (Sat, 20 Jan 2007) $</td>
+
+
+            <td style="text-align: right;"><a href="/cgi-bin/showpage.cgi?porting">Print Friendly Page</a></td>
+
+
+          </tr>
+
+
+        
+        </tbody>
+      
+      </table>
+
+
+      <br>
+
+
+      
+      <hr style="width: 100%; height: 2px;">&nbsp;<br>
+
+
+<p>PJLIB, PJLIB-UTIL, PJSIP and PJMEDIA libraries (or will be called just PJ libraries) have been designed specificly to be very portable and have very small footprint, to make it ideal to be used on embedded or even deeply embedded system development.</p>
+
+<p>This article describes the challenges faced when porting PJ software to
+these "non-standard" platforms and presents some strategies to maximize the
+chance of successful porting efforts.</p>
+
+
+&nbsp;<br>
+
+
+      
+      <p><big><big>Table
+of Contents</big></big></p>
+
+      
+      <ul id="mozToc">
+
+<!--mozToc h1 1 h2 2 h3 3--><li><a href="#mozTocId810898">Porting PJLIB, PJSIP, and PJMEDIA</a>
+          
+          <ul>
+
+            <li><a href="#mozTocId136601">Porting
+Considerations</a>
+              
+              <ul>
+
+                <li><a href="#mozTocId86034">Target
+CPU</a></li>
+
+                <li><a href="#mozTocId390047">Compiler
+and Build System</a></li>
+
+                <li><a href="#mozTocId492338">Standard
+LIBC Features</a></li>
+
+                <li><a href="#mozTocId426216">OS
+Features</a></li>
+
+                <li><a href="#mozTocId152874">Networking
+Features</a></li>
+
+              
+              </ul>
+
+            </li>
+
+            <li><a href="#mozTocId50420">Porting
+Strategies</a>
+              
+              <ul>
+
+                <li><a href="#mozTocId565490">Fully
+Porting PJLIB</a></li>
+
+                <li><a href="#mozTocId30930">Partially
+Porting PJLIB</a></li>
+
+              
+              </ul>
+
+            </li>
+
+            <li><a href="#mozTocId693552">Related
+Pages</a></li>
+
+          
+          </ul>
+
+          
+          <p>&nbsp;</p>
+
+        </li>
+
+      
+      </ul>
+
+ </td>
+
+
+      <td></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>
+      
+      <h2><a class="mozTocH2" name="mozTocId136601"></a>Porting Considerations</h2>
+
+      
+      <p>
+This section describes components that need to be considered when porting PJ
+libraries to new platform, especially the embedded or small-footprint systems.</p>
+
+
+      
+      <p>&nbsp;&nbsp;</p>
+
+
+      
+      <h3><a class="mozTocH3" name="mozTocId86034"></a>Target
+CPU</h3>
+
+
+      
+      <p>For this porting purpose, the target CPU determines the
+characteristic of the basic data types (more specifically the width and
+endianness) and the availability of floating point
+co-processors.&nbsp;</p>
+
+
+      <h4><a class="mozTocH4" name="mozTocId8959281"></a>Instruction Set</h4>
+
+      <p>This normally is not something that we should worry about since all libraries are written on C language (there is no assembly instructions at all in the libraries).</p>
+      
+      <h4><a class="mozTocH4" name="mozTocId895928"></a>Data Types</h4>
+
+
+      
+      <p>PJLIB encapsulates all integral data types into the
+corresponding pj_* data types in <a href="/pjlib/docs/html/types_8h-source.htm">&lt;pj/types.h&gt;</a>.
+In addition, 64bit integral data types are defined in the appropriate 
+compiler specific header file (e.g. &lt;pj/compat/cc_gcc.h&gt; for GCC,
+&lt;pj/compat/cc_msvc.h&gt;for MSVC). </p>
+
+
+      
+      <p>Currently the data type mapping is defined below.</p>
+
+
+      
+      <table style="text-align: left; width: 100%;" border="1" cellpadding="4" cellspacing="1">
+
+
+        <tbody>
+
+
+          <tr>
+
+
+            <td style="font-weight: bold; text-align: center;">PJ data types</td>
+
+
+            <td style="font-weight: bold; text-align: center;">Description</td>
+
+
+            <td style="text-align: center;"><span style="font-weight: bold;">Availability</span></td>
+
+
+            <td style="font-weight: bold; text-align: center;">Mapped to..</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td style="font-family: monospace;">pj_int8_t,
+pj_uint8_t</td>
+
+
+            <td>8-bit
+signed/unsigned integer</td>
+
+
+            <td>always
+defined</td>
+
+
+            <td style="font-family: monospace;">char, unsigned
+char</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td style="font-family: monospace;">pj_int16_t, pj_uint16_t</td>
+
+
+            <td>16-bit
+signed/unsigned integer</td>
+
+
+            <td>always
+defined</td>
+
+
+            <td style="font-family: monospace;">short, unsigned
+short</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td style="font-family: monospace;">pj_int32_t,
+pj_uint32_t</td>
+
+
+            <td>32-bit
+signed/unsigned integer</td>
+
+
+            <td>always
+defined</td>
+
+
+            <td style="font-family: monospace;">int, unsigned int</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td style="font-family: monospace;">pj_int64_t,
+pj_uint64_t</td>
+
+
+            <td>64-bit
+signed/unsigned integer</td>
+
+
+            <td>only
+when PJ_HAS_INT64 is defined (defined by compiler specific header file).</td>
+
+
+            <td style="font-family: monospace;">long
+long/int64_t, unsigned long long/uint64_t</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td>pj_ssize_t,
+pj_size_t</td>
+
+
+            <td>At
+least 32 bit, may be 64 bit.</td>
+
+
+            <td>always
+defined</td>
+
+
+            <td>long,
+size_t</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td>pj_bool_t</td>
+
+
+            <td>Boolean</td>
+
+
+            <td>always
+defined</td>
+
+
+            <td>int</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td>pj_char_t</td>
+
+
+            <td>Native
+character type for given platform.</td>
+
+
+            <td>always
+defined</td>
+
+
+            <td>char
+or wchar_t, depending on the value of PJ_NATIVE_STRING_IS_UNICODE.</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td>(no PJ data type is defined)</td>
+
+
+            <td>Floating point</td>
+
+
+            <td>-</td>
+
+
+            <td>float</td>
+
+
+          </tr>
+
+
+          <tr>
+
+
+            <td>(no PJ data type is defined)</td>
+
+
+            <td>Double precision floating point</td>
+
+
+            <td>-</td>
+
+
+            <td>double</td>
+
+
+          </tr>
+
+
+        
+        </tbody>
+      
+      </table>
+
+
+      
+      <p>The above mappings should work on most (if not all)
+32-bit or 64-bit CPU and across different types of compilers, however <span style="font-weight: bold;">these
+may not be accurate for 8-bit or 16-bit CPUs</span> (the <span style="font-family: monospace;">int/unsigned int</span>
+data type may be less than 32-bit wide), therefore developer MUST
+review and possibly fix these mappings before attempting to compile any
+codes.</p>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId520438"></a>Endianness</h4>
+
+
+      
+      <p>The PJLIB macros PJ_IS_LITTLE_ENDIAN and PJ_IS_BIG_ENDIAN MUST
+be declared correctly according to the endianness of the target CPU.
+These macros are declared by processor/machine specific header file
+&lt;pj/compat/m_*.h&gt;.</p>
+
+
+      <h4><a class="mozTocH4" name="mozTocId977115"></a>Floating-Point Availability</h4>
+
+
+      
+      <p>Floating point availability is controlled by
+PJ_HAS_FLOATING_POINT macro, which by default is set to 1 in
+&lt;pj/config.h&gt;. This can be overriden by declaring
+PJ_HAS_FLOATING_POINT to zero in your &lt;pj/config_site.h&gt;.</p>
+
+
+      
+      <p>PJLIB, PJLIB-UTIL, and PJSIP does not need any floating point
+support. Even when floating point is disabled, everything should work
+correctly. However, the PJ_HAS_FLOATING_POINT macro still MUST be
+set accordingly in order for some fallback code to get activated.</p>
+
+
+      <p>However, the situation is different in PJMEDIA. Some PJMEDIA components 
+(such as tone generator, RTCP calculation, Speex codec, and AEC) do have fallback
+algorithm implemented in fixed point, which get activated when PJ_HAS_FLOATING_POINT
+macro is set to zero. However, some other components do not have the
+alternative fixed point implementation, thus the floating point based
+code will get used regardless of the floating point setting
+(examples of such components are the resampling, PLC, and iLBC codec).</p>
+
+
+
+      
+      <p>&nbsp;&nbsp;</p>
+
+
+      
+      <h3><a class="mozTocH3" name="mozTocId390047"></a>Compiler
+and Build System</h3>
+
+
+The use of particular compiler will need to consider the following
+issues.<br>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId135945"></a>Compiler Specific Features</h4>
+
+
+      <p>PJ currently supports GCC, MS Visual Studio, MS Embedded VC, Intel C
+compiler (using gcc defines), and MetroWerks C compiler (works in
+progress in Symbian port). To support new compiler, a new
+&lt;pj/compat/cc_*.h&gt; needs to be created, and the <a href="/pjlib/docs/html/config_8h-source.htm">&lt;pj/config.h&gt;</a>
+file needs to be modified to include this new compiler specific header
+file whenever the use of such compiler is detected.</p>
+
+
+      
+      <p>PJ does not use any compiler specific constructs, so
+supporting a new compiler should be straightforward.</p>
+
+
+      <h4><a class="mozTocH4" name="mozTocId5204381"></a>64bit Integral Data Type Availability</h4>
+
+	<p>A 64bit integer/unsigned integer data types are used quite heavily throughout the libraries for representing large integers. The availability of such data types are controlled by <tt>PJ_HAS_INT64</tt> macro.</p>      
+
+	<p>On PJLIB and PJSIP libraries, normally the use of 64bit data types ar optional; when <tt>PJ_HAS_INT64</tt> macro is not declared, or when its value is zero, the 64bit data type will be replaced by multiple 32bit integers.</p>
+	
+	<p>However, PJMEDIA uses 64bit data type as the frame timestamp (to avoid overflow), and this currently does not have the replacement 32bit algorithms. Many PJMEDIA components use the 64bit operations against frame timestamp, without providing alternative 32bit operations.</p>
+
+	<p>Most modern compilers such as <b>gcc</b> should have support for 64bit integral data types; however please check this when porting PJ software using other compilers. </p>
+
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId25154"></a>Integrating into the Build System</h4>
+
+
+      <p>If the existing PJ Makefile based build system is to be used, then ideally the compiler
+should support GCC syntax for specifying options (for example "/I" to
+specify include search path). If this is not possible, when a new <span style="font-family: monospace;">"cc-*.mak"</span> file
+need to be created in <span style="font-family: monospace;">$PJ-ROOT/build/</span>
+directory, to tell the Makefile build system how to invoke various
+options to the compiler (note: the use of compiler other than gcc family for 
+the Makefile has not been tested for some time, so few things may be broken). </p>
+
+
+      
+      <p>Alternatively, you may create a new build system
+altogether. For example, if the
+compiler comes with its own build system (an IDE, for example), then
+probably it's better to create new project files for building the
+libraries instead of using PJ build system. This is the approach that
+we use when porting PJ to Windows Mobile and Symbian.</p>
+
+
+      
+      <p>When creating a new build system, please prefer to put
+the build specific files (such as project files) under each <span style="font-family: monospace;">build/</span>
+directory of each project, or in a sub-directory under <span style="font-family: monospace;">build/</span>
+directory in each project, if at all possible. Also take care to create
+another subdirectory under the project directory, to place the object
+files, so that it is easy to add Subversion rule to ignore these
+directories containing output files from being included in the source
+control.</p>
+
+
+      <p>However, creating a new build system comes at a cost, that is it 
+would need to be maintained to keep it in sync with changes in main PJ
+libraries. So please weight the convenience of having a build system
+supported by/integrated with the target against the cost of maintaining
+such build system when deciding whether choose this route.</p>
+
+
+      <h4><a class="mozTocH4" name="mozTocId518585"></a>Availability of &lt;stdarg.h&gt;</h4>
+
+
+Variable number of argument functionality is needed by only one place,
+i.e. the logging functions declared in &lt;pj/log.h&gt; header file.
+In most cases, <span style="font-family: monospace;">&lt;stdarg.h&gt;</span>
+header file should be available, since this is standard ANSI C feature. But
+should this is not available, then probably we can get
+away with disabling PJLIB logging functionality by defining PJ_LOG_MAX_LEVEL macro to
+zero in your &lt;pj/config_site.h&gt;, but 
+definitely this practice is highly discouraged since having logging
+is crucial when debugging the libraries!<br>
+
+
+      
+      <p>&nbsp;</p>
+
+
+      
+      <h3><a class="mozTocH3" name="mozTocId492338"></a>Standard
+LIBC Features</h3>
+
+
+Although higher level PJ libraries (such as PJSIP and PJMEDIA) 
+can work without LIBC (this has been proven in the past
+with the porting to Linux kernel mode module target), in most cases
+this means that either PJ will abstract LIBC or the similar LIBC
+functionalities need to be implemented in PJLIB. <br>
+
+
+      
+      <p>The LIBC header availabilities should be indicated by
+the corresponding PJ_HAS_*_H macro in the appropriate OS specific
+&lt;pj/compat/os_*.h&gt; header file (for example,
+PJ_HAS_STRING_H indicates the availability of standard
+&lt;string.h&gt; header file).&nbsp;</p>
+
+
+      
+      <p>When some header files are missing, sometimes it is still
+possible to recover the compilation if the same functionality is
+defined by some other header files (for example, the standard string
+manipulation functions are declared by &lt;string.h&gt;, but
+some systems such as WinCE declare them in &lt;stdlib.h&gt;). In
+other cases, when the functionality is really not available, then the
+appropriate replacement implementation need to be provided (for example, isblank()
+is implemented in &lt;pj/compat/ctype.h&gt; for targets that
+lack it).</p>
+
+
+Some of the most "problematic" LIBC features will be described below.<br>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId781063"></a>setjmp() and longjmp()&nbsp;</h4>
+
+
+      
+      <p>Both <span style="font-family: monospace;">setjmp()</span>
+and <span style="font-family: monospace;">longjmp()</span>
+functions are needed to get the exception framework working. The <a href="/pjlib/docs/html/group__PJ__EXCEPT.htm">PJLIB
+exception framework</a> is a TRY/CATCH mechanism for C programs,
+and is normally used in scanners/parsers to raise syntax error
+exception and in <a href="/pjlib/docs/html/group__PJ__POOL__GROUP.htm">PJLIB
+Memory Pool</a> to raise memory allocation failure exception.</p>
+
+
+This functionality is mandatory, and if setjmp()/longjmp() are not
+available, they MUST be implemented in
+&lt;pj/compat/setjmp.h&gt;.
+      
+      <h4><a class="mozTocH4" name="mozTocId112805"></a>malloc()</h4>
+
+
+Malloc is the default memory allocation backend for <a href="/pjlib/docs/html/group__PJ__POOL__GROUP.htm">PJLIB
+Memory Pool</a>, but this can be changed by creating a new memory
+pool policy (similar to <span style="font-family: monospace;">pj/pool_policy_malloc.c</span>)
+and specify this policy when creating the pool factory.<br>
+
+
+      
+      <p>&nbsp; </p>
+
+
+      
+      <h3><a class="mozTocH3" name="mozTocId426216"></a>OS
+Features</h3>
+
+
+This definitely would be the hardest part of the porting efforts. Some
+of the challenges to be expected are describesd below.<br>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId32272"></a>OS Dependent Features</h4>
+
+
+OS dependent features needed by PJ are collected together in
+&lt;pj/os.h&gt;, which are documented in <a href="/pjlib/docs/html/group__PJ__OS.htm">PJLIB OS Dependent</a>
+documentation. PJLIB provides the implementation for Win32 and Posix
+family OSes, so if the new OS supports one of these OS API, probably we
+don't need to create a new os_*.c implementation. If this is not the
+case, then a new os_*.c MUST be created.<br>
+
+
+      
+      <p>Note that depending on the selected porting strategy
+(described in next chapter), it may be possible to skip creating a full
+os_*.c implementation for the new OS, and instead just create a dummy
+implementation just to allow the library to link.</p>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId770829"></a>Threading</h4>
+
+
+PJ software works with or without threads, as the libraries
+do not create any threads on their own. But when threads are needed,
+naturally all synchronization functions must be implemented for the new
+OS.<br>
+
+      <p>It is perfectly possible to NOT use threads, for
+example, to run the application on interrupt context, or to use some
+kind of cooperative multitasking mechanism where a task does not
+relinguish it's execution time until it has finished with the task. With PJSIP and PJMEDIA, it is also perfectly possible to use only single thread (the main thread) to run everything (including polling for the RTP/RTCP packets), provided that the sound device abstraction supports this. For these cases, we don't need to implement all the PJLIB OS features.</p>
+      <h4>Thread Specific Data</h4>
+      <p>The libraries need to store some data that is specific (and
+private) for each thread. PJLIB provides this functionality by
+abstracting the thread local storage (TLS) or thread specific storage
+API that is system dependent into a uniform thread local storage API.</p>
+      <p>Even when multithreading is NOT used, thread local storage API must still be implemented in PJLIB. The TLS is used for example by the <A HREF="/pjlib/docs/html/group__PJ__EXCEPT.htm">PJLIB exception framework</A>, since an exception should only be cascaded to the appropriate handler on the same thread only. </p>
+      <p>In other cases, thread local storage or thread specific
+storage API may not be available in the target OS. In these cases,
+application developer would need to implement this functionality via a
+homegrown mechanism.</p>
+      <h4>Synchronization Objects</h4>
+      <p>PJLIB provides abstractions for synchronization objects such
+as semaphore, simple mutex, recursive mutex, and read-write mutex. All
+of these objects are used by the upper layer libraries or application.</p>
+      <p>The Operating System normally would provide these
+functionalities in the OS API. But even when it's not available,
+normally we can emulate most mutex functionalities using semaphore
+object.</p>
+      <p>More specificly, PJLIB provides a simple and elegant implementation of
+read-write mutex for OS that doesn't provide this functionality (such
+as Win32). </p>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId831428"></a>Unicode Support</h4>
+
+      <p>PJ can work in both ANSI and UNICODE systems, and in
+fact, with PJLIB, it is possible to create a source files that would
+build correctly in both ANSI and UNICODE variant of the same OS family (such as between Win32 and Windows CE).</p>
+      
+      <p>The UNICODE support is indicated by
+PJ_NATIVE_STRING_IS_UNICODE macro, which MUST be defined in the
+appropriate &lt;pj/compat/os_*.h&gt; file. Some UNICODE utility
+functions/macros are declared in &lt;pj/unicode.h&gt;.</p>
+
+      <p>PJLIB itself (and all other PJ libraries such as PJLIB-UTIL, PJSIP, and PJMEDIA) internally uses ANSI representation for all purposes, and only converts strings to Unicode when they interract with the Unicode operating systems.</p>
+
+      
+      <p>&nbsp;</p>
+
+
+      
+      <h3><a class="mozTocH3" name="mozTocId152874"></a>Networking
+Features</h3>
+
+
+      
+      <p>PJLIB defines rich abstractions for networking features.
+These abstractions and the consideration when porting will be described
+below.</p>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId624104"></a>Socket API</h4>
+
+
+PJLIB <A HREF="/pjlib/docs/html/group__PJ__SOCK.htm">Socket API</A> provides abstraction for various socket backends using BSD like API, and the API is declared in &lt;pj/sock.h&gt;, and implementation is provided in pj/sock_bsd.c for BSD socket API. The abstraction has been designed to allow very different socket API backend to be used; for example, efforts are currently under way to implement socket API for Symbian OS directly on top of <b>RSocket</b> interface (instead of using the BSD abstraction).
+
+
+      
+      <p>The PJLIB socket API is needed by the default SIP and
+media transports. However this may not be needed if application
+completely rewrites these SIP and media transports.</p>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId82122"></a>Address Resolution API</h4>
+
+
+PJLIB provides address resolution API abstraction (<span style="font-family: monospace;">pj_gethostbyname()</span> and <span style="font-family: monospace;">pj_gethostip()</span> functions) in &lt;pj/addr_resolv.h&gt;, and implementation for BSD socket backend is provided in <span style="font-family: monospace;">pj/addr_resolv_sock.c</span>.<br>
+
+      
+      <p>The address resolution functions are needed for two
+purposes:</p>
+      <ul>
+        <li>for finding the API address of local host when
+creating the SIP and media transports,</li>
+        <li>for SIP server resolution procedure, if RFC 3263
+server resolution is not used.</li>
+      </ul>
+
+
+If application works strictly with IP addresses only (no hostnames),
+then the address resolution API may not be needed.
+      
+      <h4><a class="mozTocH4" name="mozTocId536758"></a>Socket select() Abstraction</h4>
+
+
+PJLIB provides abstraction for BSD select() system call in
+&lt;pj/sock_select.h&gt;, and the implementation in <span style="font-family: monospace;">pj/sock_select.c</span>.
+The select() abstraction is only used by select IOQUEUE (see below), so
+if select IOQUEUE is not used, the select() abstraction is not needed.
+      
+      <h4><a class="mozTocH4" name="mozTocId673808"></a>IOQUEUE</h4>
+
+
+      
+      <p><a href="/pjlib/docs/html/group__PJ__IOQUEUE.htm">PJLIB
+IOQUEUE</a> (I/O Queue) implements Proactor Pattern for
+demultiplexing network events. The IOQUEUE can be implemented with
+multiple backends, such as Windows NT IO Completion Port, Linux epoll,
+or PJLIB's select() abstraction.</p>
+
+
+      
+      <p>The IOQUEUE is mainly used to poll all sockets for
+incoming packets, and standard PJSIP and PJMEDIA transports make use of
+IOQUEUE. Because of this, it is possible to have all sockets in the
+application (SIP sockets and RTP/RTCP sockets) register to one ioqueue,
+then poll this ioqueue from a single place (and possibly with a single
+thread).</p>
+
+
+      
+      <p>However, for platforms that doesn't have socket
+demultiplexing API (such as selec()), it is possible to NOT implement
+IOQUEUE altogether, by implementing a custom SIP and media transport.</p>
+
+
+      
+      <p>&nbsp;</p>
+
+
+      
+      <h2><a class="mozTocH2" name="mozTocId50420"></a>Porting
+Strategies</h2>
+
+
+      
+      <p>This section describes the strategies to port PJ
+libraries into a new platform. There are basically two approaches to
+porting PJ software into new platform.</p>
+
+
+      
+      <p>The "traditional" way is to completely port PJLIB for
+the new
+platform. Once PJLIB has been ported successfully,&nbsp; all other
+libraries (PJLIB-UTIL, PJSIP, and PJMEDIA) should run on the new
+platform without modifications, since they depend only to PJLIB.</p>
+
+
+      
+      <p>The second approach is only to partially port PJLIB, but
+some parts of PJSIP and PJMEDIA will need to be modified.</p>
+
+
+      
+      <p>Both approaches will be described below.</p>
+
+
+&nbsp;
+      
+      <h3><a class="mozTocH3" name="mozTocId565490"></a>Fully
+Porting PJLIB</h3>
+
+
+The "traditional" path to porting PJ software is&nbsp;to port
+the whole PJLIB to the new platform. Since all other libraries&nbsp;and
+applications only depend to PJLIB, these upper layer
+libraries/applications would most likely be able to run without changes
+on the new platform once PJLIB porting is complete. <br>
+
+
+      
+      <p>To fully port PJLIB, developer need to provide all the
+PJLIB features described above. In addition, PJLIB provides quite comprehensive tests (<span style="font-family: monospace;">pjlib-test</span>
+application) to test PJLIB functionalities for the new platform. These
+test should catch more than 90% of problems that may be had for the new
+platform, so when <span style="font-family: monospace;">pjlib-test</span> reports that everything is okay, there is a very good chance that the porting effort has been successful.</p>
+
+
+      
+      <p>This porting path is recommended for platforms that
+provide
+"modern" APIs such as Posix or Windows. &nbsp;If the target platform
+provides Posix abstraction layer, then this path is recommended, since
+PJLIB supports Posix API. If this is not available (or desired), then
+some efforts would be required to
+rewrite/build some features that are pretty "advanced", such as
+threading, thread local storage, and network event demultiplexing API
+(select() and the like).</p>
+
+
+Since not all Operating Systems are able to provide such features, this
+porting effort may not be feasible. In this case, the second approach
+below may be used to port PJ software into such platforms.<br>
+
+
+      
+      <p>&nbsp;</p>
+
+
+      
+      <h3><a class="mozTocH3" name="mozTocId30930"></a>Partially
+Porting PJLIB</h3>
+
+
+      
+      <p>Many Operating Systems, especially deeply embedded OSes,
+do not have
+"advanced" features such as multithreading, thread local storage,
+network event demultiplexing, and the likes. Or in other cases, these
+features may not be desired, for design requirements reason or size consideration. For these
+cases, fully porting PJLIB may not be the best option.</p>
+
+
+      
+      <p>This section attempts to describe alternative way to
+port PJ software into such platforms. However, readers please be aware
+that this effort is still being tested, so the procedures described here may not be&nbsp;accurate at all.</p>
+
+
+      
+      <p>&nbsp;</p>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId368534"></a>Design Considerations</h4>
+
+
+      
+      <p>This kind of port requires specific application design
+considerations, which will be described below.</p>
+
+
+      
+      <dl>
+
+
+        <dt style="font-weight: bold;">Threading Strategy:
+No Threading!</dt>
+
+
+        <dd>
+          
+          <p>To simplify the porting, we would need to disable
+threading. By disabling threading, we then could skip implementing the
+bulk OS specific codes in <span style="font-family: monospace;">pj/os_*.c</span>
+(things like threads and synchronization objects). Disabling threading
+in this case does not mean that we should not use multitasking at all,
+but rather to make sure that no task would be interrupted unless the
+task is ready to yield when it thinks that it is safe to do so. This
+concept is commonly called cooperative multitasking.</p>
+
+
+        </dd>
+
+
+        <dt style="font-weight: bold;">Create Active
+Transports</dt>
+
+
+        <dd>
+          
+          <p>The transport interfaces in both SIP and media stack
+was designed around the idea that transports should be active (by
+"active", it means that the stack should not need to poll these
+transports to get events from the network). But "under the hood",
+actually these transports would register their sockets to an IOQUEUE,
+and application or SIP endpoint (pjsip_endpoint) would need to
+regularly poll the ioqueue to retrieve the network events. </p>
+
+
+          
+          <p>In other words, current framework requires full
+implementation of IOQUEUE and PJLIB socket abstraction API, which may
+not be available in the target platform. If IOQUEUE and socket API
+porting is not desired, then developer would need to rewrite these SIP
+and media transports to NOT use IOQUEUE and PJLIB socket. The SIP and
+media transports API is quite straightforward; the interface would just
+need to register a callback to be called when the stack need to send
+packet, and the transport need to call some function in the stack
+whenever a packet has arrived.</p>
+
+
+          
+          <p>The transport object itself then may be written in
+whatever API provided by the OS. It may even be called from some
+interrupt that is triggered when incoming packets arrived.</p>
+
+
+          
+          <p>By implementing the transports this way, there would
+not be any need to implement PJLIB's IOQUEUE, select abstraction, and
+socket abstraction API.</p>
+
+
+        </dd>
+
+
+        <dt style="font-weight: bold;">&nbsp;Implement
+PJLIB Dummy Functions</dt>
+
+
+        <dd>
+          
+          <p>With this approach, many PJLIB functionalities would
+not need to be implemented. However, those functions may still have to
+be defined (otherwise link error will occur), so dummy implementations
+need to be created.</p>
+
+
+        </dd>
+
+
+        <dt>&nbsp;</dt>
+
+
+      
+      </dl>
+
+
+      
+      <h4><a class="mozTocH4" name="mozTocId806544"></a>More Information</h4>
+
+
+      
+      <p>This type of porting is still under investigation, thus
+there's not much details can be revealed at the moment. More will be
+written when there's more information available.</p>
+
+
+      
+      <p>If you want to try this path, please contact me to
+discuss things in more details. Thanks.</p>
+
+
+&nbsp;
+      
+      <h2><a class="mozTocH2" name="mozTocId693552"></a>Related
+Pages</h2>
+
+
+      
+      <p>The <a href="/pjlib/docs/html/porting__pjlib__pg.htm"><span style="font-weight: bold;">PJLIB Porting Guide</span></a>
+in PJLIB's manual also provides some useful info about PJLIB build
+system and porting PJLIB.</p>
+
+
+      
+      <p></p>
+
+
+      </td>
+
+
+      <td></td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+<!--#include file="footer.html" -->
+</body>
+</html>

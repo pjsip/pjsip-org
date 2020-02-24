@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#cd /data/current/websites/pjsip.org/rss2html
+cd /home/pjsip/webapps/pjsiporg/rss2html
+#/usr/local/bin/php pjsipblog2html.php > ../news.html
+/usr/local/bin/php pjsipblog2html.php > ../news.html
+/usr/local/bin/php tractimeline2html.php > ../timeline.html
+cd ..
+rm -f feed
+/usr/bin/wget http://blog.pjsip.org/feed -O feed
+mv -f feed pjsip.rss
+touch index.htm

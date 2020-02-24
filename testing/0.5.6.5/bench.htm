@@ -1,0 +1,897 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>PJSIP - Open Source SIP Performance Benchmark</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+  </head>
+  <body>
+	<!--#include virtual="/header.html" -->
+	<H1>
+	  <TABLE id="ContentSubTable" cellSpacing="10" cellPadding="4" width="100%" border="0">
+		<TR>
+		  <TD>
+			<H1>
+			  Benchmarking PJSIP</H1>
+			<P><EM></EM>&nbsp;</P>
+		  </TD>
+		  <TD vAlign="top">
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+		  </TD>
+		</TR>
+		<TR>
+		  <TD vAlign="top">
+			<P align="center">&nbsp;</P>
+			<P>Date: July 11th, 2006</P>
+			<P>Source Revision: v0.5.6.5 (trunk, r603)</P>
+			<P>Disclaimer:</P>
+			<P>
+			  <TABLE id="Table1" cellSpacing="0" cellPadding="4" width="100%" border="1">
+				<TR>
+				  <TD>This article reports my experimentation with benchmarking PJSIP on various 
+					systems. The numbers shown in this article should be used as&nbsp;information 
+					only, YMMV.</TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+			<H1><A name="objectives"></A>Objectives
+			  <HR width="100%" SIZE="1">
+			</H1>
+			<P>The main objective for doing this benchmark is to see the typical performance 
+			  numbers of PJSIP. Before the benchmark, I was pretty sure that PJSIP is fast, 
+			  but I never have the exact numbers to prove/disprove this. I did a rough 
+			  benchmark couple of years ago, and now after all the years and all the 
+			  modifications, I'd like to know if the performance numbers have changed, for 
+			  better or worse. And similarly I'd like to have some baseline value that I can 
+			  use to measure the performance changes in the future.</P>
+			<P>Another thing&nbsp;that I'd like to know is how scalable PJSIP is when it's 
+			  used in multiprocessor systems. I've spent a lot of time to carefully design 
+			  and tweak PJLIB/PJSIP so that it's scalable, and now we will see if the effort 
+			  is successful.</P>
+			<P>&nbsp;</P>
+		  </TD>
+		  <TD vAlign="bottom">
+			<P>
+			  <TABLE class="news" id="Table24" cellSpacing="0" cellPadding="2" width="140" border="1">
+				<TR bgColor="#000099">
+				  <TH>
+					<P align="center"><STRONG><FONT color="#ffffff">Table of Contents</FONT></STRONG></P>
+				  </TH>
+				</TR>
+				<TR>
+				  <TD vAlign="top">
+					<P><STRONG>Contents:<BR>
+						- </STRONG><A href="#objectives"><STRONG>Objectives</STRONG></A><BR>
+					  <STRONG>- </STRONG><A href="#methods"><STRONG>Test Methods</STRONG></A><BR>
+					  <STRONG>- </STRONG><A href="#tools"><STRONG>Test Tool</STRONG></A><BR>
+					  <STRONG>- </STRONG><A href="#systems"><STRONG>Systems</STRONG></A><BR>
+					  <STRONG>- </STRONG><A href="#tuning"><STRONG>Test Settings</STRONG></A><BR>
+					  <STRONG>- </STRONG><A href="#results"><STRONG>Results:</STRONG></A><BR>
+					  &nbsp;&nbsp;&nbsp; - <A href="#results">Stateless</A><BR>
+					  &nbsp;&nbsp;&nbsp; - <A href="#res_statefull">Stateful</A><BR>
+					  &nbsp;&nbsp;&nbsp; - <A href="#res_call">Call</A><BR>
+					  &nbsp;&nbsp;&nbsp;&nbsp;- <A href="#res_abstract">Abstraction Cost</A><BR>
+					  &nbsp;&nbsp;&nbsp;&nbsp;- <A href="#res_network">Network</A><BR>
+					  <STRONG>- <A href="#problems">Problems</A><BR>
+						- </STRONG><A href="#conclusions"><STRONG>Conclusion</STRONG></A></P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			</P>
+		  </TD>
+		</TR>
+		<TR>
+		  <TD>
+			<P>&nbsp;</P>
+			<H1><A name="methods"></A>Test Methods
+			  <HR width="100%" SIZE="1">
+			</H1>
+			<P>The benchmark covers the following performance characteristics:</P>
+			<UL>
+			  <LI>
+				The stateless performance.
+			  </LI>
+			</UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>This benchmark should show the performance of the core SIP stack (endpoint, 
+				transport, and event distribution to modules) especially the message parsing 
+				and generation part. One stateless job consists of one stateless request and 
+				one stateless final response, so the performance is measured in the number of 
+				responses received per second.&nbsp;</P>
+			</BLOCKQUOTE>
+			<UL dir="ltr">
+			  <LI>
+				Statefull processing/transactions performance.
+			  </LI>
+			</UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P dir="ltr">This benchmark should show the performance of the transaction layer, 
+				and is measured in transactions per second.
+			  </P>
+			</BLOCKQUOTE>
+			<UL dir="ltr">
+			  <LI dir="ltr">
+				Call performance.
+			  </LI>
+			</UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P dir="ltr">This benchmark should show the performance of the high level INVITE 
+				session handling, as well as the performance of the SDP parser and negotiation 
+				(because SDP negotiation is handled by the INVITE session too). For this 
+				benchmark, one call consists of an INVITE request with SDP, 2xx response, ACK, 
+				and immediately followed with BYE/2xx transactions. Performance is measured in 
+				calls per second.
+			  </P>
+			</BLOCKQUOTE>
+			<P dir="ltr">
+			  Both UDP and TCP transports are tested. More over, the benchmark also analyzes 
+			  the impact of using multiple threads to the performance.
+			</P>
+			<P dir="ltr">Both local and network performance is analyzed. When local 
+			  benchmarking is performed, both client and server functionality reside in a 
+			  single program. The purpose of the local benchmark mainly is to create a more 
+			  repeatable benchmark condition, since the performance is not affected by 
+			  external conditions such as LAN conditions, the NIC performance, and the 
+			  performance of the remote system.
+			</P>
+			<P>&nbsp;</P>
+			<H1><A name="tools"></A>Test Tool
+			  <HR width="100%" SIZE="1">
+			</H1>
+			<P>This benchmark uses pjsip-perf, from pjsip-apps samples. pjsip-perf is a small 
+			  and simple but yet powerful tools to be used as both SIP load generator client 
+			  and server. Source code is available (of course) from the 
+			  pjsip-apps/src/samples directory.</P>
+			<P>pjsip-perf can run in three operational modes:</P>
+			<UL>
+			  <LI>
+			  as client only, to measure the performance of any remote server.
+			  <LI>
+			  as server only, to receive and respond requests from remote client.
+			  <LI>
+				as both client and server, to measure local performance. In this mode, requests 
+				are sent to the address where the server functionality listens to.
+			  </LI>
+			</UL>
+			<P>&nbsp;</P>
+			<H2>Running pjsip-perf as Client</H2>
+			<P>To start pjsip-perf as client, basically we just need to give it the URL of 
+			  the service to send requests to, for example:</P>
+			<P>
+			  <TABLE class="fixedcmd" id="Table4" height="20">
+				<TR>
+				  <TD>
+					<P>$ ./pjsip-perf sip:service@host
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>The command above will start pjsip-perf with default&nbsp;settings,&nbsp;that 
+			  is to&nbsp;send 10,000 (ten thousands) OPTIONS requests statefully with UDP to 
+			  the server and measure the rate of the final response, with 60 seconds 
+			  time-out. The settings can be changed with the following command line 
+			  arguments:</P>
+			<P>
+			  <TABLE id="Table5" height="79" cellSpacing="0" cellPadding="4" border="1">
+				<TR>
+				  <TD vAlign="top" width="153">
+					<P align="center">Arguments</P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">Default
+					</P>
+				  </TD>
+				  <TD>
+					<P align="center">Description</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153">
+					<P><FONT face="Courier New">--method=METHOD, -m</FONT></P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">OPTIONS</P>
+				  </TD>
+				  <TD>Set the request method to METHOD. When the method is INVITE, the client will 
+					switch the test mode to measure call performance.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153"><FONT face="Courier New">--count=N, -n</FONT></TD>
+				  <TD vAlign="top">
+					<P align="center">10,000</P>
+				  </TD>
+				  <TD>Set the total number of requests to be sent.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153"><FONT face="Courier New">--timeout=SEC, -t</FONT></TD>
+				  <TD vAlign="top">
+					<P align="center">60</P>
+				  </TD>
+				  <TD>Set test timeout.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153"><FONT face="Courier New">--stateless, -s</FONT></TD>
+				  <TD vAlign="top">
+					<P align="center">statefull</P>
+				  </TD>
+				  <TD>Set the client to send requests statelessly (not applicable when method is 
+					INVITE).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153"><FONT face="Courier New">--window=N, -w</FONT></TD>
+				  <TD vAlign="top">
+					<P align="center">1000</P>
+				  </TD>
+				  <TD>Limit the number of outstanding requests to this value (outstanding 
+					request&nbsp;is&nbsp;one with no response received from server yet). When the 
+					number of outstanding requests reaches this value, client will wait until more 
+					responses are received before it sends&nbsp;more requests.</TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>&nbsp;</P>
+			<H2>Running pjsip-perf as Server</H2>
+			<P>To start pjsip-perf as server, just run it without any URL, for example:</P>
+			<P>
+			  <TABLE class="fixedcmd" id="Table6" height="20">
+				<TR>
+				  <TD>
+					<P>$ ./pjsip-perf
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>
+			The server handles incoming requests&nbsp;statelessly, statefully, or call 
+			statefully&nbsp;according to the URI specified in the request URI. 
+			Specifically, the user part of the request URI determines the processing method 
+			of the request:
+			<P>
+			  <TABLE id="Table7" height="79" cellSpacing="0" cellPadding="4" border="1">
+				<TR>
+				  <TD vAlign="top">
+					<P align="center">User Part Value</P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">Example</P>
+				  </TD>
+				  <TD>
+					<P align="center">Handling</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top">
+					<P align="center">0</P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">sip:0@127.0.0.1</P>
+				  </TD>
+				  <TD>Incoming requests with user part equal to "0" will be handled statelessly.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top">
+					<P align="center">1</P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">sip:1@127.0.0.1</P>
+				  </TD>
+				  <TD>Incoming requests with user part equal to "1" will be handled statefully.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top">
+					<P align="center">2</P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">sip:2@127.0.0.1</P>
+				  </TD>
+				  <TD>
+					<P>This URL should only be called for INVITE requests only, as it will be handled 
+					  call-statefully.</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>
+			<P>
+			<P>
+			  <H2>Running pjsip-perf as both Client and Server</H2>
+			<P>
+			To start pjsip-perf as both client and server, simply specify the URL of local 
+			transport in the command, for example:
+			<P>
+			  <TABLE class="fixedcmd" id="Table8" height="20">
+				<TR>
+				  <TD>
+					<P>$ ./pjsip-perf&nbsp; sip:1@127.0.0.1&nbsp;
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>
+			The command above will send 10,000 OPTIONS requests (statefully) to itself via 
+			UDP transport, handle the requests statefully by creating UAS transactions, 
+			send 200 final responses (to itself, via UDP transport again), and measure the 
+			rate of the response received by the UAC transactions.
+			<P>
+			Or to measure the statefull performance using TCP transport:
+			<P>
+			  <TABLE class="fixedcmd" id="Table10" height="20">
+				<TR>
+				  <TD>
+					<P>$ ./pjsip-perf&nbsp; --use-tcp "sip:1@127.0.0.1;transport=tcp"&nbsp;
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>
+			<P>
+			<P>
+			<P>
+			  <H2>Settings Common to Client and Server</H2>
+			<P>
+			The following settings are common for both client and server.
+			<P>
+			  <TABLE id="Table9" height="79" cellSpacing="0" cellPadding="4" border="1">
+				<TR>
+				  <TD vAlign="top" width="153">
+					<P align="center">Arguments</P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">Default
+					</P>
+				  </TD>
+				  <TD>
+					<P align="center">Description</P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153">
+					<P><FONT face="Courier New">--local-port=PORT, -p</FONT></P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center">5060</P>
+				  </TD>
+				  <TD>Set local port to bind transport to.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153"><FONT face="Courier New">--use-tcp, -T</FONT></TD>
+				  <TD vAlign="top">
+					<P align="center">no</P>
+				  </TD>
+				  <TD>Create TCP transport instead of UDP transport. For client, 
+					"<STRONG>;transport=tcp</STRONG>" parameter must also be added
+					to the URL so that requests are 
+					sent with TCP instead of UDP.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="153"><FONT face="Courier New">--thread-count=N</FONT></TD>
+				  <TD vAlign="top">
+					<P align="center">1</P>
+				  </TD>
+				  <TD>Set the number of threads. At least one thread is needed, because the main 
+					thread is blocked for the user interface (i.e. fgets()). For maximum 
+					performance, it is recommended that the value set here is equal to the number 
+					of processors installed in the system.</TD>
+				</TR>
+			  </TABLE>
+			<P>
+			<P>
+			&nbsp;&nbsp;&nbsp;
+			<P>&nbsp;&nbsp;
+			  <H1><A name="tuning"></A>Test Settings
+				<HR width="100%" SIZE="1">
+			  </H1>
+			<P>
+			<P>
+			<P>
+			<P>
+			<P>
+			  <H2><A name="systems"></A>Systems
+			  </H2>
+			<P>The benchmark was performed mainly on these three systems:</P>
+			<P>
+			  <TABLE id="Table25" cellSpacing="0" cellPadding="4" border="1">
+				<TR>
+				  <TD vAlign="top" width="153"></TD>
+				  <TD vAlign="top" width="161">
+					<P align="center"><STRONG>System 1 (WinXP)</STRONG></P>
+				  </TD>
+				  <TD vAlign="top">
+					<P align="center"><STRONG>System 2 (FC5)</STRONG></P>
+				  </TD>
+				  <TD>
+					<P align="center"><STRONG>System 3 (FC4)</STRONG></P>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD width="153">Brand Name</TD>
+				  <TD width="161">HP d230 MT Desktop</TD>
+				  <TD>IBM NetVista Desktop</TD>
+				  <TD>IBM NetVista Desktop</TD>
+				</TR>
+				<TR>
+				  <TD width="153">Processor</TD>
+				  <TD width="161">One Intel P4/2.66 GHz</TD>
+				  <TD>One Intel P4/2.4 GHz</TD>
+				  <TD>One Intel P4/2.4 GHz</TD>
+				</TR>
+				<TR>
+				  <TD width="153">Memory</TD>
+				  <TD width="161">1GB</TD>
+				  <TD>1GB</TD>
+				  <TD>1GB</TD>
+				</TR>
+				<TR>
+				  <TD width="153">Operating System</TD>
+				  <TD width="161">
+					<P>Windows XP Prof., Service Pack 2</P>
+				  </TD>
+				  <TD>RedHat Linux Fedora Core 5, linux-2.6.15 kernel</TD>
+				  <TD>RedHat Linux Fedora Core 4, linux-2.6.11 kernel</TD>
+				</TR>
+				<TR>
+				  <TD width="153">Compiler</TD>
+				  <TD width="161">MSVC++ 6</TD>
+				  <TD>gcc-4.1.1</TD>
+				  <TD>gcc-4.0.2</TD>
+				</TR>
+				<TR>
+				  <TD width="153">Network</TD>
+				  <TD width="161">10/100 Mbps Ethernet</TD>
+				  <TD>10/100 Mbps Ethernet</TD>
+				  <TD>10/100 Mbps Ethernet</TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>No addtional tuning was done on the systems.</P>
+			<P>No tuning is done on the systems.</P>
+			<P>&nbsp;</P>
+			<H2>Build Settings</H2>
+			<P>
+			  For maximum performance, pjsip-perf were compiled with the following settings 
+			  in <STRONG>pjlib/include/pj/config_site.h:</STRONG></P>
+			<P>
+			  <TABLE class="fixedcmd" id="Table2">
+				<TR>
+				  <TD width="484">#define PJ_SCANNER_USE_BITWISE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<BR>
+					#define PJ_OS_HAS_CHECK_STACK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+					<BR>
+					#define 
+					PJ_LOG_MAX_LEVEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+					<BR>
+					#define PJ_ENABLE_EXTRA_CHECK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+					<BR>
+					#define PJ_IOQUEUE_MAX_HANDLES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;256
+					<BR>
+					#define 
+					PJSIP_MAX_TSX_COUNT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((64*1024)-1)
+					<BR>
+					#define PJSIP_MAX_DIALOG_COUNT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((64*1024)-1)
+					<BR>
+					#define PJSIP_UDP_SO_SNDBUF_SIZE&nbsp;&nbsp;&nbsp;(24*1024*1024)
+					<BR>
+					#define PJSIP_UDP_SO_RCVBUF_SIZE&nbsp;&nbsp;&nbsp;(24*1024*1024)
+					<BR>
+					#define 
+					PJ_DEBUG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+					<BR>
+					#define 
+					PJSIP_SAFE_MODULE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+					<BR>
+					#define PJ_HAS_STRICMP_ALNUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+					<BR>
+					#define PJ_HASH_USE_OWN_TOLOWER&nbsp;&nbsp;&nbsp;&nbsp;1
+					<BR>
+					#define PJSIP_UNESCAPE_IN_PLACE&nbsp;&nbsp;&nbsp;&nbsp;1 </FONT></TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>On the Linux systems, the following flags were specified in <STRONG>user.mak</STRONG>:</P>
+			<P>
+			  <TABLE class="fixedcmd" id="Table3">
+				<TR>
+				  <TD>
+					<P>export CFLAGS += -march=pentium4 -O4 -fomit-frame-pointer -fno-strict-aliasing 
+					  -Wall -Wno-unused-label -DNDEBUG -D_REENTRANT</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			</P>
+			<P>&nbsp;</P>
+			<H2>Memory Pool Caching</H2>
+			<P>
+			To reduce the call to malloc() and free() (for best performance), the pool 
+			caching in pjsip-perf by default is configured to cache up to 256 MB of memory.
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+			<H1><A name="results"></A>Results
+			</H1>
+			<H2>Local Stateless Performance
+			  <HR width="100%" SIZE="1">
+			</H2>
+			<P>The purpose of this benchmark is to measure the raw performance of message 
+			  processing&nbsp;of the SIP stack. For this test, one <STRONG>pjsip-perf</STRONG>
+			  instance is run as both client and server, passing messages back and forth in a 
+			  single program using both UDP and TCP transport.</P>
+			<P>The tests were done with OPTIONS method. However, please note that the both 
+			  request and response only contain basic request and response properties; it 
+			  does NOT fully conform with the standard that says that OPTIONS response should 
+			  describe the capability of the endpoint (for example, it should contain SDP 
+			  body).</P>
+			<P>Four different tests were performed for each system, and each test was 
+			  repeated four times, and the average result is calculated:</P>
+			<UL>
+			  <LI>
+				UDP transport with one thread:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table11" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --stateless sip:0@127.0.0.1&nbsp;
+					  </P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				UDP transport with two threads:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table12" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --stateless --thread-count 2 sip:0@127.0.0.1&nbsp;
+					  </P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				TCP transport with one thread:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table13" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --stateless --use-tcp 'sip:0@127.0.0.1;transport=tcp'</P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				TCP transport with two threads:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table14" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --stateless --use-tcp --thread-count 2 
+						'sip:0@127.0.0.1;transport=tcp'</P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<P>&nbsp;</P>
+			<P><STRONG>Figure 1</STRONG> below shows the performance difference of the 
+			  stateless operations on&nbsp;the three systems&nbsp;systems. It shows that 
+			  Linux FC5 system with gcc-4.1.1 gives best performance out of the other two 
+			  systems.</P>
+			<P align="center"><IMG src="local-stateless-system.jpg"></P>
+			<P align="center">Figure 1: Stateless Performance</P>
+			<P align="left"><STRONG>Figure&nbsp;2</STRONG> below displays the same result 
+			  with the emphasis of showing the difference in performance between different 
+			  transports and different number of threads on a given system.</P>
+			<P align="center"><IMG src="local-stateless-transport.jpg"></P>
+			<P align="center">Figure 2: Stateless Performance</P>
+			<P>The results so far show quite respectable performance, with PJSIP is able to 
+			  send <STRONG>and</STRONG> receive more than ten thousand (10,000) <STRONG>basic</STRONG>
+			  request and response pair&nbsp;per second when UDP transport is used (<STRONG>locally</STRONG>).</P>
+			<P>Another&nbsp;important point&nbsp;is that the performance basically&nbsp;<STRONG>does 
+				not</STRONG> increase when more thread is added, because all systems only 
+			  have one processor. This is a good result and is consistent with the design of 
+			  PJSIP, since it shows that the stack is completely non-blocking (there is no 
+			  place in the stack where threads block unnecessarily to wait for events), so 
+			  adding more threads will not benefit performance when there is no more 
+			  processor to be used.</P>
+			<P>&nbsp;</P>
+			<H2><A name="res_statefull"></A>Local Stateful Performance
+			  <HR width="100%" SIZE="1">
+			</H2>
+			<P>This benchmark measures the transaction performance when&nbsp;both client and 
+			  server reside in the same&nbsp;application instance. Again, a minimal OPTIONS 
+			  request and response is used for the tests.</P>
+			<P>Four different tests were performed on each system:</P>
+			<UL>
+			  <LI>
+				UDP transport with one thread:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table15" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; sip:1@127.0.0.1&nbsp;
+					  </P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				UDP transport with two threads:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table16" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --thread-count 2 sip:1@127.0.0.1&nbsp;
+					  </P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				TCP transport with one thread:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table17" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --use-tcp 'sip:1@127.0.0.1;transport=tcp'</P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				TCP transport with two threads:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table18" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --use-tcp --thread-count 2 
+						'sip:1@127.0.0.1;transport=tcp'</P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<P>As usual, each test is repeated four times, and the average result is 
+			  calculated.</P>
+			<P>Figure 3 below shows the transaction performance comparison between systems.</P>
+			<P align="center"><IMG src="local-stateful-system.jpg"></P>
+			<P align="center">Figure 3: SIP Transaction Performance</P>
+			<P align="left">Figure&nbsp;4 below shows the same number but with emphasis on 
+			  showing the diferent in performance of each transports.</P>
+			<P align="center"><IMG src="local-stateful-transport.jpg"></P>
+			<P align="center">Figure 4: SIP Transaction Performance</P>
+			<P>The result is not too bad, to say modestly, with the best performance was 
+			  reported on the FC5 system, with average of <STRONG>7603 transactions per second</STRONG>, 
+			  with TCP transport. Surprisingly, TCP transport consistently gives better 
+			  performance on all systems, which is rather peculiar since the TCP transport 
+			  performance is less than UDP on the stateless test.</P>
+			<P>But note that since both&nbsp;SIP UAC and&nbsp;UAS transactions&nbsp;are in 
+			  the same program/system,&nbsp;potentially the actual performance&nbsp;can be 
+			  doubled (if we neglect end-to-end network delay, NIC performance, and other 
+			  system/external overheads), giving the potential/theoritical number of&nbsp;<STRONG>fifteen 
+				thousands&nbsp;SIP transactions per second</STRONG>. Yummy!!</P>
+			<P>Again, it is observed that adding second thread did not give additional 
+			  performance advantage on all tests, which is good.</P>
+			<P>&nbsp;</P>
+			<H2><A name="res_call"></A>Local Call Performance
+			  <HR width="100%" SIZE="1">
+			</H2>
+			<P>This benchmark measures the call performance when both client and server 
+			  reside in a single <STRONG>pjsip-perf</STRONG> instance. A call consists of 
+			  INVITE/2xx/ACK transaction, followed immediately with BYE/2xx transaction. A 
+			  proper SDP negotiation is also done for each call, although the SDP content 
+			  itself is static and contains the same message for both INVITE request and 2xx 
+			  response.</P>
+			<P>Four different tests were performed on each system:</P>
+			<UL>
+			  <LI>
+				UDP transport with one thread:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table19" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --method=INVITE sip:2@127.0.0.1&nbsp;
+					  </P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				UDP transport with two threads:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table20" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --method=INVITE --thread-count=2 sip:2@127.0.0.1&nbsp;
+					  </P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				TCP transport with one thread:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table21" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --method=INVITE --use-tcp 'sip:2@127.0.0.1;transport=tcp'</P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<UL>
+			  <LI>
+				TCP transport with two threads:</LI></UL>
+			<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+			  <P>
+				<TABLE class="fixedcmd" id="Table22" height="20">
+				  <TR>
+					<TD>
+					  <P>$ ./pjsip-perf&nbsp; --method=INVITE --use-tcp --thread-count=2 --window 50 
+						'sip:2@127.0.0.1;transport=tcp'</P>
+					</TD>
+				  </TR>
+				</TABLE>
+			  </P>
+			</BLOCKQUOTE>
+			<P>As usual, each test is repeated four times, and the average result is 
+			  calculated.</P>
+			<P>Note that when 2 threads are used for TCP, we need to limit the test window to 
+			  50. Without the window setting, sometimes messages get mixed up in the 
+			  transmission, causing syntax error when parsed on the receiver side. This is 
+			  most likely caused by bug in PJLIB/PJSIP.</P>
+			<P>Figure&nbsp;5 below shows the&nbsp;call performance comparison between 
+			  systems.</P>
+			<P align="center"><IMG src="local-call-system.jpg"></P>
+			<P align="center">Figure 5: SIP Call Performance</P>
+			<P align="center">&nbsp;</P>
+			<P align="left">Figure&nbsp;6 below shows the same number but with emphasis on 
+			  showing the diferent in performance of each transports.</P>
+			<P align="center"><IMG src="local-call-transport.jpg"></P>
+			<P align="center">Figure 6: SIP Call Performance</P>
+			<P>The result is quite good (to say modestly), with best performance is observed 
+			  on (again) FC5 system with <STRONG>2502 calls per second</STRONG>, when TCP 
+			  transport is used. But note that since both caller and callee are in the same 
+			  program/system,&nbsp;potentially the actual performance&nbsp;can be doubled (if 
+			  we neglect end-to-end network delay, NIC performance, and other system/external 
+			  overheads), giving the potential/theoritical number of <STRONG>five thousands 
+				calls per second</STRONG>. Yummy!!</P>
+			<P>&nbsp;</P>
+			<H2><A name="res_network"></A>
+			  <H2><A name="res_abstract"></A>Abstraction Costs
+				<HR width="100%" SIZE="1">
+			  </H2>
+			</H2>
+			<P>The following chart&nbsp;highlights the cost of PJSIP transaction and call 
+			  abstraction to the performance. It shows how much degradation when we switch 
+			  processing from stateless to statefull, and how much performance degrades when 
+			  we use the high-level INVITE session management.</P>
+			<P>Note that a call involves two transactions: INVITE, and BYE, so it's quite 
+			  understandable that the performance drop from statefull to call is big.</P>
+			<P align="center"><IMG src="abstraction-costs.jpg"></P>
+			<P align="center">Figure 7: Abstraction Cost</P>
+			<P>&nbsp;</P>
+			<P>Although it is expected that&nbsp;there would be a performance penalty when 
+			  using more abstractions,&nbsp;&nbsp;as the figure above shows, the penalty is 
+			  quite big, or at least bigger than expected. This fact probably can be 
+			  explained as follows:</P>
+			<UL>
+			  <LI>
+			  processing message statelessly involves very little synchronization (close to 
+			  zero), while stateful processing involves several locking to the hash table and 
+			  the transaction itself.
+			  <LI>
+			  perhaps the hash table implementation/setting itself is not very efficient (we 
+			  haven't calculated the hash collision rate),
+			  <LI>
+			  transaction needs to register timer to central timer heap, thus perhaps the 
+			  timer heap implementation/setting is not very efficient,
+			  <LI>
+				and remember that a call involves two transactions, INVITE and BYE, and SDP is 
+				parsed and fully negotiated by the INVITE session.</LI></UL>
+			<P>On the bright side, the big abstraction penalty opens more opportunity to 
+			  further&nbsp;optimize the algorithm to get even better transaction and calls 
+			  performance.</P>
+			<P><A name="res_call"></A>&nbsp;</P>
+			<H2>System and Network Performance
+			  <HR width="100%" SIZE="1">
+			</H2>
+			<P>Now that we have the performance benchmark of each systems, it's time to 
+			  benchmark the actual performance of the systems (PJSIP, the hardware, the 
+			  operating system, NIC card, and&nbsp;my home&nbsp;LAN) over the network. So be 
+			  aware that the numbers here reflect all these factors, and probaby one should 
+			  not judge PJSIP performance based on these numbers (if it turns out that the 
+			  numbers come out low, that is).
+			</P>
+			<P>The test covers the same set as previous tests, and in addition, for each 
+			  test, the performance of the reverse test direction is also analyzed.</P>
+			<P>The following chart shows the benchmark results.</P>
+			<P align="center"><IMG src="network-performance.jpg"></P>
+			<P align="center">Figure : SIP Network Performance Benchmark Result</P>
+			<P>Some of the results are quite peculiar, to say the least. For example, the 
+			  performance can be&nbsp;very different when the test direction is reversed, and 
+			  the&nbsp;difference can be more than twice/half the number! For example, UDP 
+			  stateless performance from FC5 to FC4 is 6603, while the number for the 
+			  reversed direction (from FC4 to FC5) is 3256, which is only half of it!</P>
+			<P>Perhaps one of the reason for this peculiarity is because all systems are 
+			  desktop systems (FC4 is even a mini-desktop) which are not designed to have 
+			  best network performance. So perhaps with proper server hardware, we can have 
+			  more consistent results (or not).</P>
+			<P>
+			I will offer no more analysis on these results, since the&nbsp;topic 
+			covers&nbsp;many subjects including system optimizations, and it's beyond the 
+			purpose of this benchmark (and more likely beyond my knowledge too!).
+			<P>&nbsp;&nbsp;
+			  <H1><A name="tuning"></A><A name="conclusions"></A><A name="problems"></A>Problems
+				<HR width="100%" SIZE="1">
+			  </H1>
+			<P>Some problems encountered during the test:</P>
+			<UL>
+			  <LI>
+				test window of 50 needs to be applied when testing calls with TCP and more than 
+				one thread, because messages can get mixed up in the transport (average of two 
+				messages per 10,000 requests).</LI></UL>
+			<P>
+			&nbsp;&nbsp;
+			<P>&nbsp;&nbsp;
+			  <H1><A name="tuning"></A><A name="conclusions"></A>Conclusions
+				<HR width="100%" SIZE="1">
+			  </H1>
+			<P>I believe the results so far shows pretty good performance numbers, and all 
+			  the efforts to redesign PJSIP (from version 0.3 to 0.5) and to tweak/speed 
+			  up&nbsp;the parser seem to have worth it. The performance is quite predictable 
+			  and consistent to the design:</P>
+			<UL>
+			  <LI>
+			  the raw numbers are pretty good.
+			  <LI>
+			  scalability is pretty good.
+			  <LI>
+				although there is quite a big performance penalty when using transactions and 
+				high level INVITE sessions, this opens possibility to do more optimizations in 
+				this area.</LI></UL>
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+		  </TD>
+		  <TD vAlign="bottom">
+			<P align="left">&nbsp;</P>
+			<P align="left">&nbsp;</P>
+			<P align="left">
+			</P>
+		  </TD>
+		</TR>
+	  </TABLE>
+	</H1>
+	</FONT>
+	<P>&nbsp;</P>
+	<!--#include virtual="/footer.html" -->
+  </body>
+</html>

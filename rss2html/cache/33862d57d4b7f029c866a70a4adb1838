@@ -1,0 +1,339 @@
+O:9:"MagpieRSS":21:{s:6:"parser";i:0;s:12:"current_item";a:0:{}s:5:"items";a:50:{i:0;a:9:{s:5:"title";s:92:"Changeset [6161]: Misc (re #2210): Fixed formatting mistake when printing destination on ...";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Fri, 07 Feb 2020 12:02:00 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6161";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6161/1581076920088901";s:11:"description";s:212:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed formatting mistake when printing destination on keep-alive log.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:212:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed formatting mistake when printing destination on keep-alive log.
+</p>
+";s:14:"date_timestamp";i:1581076920;}i:1;a:9:{s:5:"title";s:95:"Changeset [6160]: Re #2264: Fixed crash if pjsua_var.acc[acc_id].regc is NULL Note that the ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Fri, 07 Feb 2020 08:20:56 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6160";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6160/1581063656666473";s:11:"description";s:380:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2264" title="defect: Potential deadlock between pjsua lock and sip transport's lock (closed: fixed)">#2264</a>: Fixed crash if pjsua_var.acc[acc_id].regc is NULL
+Note that the regc instance itself hasn't been destroyed since the refcount has been incremented, but acc-&gt;regc can already be NULL-ed.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:380:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2264" title="defect: Potential deadlock between pjsua lock and sip transport's lock (closed: fixed)">#2264</a>: Fixed crash if pjsua_var.acc[acc_id].regc is NULL
+Note that the regc instance itself hasn't been destroyed since the refcount has been incremented, but acc-&gt;regc can already be NULL-ed.
+</p>
+";s:14:"date_timestamp";i:1581063656;}i:2;a:9:{s:5:"title";s:82:"Changeset [6159]: Misc (re #2210): Fixed various warnings on Visual Studio 2015.  ";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Thu, 06 Feb 2020 04:02:56 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6159";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6159/1580961776920354";s:11:"description";s:188:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed various warnings on Visual Studio 2015.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:188:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed various warnings on Visual Studio 2015.
+</p>
+";s:14:"date_timestamp";i:1580961776;}i:3;a:9:{s:5:"title";s:73:"Changeset [6158]: Fixed #2266: Allow Via header with IPv6 containing []  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Thu, 06 Feb 2020 02:52:10 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6158";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6158/1580957530643228";s:11:"description";s:218:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2266" title="enhancement: Allow Via header with IPv6 containing [] (closed: fixed)">#2266</a>: Allow Via header with IPv6 containing []
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:218:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2266" title="enhancement: Allow Via header with IPv6 containing [] (closed: fixed)">#2266</a>: Allow Via header with IPv6 containing []
+</p>
+";s:14:"date_timestamp";i:1580957530;}i:4;a:9:{s:5:"title";s:80:"Changeset [6157]: Misc (re #2210): Fixed various compile warnings on MSVC2005.  ";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Wed, 05 Feb 2020 03:05:30 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6157";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6157/1580871930492369";s:11:"description";s:186:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed various compile warnings on MSVC2005.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:186:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed various compile warnings on MSVC2005.
+</p>
+";s:14:"date_timestamp";i:1580871930;}i:5;a:9:{s:5:"title";s:69:"Changeset [6156]: Close #2105: Add option to specify SWIG bindings.  ";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 11:14:21 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6156";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6156/1580814861323220";s:11:"description";s:209:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2105" title="enhancement: Add option to specify SWIG bindings (closed: fixed)">#2105</a>: Add option to specify SWIG bindings.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:209:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2105" title="enhancement: Add option to specify SWIG bindings (closed: fixed)">#2105</a>: Add option to specify SWIG bindings.
+</p>
+";s:14:"date_timestamp";i:1580814861;}i:6;a:9:{s:5:"title";s:89:"Changeset [6155]: Re #2229: Check to send pending data in the buffer even if the send ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 05:37:21 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6155";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6155/1580794641757906";s:11:"description";s:284:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2229" title="defect: Limitations in ICE data sending (closed: fixed)">#2229</a>: Check to send pending data in the buffer even if the send completes immediately, since buffer may have been filled by then.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:284:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2229" title="defect: Limitations in ICE data sending (closed: fixed)">#2229</a>: Check to send pending data in the buffer even if the send completes immediately, since buffer may have been filled by then.
+</p>
+";s:14:"date_timestamp";i:1580794641;}i:7;a:9:{s:5:"title";s:90:"Changeset [6154]: Re #2210: Update sample app ipjsua project files based on Xcode 11.3.1  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 05:25:48 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6154";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6154/1580793948236553";s:11:"description";s:196:"<p>
+Re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>: Update sample app ipjsua project files based on Xcode 11.3.1
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:196:"<p>
+Re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>: Update sample app ipjsua project files based on Xcode 11.3.1
+</p>
+";s:14:"date_timestamp";i:1580793948;}i:8;a:9:{s:5:"title";s:93:"Changeset [6153]: Re #2253: Check for insufficient buffer if remote is sending higher res ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 05:08:14 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6153";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6153/1580792894144073";s:11:"description";s:251:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>: Check for insufficient buffer if remote is sending higher res than we can handle.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:251:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>: Check for insufficient buffer if remote is sending higher res than we can handle.
+</p>
+";s:14:"date_timestamp";i:1580792894;}i:9;a:9:{s:5:"title";s:82:"Changeset [6152]: Close #2265: Fixed compatibility issues on Python 3.7 or above. ";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 04:47:32 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6152";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6152/1580791652882321";s:11:"description";s:226:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2265" title="defect: Compatibility issues on Python 3.7 or above (closed: fixed)">#2265</a>: Fixed compatibility issues on Python 3.7 or above.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:226:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2265" title="defect: Compatibility issues on Python 3.7 or above (closed: fixed)">#2265</a>: Fixed compatibility issues on Python 3.7 or above.
+</p>
+";s:14:"date_timestamp";i:1580791652;}i:10;a:9:{s:5:"title";s:75:"Changeset [6151]: Re #2253: Changed keyframe max distance to a max of 60s  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 03:17:56 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6151";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6151/1580786276906860";s:11:"description";s:215:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>: Changed keyframe max distance to a max of 60s
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:215:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>: Changed keyframe max distance to a max of 60s
+</p>
+";s:14:"date_timestamp";i:1580786276;}i:11;a:9:{s:5:"title";s:54:"Changeset [6150]: Re #2253: Apply local fmtp setting  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Tue, 04 Feb 2020 02:49:13 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6150";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6150/1580784553924737";s:11:"description";s:194:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>: Apply local fmtp setting
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:194:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>: Apply local fmtp setting
+</p>
+";s:14:"date_timestamp";i:1580784553;}i:12;a:9:{s:5:"title";s:93:"Changeset [6149]: Re #2253 Fix vpx fmtp apply: - Only adjust the frame rate if it exceeds ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Mon, 03 Feb 2020 06:26:55 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6149";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6149/1580711215210679";s:11:"description";s:311:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>
+Fix vpx fmtp apply:
+</p>
+<ul><li>Only adjust the frame rate if it exceeds max-fr
+</li><li>Maintain aspect ratio when adjusting resolution
+</li></ul>";s:8:"category";s:9:"changeset";s:7:"summary";s:311:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>
+Fix vpx fmtp apply:
+</p>
+<ul><li>Only adjust the frame rate if it exceeds max-fr
+</li><li>Maintain aspect ratio when adjusting resolution
+</li></ul>";s:14:"date_timestamp";i:1580711215;}i:13;a:9:{s:5:"title";s:90:"Changeset [6148]: Misc (re #2210): Reverting r6133 as it is reported to cause crash on ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Fri, 31 Jan 2020 09:55:43 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6148";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6148/1580464543008211";s:11:"description";s:478:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Reverting <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6133" title="Misc (re #2210): Fixed memory leak in OpenSSL initialization due to ...">r6133</a> as it is reported to cause crash on OpenSSL 1.0.x, and OpenSSL docs explicitly prohibit freeing SSL_SESSION after SSL_free(). Thanks Peter Koletzki for the report.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:478:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Reverting <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6133" title="Misc (re #2210): Fixed memory leak in OpenSSL initialization due to ...">r6133</a> as it is reported to cause crash on OpenSSL 1.0.x, and OpenSSL docs explicitly prohibit freeing SSL_SESSION after SSL_free(). Thanks Peter Koletzki for the report.
+</p>
+";s:14:"date_timestamp";i:1580464543;}i:14;a:9:{s:5:"title";s:95:"Changeset [6147]: Re #2253:  - Add vpx.h/vpx.c to Visual Studio project files - Fix compile ...";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Fri, 31 Jan 2020 03:15:41 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6147";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6147/1580440541041883";s:11:"description";s:288:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>:
+</p>
+<ul><li>Add vpx.h/vpx.c to Visual Studio project files
+</li><li>Fix compile error/warning from Visual Studio
+</li></ul>";s:8:"category";s:9:"changeset";s:7:"summary";s:288:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2253" title="enhancement: Support for VP8 and VP9 video codec (closed: fixed)">#2253</a>:
+</p>
+<ul><li>Add vpx.h/vpx.c to Visual Studio project files
+</li><li>Fix compile error/warning from Visual Studio
+</li></ul>";s:14:"date_timestamp";i:1580440541;}i:15;a:9:{s:5:"title";s:84:"Changeset [6146]: Misc (re #2210): Fixed compile warnings in PJLIB timer unit test. ";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Thu, 30 Jan 2020 07:52:51 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6146";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6146/1580370771741399";s:11:"description";s:191:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed compile warnings in PJLIB timer unit test.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:191:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed compile warnings in PJLIB timer unit test.
+</p>
+";s:14:"date_timestamp";i:1580370771;}i:16;a:9:{s:5:"title";s:69:"Changeset [6145]: Re #2210 (misc): Disable Darwin SSL if deprecated  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Wed, 29 Jan 2020 04:45:27 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6145";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6145/1580273127951907";s:11:"description";s:175:"<p>
+Re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a> (misc): Disable Darwin SSL if deprecated
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:175:"<p>
+Re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a> (misc): Disable Darwin SSL if deprecated
+</p>
+";s:14:"date_timestamp";i:1580273127;}i:17;a:9:{s:5:"title";s:57:"Changeset [6144]: Re #2262: Suppressed compile warnings  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Wed, 29 Jan 2020 04:40:45 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6144";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6144/1580272845829213";s:11:"description";s:205:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2262" title="enhancement: Notify when IP change handling is completed (closed: fixed)">#2262</a>: Suppressed compile warnings
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:205:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2262" title="enhancement: Notify when IP change handling is completed (closed: fixed)">#2262</a>: Suppressed compile warnings
+</p>
+";s:14:"date_timestamp";i:1580272845;}i:18;a:9:{s:5:"title";s:61:"Changeset [6143]: Re #589: Suppresses warning of unused var  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Wed, 29 Jan 2020 04:29:14 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6143";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6143/1580272154955059";s:11:"description";s:226:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Suppresses warning of unused var
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:226:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Suppresses warning of unused var
+</p>
+";s:14:"date_timestamp";i:1580272154;}i:19;a:9:{s:5:"title";s:92:"Changeset [6142]: Fixed #2264: Potential deadlock between pjsua lock and sip transport's ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Wed, 29 Jan 2020 04:05:51 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6142";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6142/1580270751514492";s:11:"description";s:257:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2264" title="defect: Potential deadlock between pjsua lock and sip transport's lock (closed: fixed)">#2264</a>: Potential deadlock between pjsua lock and sip transport's lock
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:257:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2264" title="defect: Potential deadlock between pjsua lock and sip transport's lock (closed: fixed)">#2264</a>: Potential deadlock between pjsua lock and sip transport's lock
+</p>
+";s:14:"date_timestamp";i:1580270751;}i:20;a:9:{s:5:"title";s:90:"Changeset [6141]: Misc (#2210): Added early check whether account is registered before ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Wed, 29 Jan 2020 03:48:51 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6141";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6141/1580269731205522";s:11:"description";s:286:"<p>
+Misc (<a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Added early check whether account is registered before sending unregistration in pjsua_acc_modify() (thanks to Peter Koletzki for the suggestion).
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:286:"<p>
+Misc (<a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Added early check whether account is registered before sending unregistration in pjsua_acc_modify() (thanks to Peter Koletzki for the suggestion).
+</p>
+";s:14:"date_timestamp";i:1580269731;}i:21;a:9:{s:5:"title";s:77:"Changeset [6140]: Closed #2143: Add AEC info to call info & statistics dump  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Tue, 28 Jan 2020 06:58:45 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6140";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6140/1580194725387154";s:11:"description";s:248:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2143" title="task: Investigate AEC info to be added into call info &amp; statistics dump (closed: fixed)">#2143</a>: Add AEC info to call info &amp; statistics dump
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:248:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2143" title="task: Investigate AEC info to be added into call info &amp; statistics dump (closed: fixed)">#2143</a>: Add AEC info to call info &amp; statistics dump
+</p>
+";s:14:"date_timestamp";i:1580194725;}i:22;a:9:{s:5:"title";s:95:"Changeset [6139]: Close #2263: Add callback to notify when first valid pair is found on ICE ...";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Tue, 28 Jan 2020 03:51:50 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6139";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6139/1580183510889335";s:11:"description";s:283:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2263" title="enhancement: Add callback to notify when first valid pair is found on ICE negotiation (closed: fixed)">#2263</a>: Add callback to notify when first valid pair is found on ICE negotiation.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:283:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2263" title="enhancement: Add callback to notify when first valid pair is found on ICE negotiation (closed: fixed)">#2263</a>: Add callback to notify when first valid pair is found on ICE negotiation.
+</p>
+";s:14:"date_timestamp";i:1580183510;}i:23;a:9:{s:5:"title";s:92:"Changeset [6138]: Misc (re #2210): Get rid of annoying persistent log lines due to video ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Tue, 28 Jan 2020 02:42:42 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6138";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6138/1580179362498258";s:11:"description";s:316:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Get rid of annoying persistent log lines due to video conference connection between active capturer and stopped/hidden renderer (thanks to Dmytrii Gonchar for the feedback).
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:316:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Get rid of annoying persistent log lines due to video conference connection between active capturer and stopped/hidden renderer (thanks to Dmytrii Gonchar for the feedback).
+</p>
+";s:14:"date_timestamp";i:1580179362;}i:24;a:9:{s:5:"title";s:77:"Changeset [6137]: Close #2262: Notify when IP change handling is completed.  ";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Tue, 28 Jan 2020 01:47:56 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6137";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6137/1580176076879968";s:11:"description";s:225:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2262" title="enhancement: Notify when IP change handling is completed (closed: fixed)">#2262</a>: Notify when IP change handling is completed.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:225:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2262" title="enhancement: Notify when IP change handling is completed (closed: fixed)">#2262</a>: Notify when IP change handling is completed.
+</p>
+";s:14:"date_timestamp";i:1580176076;}i:25;a:9:{s:5:"title";s:92:"Changeset [6136]: Closed #2261: Prevent unnecessary locking when adding group lock handler  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Fri, 17 Jan 2020 00:59:51 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6136";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6136/1579222791567136";s:11:"description";s:255:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2261" title="enhancement: Prevent unnecessary locking when adding group lock handler (closed: fixed)">#2261</a>: Prevent unnecessary locking when adding group lock handler
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:255:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2261" title="enhancement: Prevent unnecessary locking when adding group lock handler (closed: fixed)">#2261</a>: Prevent unnecessary locking when adding group lock handler
+</p>
+";s:14:"date_timestamp";i:1579222791;}i:26;a:9:{s:5:"title";s:71:"Changeset [6135]: Re #589: Add scal.c to Visual Studio project files.  ";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Thu, 16 Jan 2020 09:13:35 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6135";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6135/1579166015071134";s:11:"description";s:236:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Add scal.c to Visual Studio project files.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:236:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Add scal.c to Visual Studio project files.
+</p>
+";s:14:"date_timestamp";i:1579166015;}i:27;a:9:{s:5:"title";s:87:"Changeset [6134]: Fixed #2260: Potential deadlock between sip_transaction and sip_reg  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Thu, 16 Jan 2020 06:37:40 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6134";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6134/1579156660924761";s:11:"description";s:241:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2260" title="defect: Potential deadlock between sip_transaction and sip_reg (closed: fixed)">#2260</a>: Potential deadlock between sip_transaction and sip_reg
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:241:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2260" title="defect: Potential deadlock between sip_transaction and sip_reg (closed: fixed)">#2260</a>: Potential deadlock between sip_transaction and sip_reg
+</p>
+";s:14:"date_timestamp";i:1579156660;}i:28;a:9:{s:5:"title";s:89:"Changeset [6133]: Misc (re #2210): Fixed memory leak in OpenSSL initialization due to ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Fri, 10 Jan 2020 08:02:54 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6133";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6133/1578643374253237";s:11:"description";s:319:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed memory leak in OpenSSL initialization due to unfreed SSL_SESSION object. The leak should only be occurred once in library lifetime. Thanks to Kim Daeyoung for the report.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:319:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Fixed memory leak in OpenSSL initialization due to unfreed SSL_SESSION object. The leak should only be occurred once in library lifetime. Thanks to Kim Daeyoung for the report.
+</p>
+";s:14:"date_timestamp";i:1578643374;}i:29;a:9:{s:5:"title";s:95:"Changeset [6132]: Re #2251: Fixed bug in memory capture, wrong user data passed in invoking ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Fri, 10 Jan 2020 07:26:36 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6132";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6132/1578641196256844";s:11:"description";s:251:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2251" title="defect: Deadlock between PJSUA LOCK and conference mutex (closed: fixed)">#2251</a>: Fixed bug in memory capture, wrong user data passed in invoking callback.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:251:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2251" title="defect: Deadlock between PJSUA LOCK and conference mutex (closed: fixed)">#2251</a>: Fixed bug in memory capture, wrong user data passed in invoking callback.
+</p>
+";s:14:"date_timestamp";i:1578641196;}i:30;a:9:{s:5:"title";s:94:"Changeset [6131]: Re #2251: Fixed bug in memory player, wrong user data passed in invoking ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Fri, 10 Jan 2020 07:09:51 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6131";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6131/1578640191502153";s:11:"description";s:304:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2251" title="defect: Deadlock between PJSUA LOCK and conference mutex (closed: fixed)">#2251</a>: Fixed bug in memory player, wrong user data passed in invoking callback. Thanks to Marcus Froeschl for the report and the fix.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:304:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2251" title="defect: Deadlock between PJSUA LOCK and conference mutex (closed: fixed)">#2251</a>: Fixed bug in memory player, wrong user data passed in invoking callback. Thanks to Marcus Froeschl for the report and the fix.
+</p>
+";s:14:"date_timestamp";i:1578640191;}i:31;a:9:{s:5:"title";s:55:"Changeset [6130]: Re #589: Fixed missing include file  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Thu, 09 Jan 2020 10:09:49 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6130";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6130/1578564589943534";s:11:"description";s:220:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Fixed missing include file
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:220:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Fixed missing include file
+</p>
+";s:14:"date_timestamp";i:1578564589;}i:32;a:9:{s:5:"title";s:96:"Changeset [6129]: Closed #589: Update Speex AEC to the latest version to get multichannel EC ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Thu, 09 Jan 2020 09:05:50 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6129";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6129/1578560750850021";s:11:"description";s:259:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Update Speex AEC to the latest version to get multichannel EC
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:259:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/589" title="enhancement: Update Speex AEC to the latest version to get multichannel EC (closed: fixed)">#589</a>: Update Speex AEC to the latest version to get multichannel EC
+</p>
+";s:14:"date_timestamp";i:1578560750;}i:33;a:9:{s:5:"title";s:91:"Changeset [6128]: Re #1778: Temporarily disable VPIO on Mac for stereo due to recording ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Wed, 08 Jan 2020 08:55:30 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6128";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6128/1578473730448251";s:11:"description";s:610:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/1778" title="enhancement: Support for Voice Processing IO Audio Unit on Mac (closed: fixed)">#1778</a>: Temporarily disable VPIO on Mac for stereo due to recording sound defects.
+Steps to reproduce:
+</p>
+<ul><li>Revert this changeset
+</li><li>Use pjsua to do sound loopback (cc 0 0) with --ec-tail=0 (VPIO disabled-&gt;audio fine) and ec-tail=1 (VPIO enabled-&gt;recording sound defects)
+</li></ul><p>
+Several observations:
+</p>
+<ul><li>Playback is totally fine in VPIO stereo mode.
+</li><li>Defect more noticable in 44.1 kHz
+</li></ul>";s:8:"category";s:9:"changeset";s:7:"summary";s:610:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/1778" title="enhancement: Support for Voice Processing IO Audio Unit on Mac (closed: fixed)">#1778</a>: Temporarily disable VPIO on Mac for stereo due to recording sound defects.
+Steps to reproduce:
+</p>
+<ul><li>Revert this changeset
+</li><li>Use pjsua to do sound loopback (cc 0 0) with --ec-tail=0 (VPIO disabled-&gt;audio fine) and ec-tail=1 (VPIO enabled-&gt;recording sound defects)
+</li></ul><p>
+Several observations:
+</p>
+<ul><li>Playback is totally fine in VPIO stereo mode.
+</li><li>Defect more noticable in 44.1 kHz
+</li></ul>";s:14:"date_timestamp";i:1578473730;}i:34;a:9:{s:5:"title";s:73:"Changeset [6127]: Re #1778: Fixed incorrect calculation for stereo mode  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Wed, 08 Jan 2020 08:40:04 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6127";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6127/1578472804267276";s:11:"description";s:227:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/1778" title="enhancement: Support for Voice Processing IO Audio Unit on Mac (closed: fixed)">#1778</a>: Fixed incorrect calculation for stereo mode
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:227:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/1778" title="enhancement: Support for Voice Processing IO Audio Unit on Mac (closed: fixed)">#1778</a>: Fixed incorrect calculation for stereo mode
+</p>
+";s:14:"date_timestamp";i:1578472804;}i:35;a:9:{s:5:"title";s:72:"Changeset [6126]: Closed #2259: Fix check to cleanup provisional media  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Thu, 26 Dec 2019 03:36:57 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6126";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6126/1577331417354035";s:11:"description";s:210:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2259" title="defect: Fix check to cleanup provisional media (closed: fixed)">#2259</a>: Fix check to cleanup provisional media
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:210:"<p>
+Closed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2259" title="defect: Fix check to cleanup provisional media (closed: fixed)">#2259</a>: Fix check to cleanup provisional media
+</p>
+";s:14:"date_timestamp";i:1577331417;}i:36;a:9:{s:5:"title";s:60:"Changeset [6125]: Re #2255: Fixed compile warning on MacOS. ";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Tue, 24 Dec 2019 02:13:32 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6125";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6125/1577153612063330";s:11:"description";s:209:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2255" title="enhancement: Add API for making video window full screen (closed: fixed)">#2255</a>: Fixed compile warning on MacOS.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:209:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2255" title="enhancement: Add API for making video window full screen (closed: fixed)">#2255</a>: Fixed compile warning on MacOS.
+</p>
+";s:14:"date_timestamp";i:1577153612;}i:37;a:9:{s:5:"title";s:96:"Changeset [6124]: Re #2210 (misc): Fixed incorrect error printing in Darwin dev when there's ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Mon, 23 Dec 2019 07:11:50 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6124";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6124/1577085110763881";s:11:"description";s:224:"<p>
+Re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a> (misc): Fixed incorrect error printing in Darwin dev when there's a runtime session error
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:224:"<p>
+Re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a> (misc): Fixed incorrect error printing in Darwin dev when there's a runtime session error
+</p>
+";s:14:"date_timestamp";i:1577085110;}i:38;a:9:{s:5:"title";s:91:"Changeset [6123]: Re #2255: Fixed wrong check of fullscreen mode in window creation and ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Mon, 23 Dec 2019 03:27:09 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6123";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6123/1577071629585130";s:11:"description";s:278:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2255" title="enhancement: Add API for making video window full screen (closed: fixed)">#2255</a>: Fixed wrong check of fullscreen mode in window creation and added pjsua app commands for fullscreen.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:278:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2255" title="enhancement: Add API for making video window full screen (closed: fixed)">#2255</a>: Fixed wrong check of fullscreen mode in window creation and added pjsua app commands for fullscreen.
+</p>
+";s:14:"date_timestamp";i:1577071629;}i:39;a:9:{s:5:"title";s:96:"Changeset [6122]: Re #2256: Readjusted build configs (after r6120 & r6121) to accomodate the ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Thu, 19 Dec 2019 11:31:55 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6122";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6122/1576755115032581";s:11:"description";s:643:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2256" title="defect: Failed building SWIG java binding for android (x86 target) (closed: fixed)">#2256</a>: Readjusted build configs (after <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6120" title="Fix #2256: Mini refactored Android configure script:
+ - added CXXFLAGS &amp; ...">r6120</a> &amp; <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6121" title="Re #2256: Fixed build error for iOS target due to changes in r6120.">r6121</a>) to accomodate the convention that CXXFLAGS always includes CFLAGS in all PJSIP modules.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:643:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2256" title="defect: Failed building SWIG java binding for android (x86 target) (closed: fixed)">#2256</a>: Readjusted build configs (after <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6120" title="Fix #2256: Mini refactored Android configure script:
+ - added CXXFLAGS &amp; ...">r6120</a> &amp; <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6121" title="Re #2256: Fixed build error for iOS target due to changes in r6120.">r6121</a>) to accomodate the convention that CXXFLAGS always includes CFLAGS in all PJSIP modules.
+</p>
+";s:14:"date_timestamp";i:1576755115;}i:40;a:9:{s:5:"title";s:85:"Changeset [6121]: Re #2256: Fixed build error for iOS target due to changes in r6120.";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Thu, 19 Dec 2019 10:00:53 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6121";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6121/1576749653471420";s:11:"description";s:410:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2256" title="defect: Failed building SWIG java binding for android (x86 target) (closed: fixed)">#2256</a>: Fixed build error for iOS target due to changes in <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6120" title="Fix #2256: Mini refactored Android configure script:
+ - added CXXFLAGS &amp; ...">r6120</a>.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:410:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2256" title="defect: Failed building SWIG java binding for android (x86 target) (closed: fixed)">#2256</a>: Fixed build error for iOS target due to changes in <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6120" title="Fix #2256: Mini refactored Android configure script:
+ - added CXXFLAGS &amp; ...">r6120</a>.
+</p>
+";s:14:"date_timestamp";i:1576749653;}i:41;a:9:{s:5:"title";s:94:"Changeset [6120]: Fix #2256: Mini refactored Android configure script:  - added CXXFLAGS & ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Thu, 19 Dec 2019 02:57:20 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6120";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6120/1576724240520496";s:11:"description";s:720:"<p>
+Fix <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2256" title="defect: Failed building SWIG java binding for android (x86 target) (closed: fixed)">#2256</a>: Mini refactored Android configure script:
+</p>
+<ul><li>added CXXFLAGS &amp; LDFLAGS parsing (from ndk-build output), CXXFLAGS was set to CFLAGS.
+</li><li>updated WebRTC instruction set to use SSE2, was generic, for Android emulator (x86 ABI).
+</li><li>updated C++ library/STL backend to use c++_shared, somehow '-lc++_static' is ignored after the refactor, also the official NDK docs mentions that c++_static may cause undefined behavior for app with multiple shared libraries (note pjsua2 app may use other shared libraries).
+</li></ul>";s:8:"category";s:9:"changeset";s:7:"summary";s:720:"<p>
+Fix <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2256" title="defect: Failed building SWIG java binding for android (x86 target) (closed: fixed)">#2256</a>: Mini refactored Android configure script:
+</p>
+<ul><li>added CXXFLAGS &amp; LDFLAGS parsing (from ndk-build output), CXXFLAGS was set to CFLAGS.
+</li><li>updated WebRTC instruction set to use SSE2, was generic, for Android emulator (x86 ABI).
+</li><li>updated C++ library/STL backend to use c++_shared, somehow '-lc++_static' is ignored after the refactor, also the official NDK docs mentions that c++_static may cause undefined behavior for app with multiple shared libraries (note pjsua2 app may use other shared libraries).
+</li></ul>";s:14:"date_timestamp";i:1576724240;}i:42;a:9:{s:5:"title";s:82:"Changeset [6119]: Close #2258: Add PJSUA2 API to get and set OPUS codec setting.  ";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Tue, 17 Dec 2019 10:06:01 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6119";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6119/1576577161996956";s:11:"description";s:235:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2258" title="enhancement: Add PJSUA2 API to get and set OPUS codec setting (closed: fixed)">#2258</a>: Add PJSUA2 API to get and set OPUS codec setting.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:235:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2258" title="enhancement: Add PJSUA2 API to get and set OPUS codec setting (closed: fixed)">#2258</a>: Add PJSUA2 API to get and set OPUS codec setting.
+</p>
+";s:14:"date_timestamp";i:1576577161;}i:43;a:9:{s:5:"title";s:82:"Changeset [6118]: Close #2257: Filter SRTP crypto setting for DTLS-SRTP profile.  ";s:2:"dc";a:1:{s:7:"creator";s:4:"riza";}s:7:"pubdate";s:29:"Mon, 16 Dec 2019 12:37:57 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6118";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6118/1576499877416743";s:11:"description";s:259:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2257" title="enhancement: Filter SRTP crypto for setting DTLS-SRTP profile supported by by OpenSSL (closed: fixed)">#2257</a>: Filter SRTP crypto setting for DTLS-SRTP profile.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:259:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2257" title="enhancement: Filter SRTP crypto for setting DTLS-SRTP profile supported by by OpenSSL (closed: fixed)">#2257</a>: Filter SRTP crypto setting for DTLS-SRTP profile.
+</p>
+";s:14:"date_timestamp";i:1576499877;}i:44;a:9:{s:5:"title";s:76:"Changeset [6117]: Close #2255: Add API for making video window full screen. ";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Tue, 10 Dec 2019 03:55:51 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6117";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6117/1575950151957988";s:11:"description";s:225:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2255" title="enhancement: Add API for making video window full screen (closed: fixed)">#2255</a>: Add API for making video window full screen.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:225:"<p>
+Close <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2255" title="enhancement: Add API for making video window full screen (closed: fixed)">#2255</a>: Add API for making video window full screen.
+</p>
+";s:14:"date_timestamp";i:1575950151;}i:45;a:9:{s:5:"title";s:90:"Changeset [6116]: Misc (#2210): Put back PJMEDIA_STREAM_CHECK_RTP_PT feature in stream ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Fri, 06 Dec 2019 05:57:48 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6116";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6116/1575611868151608";s:11:"description";s:406:"<p>
+Misc (<a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Put back PJMEDIA_STREAM_CHECK_RTP_PT feature in stream (introduced in <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/1160" title="enhancement: Option to bypass RTP payload type verification in the stream (Johan Lantz) (closed: fixed)">#1160</a>).
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:406:"<p>
+Misc (<a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Put back PJMEDIA_STREAM_CHECK_RTP_PT feature in stream (introduced in <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/1160" title="enhancement: Option to bypass RTP payload type verification in the stream (Johan Lantz) (closed: fixed)">#1160</a>).
+</p>
+";s:14:"date_timestamp";i:1575611868;}i:46;a:9:{s:5:"title";s:92:"Changeset [6115]: Fix #2254: Updated SDP encoder of SDES to avoid deactivating/disabling ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Wed, 04 Dec 2019 09:01:19 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6115";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6115/1575450079128458";s:11:"description";s:314:"<p>
+Fix <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2254" title="defect: Incoming SDP offer with SRTP-DTLS rejected with PJMEDIA_SDPNEG_ENOMEDIA (closed: fixed)">#2254</a>: Updated SDP encoder of SDES to avoid deactivating/disabling media, it should be done by the parent/SRTP instead.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:314:"<p>
+Fix <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2254" title="defect: Incoming SDP offer with SRTP-DTLS rejected with PJMEDIA_SDPNEG_ENOMEDIA (closed: fixed)">#2254</a>: Updated SDP encoder of SDES to avoid deactivating/disabling media, it should be done by the parent/SRTP instead.
+</p>
+";s:14:"date_timestamp";i:1575450079;}i:47;a:9:{s:5:"title";s:94:"Changeset [6114]: Misc (re #2210): Updated assertion condition in TURN socket (was removed ...";s:2:"dc";a:1:{s:7:"creator";s:6:"nanang";}s:7:"pubdate";s:29:"Tue, 03 Dec 2019 07:18:17 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6114";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6114/1575357497326497";s:11:"description";s:412:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Updated assertion condition in TURN socket (was removed in <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6111" title="Re #2210 (misc): Removed assertion in turn sock which can be incorrectly ...">r6111</a>). Thanks to Sébastien Blin for the report.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:412:"<p>
+Misc (re <a class="new ticket" href="https://trac.pjsip.org/repos/ticket/2210" title="defect: Miscellaneous fixes (new)">#2210</a>): Updated assertion condition in TURN socket (was removed in <a class="changeset" href="https://trac.pjsip.org/repos/changeset/6111" title="Re #2210 (misc): Removed assertion in turn sock which can be incorrectly ...">r6111</a>). Thanks to Sébastien Blin for the report.
+</p>
+";s:14:"date_timestamp";i:1575357497;}i:48;a:9:{s:5:"title";s:96:"Changeset [6113]: Re #2252: Fixed failed pjmedia-test, due to unsupported conversion format. ...";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Fri, 29 Nov 2019 07:53:43 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6113";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6113/1575014023532170";s:11:"description";s:267:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2252" title="defect: Fix Darwin video issue if supplied image height is different from the ... (closed: fixed)">#2252</a>: Fixed failed pjmedia-test, due to unsupported conversion format.
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:267:"<p>
+Re <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2252" title="defect: Fix Darwin video issue if supplied image height is different from the ... (closed: fixed)">#2252</a>: Fixed failed pjmedia-test, due to unsupported conversion format.
+</p>
+";s:14:"date_timestamp";i:1575014023;}i:49;a:9:{s:5:"title";s:81:"Changeset [6112]: Fixed #2251: Deadlock between PJSUA LOCK and conference mutex  ";s:2:"dc";a:1:{s:7:"creator";s:4:"ming";}s:7:"pubdate";s:29:"Fri, 29 Nov 2019 04:21:17 GMT";s:4:"link";s:43:"https://trac.pjsip.org/repos/changeset/6112";s:4:"guid";s:60:"https://trac.pjsip.org/repos/changeset/6112/1575001277629446";s:11:"description";s:229:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2251" title="defect: Deadlock between PJSUA LOCK and conference mutex (closed: fixed)">#2251</a>: Deadlock between PJSUA LOCK and conference mutex
+</p>
+";s:8:"category";s:9:"changeset";s:7:"summary";s:229:"<p>
+Fixed <a class="closed ticket" href="https://trac.pjsip.org/repos/ticket/2251" title="defect: Deadlock between PJSUA LOCK and conference mutex (closed: fixed)">#2251</a>: Deadlock between PJSUA LOCK and conference mutex
+</p>
+";s:14:"date_timestamp";i:1575001277;}}s:7:"channel";a:6:{s:5:"title";s:80:"pjsip Open source SIP, media, and NAT traversal stacks/libraries for smartphones";s:4:"link";s:37:"https://trac.pjsip.org/repos/timeline";s:11:"description";s:13:"Trac Timeline";s:8:"language";s:5:"en-US";s:9:"generator";s:10:"Trac 1.0.1";s:7:"tagline";s:13:"Trac Timeline";}s:9:"textinput";a:0:{}s:5:"image";a:3:{s:5:"title";s:80:"pjsip Open source SIP, media, and NAT traversal stacks/libraries for smartphones";s:3:"url";s:47:"https://trac.pjsip.org/repos/chrome/site/pj.jpg";s:4:"link";s:37:"https://trac.pjsip.org/repos/timeline";}s:9:"feed_type";s:3:"RSS";s:12:"feed_version";s:3:"2.0";s:8:"encoding";s:10:"ISO-8859-1";s:16:"_source_encoding";s:0:"";s:5:"ERROR";s:0:"";s:7:"WARNING";s:0:"";s:19:"_CONTENT_CONSTRUCTS";a:6:{i:0;s:7:"content";i:1;s:7:"summary";i:2;s:4:"info";i:3;s:5:"title";i:4;s:7:"tagline";i:5;s:9:"copyright";}s:16:"_KNOWN_ENCODINGS";a:3:{i:0;s:5:"UTF-8";i:1;s:8:"US-ASCII";i:2;s:10:"ISO-8859-1";}s:5:"stack";a:0:{}s:9:"inchannel";b:0;s:6:"initem";b:0;s:9:"incontent";b:0;s:11:"intextinput";b:0;s:7:"inimage";b:0;s:17:"current_namespace";b:0;}

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>pjsip.org News - Audio on MacoS X fix, MP3 call recording, SIP call-transfer fix, etc.</title>
+  </head>
+  <body>
+	<p>pjsip.org News: Oct 21th, 2006</p>
+	<H2>Audio on MacOS X fix</H2>
+	<p>A dear mailing list member has reported several problems with audio on MacOS X 10.4, and subsequently this has been fixed few days back. Here is the discussions on the mailing list: <A HREF="http://www.pjsip.org/pipermail/pjsip/2006-October/000865.html">http://www.pjsip.org/pipermail/pjsip/2006-October/000865.html</A></p>
+
+
+	<P>&nbsp;</P>
+	<H2>MP3 Call Recording</H2>
+	<p>An <A HREF="http://www.pjsip.org/pjmedia/docs/html/group__PJMEDIA__MP3__FILE__REC.htm">MP3 file writer/recorder media port</A> has been recently added to PJMEDIA. The media port converts a PCM input into MP3 file, and with this, it enables neat features such as call recording (including conference) into .MP3 files! (Thanks Toni for the contribution)</p>
+
+	<P>&nbsp;</P>
+	<H2>SIP call Transfer Fix</H2>
+	<p>The SIP call transfer functionality in PJSUA was not really clever, as one mailing list member pointed out. It sent BYE request right after REFER is sent, and will cause REFER to fail if it is challenged because the remote INVITE session/dialog has been terminated.</p>
+	<p>This has been fixed by adding callback in PJSUA-LIB to report call transfer progress. Now applications such as PJSUA can monitor the transfer progress, and should only disconnect after the call transfer has completed successfully.</p>
+
+	<P>&nbsp;</P>
+	<p>Go to <A HREF="http://www.pjsip.org">PJSIP.ORG Website</A>.</p>
+  </body>
+</html>

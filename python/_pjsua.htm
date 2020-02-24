@@ -1,0 +1,1044 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module _pjsua</title>
+<LINK href="/style/style.css" type="text/css" rel="stylesheet">
+</head><body bgcolor="#f0f0f8">
+
+<!--#include virtual="/header.html" -->
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>_pjsua</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python2.5/site-packages/_pjsua.so">/usr/lib/python2.5/site-packages/_pjsua.so</a></font></td></tr></table>
+    <p><tt>PJSUA-lib&nbsp;module&nbsp;for&nbsp;python</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_pjsua.html#Acc_Config">Acc_Config</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Acc_Info">Acc_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Buddy_Config">Buddy_Config</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Buddy_Info">Buddy_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Call_Info">Call_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Callback">Callback</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Codec_Info">Codec_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Conf_Port_Info">Conf_Port_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Config">Config</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Logging_Config">Logging_Config</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Media_Config">Media_Config</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Msg_Data">Msg_Data</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#PJMedia_Codec_Param">PJMedia_Codec_Param</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#PJMedia_Codec_Param_Info">PJMedia_Codec_Param_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#PJMedia_Codec_Param_Setting">PJMedia_Codec_Param_Setting</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#PJMedia_Port">PJMedia_Port</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#PJMedia_Snd_Dev_Info">PJMedia_Snd_Dev_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#PJ_Time_Val">PJ_Time_Val</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pj_Pool">Pj_Pool</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pj_Pool_Factory">Pj_Pool_Factory</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pjmedia_Endpt">Pjmedia_Endpt</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pjsip_Cred_Info">Pjsip_Cred_Info</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pjsip_Endpoint">Pjsip_Endpoint</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pjsip_Event">Pjsip_Event</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Pjsip_Rx_Data">Pjsip_Rx_Data</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Transport_Config">Transport_Config</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_pjsua.html#Transport_Info">Transport_Info</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Acc_Config">class <strong>Acc_Config</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Acc&nbsp;<a href="#Config">Config</a>&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>allow_contact_rewrite</strong></dt>
+<dd><tt>Re-REGISTER&nbsp;if&nbsp;behind&nbsp;symmetric&nbsp;NAT.</tt></dd>
+</dl>
+<dl><dt><strong>auth_initial_algorithm</strong></dt>
+<dd><tt>Specify&nbsp;algorithm&nbsp;in&nbsp;empty&nbsp;initial&nbsp;authorization&nbsp;header.</tt></dd>
+</dl>
+<dl><dt><strong>auth_initial_send</strong></dt>
+<dd><tt>Send&nbsp;empty&nbsp;initial&nbsp;authorization&nbsp;header.</tt></dd>
+</dl>
+<dl><dt><strong>cred_info</strong></dt>
+<dd><tt>Array&nbsp;of&nbsp;credentials.&nbsp;If&nbsp;registration&nbsp;is&nbsp;desired,&nbsp;normally&nbsp;there&nbsp;should&nbsp;be&nbsp;at&nbsp;least&nbsp;one&nbsp;credential&nbsp;specified,&nbsp;to&nbsp;successfully&nbsp;authenticate&nbsp;against&nbsp;the&nbsp;service&nbsp;provider.&nbsp;More&nbsp;credentials&nbsp;can&nbsp;be&nbsp;specified,&nbsp;for&nbsp;example&nbsp;when&nbsp;the&nbsp;requests&nbsp;are&nbsp;expected&nbsp;to&nbsp;be&nbsp;challenged&nbsp;by&nbsp;the&nbsp;proxies&nbsp;in&nbsp;the&nbsp;route&nbsp;set.</tt></dd>
+</dl>
+<dl><dt><strong>force_contact</strong></dt>
+<dd><tt>Optional&nbsp;URI&nbsp;to&nbsp;be&nbsp;put&nbsp;as&nbsp;Contact&nbsp;for&nbsp;this&nbsp;account.&nbsp;It&nbsp;is&nbsp;recommended&nbsp;that&nbsp;this&nbsp;field&nbsp;is&nbsp;left&nbsp;empty,&nbsp;so&nbsp;that&nbsp;the&nbsp;value&nbsp;will&nbsp;be&nbsp;calculated&nbsp;automatically&nbsp;based&nbsp;on&nbsp;the&nbsp;transport&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+<dd><tt>The&nbsp;full&nbsp;SIP&nbsp;URL&nbsp;for&nbsp;the&nbsp;account.&nbsp;The&nbsp;value&nbsp;can&nbsp;take&nbsp;name&nbsp;address&nbsp;or&nbsp;URL&nbsp;format,&nbsp;and&nbsp;will&nbsp;look&nbsp;something&nbsp;like&nbsp;'sip:account@serviceprovider'.&nbsp;This&nbsp;field&nbsp;is&nbsp;mandatory.</tt></dd>
+</dl>
+<dl><dt><strong>ka_data</strong></dt>
+<dd><tt>Keep-alive&nbsp;data.</tt></dd>
+</dl>
+<dl><dt><strong>ka_interval</strong></dt>
+<dd><tt>Keep-alive&nbsp;interval.</tt></dd>
+</dl>
+<dl><dt><strong>pidf_tuple_id</strong></dt>
+<dd><tt>PIDF&nbsp;tuple&nbsp;id.</tt></dd>
+</dl>
+<dl><dt><strong>priority</strong></dt>
+<dd><tt>Account&nbsp;priority,&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;control&nbsp;the&nbsp;order&nbsp;of&nbsp;matching&nbsp;incoming/outgoing&nbsp;requests.&nbsp;The&nbsp;higher&nbsp;the&nbsp;number&nbsp;means&nbsp;the&nbsp;higher&nbsp;the&nbsp;priority&nbsp;is,&nbsp;and&nbsp;the&nbsp;account&nbsp;will&nbsp;be&nbsp;matched&nbsp;first.</tt></dd>
+</dl>
+<dl><dt><strong>proxy</strong></dt>
+<dd><tt>Optional&nbsp;URI&nbsp;of&nbsp;the&nbsp;proxies&nbsp;to&nbsp;be&nbsp;visited&nbsp;for&nbsp;all&nbsp;outgoing&nbsp;requests&nbsp;that&nbsp;are&nbsp;using&nbsp;this&nbsp;account&nbsp;(REGISTER,&nbsp;INVITE,&nbsp;etc).&nbsp;Application&nbsp;need&nbsp;to&nbsp;specify&nbsp;these&nbsp;proxies&nbsp;if&nbsp;the&nbsp;service&nbsp;provider&nbsp;requires&nbsp;that&nbsp;requests&nbsp;destined&nbsp;towards&nbsp;its&nbsp;network&nbsp;should&nbsp;go&nbsp;through&nbsp;certain&nbsp;proxies&nbsp;first&nbsp;(for&nbsp;example,&nbsp;border&nbsp;controllers).</tt></dd>
+</dl>
+<dl><dt><strong>publish_enabled</strong></dt>
+<dd><tt>Publish&nbsp;presence?</tt></dd>
+</dl>
+<dl><dt><strong>reg_timeout</strong></dt>
+<dd><tt>Optional&nbsp;interval&nbsp;for&nbsp;registration,&nbsp;in&nbsp;seconds.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;zero,&nbsp;default&nbsp;interval&nbsp;will&nbsp;be&nbsp;used&nbsp;(PJSUA_REG_INTERVAL,&nbsp;55&nbsp;seconds).</tt></dd>
+</dl>
+<dl><dt><strong>reg_uri</strong></dt>
+<dd><tt>This&nbsp;is&nbsp;the&nbsp;URL&nbsp;to&nbsp;be&nbsp;put&nbsp;in&nbsp;the&nbsp;request&nbsp;URI&nbsp;for&nbsp;the&nbsp;registration,&nbsp;and&nbsp;will&nbsp;look&nbsp;something&nbsp;like&nbsp;'sip:serviceprovider'.&nbsp;This&nbsp;field&nbsp;should&nbsp;be&nbsp;specified&nbsp;if&nbsp;registration&nbsp;is&nbsp;desired.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;empty,&nbsp;no&nbsp;account&nbsp;registration&nbsp;will&nbsp;be&nbsp;performed.</tt></dd>
+</dl>
+<dl><dt><strong>require_100rel</strong></dt>
+<dd><tt>Require&nbsp;reliable&nbsp;provisional&nbsp;response.</tt></dd>
+</dl>
+<dl><dt><strong>srtp_secure_signaling</strong></dt>
+<dd><tt>Specify&nbsp;if&nbsp;SRTP&nbsp;requires&nbsp;secure&nbsp;signaling&nbsp;to&nbsp;be&nbsp;used.</tt></dd>
+</dl>
+<dl><dt><strong>transport_id</strong></dt>
+<dd><tt>Optionally&nbsp;bind&nbsp;this&nbsp;account&nbsp;to&nbsp;specific&nbsp;transport.&nbsp;This&nbsp;normally&nbsp;is&nbsp;not&nbsp;a&nbsp;good&nbsp;idea,&nbsp;as&nbsp;account&nbsp;should&nbsp;be&nbsp;able&nbsp;to&nbsp;send&nbsp;requests&nbsp;using&nbsp;any&nbsp;available&nbsp;transports&nbsp;according&nbsp;to&nbsp;the&nbsp;destination.&nbsp;But&nbsp;some&nbsp;application&nbsp;may&nbsp;want&nbsp;to&nbsp;have&nbsp;explicit&nbsp;control&nbsp;over&nbsp;the&nbsp;transport&nbsp;to&nbsp;use,&nbsp;so&nbsp;in&nbsp;that&nbsp;case&nbsp;it&nbsp;can&nbsp;set&nbsp;this&nbsp;field.</tt></dd>
+</dl>
+<dl><dt><strong>use_srtp</strong></dt>
+<dd><tt>Specify&nbsp;SRTP&nbsp;usage.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e340&gt;<dd><tt>T.<a href="#Acc_Config-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Acc_Info">class <strong>Acc_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Acc&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>acc_uri</strong></dt>
+<dd><tt>Account&nbsp;URI</tt></dd>
+</dl>
+<dl><dt><strong>expires</strong></dt>
+<dd><tt>An&nbsp;up&nbsp;to&nbsp;date&nbsp;expiration&nbsp;interval&nbsp;for&nbsp;account&nbsp;registration&nbsp;session.</tt></dd>
+</dl>
+<dl><dt><strong>has_registration</strong></dt>
+<dd><tt>Flag&nbsp;to&nbsp;tell&nbsp;whether&nbsp;this&nbsp;account&nbsp;has&nbsp;registration&nbsp;setting&nbsp;(reg_uri&nbsp;is&nbsp;not&nbsp;empty).</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+<dd><tt>The&nbsp;account&nbsp;ID.</tt></dd>
+</dl>
+<dl><dt><strong>is_default</strong></dt>
+<dd><tt>Flag&nbsp;to&nbsp;indicate&nbsp;whether&nbsp;this&nbsp;is&nbsp;the&nbsp;default&nbsp;account.</tt></dd>
+</dl>
+<dl><dt><strong>online_status</strong></dt>
+<dd><tt>Presence&nbsp;online&nbsp;status&nbsp;for&nbsp;this&nbsp;account.</tt></dd>
+</dl>
+<dl><dt><strong>online_status_text</strong></dt>
+<dd><tt>Presence&nbsp;online&nbsp;status&nbsp;text.</tt></dd>
+</dl>
+<dl><dt><strong>status</strong></dt>
+<dd><tt>Last&nbsp;registration&nbsp;status&nbsp;code.&nbsp;If&nbsp;status&nbsp;code&nbsp;is&nbsp;zero,&nbsp;the&nbsp;account&nbsp;is&nbsp;currently&nbsp;not&nbsp;registered.&nbsp;Any&nbsp;other&nbsp;value&nbsp;indicates&nbsp;the&nbsp;SIP&nbsp;status&nbsp;code&nbsp;of&nbsp;the&nbsp;registration.</tt></dd>
+</dl>
+<dl><dt><strong>status_text</strong></dt>
+<dd><tt>String&nbsp;describing&nbsp;the&nbsp;registration&nbsp;status.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e400&gt;<dd><tt>T.<a href="#Acc_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Buddy_Config">class <strong>Buddy_Config</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Buddy&nbsp;<a href="#Config">Config</a>&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>subscribe</strong></dt>
+<dd><tt>Specify&nbsp;whether&nbsp;presence&nbsp;subscription&nbsp;should&nbsp;start&nbsp;immediately.</tt></dd>
+</dl>
+<dl><dt><strong>uri</strong></dt>
+<dd><tt>TBuddy&nbsp;URL&nbsp;or&nbsp;name&nbsp;address.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e4c0&gt;<dd><tt>T.<a href="#Buddy_Config-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Buddy_Info">class <strong>Buddy_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Buddy&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>activity</strong></dt>
+<dd><tt>Activity&nbsp;type.</tt></dd>
+</dl>
+<dl><dt><strong>contact</strong></dt>
+<dd><tt>Buddy's&nbsp;Contact,&nbsp;only&nbsp;available&nbsp;when&nbsp;presence&nbsp;subscription&nbsp;has&nbsp;been&nbsp;established&nbsp;to&nbsp;the&nbsp;buddy.</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+<dd><tt>The&nbsp;buddy&nbsp;ID.</tt></dd>
+</dl>
+<dl><dt><strong>monitor_pres</strong></dt>
+<dd><tt>Flag&nbsp;to&nbsp;indicate&nbsp;that&nbsp;we&nbsp;should&nbsp;monitor&nbsp;the&nbsp;presence&nbsp;information&nbsp;for&nbsp;this&nbsp;buddy&nbsp;(normally&nbsp;yes,&nbsp;unless&nbsp;explicitly&nbsp;disabled).</tt></dd>
+</dl>
+<dl><dt><strong>status</strong></dt>
+<dd><tt>Buddy's&nbsp;online&nbsp;status.</tt></dd>
+</dl>
+<dl><dt><strong>status_text</strong></dt>
+<dd><tt>Text&nbsp;to&nbsp;describe&nbsp;buddy's&nbsp;online&nbsp;status.</tt></dd>
+</dl>
+<dl><dt><strong>uri</strong></dt>
+<dd><tt>The&nbsp;full&nbsp;URI&nbsp;of&nbsp;the&nbsp;buddy,&nbsp;as&nbsp;specified&nbsp;in&nbsp;the&nbsp;configuration.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e580&gt;<dd><tt>T.<a href="#Buddy_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Call_Info">class <strong>Call_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Call&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>acc_id</strong></dt>
+<dd><tt>The&nbsp;account&nbsp;ID&nbsp;where&nbsp;this&nbsp;call&nbsp;belongs.</tt></dd>
+</dl>
+<dl><dt><strong>call_id</strong></dt>
+<dd><tt>Dialog&nbsp;Call-ID&nbsp;string</tt></dd>
+</dl>
+<dl><dt><strong>conf_slot</strong></dt>
+<dd><tt>The&nbsp;conference&nbsp;port&nbsp;number&nbsp;for&nbsp;the&nbsp;call</tt></dd>
+</dl>
+<dl><dt><strong>connect_duration</strong></dt>
+<dd><tt>Up-to-date&nbsp;call&nbsp;connected&nbsp;duration(zero&nbsp;when&nbsp;call&nbsp;is&nbsp;not&nbsp;established)</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+<dd><tt>Call&nbsp;identification</tt></dd>
+</dl>
+<dl><dt><strong>last_status</strong></dt>
+<dd><tt>Last&nbsp;status&nbsp;code&nbsp;heard,&nbsp;which&nbsp;can&nbsp;be&nbsp;used&nbsp;as&nbsp;cause&nbsp;code</tt></dd>
+</dl>
+<dl><dt><strong>last_status_text</strong></dt>
+<dd><tt>The&nbsp;reason&nbsp;phrase&nbsp;describing&nbsp;the&nbsp;status.</tt></dd>
+</dl>
+<dl><dt><strong>local_contact</strong></dt>
+<dd><tt>Local&nbsp;Contact</tt></dd>
+</dl>
+<dl><dt><strong>local_info</strong></dt>
+<dd><tt>Local&nbsp;URI</tt></dd>
+</dl>
+<dl><dt><strong>media_dir</strong></dt>
+<dd><tt>Media&nbsp;direction</tt></dd>
+</dl>
+<dl><dt><strong>media_status</strong></dt>
+<dd><tt>Call&nbsp;media&nbsp;status.</tt></dd>
+</dl>
+<dl><dt><strong>remote_contact</strong></dt>
+<dd><tt>Remote&nbsp;Contact</tt></dd>
+</dl>
+<dl><dt><strong>remote_info</strong></dt>
+<dd><tt>Remote&nbsp;URI</tt></dd>
+</dl>
+<dl><dt><strong>role</strong></dt>
+<dd><tt>Initial&nbsp;call&nbsp;role&nbsp;(UAC&nbsp;==&nbsp;caller)</tt></dd>
+</dl>
+<dl><dt><strong>state</strong></dt>
+<dd><tt>Call&nbsp;state</tt></dd>
+</dl>
+<dl><dt><strong>state_text</strong></dt>
+<dd><tt>Text&nbsp;describing&nbsp;the&nbsp;state</tt></dd>
+</dl>
+<dl><dt><strong>total_duration</strong></dt>
+<dd><tt>Total&nbsp;call&nbsp;duration,&nbsp;including&nbsp;set-up&nbsp;time</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2ec40&gt;<dd><tt>T.<a href="#Call_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Callback">class <strong>Callback</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;structure&nbsp;describes&nbsp;application&nbsp;callback&nbsp;to&nbsp;receive&nbsp;various&nbsp;event&nbsp;notifications&nbsp;from&nbsp;PJSUA-API<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>on_buddy_state</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;when&nbsp;the&nbsp;buddy&nbsp;state&nbsp;has&nbsp;changed.&nbsp;Application&nbsp;may&nbsp;then&nbsp;query&nbsp;the&nbsp;buddy&nbsp;into&nbsp;to&nbsp;get&nbsp;the&nbsp;details.</tt></dd>
+</dl>
+<dl><dt><strong>on_call_media_state</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;when&nbsp;media&nbsp;state&nbsp;in&nbsp;the&nbsp;call&nbsp;has&nbsp;changed.&nbsp;Normal&nbsp;application&nbsp;would&nbsp;need&nbsp;to&nbsp;implement&nbsp;this&nbsp;callback,&nbsp;e.g.&nbsp;to&nbsp;connect&nbsp;the&nbsp;call's&nbsp;media&nbsp;to&nbsp;sound&nbsp;device.</tt></dd>
+</dl>
+<dl><dt><strong>on_call_replace_request</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;about&nbsp;incoming&nbsp;INVITE&nbsp;with&nbsp;Replaces&nbsp;header.&nbsp;Application&nbsp;may&nbsp;reject&nbsp;the&nbsp;request&nbsp;by&nbsp;setting&nbsp;non-2xx&nbsp;code.</tt></dd>
+</dl>
+<dl><dt><strong>on_call_replaced</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;that&nbsp;an&nbsp;existing&nbsp;call&nbsp;has&nbsp;been&nbsp;replaced&nbsp;with&nbsp;a&nbsp;new&nbsp;call.&nbsp;This&nbsp;happens&nbsp;when&nbsp;PJSUA-API&nbsp;receives&nbsp;incoming&nbsp;INVITE&nbsp;request&nbsp;with&nbsp;Replaces&nbsp;header.&nbsp;After&nbsp;this&nbsp;callback&nbsp;is&nbsp;called,&nbsp;normally&nbsp;PJSUA-API&nbsp;will&nbsp;disconnect&nbsp;old_call_id&nbsp;and&nbsp;establish&nbsp;new_call_id.</tt></dd>
+</dl>
+<dl><dt><strong>on_call_state</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;when&nbsp;invite&nbsp;state&nbsp;has&nbsp;changed.&nbsp;Application&nbsp;may&nbsp;then&nbsp;query&nbsp;the&nbsp;call&nbsp;info&nbsp;to&nbsp;get&nbsp;the&nbsp;detail&nbsp;call&nbsp;states.</tt></dd>
+</dl>
+<dl><dt><strong>on_call_transfer_request</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;on&nbsp;call&nbsp;being&nbsp;transfered.&nbsp;Application&nbsp;can&nbsp;decide&nbsp;to&nbsp;accept/reject&nbsp;transfer&nbsp;request&nbsp;by&nbsp;setting&nbsp;the&nbsp;code&nbsp;(default&nbsp;is&nbsp;200).&nbsp;When&nbsp;this&nbsp;callback&nbsp;is&nbsp;not&nbsp;defined,&nbsp;the&nbsp;default&nbsp;behavior&nbsp;is&nbsp;to&nbsp;accept&nbsp;the&nbsp;transfer.</tt></dd>
+</dl>
+<dl><dt><strong>on_call_transfer_status</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;of&nbsp;the&nbsp;status&nbsp;of&nbsp;previously&nbsp;sent&nbsp;call&nbsp;transfer&nbsp;request.&nbsp;Application&nbsp;can&nbsp;monitor&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;call&nbsp;transfer&nbsp;request,&nbsp;for&nbsp;example&nbsp;to&nbsp;decide&nbsp;whether&nbsp;to&nbsp;terminate&nbsp;existing&nbsp;call.</tt></dd>
+</dl>
+<dl><dt><strong>on_dtmf_digit</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;upon&nbsp;receiving&nbsp;incoming&nbsp;DTMF&nbsp;digit.</tt></dd>
+</dl>
+<dl><dt><strong>on_incoming_call</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;on&nbsp;incoming&nbsp;call.</tt></dd>
+</dl>
+<dl><dt><strong>on_pager</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;on&nbsp;incoming&nbsp;pager&nbsp;(i.e.&nbsp;MESSAGE&nbsp;request).&nbsp;Argument&nbsp;call_id&nbsp;will&nbsp;be&nbsp;-1&nbsp;if&nbsp;MESSAGE&nbsp;request&nbsp;is&nbsp;not&nbsp;related&nbsp;to&nbsp;an&nbsp;existing&nbsp;call.</tt></dd>
+</dl>
+<dl><dt><strong>on_pager_status</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;about&nbsp;the&nbsp;delivery&nbsp;status&nbsp;of&nbsp;outgoing&nbsp;pager&nbsp;request.</tt></dd>
+</dl>
+<dl><dt><strong>on_reg_state</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;when&nbsp;registration&nbsp;status&nbsp;has&nbsp;changed.&nbsp;Application&nbsp;may&nbsp;then&nbsp;query&nbsp;the&nbsp;account&nbsp;info&nbsp;to&nbsp;get&nbsp;the&nbsp;registration&nbsp;details.</tt></dd>
+</dl>
+<dl><dt><strong>on_typing</strong></dt>
+<dd><tt>Notify&nbsp;application&nbsp;about&nbsp;typing&nbsp;indication.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2d8c0&gt;<dd><tt>T.<a href="#Callback-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Codec_Info">class <strong>Codec_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Codec&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>codec_id</strong></dt>
+<dd><tt>Codec&nbsp;unique&nbsp;identification.</tt></dd>
+</dl>
+<dl><dt><strong>priority</strong></dt>
+<dd><tt>Codec&nbsp;priority&nbsp;(integer&nbsp;0-255).</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e640&gt;<dd><tt>T.<a href="#Codec_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Conf_Port_Info">class <strong>Conf_Port_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Conf&nbsp;Port&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>bits_per_sample</strong></dt>
+<dd><tt>Bits&nbsp;per&nbsp;sample</tt></dd>
+</dl>
+<dl><dt><strong>channel_count</strong></dt>
+<dd><tt>Number&nbsp;of&nbsp;channels.</tt></dd>
+</dl>
+<dl><dt><strong>clock_rate</strong></dt>
+<dd><tt>Clock&nbsp;rate</tt></dd>
+</dl>
+<dl><dt><strong>listeners</strong></dt>
+<dd><tt>Array&nbsp;of&nbsp;listeners&nbsp;(in&nbsp;other&nbsp;words,&nbsp;ports&nbsp;where&nbsp;this&nbsp;port&nbsp;is&nbsp;transmitting&nbsp;to</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>Port&nbsp;name</tt></dd>
+</dl>
+<dl><dt><strong>samples_per_frame</strong></dt>
+<dd><tt>Samples&nbsp;per&nbsp;frame</tt></dd>
+</dl>
+<dl><dt><strong>slot_id</strong></dt>
+<dd><tt>Conference&nbsp;port&nbsp;number.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e700&gt;<dd><tt>T.<a href="#Conf_Port_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Config">class <strong>Config</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Config">Config</a>&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>cb</strong></dt>
+<dd><tt>Application&nbsp;callback.</tt></dd>
+</dl>
+<dl><dt><strong>max_calls</strong></dt>
+<dd><tt>Maximum&nbsp;calls&nbsp;to&nbsp;support&nbsp;(default:&nbsp;4)</tt></dd>
+</dl>
+<dl><dt><strong>nameserver</strong></dt>
+<dd><tt>IP&nbsp;address&nbsp;of&nbsp;the&nbsp;nameserver.</tt></dd>
+</dl>
+<dl><dt><strong>outbound_proxy</strong></dt>
+<dd><tt>SIP&nbsp;URL&nbsp;of&nbsp;the&nbsp;outbound&nbsp;proxy&nbsp;(optional)</tt></dd>
+</dl>
+<dl><dt><strong>stun_domain</strong></dt>
+<dd><tt>Domain&nbsp;of&nbsp;the&nbsp;STUN&nbsp;server&nbsp;(optional).&nbsp;STUN&nbsp;server&nbsp;will&nbsp;be&nbsp;resolved&nbsp;using&nbsp;DNS&nbsp;SRV&nbsp;resolution&nbsp;only&nbsp;when&nbsp;nameserver&nbsp;is&nbsp;configured.&nbsp;Alternatively,&nbsp;if&nbsp;DNS&nbsp;SRV&nbsp;resolution&nbsp;for&nbsp;STUN&nbsp;is&nbsp;not&nbsp;desired,&nbsp;application&nbsp;can&nbsp;specify&nbsp;the&nbsp;STUN&nbsp;server&nbsp;hostname&nbsp;or&nbsp;IP&nbsp;address&nbsp;in&nbsp;stun_host&nbsp;attribute.</tt></dd>
+</dl>
+<dl><dt><strong>stun_host</strong></dt>
+<dd><tt>Hostname&nbsp;or&nbsp;IP&nbsp;address&nbsp;of&nbsp;the&nbsp;STUN&nbsp;server&nbsp;(optional).</tt></dd>
+</dl>
+<dl><dt><strong>thread_cnt</strong></dt>
+<dd><tt>Number&nbsp;of&nbsp;worker&nbsp;threads.&nbsp;Normally&nbsp;application&nbsp;will&nbsp;want&nbsp;to&nbsp;have&nbsp;at&nbsp;least&nbsp;one&nbsp;worker&nbsp;thread,&nbsp;unless&nbsp;when&nbsp;it&nbsp;wants&nbsp;to&nbsp;poll&nbsp;the&nbsp;library&nbsp;periodically,&nbsp;which&nbsp;in&nbsp;this&nbsp;case&nbsp;the&nbsp;worker&nbsp;thread&nbsp;can&nbsp;be&nbsp;set&nbsp;to&nbsp;zero.</tt></dd>
+</dl>
+<dl><dt><strong>user_agent</strong></dt>
+<dd><tt>User&nbsp;agent&nbsp;string&nbsp;(default&nbsp;empty)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2d980&gt;<dd><tt>T.<a href="#Config-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Logging_Config">class <strong>Logging_Config</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Logging&nbsp;<a href="#Config">Config</a>&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>cb</strong></dt>
+<dd><tt>Optional&nbsp;callback&nbsp;function&nbsp;to&nbsp;be&nbsp;called&nbsp;to&nbsp;write&nbsp;log&nbsp;to&nbsp;application&nbsp;specific&nbsp;device.&nbsp;This&nbsp;function&nbsp;will&nbsp;be&nbsp;called&nbsp;forlog&nbsp;messages&nbsp;on&nbsp;input&nbsp;verbosity&nbsp;level.</tt></dd>
+</dl>
+<dl><dt><strong>console_level</strong></dt>
+<dd><tt>Verbosity&nbsp;level&nbsp;for&nbsp;console.&nbsp;Value&nbsp;4&nbsp;is&nbsp;reasonable.</tt></dd>
+</dl>
+<dl><dt><strong>decor</strong></dt>
+<dd><tt>Log&nbsp;decoration</tt></dd>
+</dl>
+<dl><dt><strong>level</strong></dt>
+<dd><tt>Input&nbsp;verbosity&nbsp;level.&nbsp;Value&nbsp;5&nbsp;is&nbsp;reasonable.</tt></dd>
+</dl>
+<dl><dt><strong>log_filename</strong></dt>
+<dd><tt>Optional&nbsp;log&nbsp;filename</tt></dd>
+</dl>
+<dl><dt><strong>msg_logging</strong></dt>
+<dd><tt>Log&nbsp;incoming&nbsp;and&nbsp;outgoing&nbsp;SIP&nbsp;message?&nbsp;Yes!</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2da40&gt;<dd><tt>T.<a href="#Logging_Config-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Media_Config">class <strong>Media_Config</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Media&nbsp;<a href="#Config">Config</a>&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>audio_frame_ptime</strong></dt>
+<dd><tt>Audio&nbsp;frame&nbsp;length&nbsp;in&nbsp;milliseconds.</tt></dd>
+</dl>
+<dl><dt><strong>channel_count</strong></dt>
+<dd><tt>Specify&nbsp;channel&nbsp;count&nbsp;(default&nbsp;1).</tt></dd>
+</dl>
+<dl><dt><strong>clock_rate</strong></dt>
+<dd><tt>Clock&nbsp;rate&nbsp;to&nbsp;be&nbsp;applied&nbsp;to&nbsp;the&nbsp;conference&nbsp;bridge.&nbsp;If&nbsp;value&nbsp;is&nbsp;zero,&nbsp;default&nbsp;clock&nbsp;rate&nbsp;will&nbsp;be&nbsp;used&nbsp;(16KHz).</tt></dd>
+</dl>
+<dl><dt><strong>ec_options</strong></dt>
+<dd><tt>Echo&nbsp;canceller&nbsp;options&nbsp;(see&nbsp;pjmedia_echo_create())</tt></dd>
+</dl>
+<dl><dt><strong>ec_tail_len</strong></dt>
+<dd><tt>Echo&nbsp;canceller&nbsp;tail&nbsp;length,&nbsp;in&nbsp;miliseconds.</tt></dd>
+</dl>
+<dl><dt><strong>enable_ice</strong></dt>
+<dd><tt>Enable&nbsp;ICE.</tt></dd>
+</dl>
+<dl><dt><strong>enable_turn</strong></dt>
+<dd><tt>Enable&nbsp;TURN.</tt></dd>
+</dl>
+<dl><dt><strong>has_ioqueue</strong></dt>
+<dd><tt>Specify&nbsp;whether&nbsp;the&nbsp;media&nbsp;manager&nbsp;should&nbsp;manage&nbsp;its&nbsp;own&nbsp;ioqueue&nbsp;for&nbsp;the&nbsp;RTP/RTCP&nbsp;sockets.&nbsp;If&nbsp;yes,&nbsp;ioqueue&nbsp;will&nbsp;be&nbsp;created&nbsp;and&nbsp;at&nbsp;least&nbsp;one&nbsp;worker&nbsp;thread&nbsp;will&nbsp;be&nbsp;created&nbsp;too.&nbsp;If&nbsp;no,&nbsp;the&nbsp;RTP/RTCP&nbsp;sockets&nbsp;will&nbsp;share&nbsp;the&nbsp;same&nbsp;ioqueue&nbsp;as&nbsp;SIP&nbsp;sockets,&nbsp;and&nbsp;no&nbsp;worker&nbsp;thread&nbsp;is&nbsp;needed.</tt></dd>
+</dl>
+<dl><dt><strong>ilbc_mode</strong></dt>
+<dd><tt>iLBC&nbsp;mode&nbsp;(20&nbsp;or&nbsp;30).</tt></dd>
+</dl>
+<dl><dt><strong>jb_max</strong></dt>
+<dd><tt>Jitter&nbsp;buffer&nbsp;maximum&nbsp;size&nbsp;in&nbsp;milliseconds.</tt></dd>
+</dl>
+<dl><dt><strong>jb_min</strong></dt>
+<dd><tt>Jitter&nbsp;buffer&nbsp;minimum&nbsp;size&nbsp;in&nbsp;milliseconds.</tt></dd>
+</dl>
+<dl><dt><strong>max_media_ports</strong></dt>
+<dd><tt>Specify&nbsp;maximum&nbsp;number&nbsp;of&nbsp;media&nbsp;ports&nbsp;to&nbsp;be&nbsp;created&nbsp;in&nbsp;the&nbsp;conference&nbsp;bridge.&nbsp;Since&nbsp;all&nbsp;media&nbsp;terminate&nbsp;in&nbsp;the&nbsp;bridge&nbsp;(calls,&nbsp;file&nbsp;player,&nbsp;file&nbsp;recorder,&nbsp;etc),&nbsp;the&nbsp;value&nbsp;must&nbsp;be&nbsp;large&nbsp;enough&nbsp;to&nbsp;support&nbsp;all&nbsp;of&nbsp;them.&nbsp;However,&nbsp;the&nbsp;larger&nbsp;the&nbsp;value,&nbsp;the&nbsp;more&nbsp;computations&nbsp;are&nbsp;performed.</tt></dd>
+</dl>
+<dl><dt><strong>no_vad</strong></dt>
+<dd><tt>Disable&nbsp;VAD?</tt></dd>
+</dl>
+<dl><dt><strong>ptime</strong></dt>
+<dd><tt>Specify&nbsp;default&nbsp;ptime.</tt></dd>
+</dl>
+<dl><dt><strong>quality</strong></dt>
+<dd><tt>The&nbsp;media&nbsp;quality&nbsp;also&nbsp;sets&nbsp;speex&nbsp;codec&nbsp;quality/complexity&nbsp;to&nbsp;the&nbsp;number.</tt></dd>
+</dl>
+<dl><dt><strong>rx_drop_pct</strong></dt>
+<dd><tt>Percentage&nbsp;of&nbsp;RTP&nbsp;packet&nbsp;to&nbsp;drop&nbsp;in&nbsp;RX&nbsp;direction&nbsp;(to&nbsp;simulate&nbsp;packet&nbsp;lost).</tt></dd>
+</dl>
+<dl><dt><strong>snd_auto_close_time</strong></dt>
+<dd><tt>Sound&nbsp;idle&nbsp;time&nbsp;before&nbsp;it's&nbsp;closed.</tt></dd>
+</dl>
+<dl><dt><strong>snd_clock_rate</strong></dt>
+<dd><tt>Specify&nbsp;different&nbsp;clock&nbsp;rate&nbsp;of&nbsp;sound&nbsp;device,&nbsp;otherwise&nbsp;0.</tt></dd>
+</dl>
+<dl><dt><strong>thread_cnt</strong></dt>
+<dd><tt>Specify&nbsp;the&nbsp;number&nbsp;of&nbsp;worker&nbsp;threads&nbsp;to&nbsp;handle&nbsp;incoming&nbsp;RTP&nbsp;packets.&nbsp;A&nbsp;value&nbsp;of&nbsp;one&nbsp;is&nbsp;recommended&nbsp;for&nbsp;most&nbsp;applications.</tt></dd>
+</dl>
+<dl><dt><strong>turn_conn_type</strong></dt>
+<dd><tt>Specify&nbsp;TURN&nbsp;connection&nbsp;type.</tt></dd>
+</dl>
+<dl><dt><strong>turn_passw</strong></dt>
+<dd><tt>Specify&nbsp;the&nbsp;TURN&nbsp;password.</tt></dd>
+</dl>
+<dl><dt><strong>turn_passwd_type</strong></dt>
+<dd><tt>Specify&nbsp;TURN&nbsp;password&nbsp;type.</tt></dd>
+</dl>
+<dl><dt><strong>turn_realm</strong></dt>
+<dd><tt>Specify&nbsp;the&nbsp;TURN&nbsp;realm.</tt></dd>
+</dl>
+<dl><dt><strong>turn_server</strong></dt>
+<dd><tt>Specify&nbsp;the&nbsp;TURN&nbsp;server.</tt></dd>
+</dl>
+<dl><dt><strong>turn_username</strong></dt>
+<dd><tt>Specify&nbsp;the&nbsp;TURN&nbsp;username.</tt></dd>
+</dl>
+<dl><dt><strong>tx_drop_pct</strong></dt>
+<dd><tt>Percentage&nbsp;of&nbsp;RTP&nbsp;packet&nbsp;to&nbsp;drop&nbsp;in&nbsp;TX&nbsp;direction&nbsp;(to&nbsp;simulate&nbsp;packet&nbsp;lost).</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2dbc0&gt;<dd><tt>T.<a href="#Media_Config-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Msg_Data">class <strong>Msg_Data</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>msg_data&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>content_type</strong></dt>
+<dd><tt>MIME&nbsp;type&nbsp;of&nbsp;optional&nbsp;message&nbsp;body.</tt></dd>
+</dl>
+<dl><dt><strong>hdr_list</strong></dt>
+<dd><tt>Additional&nbsp;message&nbsp;headers&nbsp;as&nbsp;linked&nbsp;list&nbsp;of&nbsp;strings.</tt></dd>
+</dl>
+<dl><dt><strong>msg_body</strong></dt>
+<dd><tt>Optional&nbsp;message&nbsp;body.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2db00&gt;<dd><tt>T.<a href="#Msg_Data-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PJMedia_Codec_Param">class <strong>PJMedia_Codec_Param</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>PJMedia&nbsp;Codec&nbsp;Param&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>info</strong></dt>
+<dd><tt>The&nbsp;'info'&nbsp;part&nbsp;of&nbsp;codec&nbsp;param&nbsp;describes&nbsp;the&nbsp;capability&nbsp;of&nbsp;the&nbsp;codec,&nbsp;and&nbsp;the&nbsp;value&nbsp;should&nbsp;NOT&nbsp;be&nbsp;changed&nbsp;by&nbsp;application.</tt></dd>
+</dl>
+<dl><dt><strong>setting</strong></dt>
+<dd><tt>The&nbsp;'setting'&nbsp;part&nbsp;of&nbsp;codec&nbsp;param&nbsp;describes&nbsp;various&nbsp;settings&nbsp;to&nbsp;be&nbsp;applied&nbsp;to&nbsp;the&nbsp;codec.&nbsp;When&nbsp;the&nbsp;codec&nbsp;param&nbsp;is&nbsp;retrieved&nbsp;from&nbsp;the&nbsp;codec&nbsp;or&nbsp;codec&nbsp;factory,&nbsp;the&nbsp;values&nbsp;of&nbsp;these&nbsp;will&nbsp;be&nbsp;filled&nbsp;by&nbsp;the&nbsp;capability&nbsp;of&nbsp;the&nbsp;codec.&nbsp;Any&nbsp;features&nbsp;that&nbsp;are&nbsp;supported&nbsp;by&nbsp;the&nbsp;codec&nbsp;(e.g.&nbsp;vad&nbsp;or&nbsp;plc)&nbsp;will&nbsp;be&nbsp;turned&nbsp;on,&nbsp;so&nbsp;that&nbsp;application&nbsp;can&nbsp;query&nbsp;which&nbsp;capabilities&nbsp;are&nbsp;supported&nbsp;by&nbsp;the&nbsp;codec.&nbsp;Application&nbsp;may&nbsp;change&nbsp;the&nbsp;settings&nbsp;here&nbsp;before&nbsp;instantiating&nbsp;the&nbsp;codec/stream.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2eac0&gt;<dd><tt>T.<a href="#PJMedia_Codec_Param-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PJMedia_Codec_Param_Info">class <strong>PJMedia_Codec_Param_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>PJMedia&nbsp;Codec&nbsp;Param&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>avg_bps</strong></dt>
+<dd><tt>Average&nbsp;bandwidth&nbsp;in&nbsp;bits/sec</tt></dd>
+</dl>
+<dl><dt><strong>channel_cnt</strong></dt>
+<dd><tt>Channel&nbsp;count</tt></dd>
+</dl>
+<dl><dt><strong>clock_rate</strong></dt>
+<dd><tt>Sampling&nbsp;rate&nbsp;in&nbsp;Hz</tt></dd>
+</dl>
+<dl><dt><strong>frm_ptime</strong></dt>
+<dd><tt>Base&nbsp;frame&nbsp;ptime&nbsp;in&nbsp;msec.</tt></dd>
+</dl>
+<dl><dt><strong>pcm_bits_per_sample</strong></dt>
+<dd><tt>Bits/sample&nbsp;in&nbsp;the&nbsp;PCM&nbsp;side</tt></dd>
+</dl>
+<dl><dt><strong>pt</strong></dt>
+<dd><tt>Payload&nbsp;type</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e940&gt;<dd><tt>T.<a href="#PJMedia_Codec_Param_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PJMedia_Codec_Param_Setting">class <strong>PJMedia_Codec_Param_Setting</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>PJMedia&nbsp;Codec&nbsp;Param&nbsp;Setting&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>cng</strong></dt>
+<dd><tt>Comfort&nbsp;Noise&nbsp;Generator</tt></dd>
+</dl>
+<dl><dt><strong>dec_fmtp_mode</strong></dt>
+<dd><tt>Mode&nbsp;param&nbsp;in&nbsp;fmtp&nbsp;(def:0)</tt></dd>
+</dl>
+<dl><dt><strong>enc_fmtp_mode</strong></dt>
+<dd><tt>Mode&nbsp;param&nbsp;in&nbsp;fmtp&nbsp;(def:0)</tt></dd>
+</dl>
+<dl><dt><strong>frm_per_pkt</strong></dt>
+<dd><tt>Number&nbsp;of&nbsp;frames&nbsp;per&nbsp;packet</tt></dd>
+</dl>
+<dl><dt><strong>penh</strong></dt>
+<dd><tt>Perceptual&nbsp;Enhancement</tt></dd>
+</dl>
+<dl><dt><strong>plc</strong></dt>
+<dd><tt>Packet&nbsp;loss&nbsp;concealment</tt></dd>
+</dl>
+<dl><dt><strong>reserved</strong></dt>
+<dd><tt>Reserved,&nbsp;must&nbsp;be&nbsp;zero</tt></dd>
+</dl>
+<dl><dt><strong>vad</strong></dt>
+<dd><tt>Voice&nbsp;Activity&nbsp;Detector</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2ea00&gt;<dd><tt>T.<a href="#PJMedia_Codec_Param_Setting-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PJMedia_Port">class <strong>PJMedia_Port</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pjmedia_port&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e7c0&gt;<dd><tt>T.<a href="#PJMedia_Port-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PJMedia_Snd_Dev_Info">class <strong>PJMedia_Snd_Dev_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>PJMedia&nbsp;Snd&nbsp;Dev&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>default_samples_per_sec</strong></dt>
+<dd><tt>Default&nbsp;sampling&nbsp;rate.</tt></dd>
+</dl>
+<dl><dt><strong>input_count</strong></dt>
+<dd><tt>Max&nbsp;number&nbsp;of&nbsp;input&nbsp;channels</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>Device&nbsp;name</tt></dd>
+</dl>
+<dl><dt><strong>output_count</strong></dt>
+<dd><tt>Max&nbsp;number&nbsp;of&nbsp;output&nbsp;channels</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e880&gt;<dd><tt>T.<a href="#PJMedia_Snd_Dev_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PJ_Time_Val">class <strong>PJ_Time_Val</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>PJ&nbsp;Time&nbsp;Val&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>msec</strong></dt>
+<dd><tt>The&nbsp;milliseconds&nbsp;fraction&nbsp;of&nbsp;the&nbsp;time</tt></dd>
+</dl>
+<dl><dt><strong>sec</strong></dt>
+<dd><tt>The&nbsp;seconds&nbsp;part&nbsp;of&nbsp;the&nbsp;time</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2eb80&gt;<dd><tt>T.<a href="#PJ_Time_Val-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pj_Pool">class <strong>Pj_Pool</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pj_pool_t&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2de00&gt;<dd><tt>T.<a href="#Pj_Pool-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pj_Pool_Factory">class <strong>Pj_Pool_Factory</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pj_pool_factory&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e040&gt;<dd><tt>T.<a href="#Pj_Pool_Factory-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pjmedia_Endpt">class <strong>Pjmedia_Endpt</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pjmedia_endpt&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2df80&gt;<dd><tt>T.<a href="#Pjmedia_Endpt-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pjsip_Cred_Info">class <strong>Pjsip_Cred_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>PJSIP&nbsp;credential&nbsp;information<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>data</strong></dt>
+<dd><tt>The&nbsp;data,&nbsp;which&nbsp;can&nbsp;be&nbsp;a&nbsp;plaintext&nbsp;password&nbsp;or&nbsp;a&nbsp;hashed&nbsp;digest,&nbsp;depending&nbsp;on&nbsp;the&nbsp;value&nbsp;of&nbsp;data_type</tt></dd>
+</dl>
+<dl><dt><strong>data_type</strong></dt>
+<dd><tt>Type&nbsp;of&nbsp;data</tt></dd>
+</dl>
+<dl><dt><strong>realm</strong></dt>
+<dd><tt>Realm</tt></dd>
+</dl>
+<dl><dt><strong>scheme</strong></dt>
+<dd><tt>Scheme</tt></dd>
+</dl>
+<dl><dt><strong>username</strong></dt>
+<dd><tt>User&nbsp;name</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e100&gt;<dd><tt>T.<a href="#Pjsip_Cred_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pjsip_Endpoint">class <strong>Pjsip_Endpoint</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pjsip_endpoint&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2dec0&gt;<dd><tt>T.<a href="#Pjsip_Endpoint-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pjsip_Event">class <strong>Pjsip_Event</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pjsip_event&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2dc80&gt;<dd><tt>T.<a href="#Pjsip_Event-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pjsip_Rx_Data">class <strong>Pjsip_Rx_Data</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>pjsip_rx_data&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2dd40&gt;<dd><tt>T.<a href="#Pjsip_Rx_Data-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Transport_Config">class <strong>Transport_Config</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Transport&nbsp;setting<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>bound_addr</strong></dt>
+<dd><tt>Optional&nbsp;address&nbsp;where&nbsp;the&nbsp;socket&nbsp;should&nbsp;be&nbsp;bound&nbsp;to.&nbsp;This&nbsp;option&nbsp;SHOULD&nbsp;only&nbsp;be&nbsp;used&nbsp;to&nbsp;selectively&nbsp;bind&nbsp;the&nbsp;socket&nbsp;to&nbsp;particular&nbsp;interface&nbsp;(instead&nbsp;of&nbsp;0.0.0.0),&nbsp;and&nbsp;SHOULD&nbsp;NOT&nbsp;be&nbsp;used&nbsp;to&nbsp;set&nbsp;the&nbsp;published&nbsp;address&nbsp;of&nbsp;a&nbsp;transport&nbsp;(the&nbsp;public_addr&nbsp;field&nbsp;should&nbsp;be&nbsp;used&nbsp;for&nbsp;that&nbsp;purpose).</tt></dd>
+</dl>
+<dl><dt><strong>port</strong></dt>
+<dd><tt>UDP&nbsp;port&nbsp;number&nbsp;to&nbsp;bind&nbsp;locally.&nbsp;This&nbsp;setting&nbsp;MUST&nbsp;be&nbsp;specified&nbsp;even&nbsp;when&nbsp;default&nbsp;port&nbsp;is&nbsp;desired.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;zero,&nbsp;the&nbsp;transport&nbsp;will&nbsp;be&nbsp;bound&nbsp;to&nbsp;any&nbsp;available&nbsp;port,&nbsp;and&nbsp;application&nbsp;can&nbsp;query&nbsp;the&nbsp;port&nbsp;by&nbsp;querying&nbsp;the&nbsp;transport&nbsp;info.</tt></dd>
+</dl>
+<dl><dt><strong>public_addr</strong></dt>
+<dd><tt>Optional&nbsp;address&nbsp;to&nbsp;advertise&nbsp;as&nbsp;the&nbsp;address&nbsp;of&nbsp;this&nbsp;transport.&nbsp;Application&nbsp;can&nbsp;specify&nbsp;any&nbsp;address&nbsp;or&nbsp;hostname&nbsp;for&nbsp;this&nbsp;field,&nbsp;for&nbsp;example&nbsp;it&nbsp;can&nbsp;point&nbsp;to&nbsp;one&nbsp;of&nbsp;the&nbsp;interface&nbsp;address&nbsp;in&nbsp;the&nbsp;system,&nbsp;or&nbsp;it&nbsp;can&nbsp;point&nbsp;to&nbsp;the&nbsp;public&nbsp;address&nbsp;of&nbsp;a&nbsp;NAT&nbsp;router&nbsp;where&nbsp;port&nbsp;mappings&nbsp;have&nbsp;been&nbsp;configured&nbsp;for&nbsp;the&nbsp;application.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e1c0&gt;<dd><tt>T.<a href="#Transport_Config-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Transport_Info">class <strong>Transport_Info</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Transport&nbsp;Info&nbsp;objects<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data descriptors defined here:<br>
+<dl><dt><strong>addr</strong></dt>
+<dd><tt>Published&nbsp;address&nbsp;(or&nbsp;transport&nbsp;address&nbsp;name).</tt></dd>
+</dl>
+<dl><dt><strong>flag</strong></dt>
+<dd><tt>Transport&nbsp;flag&nbsp;(see&nbsp;##pjsip_transport_flags_e).</tt></dd>
+</dl>
+<dl><dt><strong>id</strong></dt>
+<dd><tt>PJSUA&nbsp;transport&nbsp;identification.</tt></dd>
+</dl>
+<dl><dt><strong>info</strong></dt>
+<dd><tt>Transport&nbsp;string&nbsp;info/description.</tt></dd>
+</dl>
+<dl><dt><strong>port</strong></dt>
+<dd><tt>Published&nbsp;port&nbsp;number.</tt></dd>
+</dl>
+<dl><dt><strong>type</strong></dt>
+<dd><tt>Transport&nbsp;type.</tt></dd>
+</dl>
+<dl><dt><strong>type_name</strong></dt>
+<dd><tt>Transport&nbsp;type&nbsp;name.</tt></dd>
+</dl>
+<dl><dt><strong>usage_count</strong></dt>
+<dd><tt>Current&nbsp;number&nbsp;of&nbsp;objects&nbsp;currently&nbsp;referencing&nbsp;this&nbsp;transport.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0xb7c2e280&gt;<dd><tt>T.<a href="#Transport_Info-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-acc_add"><strong>acc_add</strong></a>(...)</dt><dd><tt>int,&nbsp;int&nbsp;_pjsua.acc_add&nbsp;(_pjsua.<a href="#Acc_Config">Acc_Config</a>&nbsp;cfg,&nbsp;int&nbsp;is_default)&nbsp;Add&nbsp;a&nbsp;new&nbsp;account&nbsp;to&nbsp;pjsua.&nbsp;PJSUA&nbsp;must&nbsp;have&nbsp;been&nbsp;initialized&nbsp;(with&nbsp;pjsua_init())&nbsp;before&nbsp;calling&nbsp;this&nbsp;function.</tt></dd></dl>
+ <dl><dt><a name="-acc_add_local"><strong>acc_add_local</strong></a>(...)</dt><dd><tt>int,int&nbsp;_pjsua.acc_add_local&nbsp;(int&nbsp;tid,&nbsp;int&nbsp;is_default)&nbsp;Add&nbsp;a&nbsp;local&nbsp;account.&nbsp;A&nbsp;local&nbsp;account&nbsp;is&nbsp;used&nbsp;to&nbsp;identify&nbsp;local&nbsp;endpoint&nbsp;instead&nbsp;of&nbsp;a&nbsp;specific&nbsp;user,&nbsp;and&nbsp;for&nbsp;this&nbsp;reason,&nbsp;a&nbsp;transport&nbsp;ID&nbsp;is&nbsp;needed&nbsp;to&nbsp;obtain&nbsp;the&nbsp;local&nbsp;address&nbsp;information.</tt></dd></dl>
+ <dl><dt><a name="-acc_config_default"><strong>acc_config_default</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Acc_Config">Acc_Config</a>&nbsp;_pjsua.acc_config_default&nbsp;()&nbsp;Call&nbsp;this&nbsp;function&nbsp;to&nbsp;initialize&nbsp;account&nbsp;config&nbsp;with&nbsp;default&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-acc_create_uac_contact"><strong>acc_create_uac_contact</strong></a>(...)</dt><dd><tt>string&nbsp;_pjsua.acc_create_uac_contact&nbsp;(PyObj_pj_pool&nbsp;pool,&nbsp;int&nbsp;acc_id,&nbsp;string&nbsp;uri)&nbsp;Create&nbsp;a&nbsp;suitable&nbsp;URI&nbsp;to&nbsp;be&nbsp;put&nbsp;as&nbsp;Contact&nbsp;based&nbsp;on&nbsp;the&nbsp;specified&nbsp;target&nbsp;URI&nbsp;for&nbsp;the&nbsp;specified&nbsp;account.</tt></dd></dl>
+ <dl><dt><a name="-acc_create_uas_contact"><strong>acc_create_uas_contact</strong></a>(...)</dt><dd><tt>string&nbsp;_pjsua.acc_create_uas_contact&nbsp;(PyObj_pj_pool&nbsp;pool,&nbsp;int&nbsp;acc_id,&nbsp;PyObj_pjsip_rx_data&nbsp;rdata)&nbsp;Create&nbsp;a&nbsp;suitable&nbsp;URI&nbsp;to&nbsp;be&nbsp;put&nbsp;as&nbsp;Contact&nbsp;based&nbsp;on&nbsp;the&nbsp;information&nbsp;in&nbsp;the&nbsp;incoming&nbsp;request.</tt></dd></dl>
+ <dl><dt><a name="-acc_del"><strong>acc_del</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_del&nbsp;(int&nbsp;acc_id)&nbsp;Delete&nbsp;account.</tt></dd></dl>
+ <dl><dt><a name="-acc_enum_info"><strong>acc_enum_info</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Acc_Info">Acc_Info</a>[]&nbsp;_pjsua.acc_enum_info&nbsp;()&nbsp;Enum&nbsp;accounts&nbsp;info.</tt></dd></dl>
+ <dl><dt><a name="-acc_find_for_incoming"><strong>acc_find_for_incoming</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_find_for_incoming&nbsp;(PyObj_pjsip_rx_data&nbsp;rdata)&nbsp;This&nbsp;is&nbsp;an&nbsp;internal&nbsp;function&nbsp;to&nbsp;find&nbsp;the&nbsp;most&nbsp;appropriate&nbsp;account&nbsp;to&nbsp;be&nbsp;used&nbsp;to&nbsp;handle&nbsp;incoming&nbsp;calls.</tt></dd></dl>
+ <dl><dt><a name="-acc_find_for_outgoing"><strong>acc_find_for_outgoing</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_find_for_outgoing&nbsp;(string&nbsp;url)&nbsp;This&nbsp;is&nbsp;an&nbsp;internal&nbsp;function&nbsp;to&nbsp;find&nbsp;the&nbsp;most&nbsp;appropriate&nbsp;account&nbsp;to&nbsp;used&nbsp;to&nbsp;reach&nbsp;to&nbsp;the&nbsp;specified&nbsp;URL.</tt></dd></dl>
+ <dl><dt><a name="-acc_get_count"><strong>acc_get_count</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_get_count&nbsp;()&nbsp;Get&nbsp;number&nbsp;of&nbsp;current&nbsp;accounts.</tt></dd></dl>
+ <dl><dt><a name="-acc_get_default"><strong>acc_get_default</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_get_default&nbsp;()&nbsp;Get&nbsp;default&nbsp;account.</tt></dd></dl>
+ <dl><dt><a name="-acc_get_info"><strong>acc_get_info</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Acc_Info">Acc_Info</a>&nbsp;_pjsua.acc_get_info&nbsp;(int&nbsp;acc_id)&nbsp;Get&nbsp;account&nbsp;information.</tt></dd></dl>
+ <dl><dt><a name="-acc_is_valid"><strong>acc_is_valid</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_is_valid&nbsp;(int&nbsp;acc_id)&nbsp;&nbsp;Check&nbsp;if&nbsp;the&nbsp;specified&nbsp;account&nbsp;ID&nbsp;is&nbsp;valid.</tt></dd></dl>
+ <dl><dt><a name="-acc_modify"><strong>acc_modify</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_modify&nbsp;(int&nbsp;acc_id,&nbsp;_pjsua.<a href="#Acc_Config">Acc_Config</a>&nbsp;cfg)&nbsp;Modify&nbsp;account&nbsp;information.</tt></dd></dl>
+ <dl><dt><a name="-acc_set_default"><strong>acc_set_default</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_set_default&nbsp;(int&nbsp;acc_id)&nbsp;Set&nbsp;default&nbsp;account&nbsp;to&nbsp;be&nbsp;used&nbsp;when&nbsp;incoming&nbsp;and&nbsp;outgoing&nbsp;requests&nbsp;doesn't&nbsp;match&nbsp;any&nbsp;accounts.</tt></dd></dl>
+ <dl><dt><a name="-acc_set_online_status"><strong>acc_set_online_status</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.<a href="#-acc_set_online_status2">acc_set_online_status2</a>(int&nbsp;acc_id,&nbsp;int&nbsp;is_online)&nbsp;Modify&nbsp;account's&nbsp;presence&nbsp;status&nbsp;to&nbsp;be&nbsp;advertised&nbsp;to&nbsp;remote/presence&nbsp;subscribers.</tt></dd></dl>
+ <dl><dt><a name="-acc_set_online_status2"><strong>acc_set_online_status2</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_set_online_status&nbsp;(int&nbsp;acc_id,&nbsp;int&nbsp;is_online,&nbsp;int&nbsp;activity_id,&nbsp;string&nbsp;activity_text)&nbsp;Modify&nbsp;account's&nbsp;presence&nbsp;status&nbsp;to&nbsp;be&nbsp;advertised&nbsp;to&nbsp;remote/presence&nbsp;subscribers.</tt></dd></dl>
+ <dl><dt><a name="-acc_set_registration"><strong>acc_set_registration</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.acc_set_registration&nbsp;(int&nbsp;acc_id,&nbsp;int&nbsp;renew)&nbsp;Update&nbsp;registration&nbsp;or&nbsp;perform&nbsp;unregistration.</tt></dd></dl>
+ <dl><dt><a name="-acc_set_transport"><strong>acc_set_transport</strong></a>(...)</dt><dd><tt>Lock&nbsp;transport&nbsp;to&nbsp;use&nbsp;the&nbsp;specified&nbsp;transport</tt></dd></dl>
+ <dl><dt><a name="-buddy_add"><strong>buddy_add</strong></a>(...)</dt><dd><tt>int,int&nbsp;_pjsua.buddy_add&nbsp;(_pjsua.<a href="#Buddy_Config">Buddy_Config</a>&nbsp;cfg)&nbsp;Add&nbsp;new&nbsp;buddy.</tt></dd></dl>
+ <dl><dt><a name="-buddy_config_default"><strong>buddy_config_default</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Buddy_Config">Buddy_Config</a>&nbsp;_pjsua.buddy_config_default&nbsp;()&nbsp;Set&nbsp;default&nbsp;values&nbsp;to&nbsp;the&nbsp;buddy&nbsp;config.</tt></dd></dl>
+ <dl><dt><a name="-buddy_del"><strong>buddy_del</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.buddy_del&nbsp;(int&nbsp;buddy_id)&nbsp;Delete&nbsp;buddy.</tt></dd></dl>
+ <dl><dt><a name="-buddy_get_info"><strong>buddy_get_info</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Buddy_Info">Buddy_Info</a>&nbsp;_pjsua.buddy_get_info&nbsp;(int&nbsp;buddy_id)&nbsp;Get&nbsp;detailed&nbsp;buddy&nbsp;info.</tt></dd></dl>
+ <dl><dt><a name="-buddy_is_valid"><strong>buddy_is_valid</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.buddy_is_valid&nbsp;(int&nbsp;buddy_id)&nbsp;Check&nbsp;if&nbsp;buddy&nbsp;ID&nbsp;is&nbsp;valid.</tt></dd></dl>
+ <dl><dt><a name="-buddy_subscribe_pres"><strong>buddy_subscribe_pres</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.buddy_subscribe_pres&nbsp;(int&nbsp;buddy_id,&nbsp;int&nbsp;subscribe)&nbsp;Enable/disable&nbsp;buddy's&nbsp;presence&nbsp;monitoring.</tt></dd></dl>
+ <dl><dt><a name="-call_answer"><strong>call_answer</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_answer&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;code,&nbsp;string&nbsp;reason,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Send&nbsp;response&nbsp;to&nbsp;incoming&nbsp;INVITE&nbsp;request.</tt></dd></dl>
+ <dl><dt><a name="-call_dial_dtmf"><strong>call_dial_dtmf</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_dial_dtmf&nbsp;(int&nbsp;call_id,&nbsp;string&nbsp;digits)&nbsp;Send&nbsp;DTMF&nbsp;digits&nbsp;to&nbsp;remote&nbsp;using&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2833.txt">RFC&nbsp;2833</a>&nbsp;payload&nbsp;formats.</tt></dd></dl>
+ <dl><dt><a name="-call_dump"><strong>call_dump</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_dump&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;with_media,&nbsp;int&nbsp;maxlen,&nbsp;string&nbsp;indent)&nbsp;Dump&nbsp;call&nbsp;and&nbsp;media&nbsp;statistics&nbsp;to&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-call_get_conf_port"><strong>call_get_conf_port</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_get_conf_port&nbsp;(int&nbsp;call_id)&nbsp;Get&nbsp;the&nbsp;conference&nbsp;port&nbsp;identification&nbsp;associated&nbsp;with&nbsp;the&nbsp;call.</tt></dd></dl>
+ <dl><dt><a name="-call_get_count"><strong>call_get_count</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_get_count&nbsp;()&nbsp;Get&nbsp;number&nbsp;of&nbsp;currently&nbsp;active&nbsp;calls.</tt></dd></dl>
+ <dl><dt><a name="-call_get_info"><strong>call_get_info</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Call_Info">Call_Info</a>&nbsp;_pjsua.call_get_info&nbsp;(int&nbsp;call_id)&nbsp;Obtain&nbsp;detail&nbsp;information&nbsp;about&nbsp;the&nbsp;specified&nbsp;call.</tt></dd></dl>
+ <dl><dt><a name="-call_get_max_count"><strong>call_get_max_count</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_get_max_count&nbsp;()&nbsp;Get&nbsp;maximum&nbsp;number&nbsp;of&nbsp;calls&nbsp;configured&nbsp;in&nbsp;pjsua.</tt></dd></dl>
+ <dl><dt><a name="-call_get_user_data"><strong>call_get_user_data</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_get_user_data&nbsp;(int&nbsp;call_id)&nbsp;Get&nbsp;user&nbsp;data&nbsp;attached&nbsp;to&nbsp;the&nbsp;call.</tt></dd></dl>
+ <dl><dt><a name="-call_hangup"><strong>call_hangup</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_hangup&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;code,&nbsp;string&nbsp;reason,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Hangup&nbsp;call&nbsp;by&nbsp;using&nbsp;method&nbsp;that&nbsp;is&nbsp;appropriate&nbsp;according&nbsp;to&nbsp;the&nbsp;call&nbsp;state.</tt></dd></dl>
+ <dl><dt><a name="-call_hangup_all"><strong>call_hangup_all</strong></a>(...)</dt><dd><tt>void&nbsp;_pjsua.call_hangup_all&nbsp;()&nbsp;Terminate&nbsp;all&nbsp;calls.</tt></dd></dl>
+ <dl><dt><a name="-call_has_media"><strong>call_has_media</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_has_media&nbsp;(int&nbsp;call_id)&nbsp;Check&nbsp;if&nbsp;call&nbsp;has&nbsp;an&nbsp;active&nbsp;media&nbsp;session.</tt></dd></dl>
+ <dl><dt><a name="-call_is_active"><strong>call_is_active</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_is_active&nbsp;(int&nbsp;call_id)&nbsp;Check&nbsp;if&nbsp;the&nbsp;specified&nbsp;call&nbsp;has&nbsp;active&nbsp;INVITE&nbsp;session&nbsp;and&nbsp;the&nbsp;INVITE&nbsp;session&nbsp;has&nbsp;not&nbsp;been&nbsp;disconnected.</tt></dd></dl>
+ <dl><dt><a name="-call_make_call"><strong>call_make_call</strong></a>(...)</dt><dd><tt>int,int&nbsp;_pjsua.call_make_call&nbsp;(int&nbsp;acc_id,&nbsp;string&nbsp;dst_uri,&nbsp;int&nbsp;options,int&nbsp;user_data,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Make&nbsp;outgoing&nbsp;call&nbsp;to&nbsp;the&nbsp;specified&nbsp;URI&nbsp;using&nbsp;the&nbsp;specified&nbsp;account.</tt></dd></dl>
+ <dl><dt><a name="-call_reinvite"><strong>call_reinvite</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_reinvite&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;unhold,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Send&nbsp;re-INVITE&nbsp;(to&nbsp;release&nbsp;hold).</tt></dd></dl>
+ <dl><dt><a name="-call_send_im"><strong>call_send_im</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_send_im&nbsp;(int&nbsp;call_id,&nbsp;string&nbsp;mime_type,&nbsp;string&nbsp;content,_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data,&nbsp;int&nbsp;user_data)&nbsp;Send&nbsp;instant&nbsp;messaging&nbsp;inside&nbsp;INVITE&nbsp;session.</tt></dd></dl>
+ <dl><dt><a name="-call_send_request"><strong>call_send_request</strong></a>(...)</dt><dd><tt>Send&nbsp;arbitrary&nbsp;request</tt></dd></dl>
+ <dl><dt><a name="-call_send_typing_ind"><strong>call_send_typing_ind</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_send_typing_ind&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;is_typing,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Send&nbsp;IM&nbsp;typing&nbsp;indication&nbsp;inside&nbsp;INVITE&nbsp;session.</tt></dd></dl>
+ <dl><dt><a name="-call_set_hold"><strong>call_set_hold</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_set_hold&nbsp;(int&nbsp;call_id,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Put&nbsp;the&nbsp;specified&nbsp;call&nbsp;on&nbsp;hold.</tt></dd></dl>
+ <dl><dt><a name="-call_set_user_data"><strong>call_set_user_data</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_set_user_data&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;user_data)&nbsp;Attach&nbsp;application&nbsp;specific&nbsp;data&nbsp;to&nbsp;the&nbsp;call.</tt></dd></dl>
+ <dl><dt><a name="-call_update"><strong>call_update</strong></a>(...)</dt><dd><tt>Send&nbsp;UPDATE</tt></dd></dl>
+ <dl><dt><a name="-call_xfer"><strong>call_xfer</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_xfer&nbsp;(int&nbsp;call_id,&nbsp;string&nbsp;dest,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Initiate&nbsp;call&nbsp;transfer&nbsp;to&nbsp;the&nbsp;specified&nbsp;address.&nbsp;This&nbsp;function&nbsp;will&nbsp;send&nbsp;REFER&nbsp;request&nbsp;to&nbsp;instruct&nbsp;remote&nbsp;call&nbsp;party&nbsp;to&nbsp;initiate&nbsp;a&nbsp;new&nbsp;INVITE&nbsp;session&nbsp;to&nbsp;the&nbsp;specified&nbsp;destination/target.</tt></dd></dl>
+ <dl><dt><a name="-call_xfer_replaces"><strong>call_xfer_replaces</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.call_xfer_replaces&nbsp;(int&nbsp;call_id,&nbsp;int&nbsp;dest_call_id,&nbsp;int&nbsp;options,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Initiate&nbsp;attended&nbsp;call&nbsp;transfer.&nbsp;This&nbsp;function&nbsp;will&nbsp;send&nbsp;REFER&nbsp;request&nbsp;to&nbsp;instruct&nbsp;remote&nbsp;call&nbsp;party&nbsp;to&nbsp;initiate&nbsp;new&nbsp;INVITE&nbsp;session&nbsp;to&nbsp;the&nbsp;URL&nbsp;of&nbsp;dest_call_id.&nbsp;The&nbsp;party&nbsp;at&nbsp;dest_call_id&nbsp;then&nbsp;should&nbsp;'replace'&nbsp;the&nbsp;callwith&nbsp;us&nbsp;with&nbsp;the&nbsp;new&nbsp;call&nbsp;from&nbsp;the&nbsp;REFER&nbsp;recipient.</tt></dd></dl>
+ <dl><dt><a name="-codec_get_param"><strong>codec_get_param</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#PJMedia_Codec_Param">PJMedia_Codec_Param</a>&nbsp;_pjsua.codec_get_param&nbsp;(string&nbsp;id)&nbsp;Get&nbsp;codec&nbsp;parameters</tt></dd></dl>
+ <dl><dt><a name="-codec_set_param"><strong>codec_set_param</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.codec_set_param&nbsp;(string&nbsp;id,&nbsp;_pjsua.<a href="#PJMedia_Codec_Param">PJMedia_Codec_Param</a>&nbsp;param)&nbsp;Set&nbsp;codec&nbsp;parameters.</tt></dd></dl>
+ <dl><dt><a name="-codec_set_priority"><strong>codec_set_priority</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.codec_set_priority&nbsp;(string&nbsp;id,&nbsp;int&nbsp;priority)&nbsp;Change&nbsp;codec&nbsp;priority.</tt></dd></dl>
+ <dl><dt><a name="-conf_add_port"><strong>conf_add_port</strong></a>(...)</dt><dd><tt>int,&nbsp;int&nbsp;_pjsua.conf_add_port&nbsp;(_pjsua.<a href="#Pj_Pool">Pj_Pool</a>&nbsp;pool,&nbsp;_pjsua.<a href="#PJMedia_Port">PJMedia_Port</a>&nbsp;port)&nbsp;Add&nbsp;arbitrary&nbsp;media&nbsp;port&nbsp;to&nbsp;PJSUA's&nbsp;conference&nbsp;bridge.&nbsp;Application&nbsp;can&nbsp;use&nbsp;this&nbsp;function&nbsp;to&nbsp;add&nbsp;the&nbsp;media&nbsp;port&nbsp;that&nbsp;it&nbsp;creates.&nbsp;For&nbsp;media&nbsp;ports&nbsp;that&nbsp;are&nbsp;created&nbsp;by&nbsp;PJSUA-LIB&nbsp;(such&nbsp;as&nbsp;calls,&nbsp;file&nbsp;player,&nbsp;or&nbsp;file&nbsp;recorder),&nbsp;PJSUA-LIB&nbsp;will&nbsp;automatically&nbsp;add&nbsp;the&nbsp;port&nbsp;to&nbsp;the&nbsp;bridge.</tt></dd></dl>
+ <dl><dt><a name="-conf_connect"><strong>conf_connect</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.conf_connect&nbsp;(int&nbsp;source,&nbsp;int&nbsp;sink)&nbsp;Establish&nbsp;unidirectional&nbsp;media&nbsp;flow&nbsp;from&nbsp;souce&nbsp;to&nbsp;sink.&nbsp;One&nbsp;source&nbsp;may&nbsp;transmit&nbsp;to&nbsp;multiple&nbsp;destinations/sink.&nbsp;And&nbsp;if&nbsp;multiple&nbsp;sources&nbsp;are&nbsp;transmitting&nbsp;to&nbsp;the&nbsp;same&nbsp;sink,&nbsp;the&nbsp;media&nbsp;will&nbsp;be&nbsp;mixed&nbsp;together.&nbsp;Source&nbsp;and&nbsp;sink&nbsp;may&nbsp;refer&nbsp;to&nbsp;the&nbsp;same&nbsp;ID,&nbsp;effectively&nbsp;looping&nbsp;the&nbsp;media.&nbsp;If&nbsp;bidirectional&nbsp;media&nbsp;flow&nbsp;is&nbsp;desired,&nbsp;application&nbsp;needs&nbsp;to&nbsp;call&nbsp;this&nbsp;function&nbsp;twice,&nbsp;with&nbsp;the&nbsp;second&nbsp;one&nbsp;having&nbsp;the&nbsp;arguments&nbsp;reversed.</tt></dd></dl>
+ <dl><dt><a name="-conf_disconnect"><strong>conf_disconnect</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.conf_disconnect&nbsp;(int&nbsp;source,&nbsp;int&nbsp;sink)&nbsp;Disconnect&nbsp;media&nbsp;flow&nbsp;from&nbsp;the&nbsp;source&nbsp;to&nbsp;destination&nbsp;port.</tt></dd></dl>
+ <dl><dt><a name="-conf_get_active_ports"><strong>conf_get_active_ports</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.conf_get_active_ports&nbsp;()&nbsp;Get&nbsp;current&nbsp;number&nbsp;of&nbsp;active&nbsp;ports&nbsp;in&nbsp;the&nbsp;bridge.</tt></dd></dl>
+ <dl><dt><a name="-conf_get_max_ports"><strong>conf_get_max_ports</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.conf_get_max_ports&nbsp;()&nbsp;Get&nbsp;maxinum&nbsp;number&nbsp;of&nbsp;conference&nbsp;ports.</tt></dd></dl>
+ <dl><dt><a name="-conf_get_port_info"><strong>conf_get_port_info</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Conf_Port_Info">Conf_Port_Info</a>&nbsp;_pjsua.conf_get_port_info&nbsp;(int&nbsp;id)&nbsp;Get&nbsp;information&nbsp;about&nbsp;the&nbsp;specified&nbsp;conference&nbsp;port</tt></dd></dl>
+ <dl><dt><a name="-conf_remove_port"><strong>conf_remove_port</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.conf_remove_port&nbsp;(int&nbsp;id)&nbsp;Remove&nbsp;arbitrary&nbsp;slot&nbsp;from&nbsp;the&nbsp;conference&nbsp;bridge.&nbsp;Application&nbsp;should&nbsp;only&nbsp;call&nbsp;this&nbsp;function&nbsp;if&nbsp;it&nbsp;registered&nbsp;the&nbsp;port&nbsp;manually.</tt></dd></dl>
+ <dl><dt><a name="-config_default"><strong>config_default</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Config">Config</a>&nbsp;_pjsua.config_default&nbsp;().&nbsp;Use&nbsp;this&nbsp;function&nbsp;to&nbsp;initialize&nbsp;pjsua&nbsp;config.</tt></dd></dl>
+ <dl><dt><a name="-create"><strong>create</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.create&nbsp;(void)&nbsp;Instantiate&nbsp;pjsua&nbsp;application.&nbsp;Application&nbsp;must&nbsp;call&nbsp;this&nbsp;function&nbsp;before&nbsp;calling&nbsp;any&nbsp;other&nbsp;functions,&nbsp;to&nbsp;make&nbsp;sure&nbsp;that&nbsp;the&nbsp;underlying&nbsp;libraries&nbsp;are&nbsp;properly&nbsp;initialized.&nbsp;Once&nbsp;this&nbsp;function&nbsp;has&nbsp;returned&nbsp;success,&nbsp;application&nbsp;must&nbsp;call&nbsp;pjsua_destroy()&nbsp;before&nbsp;quitting.</tt></dd></dl>
+ <dl><dt><a name="-destroy"><strong>destroy</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.destroy&nbsp;(void)&nbsp;Destroy&nbsp;pjsua&nbsp;This&nbsp;function&nbsp;must&nbsp;be&nbsp;called&nbsp;once&nbsp;PJSUA&nbsp;is&nbsp;created.&nbsp;To&nbsp;make&nbsp;it&nbsp;easier&nbsp;for&nbsp;application,&nbsp;application&nbsp;may&nbsp;call&nbsp;this&nbsp;function&nbsp;several&nbsp;times&nbsp;with&nbsp;no&nbsp;danger.</tt></dd></dl>
+ <dl><dt><a name="-dump"><strong>dump</strong></a>(...)</dt><dd><tt>Dump&nbsp;application&nbsp;state</tt></dd></dl>
+ <dl><dt><a name="-enum_accs"><strong>enum_accs</strong></a>(...)</dt><dd><tt>int[]&nbsp;_pjsua.enum_accs&nbsp;()&nbsp;Enum&nbsp;accounts&nbsp;all&nbsp;account&nbsp;ids.</tt></dd></dl>
+ <dl><dt><a name="-enum_buddies"><strong>enum_buddies</strong></a>(...)</dt><dd><tt>int[]&nbsp;_pjsua.enum_buddies&nbsp;()&nbsp;Enum&nbsp;buddy&nbsp;IDs.</tt></dd></dl>
+ <dl><dt><a name="-enum_calls"><strong>enum_calls</strong></a>(...)</dt><dd><tt>int[]&nbsp;_pjsua.enum_calls&nbsp;()&nbsp;Get&nbsp;maximum&nbsp;number&nbsp;of&nbsp;calls&nbsp;configured&nbsp;in&nbsp;pjsua.</tt></dd></dl>
+ <dl><dt><a name="-enum_codecs"><strong>enum_codecs</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Codec_Info">Codec_Info</a>[]&nbsp;_pjsua.enum_codecs&nbsp;()&nbsp;Enum&nbsp;all&nbsp;supported&nbsp;codecs&nbsp;in&nbsp;the&nbsp;system.</tt></dd></dl>
+ <dl><dt><a name="-enum_conf_ports"><strong>enum_conf_ports</strong></a>(...)</dt><dd><tt>int[]&nbsp;_pjsua.enum_conf_ports&nbsp;()&nbsp;Enumerate&nbsp;all&nbsp;conference&nbsp;ports.</tt></dd></dl>
+ <dl><dt><a name="-enum_snd_devs"><strong>enum_snd_devs</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#PJMedia_Snd_Dev_Info">PJMedia_Snd_Dev_Info</a>[]&nbsp;_pjsua.enum_snd_devs&nbsp;(int&nbsp;count)&nbsp;Enum&nbsp;sound&nbsp;devices.</tt></dd></dl>
+ <dl><dt><a name="-get_buddy_count"><strong>get_buddy_count</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.get_buddy_count&nbsp;()&nbsp;Get&nbsp;total&nbsp;number&nbsp;of&nbsp;buddies.</tt></dd></dl>
+ <dl><dt><a name="-get_ec_tail"><strong>get_ec_tail</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.get_ec_tail&nbsp;()&nbsp;Get&nbsp;current&nbsp;echo&nbsp;canceller&nbsp;tail&nbsp;length.</tt></dd></dl>
+ <dl><dt><a name="-get_pjmedia_endpt"><strong>get_pjmedia_endpt</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Pjmedia_Endpt">Pjmedia_Endpt</a>&nbsp;_pjsua.get_pjmedia_endpt&nbsp;(void)&nbsp;Internal&nbsp;function&nbsp;to&nbsp;get&nbsp;media&nbsp;endpoint&nbsp;instance.&nbsp;Only&nbsp;valid&nbsp;after&nbsp;pjsua_init()&nbsp;is&nbsp;called.</tt></dd></dl>
+ <dl><dt><a name="-get_pjsip_endpt"><strong>get_pjsip_endpt</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Pjsip_Endpoint">Pjsip_Endpoint</a>&nbsp;_pjsua.get_pjsip_endpt&nbsp;(void)&nbsp;Internal&nbsp;function&nbsp;to&nbsp;get&nbsp;SIP&nbsp;endpoint&nbsp;instance&nbsp;of&nbsp;pjsua,&nbsp;which&nbsp;is&nbsp;needed&nbsp;for&nbsp;example&nbsp;to&nbsp;register&nbsp;module,&nbsp;create&nbsp;transports,&nbsp;etc.&nbsp;Probably&nbsp;is&nbsp;only&nbsp;valid&nbsp;after&nbsp;pjsua_init()&nbsp;is&nbsp;called.</tt></dd></dl>
+ <dl><dt><a name="-get_pool_factory"><strong>get_pool_factory</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Pj_Pool_Factory">Pj_Pool_Factory</a>&nbsp;_pjsua.get_pool_factory&nbsp;(void)&nbsp;Internal&nbsp;function&nbsp;to&nbsp;get&nbsp;PJSUA&nbsp;pool&nbsp;factory.&nbsp;Only&nbsp;valid&nbsp;after&nbsp;pjsua_init()&nbsp;is&nbsp;called.</tt></dd></dl>
+ <dl><dt><a name="-get_snd_dev"><strong>get_snd_dev</strong></a>(...)</dt><dd><tt>int,&nbsp;int&nbsp;_pjsua.get_snd_dev&nbsp;()&nbsp;Get&nbsp;currently&nbsp;active&nbsp;sound&nbsp;devices.&nbsp;If&nbsp;sound&nbsp;devices&nbsp;has&nbsp;not&nbsp;been&nbsp;created&nbsp;(for&nbsp;example&nbsp;when&nbsp;pjsua_start()&nbsp;is&nbsp;not&nbsp;called),&nbsp;it&nbsp;is&nbsp;possible&nbsp;that&nbsp;the&nbsp;function&nbsp;returns&nbsp;PJ_SUCCESS&nbsp;with&nbsp;-1&nbsp;as&nbsp;device&nbsp;IDs.</tt></dd></dl>
+ <dl><dt><a name="-handle_events"><strong>handle_events</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.handle_events&nbsp;(int&nbsp;msec_timeout)&nbsp;Poll&nbsp;pjsua&nbsp;for&nbsp;events,&nbsp;and&nbsp;if&nbsp;necessary&nbsp;block&nbsp;the&nbsp;caller&nbsp;thread&nbsp;for&nbsp;the&nbsp;specified&nbsp;maximum&nbsp;interval&nbsp;(in&nbsp;miliseconds)&nbsp;Parameters:&nbsp;msec_timeout:&nbsp;Maximum&nbsp;time&nbsp;to&nbsp;wait,&nbsp;in&nbsp;miliseconds.&nbsp;Returns:&nbsp;The&nbsp;number&nbsp;of&nbsp;events&nbsp;that&nbsp;have&nbsp;been&nbsp;handled&nbsp;during&nbsp;the&nbsp;poll.&nbsp;Negative&nbsp;value&nbsp;indicates&nbsp;error,&nbsp;and&nbsp;application&nbsp;can&nbsp;retrieve&nbsp;the&nbsp;error&nbsp;as&nbsp;(err&nbsp;=&nbsp;-return_value).</tt></dd></dl>
+ <dl><dt><a name="-im_send"><strong>im_send</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.im_send&nbsp;(int&nbsp;acc_id,&nbsp;string&nbsp;to,&nbsp;string&nbsp;mime_type,&nbsp;string&nbsp;content,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data,&nbsp;int&nbsp;user_data)&nbsp;Send&nbsp;instant&nbsp;messaging&nbsp;outside&nbsp;dialog,&nbsp;using&nbsp;the&nbsp;specified&nbsp;account&nbsp;for&nbsp;route&nbsp;set&nbsp;and&nbsp;authentication.</tt></dd></dl>
+ <dl><dt><a name="-im_typing"><strong>im_typing</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.im_typing&nbsp;(int&nbsp;acc_id,&nbsp;string&nbsp;to,&nbsp;int&nbsp;is_typing,&nbsp;_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;msg_data)&nbsp;Send&nbsp;typing&nbsp;indication&nbsp;outside&nbsp;dialog.</tt></dd></dl>
+ <dl><dt><a name="-init"><strong>init</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.init&nbsp;(_pjsua.<a href="#Config">Config</a>&nbsp;obj_ua_cfg,&nbsp;_pjsua.<a href="#Logging_Config">Logging_Config</a>&nbsp;log_cfg,&nbsp;_pjsua.<a href="#Media_Config">Media_Config</a>&nbsp;media_cfg)&nbsp;Initialize&nbsp;pjsua&nbsp;with&nbsp;the&nbsp;specified&nbsp;settings.&nbsp;All&nbsp;the&nbsp;settings&nbsp;are&nbsp;optional,&nbsp;and&nbsp;the&nbsp;default&nbsp;values&nbsp;will&nbsp;be&nbsp;used&nbsp;when&nbsp;the&nbsp;config&nbsp;is&nbsp;not&nbsp;specified.&nbsp;Parameters:&nbsp;obj_ua_cfg&nbsp;:&nbsp;User&nbsp;agent&nbsp;configuration;&nbsp;&nbsp;log_cfg&nbsp;:&nbsp;Optional&nbsp;logging&nbsp;configuration;&nbsp;media_cfg&nbsp;:&nbsp;Optional&nbsp;media&nbsp;configuration.</tt></dd></dl>
+ <dl><dt><a name="-logging_config_default"><strong>logging_config_default</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Logging_Config">Logging_Config</a>&nbsp;_pjsua.logging_config_default&nbsp;&nbsp;()&nbsp;&nbsp;Use&nbsp;this&nbsp;function&nbsp;to&nbsp;initialize&nbsp;logging&nbsp;config.</tt></dd></dl>
+ <dl><dt><a name="-media_config_default"><strong>media_config_default</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Media_Config">Media_Config</a>&nbsp;_pjsua.media_config_default&nbsp;().&nbsp;Use&nbsp;this&nbsp;function&nbsp;to&nbsp;initialize&nbsp;media&nbsp;config.</tt></dd></dl>
+ <dl><dt><a name="-msg_data_init"><strong>msg_data_init</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Msg_Data">Msg_Data</a>&nbsp;void&nbsp;_pjsua.msg_data_init&nbsp;()&nbsp;Initialize&nbsp;message&nbsp;data</tt></dd></dl>
+ <dl><dt><a name="-parse_simple_uri"><strong>parse_simple_uri</strong></a>(...)</dt><dd><tt>Parse&nbsp;URI</tt></dd></dl>
+ <dl><dt><a name="-perror"><strong>perror</strong></a>(...)</dt><dd><tt>void&nbsp;_pjsua.perror&nbsp;(string&nbsp;sender,&nbsp;string&nbsp;title,&nbsp;int&nbsp;status)&nbsp;Display&nbsp;error&nbsp;message&nbsp;for&nbsp;the&nbsp;specified&nbsp;error&nbsp;code.&nbsp;Parameters:&nbsp;sender:&nbsp;The&nbsp;log&nbsp;sender&nbsp;field;&nbsp;&nbsp;title:&nbsp;Message&nbsp;title&nbsp;for&nbsp;the&nbsp;error;&nbsp;status:&nbsp;Status&nbsp;code.</tt></dd></dl>
+ <dl><dt><a name="-player_create"><strong>player_create</strong></a>(...)</dt><dd><tt>int,&nbsp;int&nbsp;_pjsua.player_create&nbsp;(string&nbsp;filename,&nbsp;int&nbsp;options)&nbsp;Create&nbsp;a&nbsp;file&nbsp;player,&nbsp;and&nbsp;automatically&nbsp;connect&nbsp;this&nbsp;player&nbsp;to&nbsp;the&nbsp;conference&nbsp;bridge.</tt></dd></dl>
+ <dl><dt><a name="-player_destroy"><strong>player_destroy</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.player_destroy&nbsp;(int&nbsp;id)&nbsp;Close&nbsp;the&nbsp;file,&nbsp;remove&nbsp;the&nbsp;player&nbsp;from&nbsp;the&nbsp;bridge,&nbsp;and&nbsp;free&nbsp;resources&nbsp;associated&nbsp;with&nbsp;the&nbsp;file&nbsp;player.</tt></dd></dl>
+ <dl><dt><a name="-player_get_conf_port"><strong>player_get_conf_port</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.player_get_conf_port&nbsp;(int)&nbsp;Get&nbsp;conference&nbsp;port&nbsp;ID&nbsp;associated&nbsp;with&nbsp;player.</tt></dd></dl>
+ <dl><dt><a name="-player_set_pos"><strong>player_set_pos</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.player_set_pos&nbsp;(int&nbsp;id,&nbsp;int&nbsp;samples)&nbsp;Set&nbsp;playback&nbsp;position.</tt></dd></dl>
+ <dl><dt><a name="-pool_create"><strong>pool_create</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Pj_Pool">Pj_Pool</a>&nbsp;_pjsua.pool_create&nbsp;(string&nbsp;name,&nbsp;int&nbsp;init_size,&nbsp;int&nbsp;increment)&nbsp;Create&nbsp;memory&nbsp;pool&nbsp;Parameters:&nbsp;name:&nbsp;Optional&nbsp;pool&nbsp;name;&nbsp;init_size:&nbsp;Initial&nbsp;size&nbsp;of&nbsp;the&nbsp;pool;&nbsp;&nbsp;increment:&nbsp;Increment&nbsp;size.</tt></dd></dl>
+ <dl><dt><a name="-pres_dump"><strong>pres_dump</strong></a>(...)</dt><dd><tt>void&nbsp;_pjsua.pres_dump&nbsp;(int&nbsp;verbose)&nbsp;Dump&nbsp;presence&nbsp;subscriptions&nbsp;to&nbsp;log&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-reconfigure_logging"><strong>reconfigure_logging</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.reconfigure_logging&nbsp;(_pjsua.<a href="#Logging_Config">Logging_Config</a>&nbsp;c)&nbsp;Application&nbsp;can&nbsp;call&nbsp;this&nbsp;function&nbsp;at&nbsp;any&nbsp;time&nbsp;(after&nbsp;pjsua_create(),&nbsp;of&nbsp;course)&nbsp;to&nbsp;change&nbsp;logging&nbsp;settings.&nbsp;Parameters:&nbsp;c:&nbsp;Logging&nbsp;configuration.</tt></dd></dl>
+ <dl><dt><a name="-recorder_create"><strong>recorder_create</strong></a>(...)</dt><dd><tt>int,&nbsp;int&nbsp;_pjsua.recorder_create&nbsp;(string&nbsp;filename,&nbsp;int&nbsp;enc_type,&nbsp;int&nbsp;enc_param,&nbsp;int&nbsp;max_size,&nbsp;int&nbsp;options)&nbsp;Create&nbsp;a&nbsp;file&nbsp;recorder,&nbsp;and&nbsp;automatically&nbsp;connect&nbsp;this&nbsp;recorder&nbsp;to&nbsp;the&nbsp;conference&nbsp;bridge.&nbsp;The&nbsp;recorder&nbsp;currently&nbsp;supports&nbsp;recording&nbsp;WAV&nbsp;file,&nbsp;and&nbsp;on&nbsp;Windows,&nbsp;MP3&nbsp;file.&nbsp;The&nbsp;type&nbsp;of&nbsp;the&nbsp;recorder&nbsp;to&nbsp;use&nbsp;is&nbsp;determined&nbsp;by&nbsp;the&nbsp;extension&nbsp;of&nbsp;the&nbsp;file&nbsp;(e.g.&nbsp;'.wav'&nbsp;or&nbsp;'.mp3').</tt></dd></dl>
+ <dl><dt><a name="-recorder_destroy"><strong>recorder_destroy</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.recorder_destroy&nbsp;(int&nbsp;id)&nbsp;Destroy&nbsp;recorder&nbsp;(this&nbsp;will&nbsp;complete&nbsp;recording).</tt></dd></dl>
+ <dl><dt><a name="-recorder_get_conf_port"><strong>recorder_get_conf_port</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.recorder_get_conf_port&nbsp;(int&nbsp;id)&nbsp;Get&nbsp;conference&nbsp;port&nbsp;associated&nbsp;with&nbsp;recorder.</tt></dd></dl>
+ <dl><dt><a name="-set_ec"><strong>set_ec</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.set_ec&nbsp;(int&nbsp;tail_ms,&nbsp;int&nbsp;options)&nbsp;Configure&nbsp;the&nbsp;echo&nbsp;canceller&nbsp;tail&nbsp;length&nbsp;of&nbsp;the&nbsp;sound&nbsp;port.</tt></dd></dl>
+ <dl><dt><a name="-set_no_snd_dev"><strong>set_no_snd_dev</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#PJMedia_Port">PJMedia_Port</a>&nbsp;_pjsua.set_no_snd_dev&nbsp;()&nbsp;Disconnect&nbsp;the&nbsp;main&nbsp;conference&nbsp;bridge&nbsp;from&nbsp;any&nbsp;sound&nbsp;devices,&nbsp;and&nbsp;let&nbsp;application&nbsp;connect&nbsp;the&nbsp;bridge&nbsp;to&nbsp;it's&nbsp;own&nbsp;sound&nbsp;device/master&nbsp;port.</tt></dd></dl>
+ <dl><dt><a name="-set_null_snd_dev"><strong>set_null_snd_dev</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.set_null_snd_dev&nbsp;()&nbsp;Set&nbsp;pjsua&nbsp;to&nbsp;use&nbsp;null&nbsp;sound&nbsp;device.&nbsp;The&nbsp;null&nbsp;sound&nbsp;device&nbsp;only&nbsp;provides&nbsp;the&nbsp;timing&nbsp;needed&nbsp;by&nbsp;the&nbsp;conference&nbsp;bridge,&nbsp;and&nbsp;will&nbsp;not&nbsp;interract&nbsp;with&nbsp;any&nbsp;hardware.</tt></dd></dl>
+ <dl><dt><a name="-set_snd_dev"><strong>set_snd_dev</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.set_snd_dev&nbsp;(int&nbsp;capture_dev,&nbsp;int&nbsp;playback_dev)&nbsp;Select&nbsp;or&nbsp;change&nbsp;sound&nbsp;device.&nbsp;Application&nbsp;may&nbsp;call&nbsp;this&nbsp;function&nbsp;at&nbsp;any&nbsp;time&nbsp;to&nbsp;replace&nbsp;current&nbsp;sound&nbsp;device.</tt></dd></dl>
+ <dl><dt><a name="-start"><strong>start</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.start&nbsp;(void)&nbsp;Application&nbsp;is&nbsp;recommended&nbsp;to&nbsp;call&nbsp;this&nbsp;function&nbsp;after&nbsp;all&nbsp;initialization&nbsp;is&nbsp;done,&nbsp;so&nbsp;that&nbsp;the&nbsp;library&nbsp;can&nbsp;do&nbsp;additional&nbsp;checking&nbsp;set&nbsp;up&nbsp;additional</tt></dd></dl>
+ <dl><dt><a name="-strerror"><strong>strerror</strong></a>(...)</dt><dd><tt>Get&nbsp;error&nbsp;message</tt></dd></dl>
+ <dl><dt><a name="-thread_register"><strong>thread_register</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.<a href="#-thread_register">thread_register</a>(string&nbsp;name,&nbsp;int[]&nbsp;desc)</tt></dd></dl>
+ <dl><dt><a name="-transport_close"><strong>transport_close</strong></a>(...)</dt><dd><tt>void&nbsp;_pjsua.transport_close&nbsp;(_pjsua.Transport_ID&nbsp;id,&nbsp;int&nbsp;force)&nbsp;Close&nbsp;the&nbsp;transport.&nbsp;If&nbsp;transport&nbsp;is&nbsp;forcefully&nbsp;closed,&nbsp;it&nbsp;will&nbsp;be&nbsp;immediately&nbsp;closed,&nbsp;and&nbsp;any&nbsp;pending&nbsp;transactions&nbsp;that&nbsp;are&nbsp;using&nbsp;the&nbsp;transport&nbsp;may&nbsp;not&nbsp;terminate&nbsp;properly.&nbsp;Otherwise,&nbsp;the&nbsp;system&nbsp;will&nbsp;wait&nbsp;until&nbsp;all&nbsp;transactions&nbsp;are&nbsp;closed&nbsp;while&nbsp;preventing&nbsp;new&nbsp;users&nbsp;from&nbsp;using&nbsp;the&nbsp;transport,&nbsp;and&nbsp;will&nbsp;close&nbsp;the&nbsp;transport&nbsp;when&nbsp;it&nbsp;is&nbsp;safe&nbsp;to&nbsp;do&nbsp;so.</tt></dd></dl>
+ <dl><dt><a name="-transport_config_default"><strong>transport_config_default</strong></a>(...)</dt><dd><tt>_pjsua.<a href="#Transport_Config">Transport_Config</a>&nbsp;_pjsua.transport_config_default&nbsp;()&nbsp;Call&nbsp;this&nbsp;function&nbsp;to&nbsp;initialize&nbsp;UDP&nbsp;config&nbsp;with&nbsp;default&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-transport_create"><strong>transport_create</strong></a>(...)</dt><dd><tt>int,&nbsp;int&nbsp;_pjsua.transport_create&nbsp;(int&nbsp;type,&nbsp;_pjsua.<a href="#Transport_Config">Transport_Config</a>&nbsp;cfg)&nbsp;Create&nbsp;SIP&nbsp;transport.</tt></dd></dl>
+ <dl><dt><a name="-transport_enum_transports"><strong>transport_enum_transports</strong></a>(...)</dt><dd><tt>int[]&nbsp;_pjsua.enum_transports&nbsp;()&nbsp;Enumerate&nbsp;all&nbsp;transports&nbsp;currently&nbsp;created&nbsp;in&nbsp;the&nbsp;system.</tt></dd></dl>
+ <dl><dt><a name="-transport_get_info"><strong>transport_get_info</strong></a>(...)</dt><dd><tt>void&nbsp;_pjsua.transport_get_info&nbsp;(_pjsua.Transport_ID&nbsp;id,&nbsp;_pjsua.<a href="#Transport_Info">Transport_Info</a>&nbsp;info)&nbsp;Get&nbsp;information&nbsp;about&nbsp;transports.</tt></dd></dl>
+ <dl><dt><a name="-transport_set_enable"><strong>transport_set_enable</strong></a>(...)</dt><dd><tt>void&nbsp;_pjsua.transport_set_enable&nbsp;(_pjsua.Transport_ID&nbsp;id,&nbsp;int&nbsp;enabled)&nbsp;Disable&nbsp;a&nbsp;transport&nbsp;or&nbsp;re-enable&nbsp;it.&nbsp;By&nbsp;default&nbsp;transport&nbsp;is&nbsp;always&nbsp;enabled&nbsp;after&nbsp;it&nbsp;is&nbsp;created.&nbsp;Disabling&nbsp;a&nbsp;transport&nbsp;does&nbsp;not&nbsp;necessarily&nbsp;close&nbsp;the&nbsp;socket,&nbsp;it&nbsp;will&nbsp;only&nbsp;discard&nbsp;incoming&nbsp;messages&nbsp;and&nbsp;prevent&nbsp;the&nbsp;transport&nbsp;from&nbsp;being&nbsp;used&nbsp;to&nbsp;send&nbsp;outgoing&nbsp;messages.</tt></dd></dl>
+ <dl><dt><a name="-verify_sip_url"><strong>verify_sip_url</strong></a>(...)</dt><dd><tt>int&nbsp;_pjsua.verify_sip_url&nbsp;(string&nbsp;c_url)&nbsp;Verify&nbsp;that&nbsp;valid&nbsp;SIP&nbsp;url&nbsp;is&nbsp;given&nbsp;Parameters:&nbsp;c_url:&nbsp;The&nbsp;URL,&nbsp;as&nbsp;NULL&nbsp;terminated&nbsp;string.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>PJSIP_INV_STATE_CALLING</strong> = 1<br>
+<strong>PJSIP_INV_STATE_CONFIRMED</strong> = 5<br>
+<strong>PJSIP_INV_STATE_CONNECTING</strong> = 4<br>
+<strong>PJSIP_INV_STATE_DISCONNECTED</strong> = 6<br>
+<strong>PJSIP_INV_STATE_EARLY</strong> = 3<br>
+<strong>PJSIP_INV_STATE_INCOMING</strong> = 2<br>
+<strong>PJSIP_INV_STATE_NULL</strong> = 0<br>
+<strong>PJSIP_TRANSPORT_LOOP</strong> = 5<br>
+<strong>PJSIP_TRANSPORT_LOOP_DGRAM</strong> = 6<br>
+<strong>PJSIP_TRANSPORT_SCTP</strong> = 4<br>
+<strong>PJSIP_TRANSPORT_TCP</strong> = 2<br>
+<strong>PJSIP_TRANSPORT_TLS</strong> = 3<br>
+<strong>PJSIP_TRANSPORT_UDP</strong> = 1<br>
+<strong>PJSIP_TRANSPORT_UNSPECIFIED</strong> = 0<br>
+<strong>PJSUA_ACC_MAX_PROXIES</strong> = 8<br>
+<strong>PJSUA_BUDDY_STATUS_OFFLINE</strong> = 2<br>
+<strong>PJSUA_BUDDY_STATUS_ONLINE</strong> = 1<br>
+<strong>PJSUA_BUDDY_STATUS_UNKNOWN</strong> = 0<br>
+<strong>PJSUA_CALL_MEDIA_ACTIVE</strong> = 1<br>
+<strong>PJSUA_CALL_MEDIA_LOCAL_HOLD</strong> = 2<br>
+<strong>PJSUA_CALL_MEDIA_NONE</strong> = 0<br>
+<strong>PJSUA_CALL_MEDIA_REMOTE_HOLD</strong> = 3<br>
+<strong>PJSUA_DEFAULT_ACC_PRIORITY</strong> = 0<br>
+<strong>PJSUA_DEFAULT_CLOCK_RATE</strong> = 16000<br>
+<strong>PJSUA_DEFAULT_CODEC_QUALITY</strong> = 8<br>
+<strong>PJSUA_DEFAULT_EC_TAIL_LEN</strong> = 200<br>
+<strong>PJSUA_DEFAULT_ILBC_MODE</strong> = 30<br>
+<strong>PJSUA_INVALID_ID</strong> = -1<br>
+<strong>PJSUA_MAX_ACC</strong> = 8<br>
+<strong>PJSUA_MAX_BUDDIES</strong> = 256<br>
+<strong>PJSUA_MAX_CALLS</strong> = 32<br>
+<strong>PJSUA_MAX_CONF_PORTS</strong> = 254<br>
+<strong>PJSUA_PUBLISH_EXPIRATION</strong> = 600<br>
+<strong>PJSUA_REG_INTERVAL</strong> = 300<br>
+<strong>PJSUA_XFER_NO_REQUIRE_REPLACES</strong> = 1</td></tr></table>
+<!--#include virtual="/footer.html" -->
+</body></html>

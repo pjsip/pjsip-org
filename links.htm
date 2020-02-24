@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Open Source SIP Stacks and Media Links</title>
+		<link rel="stylesheet" type="text/css" href="/style/style.css">
+	</head>
+	<body>
+		<!--#include file="header.html" -->
+			<TABLE id="ContentSubTable" cellSpacing="6" cellPadding="4" width="100%" border="0">
+				<TR>
+					<TD>
+						<P><A href="/">pjsip.org</A> --&gt; Open Source SIP (Session Initiation Protocol) Stack and Media Links</P>
+						<P>&nbsp;</P>
+						<H1>Open Source SIP Stack and Media Links</H1>
+						<P>&nbsp;</P>
+						<P>&nbsp;</P>
+					</TD>
+					<TD></TD>
+				</TR>
+				<TR>
+					<TD>
+						<H3><A name="base"></A>Recommended Open Source Portability Framework</H3>
+							<HR width="100%" SIZE="1">
+						<P>If you're looking for&nbsp;the base portability/framework library for building 
+							your application,&nbsp;then I can recommend the following fine libraries:</P>
+							<TABLE class="fancy" id="Table3" cellSpacing="4" cellPadding="8" width="100%" border="0">
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://apr.apache.org/"><STRONG>APR</STRONG></A></STRONG></TD>
+									<TD vAlign="top">Apache Portable Runtime, a fine C library/framework for building 
+										portable and high performance applications.</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.cs.wustl.edu/~schmidt/ACE.html"><STRONG>ACE</STRONG></A></STRONG></TD>
+									<TD vAlign="top">Adaptive Communication Environment, a fine C++ library/framework 
+										featuring many design patterns for building portable and high performance 
+										applications.</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="/docs/latest/pjlib/docs/html/index.htm">PJLIB</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>PJLIB contains many functionalities as found in APR and ACE. It is written in C 
+											and it takes portability to extreme level.</P>
+									</TD>
+								</TR>
+							</TABLE>
+						<P>&nbsp;</P>
+						<P>&nbsp;</P>
+						<H3><A name="opensource_media_components"></A>Recommended Open Source Media Components</H3>
+							<HR width="100%" SIZE="1">
+						<P>If you're looking for some components/libraries for your multimedia 
+							applications, then I can recommend the following fine software libraries:</P>
+							<TABLE class="fancy" id="Table1" cellSpacing="4" cellPadding="8" width="100%" border="0">
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><STRONG><A href="http://www.portaudio.com">PortAudio</A></STRONG></STRONG></TD>
+									<TD vAlign="top">a fine portable cross-platform Audio API written in C for 
+										abstracting sound devices on Windows, Windows Mobile/WinCE, Unix, Linux, MacOS, 
+										etc.</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www-ccrma.stanford.edu/~jos/resample/">resample</A></STRONG></TD>
+									<TD vAlign="top">a fine library for performing high level sample rate conversion.</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.speex.org">Speex</A></STRONG></TD>
+									<TD vAlign="top">a fine audio codec! (what else can I say)</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="/docs/latest/pjmedia/docs/html/index.htm">PJMEDIA</A></STRONG></TD>
+									<TD vAlign="top">a media framework suitable for embedeed/DSP or desktop development 
+										alike.</TD>
+								</TR>
+							</TABLE>
+						<P>&nbsp;</P>
+						<P>&nbsp;</P>
+						<H3><A name="opensource_media_components"></A><A name="opensource_sip_stacks"></A>Open Source SIP (Session Initiation Protocol) Stacks</H3>
+							<HR width="100%" SIZE="1">
+						<P>
+						Please find below links to opensource SIP stacks are actively 
+						maintained at the time of writing:
+							<TABLE class="fancy" id="Table2" cellSpacing="4" cellPadding="8" width="100%" border="0">
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://snad.ncsl.nist.gov/proj/iptel/">NIST 
+												SIP</A></STRONG></TD>
+									<TD vAlign="top">Java SIP stack as reference implementation of JAIN API, so 
+										it's&nbsp;has good&nbsp;API and documentation. It also has reference 
+										implementation for servers and user agent.</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.minisip.org">minisip</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>GUI user agent and SIP stack with focus on security, and is portable across 
+											Win32, Windows Mobile, Linux, and Linux iPaq. Supports audio and video. [LGPL].</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.mjsip.org">mjsip</A></STRONG></TD>
+									<TD vAlign="top">SIP stack written in Java, with layered API approach. Applications 
+										include servers and user agent with audio and video capabilities. [GPL]</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.opensipstack.org/">opensipstack</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>SIP stack with media, written in C++ and&nbsp;depends on PWLIB. The website has 
+											reference implementation for SBC and also an ActiveX component for building SIP 
+											user agents.
+										</P>
+										<P>Footprint is quite large (megs?), but it has media stack implementation (with 
+											video?) too.&nbsp;[MPL]</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.antisip.com">osip2 and exosip2</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>One of the earliest open source SIP stack, so it enjoys good number of adopters.
+										</P>
+										<P>Footprint is quite small (several hundreds KBs), and supported ports include 
+											Windows, Linux/*nix, VxWorks,&nbsp;MacOS X, and many embedded 
+											targets.&nbsp;Media stack is available via commercial license only. [GPL or 
+											commercial].</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://dev.openwengo.com/trac/openwengo/trac.cgi/wiki/PhApi">PhAPI</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>PhoneAPI from <A href="http://www.openwengo.org">OpenWengo</A> project, written 
+											in C. It says to provide easy to use high level API for developing SIP audio 
+											and video user agents.</P>
+										<P>Ports include Linux, Windows, and MacOS X. Media stack included. (GPL)</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="/">PJSIP</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>The&nbsp;SIP (and media) stack features in this website.</P>
+										<P>PJSIP SIP stack is written in C and is mainly targetted for small footprint, feature rich user 
+											agents, although it has attracted some server side developments too.</P>
+										<P>Footprint is very small (&lt;200KB), performance is very good (thousands of calls per second), and it is very very portable (Windows, 
+											Windows Mobile (WinCE, PDA, SmartPhone), Linux, *nix, MacOS X, *BSD (FreeBSD), RTEMS, Symbian OS, etc.), 
+											which makes it good candidate for embedded developments. 
+											Complete media framework is available with PJMEDIA. [GPL or other]</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.sipfoundry.org/reSIProcate/">resiprocate</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>C++ stack from <A href="http://www.sipfoundry.org">SIPFoundry</A> non-profit SIP 
+											community project. The community is backed by many commercial companies and it 
+											hosts health number of active developers. (Vocal)</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://sofia-sip.sourceforge.net/">Sofia SIP</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>A SIP library written in C for building SIP clients. Supports many SIP call, 
+											presence, instant messaging features, as well as TCP, IPv6, TLS, and STUN 
+											support.</P>
+										<P>Footprint is quite small (several hundreds KBs), and there is user agent 
+											reference implementation which uses gstreamer for the media. (LGPL)</P>
+									</TD>
+								</TR>
+							</TABLE>
+						<P>&nbsp;</P>
+						<P><A name="opensource_media_components"></A><A name="opensource_sip_stacks"></A>&nbsp;</P>
+						<H3><A name="opensource_media_components"></A><A name="opensource_sip_stacks"></A><A name="links"></A>Other SIP 
+							and Media Directory </H3>
+							<HR width="100%" SIZE="1">
+							<TABLE class="fancy" id="Table10" cellSpacing="4" cellPadding="8" width="100%" border="0">
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.voip-info.org/wiki-Open+Source+VOIP+Software">Open 
+												Source VOIP Software</A></STRONG></TD>
+									<TD vAlign="top">A wealth collection of open source VoIP links.</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.cs.columbia.edu/sip/">Henning's 
+												SIP Page</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>Very good place to look for SIP.</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD vAlign="top" width="104"><STRONG><A href="http://www.pernau.at/kd/voip/index.html">Klaus 
+												Darilion's VOIP bookmark</A></STRONG></TD>
+									<TD vAlign="top">
+										<P>Wealth number of SIP and media links, worth checking.</P>
+									</TD>
+								</TR>
+							</TABLE>
+						<P>&nbsp;</P>
+						<P><A name="opensource_media_components"></A><A name="opensource_sip_stacks"></A>&nbsp;</P>
+						<H3><A name="opensource_media_components"></A><A name="opensource_sip_stacks"></A><A name="links"></A><A name="feedback"></A>Feedback</H3>
+							<HR width="100%" SIZE="1">
+						<P>
+						If you like to update any information in this page or want to add an entry to 
+						this page, please send email to me (bennylp at pjsip.org).
+						<P>
+						<P>&nbsp;</P>
+					</TD>
+					<TD vAlign="top">
+						<P>&nbsp;</P>
+							<TABLE class="news" id="Table4" cellSpacing="0" cellPadding="2" width="126"
+								border="1">
+								<TR bgColor="#000099">
+									<TH height="22">
+										<P align="center"><STRONG><FONT color="#ffffff">Open Source Links</FONT></STRONG></P>
+									</TH>
+								</TR>
+								<TR>
+									<TD vAlign="top">
+										<P><STRONG>- <A href="#base">Open Source Base Framework/Portability Libraries</A>&nbsp;</STRONG></P>
+										<P><STRONG>- <A href="#opensource_media_components">Open Source Media Components</A></STRONG></P>
+										<P><STRONG>- <A href="#opensource_sip_stacks">Open Source SIP (Session Initiation Protocol) Stacks</A></STRONG></P>
+										<P><STRONG>- <A href="#links">Other SIP and Media Directory</A></STRONG></P>
+										<P><STRONG>- <A href="#feedback">Feedback</A></STRONG></P>
+									</TD>
+								</TR>
+							</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		<!--#include file="footer.html" -->
+	</body>
+</html>

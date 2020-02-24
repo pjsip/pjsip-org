@@ -1,0 +1,1348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>Manual of pjsua - Command Line SIP User Agent/Softphone</title><LINK href="/style/style.css" type="text/css" rel="stylesheet"></head>
+  <body>
+	<!--#include file="header.html" -->
+	<P></P>
+	  <TABLE id="ContentSubTable" cellSpacing="6" cellPadding="4" width="100%" border="0">
+		<TR>
+		  <TD>
+<H1>pjsua Manual Page</H1>
+<TABLE BORDER="0" width="100%">
+<TR>
+ <TD><p>version: 0.9.0<BR>[Last Update: $Date: 2007-10-04 14:05:21 +0100 (Thu, 04 Oct 2007) $]</p></TD>
+ <TD><p align="right"><a href="/cgi-bin/showpage.cgi?pjsua">Print Friendly Page</a></p></TD>
+</TR>
+</TABLE>
+<HR>
+		  </TD>
+		  <TD width="15%"></TD>
+		</TR>
+		<TR>
+		  <TD>
+			<p align="center">
+			<IMG SRC="/pjsip/docs/html/pjsua.jpg" ALT="PJSUA screnshot">
+			</p>
+			<p align="center">
+			Screenshot of pjsua on Windows, the command line SIP soft phone.<BR>
+			pjsua can run on Windows, Linux, *nix, MacOS X, and many more.
+			</p>
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+			<H2>Table of Contents</H2>
+			<HR>
+			<p><b><A HREF="#intro"><FONT size="2">Introduction</FONT></A></b></p>
+
+			<p><b><A HREF="#reference"><FONT size="2">Command Reference</FONT></A></b></p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#synopsis"><b>Synopsis</b></A></p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmdline"><b>Command Line Options</b></A></p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_general">General Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_logging">Logging Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_acc">SIP Account Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_auth">SIP Account Authentication Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_transport">Transport Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_tls">TLS Transport Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_media">Media Options</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_buddy">Buddy List</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#opt_ua">User Agent Options</A></p>
+
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#menu"><b>Application Menu</b></A></p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmd_call">Call Commands</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmd_im">IM and Presence Commands</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmd_acc">SIP Account Commands</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmd_conf">Call Conference Commands</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmd_stat">Status and Config Commands</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#cmd_other">Other Commands</A><BR>
+
+			<p><b><A HREF="#invoking"><FONT size="2">Sample Commands</FONT></A></b></p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#basic">Basic Peer-to-Peer SIP</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#acc">Registering with SIP Provider</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#tcp">Using TCP Transport</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#ipv6">Using IPv6</A><BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#misc">Miscellaneous</A></p>
+
+			<p><b><A HREF="#config_file"><FONT size="2">Config File</FONT></A></b></p>
+
+			<P>&nbsp;</P>
+			<A NAME="intro"></A><H2>Introduction</H2>
+			<HR>
+			<P>pjsua is an open source command line SIP user agent (softphone) that is used as the 
+			  reference implementation for PJSIP, PJNATH, and PJMEDIA. Despite its simple
+			  command line appearance, it does pack many features!
+			</P>
+			SIP features:
+			<UL>
+			  <LI> Mutiple lines/identities (account registrations).
+			  <LI> Multiple calls.
+			  <LI> IPv6 (added in version 1.2)
+			  <LI> PRACK (100rel, RFC 3262).
+			  <LI> UPDATE (RFC 3311).
+			  <LI> OPTIONS.
+			  <LI> Call hold.
+			  <LI> Call transfer (attended or unattended, with or without refersub, RFC 3515, 3891, 3892, 4488).
+			  <LI> SIMPLE with PIDF and XPIDF support (SUBSCRIBE/NOTIFY, RFC 3265, 3856, 3863). 
+			  <LI> Custom presence status text (RPID, RFC 4480).
+			  <LI> PUBLISH support (RFC 3903).
+			  <LI> Instant messaging (MESSAGE) and message composing indication (RFC 3428, 3994)
+		 	  <LI> UDP, TCP, and TLS transports. 
+			  <LI> DNS SRV resolution for SIP servers (RFC 3263).
+			  <LI> DTMF with INFO (RFC 2976).
+			  <LI> STUN (RFC 3489bis).
+			  <LI> Digest AKA authentication (in development, RFC 3310, 4169).
+			</UL>
+
+		 	Media features:
+			<UL>	
+			  <LI> Multiple Concurrent calls 
+			  <LI> Conferencing 
+			  <LI> Speex, iLBC, GSM, G711, G722, and L16 codecs.
+			  <LI> Wideband and ultra-wideband codec (Speex)
+			  <LI> More codecs via <A HREF="http://trac.pjsip.org/repos/wiki/Intel_IPP_Codecs">Intel IPP library</A>: AMR-NB, AMR-WB, G.722.1 (Siren7), G.723.1, G.726, G.728, G.729A
+			  <LI> Stereo codecs (L16)
+			  <LI> WAV file playing, streaming, and recording.
+			  <LI> RTCP
+			  <LI> Call quality monitoring.
+			  <LI> RFC 2833
+			  <LI> Auto-answer, auto-play file, auto-loop RTP
+			  <LI> Tone generation.
+			  <LI> AEC (Accoustic echo cancellation).
+		  	<LI> Adaptive jitter buffer.
+			  <LI> Adaptive silence detection.
+			  <LI> PLC (Packet Lost Concealment).
+			  <LI> Packet loss simulation.
+			  <LI> Multiple frames per RTP packet.
+			  <LI> SRTP (Secure RTP)
+			</UL>
+
+		 	NAT traversal features:
+			<UL>	
+			  <LI> ICE (Interactive Connectivity Establishment, latest ICE draft).
+			  <LI> STUN (latest rfc3489-bis).
+			  <LI> TURN (latest draft-ietf-behave-turn)
+			  <LI> rport.
+			  <LI> SIP TCP and TLS keep-alive.
+			  <LI> Auto-detect and recover SIP UDP address change.
+			  <LI> Auto-detect ICE media transport change.
+			</UL>
+
+			<P>pjsua can be downloaded from <A href="http://www.pjsip.org/download.htm">http://www.pjsip.org/download.htm</A>.
+			</P>
+			<P>&nbsp;</P>
+			<A NAME="reference"></A><H2>Reference</H2>
+			<A NAME="synopsis"></A><H3>Synopsis</H3>
+<div class="fragment"><pre class="fragment">
+
+Usage:
+  pjsua [options] [SIP URL to call]
+
+General options:
+  --config-file=file  Read the config/arguments from file.
+  --help              Display this help screen
+  --version           Display version info
+
+Logging options:
+  --log-file=fname    Log to filename (default stderr)
+  --log-level=N       Set log max level to N (0(none) to 6(trace)) (default=5)
+  --app-log-level=N   Set log max level for stdout display (default=4)
+  --color             Use colorful logging (default yes on Win32)
+  --no-color          Disable colorful logging
+  --light-bg          Use dark colors for light background (default is dark bg)
+
+SIP Account options:
+  --use-ims           Enable 3GPP/IMS related settings on this account
+  --use-srtp=N        Use SRTP?  0:disabled, 1:optional, 2:mandatory (def:0)
+  --srtp-secure=N     SRTP require secure SIP? 0:no, 1:tls, 1:sips (def:1)
+  --registrar=url     Set the URL of registrar server
+  --id=url            Set the URL of local ID (used in From header)
+  --contact=url       Optionally override the Contact information
+  --contact-params=S  Append the specified parameters S in Contact URI
+  --proxy=url         Optional URL of proxy server to visit
+                      May be specified multiple times
+  --reg-timeout=SEC   Optional registration interval (default 55)
+  --realm=string      Set realm
+  --username=string   Set authentication username
+  --password=string   Set authentication password
+  --publish           Send presence PUBLISH for this account
+  --use-100rel        Require reliable provisional response (100rel)
+  --auto-update-nat=N Where N is 0 or 1 to enable/disable SIP traversal behind
+                      symmetric NAT (default 1)
+  --next-cred         Add another credentials
+
+SIP Account Control:
+  --next-account      Add more account
+
+Transport Options:
+  --ipv6              Use IPv6 instead for SIP and media.
+  --local-port=port   Set TCP/UDP port. This implicitly enables both
+                      TCP and UDP transports on the specified port, unless
+                      if TCP or UDP is disabled.
+  --ip-addr=IP        Use the specifed address as SIP and RTP addresses.
+                      (Hint: the IP may be the public IP of the NAT/router)
+  --bound-addr=IP     Bind transports to this IP interface
+  --no-tcp            Disable TCP transport.
+  --no-udp            Disable UDP transport.
+  --nameserver=NS     Add the specified nameserver to enable SRV resolution
+                      This option can be specified multiple times.
+  --outbound=url      Set the URL of global outbound proxy server
+                      May be specified multiple times
+  --stun-srv=name     Set STUN server host or domain
+
+TLS Options:
+  --use-tls           Enable TLS transport (default=no)
+  --tls-ca-file       Specify TLS CA file (default=none)
+  --tls-cert-file     Specify TLS certificate file (default=none)
+  --tls-privkey-file  Specify TLS private key file (default=none)
+  --tls-password      Specify TLS password to private key file (default=none)
+  --tls-verify-server Verify server's certificate (default=no)
+  --tls-verify-client Verify client's certificate (default=no)
+  --tls-neg-timeout   Specify TLS negotiation timeout (default=no)
+  --tls-cipher        Specify prefered TLS cipher (optional).
+                      May be specified multiple times
+
+Media Options:
+  --add-codec=name    Manually add codec (default is to enable all)
+  --dis-codec=name    Disable codec (can be specified multiple times)
+  --clock-rate=N      Override conference bridge clock rate
+  --snd-clock-rate=N  Override sound device clock rate
+  --stereo            Audio device and conference bridge opened in stereo mode
+  --null-audio        Use NULL audio device
+  --play-file=file    Register WAV file in conference bridge.
+                      This can be specified multiple times.
+  --play-tone=FORMAT  Register tone to the conference bridge.
+                      FORMAT is 'F1,F2,ON,OFF', where F1,F2 are
+                      frequencies, and ON,OFF=on/off duration in msec.
+                      This can be specified multiple times.
+  --auto-play         Automatically play the file (to incoming calls only)
+  --auto-loop         Automatically loop incoming RTP to outgoing RTP
+  --auto-conf         Automatically put calls in conference with others
+  --rec-file=file     Open file recorder (extension can be .wav or .mp3
+  --auto-rec          Automatically record conversation
+  --quality=N         Specify media quality (0-10, default=6)
+  --ptime=MSEC        Override codec ptime to MSEC (default=specific)
+  --no-vad            Disable VAD/silence detector (default=vad enabled)
+  --ec-tail=MSEC      Set echo canceller tail length (default=256)
+  --ec-opt=OPT        Select echo canceller algorithm (0=default,
+                        1=speex, 2=suppressor)
+  --ilbc-mode=MODE    Set iLBC codec mode (20 or 30, default is 30)
+  --capture-dev=id    Audio capture device ID (default=-1)
+  --playback-dev=id   Audio playback device ID (default=-1)
+  --capture-lat=N     Audio capture latency, in ms (default=100)
+  --playback-lat=N    Audio playback latency, in ms (default=100)
+  --snd-auto-close=N  Auto close audio device when it is idle for N seconds.
+                      Specify N=-1 (default) to disable this feature.
+                      Specify N=0 for instant close when unused.
+  --no-tones          Disable audible tones
+  --jb-max-size       Specify jitter buffer maximum size, in frames (default=-1)
+
+Media Transport Options:
+  --use-ice           Enable ICE (default:no)
+  --ice-no-host       Disable ICE host candidates (default: no)
+  --ice-no-rtcp       Disable RTCP component in ICE (default: no)
+  --rtp-port=N        Base port to try for RTP (default=4000)
+  --rx-drop-pct=PCT   Drop PCT percent of RX RTP (for pkt lost sim, default: 0)
+  --tx-drop-pct=PCT   Drop PCT percent of TX RTP (for pkt lost sim, default: 0)
+  --use-turn          Enable TURN relay with ICE (default:no)
+  --turn-srv          Domain or host name of TURN server ("NAME:PORT" format)
+  --turn-tcp          Use TCP connection to TURN server (default no)
+  --turn-user         TURN username
+  --turn-passwd       TURN password
+
+Buddy List (can be more than one):
+  --add-buddy url     Add the specified URL to the buddy list.
+
+User Agent options:
+  --auto-answer=code  Automatically answer incoming calls with code (e.g. 200)
+  --max-calls=N       Maximum number of concurrent calls (default:4, max:255)
+  --thread-cnt=N      Number of worker threads (default:1)
+  --duration=SEC      Set maximum call duration (default:no limit)
+  --norefersub        Suppress event subscription when transfering calls
+  --use-compact-form  Minimize SIP message size
+  --no-force-lr       Allow strict-route to be used (i.e. do not force lr)
+  --accept-redirect=N Specify how to handle call redirect (3xx) response.
+                      0: reject, 1: follow automatically (default), 2: ask
+
+When URL is specified, pjsua will immediately initiate call to that URL
+
+
+
+</pre></div>
+
+
+			<A NAME="cmdline"></A><H3>Command Line Options</H3>
+			<HR>
+			<P>The following options can be specified when invoking pjsua. The options use 
+			  standard getopt long option convention, which means that option value can be 
+			  specified after the option with either whitespace or equal sign.</P>
+			<P>&nbsp;</P>
+			<A NAME="opt_general"></A><H4>General Options</H4>
+			  <TABLE class="fancy" id="Table1" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--help</STRONG></TD>
+				  <TD>Show the command line help.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--version</STRONG></TD>
+				  <TD>Display pjsua version along with other compilation flags then quits.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--config-file=FILE</STRONG></TD>
+				  <TD>Read the command line options from FILE name.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="opt_logging"></A><H4>Logging Options</H4>
+			  <TABLE class="fancy" id="Table2" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--log-file=FILE</STRONG></TD>
+				  <TD vAlign="top">Save all logging to FILE name.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--log-level=(0-6)</STRONG></TD>
+				  <TD vAlign="top">
+					<P>Set maximum logging verbosity level. Default is 5.
+					</P>
+					<UL>
+					  <LI>
+					  Level 0 Display fatal error only.
+					  <LI>
+					  Level 1 Display error messages and more severe verbosity level only.
+					  <LI>
+					  Level 2 Display Warning&nbsp;messages and more severe verbosity level 
+					  only.&nbsp;
+					  <LI>
+					  Level 3 Info&nbsp;verbosity (normally used by applications).
+					  <LI>
+					  Level 4 Important PJSIP events.
+					  <LI>
+					  Level 5 Detailed PJSIP events.
+					  <LI>
+						Level 6 Very detailed PJLIB events.
+					  </LI>
+					</UL>
+				  </TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--app-log-level=(0-6)</STRONG></TD>
+				  <TD vAlign="top">Set maximum logging verbosify that will be displayed on 
+					screen/console. Default is 4.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="opt_acc"></A><H4>SIP Account Options</H4>
+			<P>PJSUA can be configured with zero or more SIP accounts. SIP accounts can be 
+			  used to log in to SIP services, and send or receive requests using the 
+			  specified SIP services.
+			</P>
+			<P>Specify these options for each account to be configured. If you wish to create 
+			  more account, specify "--next-account" to begin specifying parameters for the 
+			  next account.</P>
+			  <TABLE class="fancy" id="Table3" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--id=URL</STRONG></TD>
+				  <TD>Set SIP URL of the account(i.e. From header). For example: 
+					"sip:bob@example.com"</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--contact=URL</STRONG></TD>
+				  <TD>Optional SIP contact (i.e. Contact header). Specifying custom contact is not 
+					recommended , because pjsua is able to create contact from the user id and 
+					transport info.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--registrar=URL</STRONG></TD>
+				  <TD>Set the URL of the registrar server. It not specified, then the account will 
+					not register. An example of URL: "sip:example.com"</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--proxy=URL</STRONG></TD>
+				  <TD>Optionally set the URL of proxies to build initial route set for all requests 
+					using this account. This option may be specified multiple times. The URL MUST 
+					have ";lr"parameter. For example, if you want all outgoing SIP requests to go 
+					via proxy.example.com, then the URL should be: "sip:proxy.example.com;lr".</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--reg-timeout=SECONDS</STRONG></TD>
+				  <TD>Set optional timeout (i.e. Expires header) for SIP account registration, in 
+					seconds. Default is 55.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--publish</STRONG></TD>
+				  <TD>Enable presence publication for this account, by sending PUBLISH request to
+				  	the registrar.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-100rel</STRONG></TD>
+				  <TD>Require the use of reliable provisional response (100rel, PRACK) for this account.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-ims</STRONG></TD>
+				  <TD>Enable 3GPP/IMS related settings on this account.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-srtp=N</STRONG></TD>
+				  <TD>Control SRTP usage for this account. N=0: disabled, N=1: use optional disposition 
+						for SRTP in SDP, N=2: require SRTP for all calls for this account. Default is 0.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--srtp-secure=N</STRONG></TD>
+				  <TD>Control whether the use of SRTP requires secure signaling. N=0: no, N=1: secure 
+						transport to next hop must be used, N=2: secure end-to-end transport must be used.
+						Default is 1.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--auto-update-nat=N</STRONG></TD>
+				  <TD>Allow changing contact header if necessary to work with symmetric NAT. 
+						Default is 1.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="opt_auth"></A><H4>SIP Account Authentication Options</H4>
+			<P>Each account has separate authentication settings, and you can put multiple 
+			  credentials in one account (e.g. when one need to specify different credentials 
+			  for each proxies). Use the argument "--next-cred" to specify next credential:</P>
+			  <TABLE class="fancy" id="Table4" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--realm=string</STRONG></TD>
+				  <TD>Set authentication realm. The realm is used to match this credential against 
+					challenges issued by downstream servers. If the realm is not known
+					beforehand, wildcard character ('*') can be specified to make PJSIP
+					respond to any realms.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--username=string</STRONG></TD>
+				  <TD>Set authentication user ID.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--password=string </STRONG>
+				  </TD>
+				  <TD>Set authentication password (clear text).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--next-cred </STRONG>
+				  </TD>
+				  <TD>Specify additional credential for this account.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="opt_transport"></A><H4>Transport Options</H4>
+			  <TABLE class="fancy" id="Table5" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--ipv6</STRONG></TD>
+				  <TD><p>Note: added in v1.2</p><p>Use IPv6 only for (UDP) SIP and (UDP) media transports. This option will only appear if PJSIP is compiled with IPv6 support (by declaring <tt>"#define PJ_HAS_IPV6 1"</tt> in your <tt>config_site.h</tt>). Note that at present IPv6 is only supported by SIP UDP transport and UDP media transport.</p></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--local-port=PORT</STRONG></TD>
+				  <TD>Set local port for SIP transport. Default is 5060 for UDP and TCP, and 5061 for TLS.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--ip-addr=IP</STRONG></TD>
+				  <TD>Use the specifed address as SIP and RTP addresses. The IP address does not have to correspond with local interface, e.g. it may be the public IP of the NAT/router.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--bound-addr=IP</STRONG></TD>
+				  <TD><p>Note: added in v1.2</p><p>Bind the SIP and media transports to the specified IP address. The IP address must be an IP address of one of the host network interface. When this option is used with <tt>--ipv6</tt> option, it will be necessary to disable TCP with <tt>--no-tcp</tt> option since the TCP transport will not recognize the IPv6 address.</p></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--no-tcp</STRONG></TD>
+				  <TD>Prevent TCP transport from being created.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--no-udp</STRONG></TD>
+				  <TD>Prevent UDP transport from being created.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--nameserver=NS</STRONG></TD>
+				  <TD>Enable DNS SRV resolution for both SIP and STUN servers, by querying the specified name server. This option can be specified more than once, and the multiple nameservers will be used in fail-over configuration.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--outbound=URL</STRONG></TD>
+				  <TD>Optionally set the URL of outbound proxies. The outbound proxies will be used 
+					for all accounts. More than one proxies may be specified. The URL MUST have 
+					";lr" param.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--stun-srv=HOSTDOM</STRONG></TD>
+				  <TD>Specify the STUN server to use, for SIP UP transport, UDP media transport, and ICE media transport. The HOSTDOM value may identify a hostname or a domain name. When DNS SRV resolution is enabled (with <tt>--nameserver</tt> option above), pjsua will first try to resolve the STUN server by querying DNS SRV record for the domain specified in HOSTDOM. If the DNS SRV resolution fails, or if nameserver is not configured, HOSTDOM is treated as a hostname.</TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;</P>
+			<A NAME="opt_tls"></A><H4>TLS Options</H4>
+			<p>Note that these TLS options can only be specified when TLS support is configured
+			  during compilation (<TT>PJSIP_HAS_TLS_TRANSPORT</TT> macro is enabled).</p>
+			  <TABLE class="fancy" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-tls</STRONG></TD>
+				  <TD>Enable TLS transport. TLS support is still experimental, therefore
+					    it's still disabled by default, even when the program has been
+							compiled with TLS support.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-ca-file</STRONG></TD>
+				  <TD><p>Specify TLS Certificate of Authority file (default=none). A CA file must be
+					specified for server, and for client when it wants to authenticate
+					server's certificate (<TT>--tls-verify-server</TT> option).</p>
+					<p>This option is optional for client if it doesn't want to
+					authenticate the server.</p></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-cert-file</STRONG></TD>
+				  <TD><p>Specify TLS certificate file (default=none). A certificate must be
+					configured for server, and for client when it wants to authenticate
+					server's certificate (<TT>--tls-verify-server</TT> option).</p>
+					<p>This option is optional for client if it doesn't want to
+					authenticate the server.</p></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-privkey-file</STRONG></TD>
+				  <TD><p>Specify TLS private key file (default=none). This must be
+					configured for server, and for client when it wants to authenticate
+					server's certificate (<TT>--tls-verify-server</TT> option).</p>
+					<p>This option is optional for client if it doesn't want to
+					authenticate the server.</p></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-password</STRONG></TD>
+				  <TD>Specify password to open the private key file.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-verify-server</STRONG></TD>
+				  <TD>Verify the server's certificate when making outgoing TLS connections.
+					The default is without server verification.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-verify-client</STRONG></TD>
+				  <TD>Verify the client's certificate when accepting incoming TLS connections.
+					The default is without client verification.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tls-neg-timeout</STRONG></TD>
+				  <TD>Specify SSL negotiation timeout (in seconds). The default is without 
+					timeout limitation.</TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;</P>
+			<A NAME="opt_media"></A><H4>Media Options</H4>
+			  <TABLE class="fancy" id="Table6" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--add-codec=NAME</STRONG></TD>
+				  <TD><p>Set codec NAME to have higher priority to use. The NAME is the standard
+					name for the codec as specified by the relevant RFCs. If the name alone
+					is not unique, then clock-rate (and potentially number of channels)
+				  must be appended to the NAME after the slash character.</p>
+					
+					<p>Example of codec names: pcma, pcmu, speex/8000, speex/16000,
+					speex/32000, ilbc, gsm, l16/44100/2, etc.</p>
+					
+					<p>This option maybe specified multiple times. The order of the codec specifies 
+					the priority. C</p></TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--dis-codec=NAME</STRONG></TD>
+				  <TD>Disable codecs with matching NAME.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--clock-rate=HZ</STRONG></TD>
+				  <TD>Set the clock rate of the conference bridge. Default is 16000.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--snd-clock-rate=HZ</STRONG></TD>
+				  <TD>Set the clock rate of the sound device. By default the sound device will be opened at the same clock rate as the conference bridge.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--stereo</STRONG></TD>
+				  <TD>Open both sound device and the conference bridge in stereo mode. Left and right channels may be mixed if the media port registered to the conference bridge is not stereo.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--null-audio</STRONG></TD>
+				  <TD>Disable the sound device. Calls will behave normally, except that no audio 
+					will be transmitted or played locally.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--play-file=WAVFILE</STRONG></TD>
+				  <TD>Add file port to play WAV file to the conference bridge. File MUST be single 
+					channel/mono, 16bit signed PCM, with any sampling rate. If the sampling rate is 
+					not equal to sound device's clock rate, a resampling will occur.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--play-tone=FORMAT</STRONG></TD>
+				  <TD>Add a tone generator to the conference bridge. FORMAT is "FREQ1,FREQ2,ON,OFF" where FREQ1 and FREQ2 are the tone frequencies (specify 0 in FREQ2 to play a single frequency tone), and ON and OFF are the tone on/off duration in miliseconds.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--auto-play</STRONG></TD>
+				  <TD>Automatically stream the WAV file to incoming calls.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--auto-loop</STRONG></TD>
+				  <TD>Automatically loop-back call to itself.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--auto-conf</STRONG></TD>
+				  <TD>Automatically put calls in the conference mode.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--rec-file=WAVFILE</STRONG></TD>
+				  <TD>Add file recorder port to the conference bridge. The recorder
+					port can be used to record any ports in the conference bridge.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--auto-rec</STRONG></TD>
+				  <TD>Automatically record conversations.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--quality=N</STRONG></TD>
+				  <TD>Set media quality according to CPU usage requirements. Values are 1-10, where 
+					10 is the highest quality (default: 6).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--ptime=MSEC</STRONG></TD>
+				  <TD>Override codec ptime to MSEC (default=specific).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--no-vad</STRONG></TD>
+				  <TD>Disable silence detector/voice activity detector. Useful
+					sometimes to work around NAT problems.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--ec-tail=MSEC</STRONG></TD>
+				  <TD>Set echo canceller tail length (default is 800ms). Set to
+					zero to disable echo cancellation.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--ilbc-mode=MODE</STRONG></TD>
+				  <TD>Set iLBC codec mode to MODE (20 or 30). Default is 30.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--capture-dev=ID</STRONG></TD>
+				  <TD>Specify the device index for sound capture device. Use <tt>sndinfo</tt> from the samples directory to get the list of detected sound devices in the system.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--playback-dev=ID</STRONG></TD>
+				  <TD>Specify the device index for sound playback device. Use <tt>sndinfo</tt> from the samples directory to get the list of detected sound devices in the system.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--capture-lat=MSEC</STRONG></TD>
+				  <TD>Set the sound input buffer size/latency in msec. Setting the value to lower value will lower the latency but may affect the sound stability. Default is 100 msec.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--playback-lat=MSEC</STRONG></TD>
+				  <TD>Set the sound output buffer size/latency in msec. Setting the value to lower value will lower the latency but may affect the sound stability. Default is 100 msec.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--snd-auto-close=SEC</STRONG></TD>
+				  <TD>Automatically close the sound device when it is idle after SEC seconds (and automatically open the sound device when it is to be used). Setting this to zero will disable the feature, and sound device will be open all the time. Default is 0.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--no-tones</STRONG></TD>
+				  <TD>Disable the creation and usage of ringback tones.</TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;</P>
+			<A NAME="opt_media"></A><H4>Media Transport Options</H4>
+			  <TABLE class="fancy" id="Table6" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-ice</STRONG></TD>
+				  <TD>Enable ICE. Say yes!</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--ice-no-host</STRONG></TD>
+				  <TD>Do not include ICE host candidates (only used for testing).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--rtp-port=N</STRONG></TD>
+				  <TD>Set the start RTP port. Default is 4000.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--rx-drop-pct=PCT</STRONG></TD>
+				  <TD>Drop PCT percent of incoming RTP packet (for packet lost simulation, default: 0).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--tx-drop-pct=PCT</STRONG></TD>
+				  <TD>Drop PCT percent of outgoing RTP packet (for packet lost simulation, default: 0).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-turn</STRONG></TD>
+				  <TD>Enable TURN relay. The following TURN settings must also be set.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--turn-srv=HOSTDOM</STRONG></TD>
+				  <TD>Specify the TURN server domain name or hostname. The format is either "DOMAIN:PORT" or "HOST:PORT". When nameserver setting is set, the domain/host part will be first resolved with DNS SRV, and it will fallback to host resolution using the specified PORT if DNS SRV resolution fails.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--turn-tcp</STRONG></TD>
+				  <TD>Use TCP to communicate with the TURN server rather than UDP. Default is no.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--turn-user=USERNAME</STRONG></TD>
+				  <TD>Specify the username to authenticate against the TURN server.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--turn-passwd=PASSWD</STRONG></TD>
+				  <TD>Specify the plaintext password to authenticate against the TURN server.</TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;</P>
+			<A NAME="opt_buddy"></A><H4>Buddy List</H4>
+			  <TABLE class="fancy" id="Table7" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--add-buddy=url</STRONG></TD>
+				  <TD>Add the url to the buddy list. This option can be specified multiple times to 
+					add more than one buddies.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="opt_ua"></A><H4>User Agent Options</H4>
+			  <TABLE class="fancy" id="Table8" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--auto-answer=code</STRONG></TD>
+				  <TD>Automatically answer incoming calls with the specified code, e.g. 200 to 
+					automatically answer incoming calls. Default is to answer with 100 (Trying).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--max-calls=N</STRONG></TD>
+				  <TD>Maximum number of concurrent calls. Default is 4. Note that the maximum calls
+				 number is also limited by <tt>PJSUA_MAX_CALLS</tt> macro in <tt>pjsua.h</tt>, which
+				 by default is 32.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--thread-cnt=N</STRONG></TD>
+				  <TD>Set number of SIP worker thread. Default is 1 (since the main thread
+					will be blocked to wait for console input so a worker thread is needed)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--duration=SEC</STRONG></TD>
+				  <TD>Set maximum call duration to SEC seconds (default is no limit). Useful
+					when running pjsua as test server to prevent dangling calls.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--norefersub</STRONG></TD>
+				  <TD>Suppress event subscription when transfering calls by including
+					<tt>norefersub</tt> tag in outgoing REFER requests.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="160"><STRONG>--use-compact-form</STRONG></TD>
+				  <TD>Use compact form of SIP headers to minimize the packet size.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="menu"></A><H3>Application Menus</H3>
+			<HR>
+			<P>These command line menus are available within the application. To invoke the 
+			  command, input the command then press ENTER.</P>
+
+<div><pre class="fragment">
+
+	+=============================================================================+
+	|       Call Commands:         |   Buddy, IM & Presence:  |     Account:      |
+	|                              |                          |                   |
+	|  m  Make new call            | +b  Add new buddy       .| +a  Add new accnt |
+	|  M  Make multiple calls      | -b  Delete buddy         | -a  Delete accnt. |
+	|  a  Answer call              |  i  Send IM              | !a  Modify accnt. |
+	|  h  Hangup call  (ha=all)    |  s  Subscribe presence   | rr  (Re-)register |
+	|  H  Hold call                |  u  Unsubscribe presence | ru  Unregister    |
+	|  v  re-inVite (release hold) |  t  ToGgle Online status |  >  Cycle next ac.|
+	|  U  send UPDATE              |  T  Set online status    |  <  Cycle prev ac.|
+	| ],[ Select next/prev call    +--------------------------+-------------------+
+	|  x  Xfer call                |      Media Commands:     |  Status & Config: |
+	|  X  Xfer with Replaces       |                          |                   |
+	|  #  Send RFC 2833 DTMF       | cl  List ports           |  d  Dump status   |
+	|  *  Send DTMF with INFO      | cc  Connect port         | dd  Dump detailed |
+	| dq  Dump curr. call quality  | cd  Disconnect port      | dc  Dump config   |
+	|                              |  V  Adjust audio Volume  |  f  Save config   |
+	|  S  Send arbitrary REQUEST   | Cp  Codec priorities     |  f  Save config   |
+	+------------------------------+--------------------------+-------------------+
+	|  q  QUIT       sleep MS     echo [0|1|txt]        n: detect NAT type        |
+	+=============================================================================+
+
+	
+
+</pre></div>
+
+			<A NAME="cmd_call"></A><H4>Call Commands</H4>
+			  <TABLE class="fancy" id="Table9" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>m</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Make new call</TD>
+				  <TD vAlign="top">Make a new call/INVITE. The application will ask the URL of the 
+					remote peer to contact.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>M</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Make multiple calls</TD>
+				  <TD vAlign="top">Make multiple calls to the same destination.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>a</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Answer call</TD>
+				  <TD vAlign="top">Send 100-699 response to current call. The application will ask 
+					which status code to send. Note that current call MUST be an incoming call. 
+					Current call can be selected with "]" or "[" command.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>h</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Hangup call</TD>
+				  <TD vAlign="top">Hangup current call. This command will work regardless of the 
+					state of the current call (e.g. it may send CANCEL, 603 (Decline), BYE, etc 
+					depending on the state of the call).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>H</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Hold call</TD>
+				  <TD vAlign="top">Put the current call on-hold by sending inactive SDP. Note that 
+					incoming call hold request will be acted automatically.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>v</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Re-Invite (release hold)</TD>
+				  <TD vAlign="top">Send active SDP with current call. If the call is currently 
+					on-hold, this will effectively release the hold. You can also change the local codec
+				  preference with <strong>Cp</strong> command before sending the offer.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>U</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Send UPDATE request</TD>
+				  <TD vAlign="top">Send UPDATE with new offer. You can also change the local codec
+				  preference with <strong>Cp</strong> command before sending the offer.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>]</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Select next call</TD>
+				  <TD vAlign="top">If application has more than one calls, this command will select 
+					the next call in the list as current call.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>[</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Select previous call</TD>
+				  <TD vAlign="top">If application has more than one calls, this command will select 
+					the previous call in the list as current call.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>x</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Transfer call (xfer)</TD>
+				  <TD vAlign="top">Transfer current call (i.e. send outgoing REFER). The 
+					application will ask the URL to which remote party should contact. Note that 
+					transfering current call DOES NOT cause pjsua to hold or disconnect 
+					currentcall. User should use the hold and hangup command to hold and terminate 
+					the call accordingly. Note that incoming call transfer request will be 
+					processed automatically.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>#</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Send DTMF with RFC 2833</TD>
+				  <TD vAlign="top">Send DTMF digits as RFC 2833 events in current call. The 
+					application will ask the digit strings to send.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>*</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Send DTMF with SIP INFO</TD>
+				  <TD vAlign="top">Send DTMF digits as SIP INFO for current call. The 
+					application will ask the digit strings to send.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>dq</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Dump (call) quality</TD>
+				  <TD vAlign="top">Print media statistic (packet loss, duplicate, jitter, 
+					end-to-end delay, etc) of currently selected call.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>S</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Send arbitrary request</TD>
+				  <TD vAlign="top">Send an arbitrary request to remote host. You will be asked 
+					about the SIP method and destination to send the request. Useful for example to 
+					send OPTIONS.</TD>
+				</TR>
+			  </TABLE>
+			<A NAME="cmd_im"></A><H4>IM and Presence Commands</H4>
+			  <TABLE class="fancy" id="Table10" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>+b</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Add buddy</TD>
+				  <TD vAlign="top">Add a new buddy URL to the buddy list.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>-b</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Delete buddy</TD>
+				  <TD vAlign="top">Delete a buddy from the buddy list.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>i</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Send IM</TD>
+				  <TD vAlign="top">Send outgoing MESSAGE. The application will ask the URL of the 
+					remote peer to send the message to, and the contents of the message.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>s</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Subscribe presence</TD>
+				  <TD vAlign="top">Subscribe to presence subscription of an URL in the buddy list. 
+					The buddy's online presence status will be monitored by the application.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>u</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Unsubscribe presence</TD>
+				  <TD vAlign="top">Unsubscribe existing presence subscription.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>t</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Toggle online state</TD>
+				  <TD vAlign="top">Toggle local presence's online status. If there are subscribers 
+					to our presence, NOTIFY messages will be sent to those subscribers. Note that 
+					application automatically accepts presence subscription request.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>T</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Specify custom presence text</TD>
+				  <TD vAlign="top">Specify enhanced presence status text (such as "Be Right Back") with this command.</TD>
+				</TR>
+			  </TABLE>
+			<A NAME="cmd_acc"></A><H4>Account Commands</H4>
+			  <TABLE class="fancy" id="Table11" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>+a</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Add account</TD>
+				  <TD vAlign="top">Add a new account (not implemented yet).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>-a</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Delete account</TD>
+				  <TD vAlign="top">Delete&nbsp;account (not implemented yet).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>!a</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Modify account</TD>
+				  <TD vAlign="top">Modify&nbsp;account (not implemented yet).</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>rr</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Re-Register</TD>
+				  <TD vAlign="top">Send REGISTER request for this account to register or to refresh 
+					registration.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>ru</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Unregister</TD>
+				  <TD vAlign="top">Send REGISTER request to unregister the account registration.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>&gt;</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Select next account</TD>
+				  <TD vAlign="top">Select the current account to be used for sending outgoing 
+					requests.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>&lt;</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Select prev account</TD>
+				  <TD vAlign="top">Select the current account to be used for sending outgoing 
+					requests.</TD>
+				</TR>
+			  </TABLE>
+			<A NAME="cmd_conf"></A><H4>Conference Commands</H4>
+			  <TABLE class="fancy" id="Table12" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>cl</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Conference List</TD>
+				  <TD vAlign="top">List all the ports registered to the conference bridge, 
+					and show the interconnection among these ports.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>cc</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Conference Connect</TD>
+				  <TD vAlign="top">Create a unidirectional connection between two ports. For example, if you have a WAV player connected at slot #1 and a call connected at slot #2, you can stream WAV file to the call by specifying this command: <tt><strong>cc 1 2</strong></tt>.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>cd</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Conference Disconnect</TD>
+				  <TD vAlign="top">Disconnect a unidirectional connection between two ports. Example: <tt>cd 1 2</tt>.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>V</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Adjust volume</TD>
+				  <TD vAlign="top">Make adjustment to the audio level of a particular media port.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>Cp</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Arrange codec priorities</TD>
+				  <TD vAlign="top">Arrange the codec priorities. Useful for example to set the prefered codec before sending re-INVITE ("v" command) or UPDATE ("U" command).</TD>
+				</TR>
+			  </TABLE>
+			<A NAME="cmd_stat"></A><H4>Status and Config Commands</H4>
+			  <TABLE class="fancy" id="Table13" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>d</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Dump status</TD>
+				  <TD vAlign="top">Dump the contents of endpoint, transaction table, dialog table, 
+					invite sessions, etc to the screen.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>dd</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Dump detailed status</TD>
+				  <TD vAlign="top">Dump detailed status (each transaction, each call, including 
+					call/media quality etc.)</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>dc</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Dump configuration</TD>
+				  <TD vAlign="top">Dump current configuration to screen.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>f</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Write settings</TD>
+				  <TD vAlign="top">Write current configuration to file.</TD>
+				</TR>
+			  </TABLE>
+			<A NAME="cmd_other"></A><H4>Other Commands</H4>
+			  <TABLE class="fancy" id="Table14" cellSpacing="3" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>q</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Quit</TD>
+				  <TD vAlign="top">Quit application. All current calls, subscriptions, and 
+					registrations will be terminated.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>sleep MSEC</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Suspend keyboard input</TD>
+				  <TD vAlign="top">Suspend keyboard input for the specified miliseconds. Useful when piping commands to pjsua.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>echo [0|1|TXT]</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Control command echo</TD>
+				  <TD vAlign="top">Use <tt>echo 0</tt> or <tt>echo 1</tt> to disable or enable command echo (default is disabled). Use <tt>echo TXT</tt> (where TXT is any text) to output the text to stdout.</TD>
+				</TR>
+				<TR>
+				  <TD vAlign="top" width="60">
+					<P align="center"><STRONG>n</STRONG></P>
+				  </TD>
+				  <TD vAlign="top" width="140">Detect network type</TD>
+				  <TD vAlign="top">Initiate NAT type detection. The result will be printed to stdout and log.</TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="invoking"></A><H2>Invoking&nbsp;pjsua</H2>
+			<A NAME="basic"></A><H3>Basic Peer-to-Peer</H3>
+			<HR>
+			<P>The easiest way to use pjsua is to use it in serverless configuration, to call 
+			  or receive calls from other SIP user agents directly.</P>
+			<P>Running pjsua without any arguments will bind pjsua to TCP and UDP port 5060 
+			  of local host:</P>
+			  <TABLE class="fixedtable" id="Table15" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">
+					&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua</STRONG></P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>This command below will&nbsp;initiate&nbsp;outgoing call to some SIP URL:</P>
+			  <TABLE class="fixedtable" id="Table16" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua</STRONG> sip:192.168.0.10</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="acc"></A><H3>Registering with SIP Provider</H3>
+			<HR>
+			<P>This command below will make pjsua send outgoing requests (such as INVITE) with <i>From:</i> header set to <i>sip:alice@example.com</i>, but pjsua will not register to any SIP servers:</P>
+			  <TABLE class="fixedtable" id="Table17" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --id</STRONG> sip:alice@example.com</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</p>
+
+			<P>To make pjsua register to a SIP provider, the command below can be used. This will make pjsua register to <i>sip:example.com</i> server using user-id <i>alice</i> and password <i>secret</i>. All command line arguments are mandatory:</P>
+			  <TABLE class="fixedtable" id="Table17a" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --id</STRONG> sip:alice@example.com <STRONG>--registrar</STRONG>
+					  sip:example.com \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--realm</STRONG>
+					  * <STRONG>--username</STRONG> alice <STRONG>--password</STRONG> secret</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>Some explanation about the commands above:</P>
+			<TABLE border="0" cellspacing="2" cellpadding="2">
+			<TR>
+				<TD width="20">&nbsp;</TD>
+				<TD width="180" valign="top"><i>--id sip:alice@example.com</i></TD>
+				<TD>This sets the identification of the user, and will be used in the <i>From:</i> header of all requests sent by pjsua.</TD>
+			</TR>
+			<TR>
+				<TD width="20">&nbsp;</TD>
+				<TD width="180" valign="top"><i>--registrar sip:example.com</i></TD>
+				<TD>This sets the address of the server where REGISTER request will be sent to.</TD>
+			</TR>
+			<TR>
+				<TD width="20">&nbsp;</TD>
+				<TD width="180" valign="top"><i>--realm example.com</i></TD>
+				<TD>The realm of the credential to authenticate against the server. The value here <b>MUST</b> match the realm sent by the server in WWW-Authenticate or Proxy-Authenticate header in the 401/407 response. Alternatively, wildcard (*) can be specified to make PJSIP responds to any realms in the challenge.</TD>
+			</TR>
+			<TR>
+				<TD width="20">&nbsp;</TD>
+				<TD width="180" valign="top"><i>--username alice</i></TD>
+				<TD>Set the username for authentication. Normally the value will be the same as the username part of the <i>From:</i> header, but pjsua does not require this to be the same.</TD>
+			</TR>
+			<TR>
+				<TD width="20">&nbsp;</TD>
+				<TD width="180" valign="top"><i>--password secret</i></TD>
+				<TD>Set the plain-text password for authentication.</TD>
+			</TR>
+			</TABLE>
+			<P>&nbsp;</p>
+
+			<TABLE cellSpacing="2" cellPadding="4" width="600" border="0">
+			<TR>
+			  <TD width="20">&nbsp;</TD>
+			  <TD bgColor="beige">
+				<DL>
+				<DT><b>Note:</b>
+				<DD><p><strong>The realm setting must match the realm in the challenge, or otherwise PJSIP_ENOCREDENTIAL error will occur. If the realm isn't known beforehand, you can put wildcard ('*') as the realm, to make PJSIP responds to any realms in the challenge.</strong></p></DD>
+				</DL>
+			  </TD>
+			</TR>
+			</TABLE>
+			<P>&nbsp;</p>
+
+			<P>pjsua also supports multiple identities and server registrations. To register with both provider1.com and provider2.com simultaneously:</P>
+			  <TABLE class="fixedtable" id="Table18" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --id </STRONG>sip:bob@provider1.com <STRONG>--registrar</STRONG>
+					  sip:provider1.com \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --realm </STRONG>
+					  provider.1.com <STRONG>--username</STRONG> bob <STRONG>--password</STRONG> secret 
+					  \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--next-account 
+						\<BR>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;--id</STRONG> sip:bob@provider2.com
+					  <STRONG>--registrar</STRONG> sip:provider2.com \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--realm</STRONG>
+					  provider2.com <STRONG>--username</STRONG> bob <STRONG>--password</STRONG> secret
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</p>
+
+			<P>To register to server example.com with user id Alice, and send the requests to 
+			  outbound.home.com which requests different authentication:</P>
+			  <TABLE class="fixedtable" id="Table19" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --id </STRONG>sip:alice@example.com <STRONG>--registrar </STRONG>
+					  sip:example.com \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;--proxy</STRONG> 
+					  outbound.home.com \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --realm </STRONG>
+					  example.com <STRONG>--username </STRONG>alice <STRONG>--password </STRONG>secret
+					  <STRONG>--next-cred</STRONG> \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;--realm </STRONG>
+					  outbound.home.com <STRONG>--username </STRONG>blah <STRONG>--password</STRONG> blahblah</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+
+			<P>&nbsp;&nbsp;</P>
+			<A NAME="tcp"></A><H3>Using TCP Transport</H3>
+
+			<p>By default, TCP transport will be created and initialized. However, TCP will not be used automatically unless the destination URL has <tt>";transport=tcp"</tt> parameter in it. (Note: this behavior may change once we support resolving NAPTR records).</p>
+
+			<p>TCP can be specified when registering to server and when sending outgoing requests. To use TCP when registering, add <tt>";transport=tcp"</tt> in the registrar's URL, for example with <b>"--registrar sip:example.com;transport=tcp"</b> option.</p>
+
+			<p>Similarly <tt>";transport=tcp"</tt> parameter needs to be added in the destination URL when making outgoing calls, subscribing presence, or sending outgoing MESSAGE request.</p>
+
+
+			<P>&nbsp;&nbsp;</P>
+			<A NAME="tcp"></A><H3>Using TLS Transport</H3>
+			<p>TLS transport option will be available if it is enabled during the build process.</p>
+			<p>To use TLS transport, add <tt>";transport=tls"</tt> parameter for outgoing URIs, similar to TCP transport above.</p>
+
+
+			<P>&nbsp;&nbsp;</P>
+			<A NAME="ipv6"></A><H3>Using IPv6</H3>
+			<p>IPv6 support must be enabled during build process by declaring <tt>"#define PJ_HAS_IPV6 1"</tt> in your <tt>config_site.h</tt>. These instructions below apply to PJSIP version 1.2 or later.</p>
+			<p>This command below will start pjsua with IPv6 transports:</p>
+			  <TABLE class="fixedtable" id="Table15" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">
+					&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --ipv6</STRONG></P>
+				  </TD>
+				</TR>
+			  </TABLE>
+
+			<p>To force pjsua to use a specific IPv6 address (fec0::2, a site local address):</p>
+
+			  <TABLE class="fixedtable" id="Table15" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">
+					&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --ipv6 --bound-addr </strong>fec0::2 <strong>--no-tcp</STRONG></P>
+				  </TD>
+				</TR>
+			  </TABLE>
+
+			<p>Note above that with <tt>--bound-addr</tt> option it is necessary to disable TCP with <tt>--no-tcp</tt> since the SIP TCP transport does not support IPv6 at the moment.</p>
+
+			<p>A simple IPv6 registration (assuming server is at IPv6 IP address <tt>fec0::1</tt>):</p>
+
+			  <TABLE class="fixedtable" id="Table15" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">
+					&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --ipv6 --id </strong>sip:myself@[fec0::1]<strong> --registrar </strong>sip:[fec0::1] \<BR>
+					<strong>&nbsp;&nbsp;&nbsp;&nbsp;--username </strong>myself <strong>--realm </strong>"*"<strong> --password </strong>secret</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+
+
+
+			<P>&nbsp;&nbsp;</P>
+			<A NAME="misc"></A><H3>Miscellaneous</H3>
+			<HR>
+			<P>This will automatically answer all incoming calls with 200/OK, playback the 
+			  WAV file to incoming calls, and also loopback calls's media to itself (remote 
+			  will hear the file mixed with their own voice):</P>
+			  <TABLE class="fixedtable" id="Table22" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ pjsua --play-file</STRONG> PROMPT.WAV <STRONG>--auto-answer</STRONG> 
+					  200 <STRONG>--auto-play --auto-loop</STRONG> \<BR>
+					  <STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --max-calls</STRONG> 100</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+			<A NAME="config_file"></A><H2>Config File</H2>
+			<HR>
+			<P>The config file basicly are the same command line arguments, saved in a file! 
+			  For example, to specify above command line in the file called alice.cfg:</P>
+			  <TABLE class="fixedtable" id="Table20" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P># This is a comment in the config file.<BR>
+					  --id sip:alice@example.com<BR>
+					  --registrar sip:example.com<BR>
+					  --realm *<BR>
+					  --username alice<BR>
+					  --password secret
+					</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>And to use the config file:</P>
+			  <TABLE class="fixedtable" id="Table21" cellSpacing="2" cellPadding="4" width="100%" border="0">
+				<TR>
+				  <TD width="20">&nbsp;</TD>
+				  <TD bgColor="beige">
+					<P><STRONG>$ ./pjsua --config-file</STRONG> alice.cfg</P>
+				  </TD>
+				</TR>
+			  </TABLE>
+			<P>&nbsp;</P>
+		  </TD>
+		  <TD></TD>
+		</TR>
+	  </TABLE>
+	<!--#include file="footer.html" -->
+  </body>
+</html>

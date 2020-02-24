@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>- PJPROJECT.NET</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+  </head>
+  <body>
+	<!--#include file="header.html" -->
+	<P><FONT face="Courier New"><STRONG>[Version 0.5.6.5]</STRONG></FONT>
+	</P>
+	<P><FONT face="Courier New"><STRONG>PJSIP-PERF manual</STRONG></FONT></P>
+	<P><FONT face="Courier New"><STRONG>NAME<BR>
+		  &nbsp;&nbsp;&nbsp; pjsip-perf</STRONG> - PJSIP SIP Load Generator 
+		Client/Server<BR>
+	  </FONT>
+	</P>
+	<P><FONT face="Courier New"><STRONG>SYNOPSYS<BR>
+		  &nbsp;&nbsp;&nbsp; pjsip-perf</STRONG> [options]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		-- to start as server<BR>
+		&nbsp;&nbsp;&nbsp; <STRONG>pjsip-perf</STRONG> [options] 
+		URI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- to start as client<BR>
+		&nbsp;&nbsp;&nbsp; <STRONG>pjsip-perf</STRONG> --help</FONT></P>
+	<P><FONT face="Courier New"><STRONG>COPYRIGHT<BR>
+		  &nbsp;&nbsp;&nbsp; pjsip-perf</STRONG> is Copyright (c)2006 by Benny Prijono <A href="mailto:bennylp@prijono.org">
+		  bennylp@prijono.org</A>.<BR>
+	  </FONT>
+	</P>
+	<P><FONT face="Courier New"><STRONG>DESCRIPTION</STRONG><BR>
+		&nbsp;&nbsp;&nbsp; pjsip-perf is a pretty simple&nbsp;SIP application based on 
+		PJSIP and was&nbsp;created&nbsp;<BR>
+		&nbsp;&nbsp;&nbsp; to measure the&nbsp;performance&nbsp;of PJSIP. It analyzes 
+		the performance by sending
+		<BR>
+		&nbsp;&nbsp;&nbsp; thousands of&nbsp;requests to server (which can be another 
+		pjsip-perf instance),
+		<BR>
+		&nbsp;&nbsp;&nbsp; </FONT><FONT face="Courier New">and measure the&nbsp;rate of 
+		the responses.</FONT></P>
+	<P><FONT face="Courier New"><FONT face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;pjsip-perf&nbsp;can&nbsp;run 
+		  as:&nbsp;<BR>
+		</FONT><FONT face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -</FONT><FONT face="Courier New">&nbsp;client/UAC, 
+		  to generate thousands of&nbsp;requests per second and measure the&nbsp;<BR>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; performance&nbsp;of a remote 
+		  server,&nbsp;<BR>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - server/UAS, to handle these requests,&nbsp;<BR>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- both client and server, to measure PJSIP 
+		  performance on local system.</FONT></P>
+	<P>&nbsp;&nbsp;&nbsp;&nbsp;Both client and server&nbsp;can run in stateless, 
+	  statefull or call&nbsp;statefull mode.<BR>
+	  &nbsp;&nbsp;&nbsp; When running in stateless mode, requests&nbsp;and responses 
+	  are sent statelessly,<BR>
+	  &nbsp;&nbsp;&nbsp; without&nbsp;creating SIP transactions. </FONT></P>
+	<P><FONT face="Courier New">In statefull mode, UAC&nbsp;or UAS transaction<BR>
+		&nbsp;&nbsp;&nbsp; is created to handle the request. In call statefull mode, 
+		a&nbsp;proper PJSIP<BR>
+		&nbsp;&nbsp;&nbsp; dialog and INVITE session is created&nbsp;to the call.</FONT></P>
+	<P><FONT face="Courier New">&nbsp;&nbsp;&nbsp; </FONT>
+	</P>
+	<P><FONT face="Courier New"></FONT>&nbsp;</P>
+	<!--#include file="footer.html" -->
+  </body>
+</html>

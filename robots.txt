@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /trac/browser/
+Disallow: /trac/log/
+Disallow: /trac/changeset/
+Disallow: /cgi-bin/viewcvs.cgi/
+Disallow: /bulukucing.org/pjproject/
+Disallow: /tmp/
+Disallow: /bin/
+Disallow: /testing/
+Disallow: /pipermail/

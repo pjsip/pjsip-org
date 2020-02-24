@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>pjsip.org News: Windows Mobile Port for SIP and media</title>
+	</head>
+	<body>
+		<p>pjsip.org News: Aug 13th, 2006</p>
+		<H1>Windows Mobile&nbsp;Port</H1>
+		<P>Just added&nbsp;Windows Mobile targets (WinCE, SmartPhone, PocketPC) in the Subversion trunk revision 667. 
+The port is built with Microsoft Embedded VC 4, and it
+should be able to target all Windows Mobile family OSes (SmartPhone,
+PocketPC, or WinCE in general).</p>
+
+
+<H2>Demo Application</H2>
+<p>
+There's a simple and stupid GUI application (pjsua_wince) which I used
+for quick tests, and it can be built by opening wince_demos.vcw EVC4
+workspace from pjsip-apps/build/wince-evc4 directory.
+</p>
+<p>
+For a really quick test, you can also use the WinCE binary that I built:
+<A HREF="http://www.pjsip.org/blp/pjsua_wince.exe">http://www.pjsip.org/blp/pjsua_wince.exe</A>
+</p>
+
+
+<p>Screenshot is here: <A HREF="http://www.pjsip.org/blp/pjsua_wince.jpg">http://www.pjsip.org/blp/pjsua_wince.jpg</A></p>
+
+<p>
+This application should run on all WinCE OSes, but the stupid GUI is
+probably best to be used on devices with pen input (PDAs, XDAs).
+</p>
+<p>
+The best way to use the application is to call the device (e.g. from
+pjsua), because the WinCE application will answer incoming calls
+automatically, so no UI interaction is required.
+</p>
+<p>
+Once you're finished with testing the application, make sure that the
+application has been shutdown completely by checking in the WinCe
+task manager.
+</p>
+
+
+<H2>Demo Application Features</H2>
+
+<H3>Codecs</H3>
+<p>
+  All codecs are enabled  (that's why the size is a bit large (500KB)).
+  In my 320MHz ARM, only G.711 and GSM work; iLBC or Speex is just too
+  much for my PDA, even when fixed point version of Speex is used.
+
+  If you use pjsua to call the device, you should add --add-codec option
+  to specify which particular codec to be used, because by default pjsua
+  uses speex/16000 codec.
+</p>
+
+<H3>Echo Canceller</H3>
+<p>
+  Simple echo suppressor is used instead of the AEC, but still it's quite
+  effective. Some echo may still come through, but this is intentional,
+  to tolerate some cross talk.
+</p>
+
+<H3>PLC</H3>
+<p>  The simple replay based Packet lost concealment (PLC) is used.</p>
+
+<H3>SIP Features</H3>
+<p>  No, there isn't any (not even registration). Just a simple call.</p>
+
+<p>Apart from that, all other features should be available.</p>
+
+<p>The website or mailing list archives may have some more info on this.</P>
+		<P><A href="http://www.pjsip.org">http://www.pjsip.org</A></P>
+		<!--#include virtual="/anal.html" -->
+	</body>
+</html>

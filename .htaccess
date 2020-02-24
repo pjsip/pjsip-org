@@ -1,0 +1,17 @@
+# Default index is index.htm
+DirectoryIndex index.htm index.html index.html.var
+
+# Fancy list
+IndexOptions FancyIndexing VersionSort
+
+# SSI for .htm
+Options +Includes
+AddType text/html .htm
+AddOutputFilter INCLUDES .htm
+SetOutputFilter INCLUDES
+
+# Rewrite rule: pjsip.org/trac ==> trac.pjsip.org
+RewriteEngine on
+RewriteRule trac(.*) http://trac.pjsip.org/repos$1
+
+

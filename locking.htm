@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>PJSIP.ORG - Guide to Implementing Locking/Synchronization with PJSIP</title>
+<link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+<body>
+<!--#include file="header.html" -->
+
+<p><A HREF="/">Home</A> --&gt; <A HREF="/docs.htm">Documentation</A> --&gt; <A HREF="">Locking Guide</A></p>
+
+<TABLE cellSpacing="6" cellPadding="4" width="100%" border="0">
+<TR valign="top">
+<TD>
+
+<H1>PJSIP Guide to Implementing Locking/Synchronization Policy in Multi-Threaded Applications</H1>
+Last Update: $Date: 2007-01-08 02:05:48 +0000 (Mon, 08 Jan 2007) $
+<HR>
+<p>&nbsp;</p>
+
+<p>This article was based on my experience on fixing some lock problems in application that uses PJSIP (pjsua, in this case), which proved to be quite tricky. Hopefully it can be useful for fellow developers.</p>
+
+
+<p>&nbsp;</p>
+<H2>Synchronization Problems and Solutions</H3>
+<HR>
+<p>Without an intention to describe in great length about the classic synchronization problems in multi-threaded applications, here are some potential problems that need to be solved when designing multithreaded applications with PJSIP.</p>
+
+<H3>Race Conditions</H3>
+<HR>
+<p>Race conditions occur when two threads attemp to modify the same data similtaneously without synchronized. In general, PJSIP should be (relatively) free from this problem since all public APIs are protected with the appropriate mutex.</p>
+
+<p>Applications must make sure that their own data are protected by application's mutex.</p>
+
+
+<H3>Deadlocks</H3>
+<HR>
+<p>A deadlock is a situation wherein two or more competing actions are waiting for the other to finish, and thus neither ever does.</p>
+
+<p>The internal PJSIP synchronization should be free from deadlock problem. However, deadlock may still arise when PJSIP has to interract with application's mutex.<p>
+
+<p>To avoid deadlock introduced by application's mutex, the following rule <b>MUST</b> be obeyed at all times:</p>
+
+<TABLE border="1" cellpadding="0" cellspacing="0"><TR><TD><b>
+Mutexes MUST always be acquired with the same order, and the order is:
+<UL>
+<LI>acquire PJSIP mutex first, then</LI>
+<LI>acquire application mutex.</LI>
+</UL>
+</b></TD></TR></TABLE>
+
+
+</TD>
+<TD width="15%" valign="top">
+</TD>
+</TR>
+</TABLE>
+
+<!--#include file="footer.html" -->
+</body>
+</html>
+
+

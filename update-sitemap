@@ -1,0 +1,4 @@
+#!/bin/sh
+touch index.htm
+P=/root/sitemap_gen-1.4
+$P/sitemap_gen.py --config=$P/pjsip_config.xml

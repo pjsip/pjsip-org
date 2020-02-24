@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+ <TITLE>PJSIP NetTest</TITLE>
+</HEAD>
+<BODY>
+	<H1>Network Testing Tool</H1>
+
+	<p>Please fill in all the information below. The more information you supply, the more useful the result is. Thank you.</p>
+
+	<HR>
+	<FORM action="netsrv.cgi" method="get">
+		<TABLE border="0">
+			<TR>
+			<TD>Codec bandwidth:</TD>
+			<TD>
+			<SELECT name="psz">
+				<OPTION value="14">5.3 Kbps</OPTION>
+				<OPTION value="16">6.4 Kbps</OPTION>
+				<OPTION selected value="20">8.0 Kbps</OPTION>
+				<OPTION value="30">12.0 Kbps</OPTION>
+				<OPTION value="80">32.0 Kbps</OPTION>
+				<OPTION value="160">64.0 Kbps</OPTION>
+				<OPTION value="320">128.0 Kbps</OPTION>
+				<OPTION value="640">256.0 Kbps</OPTION>
+			</SELECT>
+			</TD>
+			</TR>
+
+			<TR>
+			<TD>Ptime:</TD>
+			<TD>
+			<SELECT name="itv">
+				<OPTION value="10">10 ms</OPTION>
+				<OPTION selected value="20">20 ms</OPTION>
+				<OPTION value="30">30 ms</OPTION>
+				<OPTION value="40">40 ms</OPTION>
+				<OPTION value="50">50 ms</OPTION>
+			</SELECT>
+			</TD>
+			</TR>
+
+			<TR>
+			<TD>Test duration :</TD>
+			<TD><INPUT type="text" name="dur" value="20">sec</TD>
+			</TR>
+
+			<TR>
+			<TD>Your Name:</TD>
+			<TD><INPUT type="text" name="nm" value="?"></TD>
+			</TR>
+
+			<TR>
+			<TD>ISP Name:</TD>
+			<TD><INPUT type="text" name="isp" value="?"></TD>
+			</TR>
+
+			<TR>
+			<TD>City:</TD>
+			<TD><INPUT type="text" name="cty" value="?"></TD>
+			</TR>
+
+			<TR>
+			<TD>Country:</TD>
+			<TD><INPUT type="text" name="cou" value="?"></TD>
+			</TR>
+
+			<TR>
+			<TD>Connection type:</TD>
+			<TD>
+			<SELECT name="con">
+				<OPTION>ADSL</OPTION>
+				<OPTION>3G</OPTION>
+				<OPTION>GPRS</OPTION>
+				<OPTION>Dial-up</OPTION>
+				<OPTION>LAN</OPTION>
+				<OPTION>Other</OPTION>
+				<OPTION selected>?</OPTION>
+			</SELECT>
+			</TD>
+			</TR>
+
+			<TR>
+			<TD>&nbsp;</TD>
+			<TD><p>&nbsp;</p><INPUT type="submit" value="Start Test"></TD>
+			</TR>
+
+		</TABLE>
+	</FORM>
+
+</BODY>
+</HTML>
+

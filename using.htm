@@ -1,0 +1,1059 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+ 
+ <title>PJSIP.ORG - Getting Started: Building and Using PJSIP and PJMEDIA Stacks</title><link rel="stylesheet" type="text/css" href="/style/style.css"></head>
+
+<body>
+<!--#include file="header.html" -->
+<p><a href="/">Home</a> --&gt; <a href="/docs.htm">Documentation</a> --&gt; <a href="">Getting Started</a></p>
+<table border="0">
+<tbody><tr><td>
+
+<p>&nbsp;</p>
+<h1>Getting Started: Building and Using PJSIP and PJMEDIA</h1>
+<table border="0" width="100%">
+<tbody><tr>
+ <td><p>[Last Update: $Date: 2007-07-30 05:17:55 +0100 (Mon, 30 Jul 2007) $]</p></td>
+ <td><p align="right"><a href="/cgi-bin/showpage.cgi?using">Print Friendly Page</a></p></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>This article is now outdated and not maintained. For the latest, please see <a href="http://trac.pjsip.org/repos/wiki/Getting-Started">Getting Started with PJSIP</a></strong></p>
+<p>This article describes how to download, customize, build, and use
+the open source PJSIP and PJMEDIA SIP and media stack. The online (and
+HTML) version of this file can be downloaded from <a href="http://www.pjsip.org/using.htm">http://www.pjsip.org/using.htm</a></p>
+<p>&nbsp;</p>
+
+<h3>Quick Info</h3>
+<hr>
+<dl>
+<dt><b>Building with GNU tools (Linux, *BSD, MacOS X, mingw, etc.)</b>
+</dt><dd><p>Generally these should be all that are needed to build the libraries, applications, and samples:</p>
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td bgcolor="beige">
+	<p>$ ./configure<br>
+           $ make dep &amp;&amp; make clean &amp;&amp; make<br>
+        </p>
+  </td>
+</tr>
+</tbody></table>
+</dd><dt><b>Building Win32 Target with Microsoft Visual Studio</b>
+</dt><dd><p>Generally we can just do these steps:</p>
+    <ol>
+    <li>Visual Studio 6: open <tt>pjproject.dsw</tt> workspace,</li>
+    <li>Visual Studio 8/2005: open <tt>pjproject-vs8.sln</tt> solution,</li>
+    <li>Create an empty <tt>pjlib/include/pj/config_site.h</tt>, and</li>
+    <li>build the <tt>pjsua</tt> application.</li>
+    </ol></dd></dl><dl><dt><b>Building for Windows Mobile (for pjproject releases&nbsp;1.2 and over)</b>
+</dt><dd><p>Generally these are all that are needed:</p>
+    <ol><li>Using Visual Studio 8/2005: open <tt>pjproject-vs8.sln</tt> solution,</li><li>Select the correct target, such as Windows Mobile 6 Professional,</li><li>Create an empty <tt>pjlib/include/pj/config_site.h</tt>, and</li><li>build the <tt>pjsua_wince</tt> or PocketPJ application.</li></ol>
+</dd><dt></dt></dl><dl><dt><b>Building for Windows Mobile (for pjproject releases pre-1.2)</b>
+</dt><dd><p>Generally these are all that are needed:</p>
+    <ol>
+    <li>Open <tt>pjsip-apps/build/wince-evc4/wince_demos.vcw</tt> EVC4 workspace,</li>
+    <li>Create an empty <tt>pjlib/include/pj/config_site.h</tt>, and</li>
+    <li>build the <tt>pjsua_wince</tt> application.</li>
+    </ol>
+</dd><dt><b>Invoking Older Build System (e.g. for RTEMS)</b>
+</dt><dd><p>Generally these should be all that are needed to build the libraries, applications, and samples:</p>
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td bgcolor="beige">
+	<p>$ ./configure-legacy<br>
+           $ make dep &amp;&amp; make clean &amp;&amp; make<br>
+        </p>
+  </td>
+</tr>
+</tbody></table>
+
+</dd><dt><b>Locating Output Binaries/Libraries</b>
+</dt><dd><p>Libraries will be put in <b>lib</b> directory, and binaries will be put in <b>bin</b> directory, under each projects.</p>
+</dd><dt><b>Running the Applications</b>
+</dt><dd><p>After successful build, you can try running <tt><b>pjsua</b></tt> application on <b><tt>pjsip-apps/bin</tt></b> directory. PJSUA manual can be found in <a href="http://www.pjsip.org/pjsua.htm">http://www.pjsip.org/pjsua.htm</a> page.</p>
+</dd></dl>
+
+
+
+<p>&nbsp;</p>
+
+<h2>Table of Contents:</h2>
+<hr>
+<p><a href="#source"><b>1. Getting the Source Distribution</b></a></p>
+<p>&nbsp;&nbsp;<a href="#source">1.1 Getting the Release tarball</a></p>
+<p>&nbsp;&nbsp;<a href="#svn">1.2 Getting from Subversion trunk</a></p>
+<p>&nbsp;&nbsp;<a href="#dirs">1.3 Source Directories Layout</a></p>
+
+<p><a href="#config_site.h"><b>2. Build Preparation</b></a></p>
+<p>&nbsp;&nbsp;<a href="#config_site.h">2.1 config_site.h file</a></p>
+<p>&nbsp;&nbsp;<a href="#disk_space">2.2 Disk Space Requirements</a></p>
+
+<p><a href="#gnu"><b>3. Building Linux, *nix, *BSD, and MacOS X Targets with GNU Build Systems</b></a></p>
+<p>&nbsp;&nbsp;<a href="#gnu_targets">3.1 Supported Targets</a></p>
+<p>&nbsp;&nbsp;<a href="#gnu_req">3.2 Requirements</a></p>
+<p>&nbsp;&nbsp;<a href="#gnu_configure">3.3 Running configure</a></p>
+<p>&nbsp;&nbsp;<a href="#gnu_make">3.4 Running make</a></p>
+<p>&nbsp;&nbsp;<a href="#gnu_cross">3.5 Cross Compilation</a></p>
+<p>&nbsp;&nbsp;<a href="#cflags">3.6 Build Customizations</a></p>
+
+<p><a href="#vs"><b>4. Building for Windows Targets with Microsoft Visual Studio</b></a></p>
+<p>&nbsp;&nbsp;<a href="#vs_req">4.1 Requirements</a></p>
+<p>&nbsp;&nbsp;<a href="#vs_build">4.2 Building the Projects</a></p>
+<p>&nbsp;&nbsp;<a href="#vs_debug">4.3 Debugging the Sample Application</a></p>
+
+<p><a href="#evc"><b>5. Building for Windows Mobile Targets (Windows CE/WinCE/PDA/SmartPhone)</b></a></p>
+<p>&nbsp;&nbsp;<a href="#evc_req">5.1 Requirements</a></p>
+<p>&nbsp;&nbsp;<a href="#evc_build">5.2 Building the Projects</a></p>
+
+<p><a href="#non_gnu"><b>6. Building for Other Targets</b></a></p>
+<p>&nbsp;&nbsp;<a href="#symbian">6.1 Symbian</a></p>
+<p>&nbsp;&nbsp;<a href="#non_gnu">6.2 RTEMS, Cygwin, etc.</a></p>
+
+<p><a href="#running"><b>7. Running the Applications</b></a></p>
+<p>&nbsp;&nbsp;<a href="#pjsua">7.1 pjsua</a></p>
+<p>&nbsp;&nbsp;<a href="#samples">7.2 Sample Applications</a></p>
+<p>&nbsp;&nbsp;<a href="#pjlib_test">7.3 pjlib-test</a></p>
+<p>&nbsp;&nbsp;<a href="#pjsip-test">7.4 pjsip-test</a></p>
+
+<p><a href="#using"><b>8. Using PJPROJECT with Applications</b></a></p>
+
+<p>&nbsp;</p>
+
+<p><a href="#problems"><b>Appendix I: Common Problems/Frequently Asked Question (FAQ)</b></a></p>
+<p>&nbsp;&nbsp;<a href="#prob1">I.1 fatal error C1083: Cannot open include file: 'pj/config_site.h': No such file or directory</a></p>
+
+
+<p>&nbsp;</p>
+
+<a name="source"></a><h2>1. Getting the Source Code Distribution</h2>
+<hr>
+<p>
+All libraries (PJLIB, PJLIB-UTIL, PJSIP, PJMEDIA, and PJMEDIA-CODEC)
+are currently distributed under a single source tree, collectively
+named as <b>PJPROJECT</b> or just <b>PJ</b> libraries. These libraries can be obtained by either downloading the release tarball or getting them from the Subversion trunk.
+</p>
+
+<p>&nbsp;</p>
+<h3>1.1 Getting the Release tarball</h3>
+<hr>
+<p>
+Getting the released tarball, in ZIP or TGZ format, is a convenient way
+to obtain stable version of PJPROJECT. The tarball may not contain the
+latest features or bug-fixes, but normally it is considered more stable
+as each will be tested more rigorously before released.
+</p>
+<p>The latest released tarball can be downloaded from the <a href="/download.htm"><b>http://www.pjsip.org/download.htm</b></a>.</p>
+
+<p>&nbsp;</p>
+<a name="svn"></a><h3>1.2 Getting from Subversion trunk</h3>
+<hr>
+<p>PJPROJECT Subversion repository will always contain the latest/most
+up-to-date version of the sources. Normally the Subversion repository
+is always kept in a "good" state. However, there's always a chance that
+things break and the tree doesn't build correctly (particularly for the
+"not-so-popular" targets), so please consult the mailing list should
+there be any problems.
+</p>
+<p>Using Subversion also has benefits of keeping the local copy of the
+source up to date with the main PJ source tree and to easily track the
+changes made to the local copy, if any.</p>
+
+<p>&nbsp;</p>
+<h4>What is Subversion</h4>
+<p>Subversion (SVN) is Open Source version control system similar to CVS. Subversion homepage is in <a href="http://subversion.tigris.org/"><b>http://subversion.tigris.org/</b></a></p>
+
+<p>&nbsp;</p>
+<h4>Getting Subversion Client</h4>
+<p>A Subversion (SVN) client is needed to download the PJ source files
+from pjsip.org SVN tree. SVN client binaries can be downloaded from <a href="http://subversion.tigris.org/"><b>http://subversion.tigris.org/</b></a>, and the program should be available for Windows, Linux, MacOS X, and many more platforms.
+</p>
+
+<p>&nbsp;</p>
+<h4>Getting the Source for The First Time</h4>
+<p>Once Subversion client is installed, the following commands can be
+used to initially retrieve the latest sources from the Subversion trunk:</p><p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+	<p>$ svn co <strong>http://svn.pjsip.org/repos/pjproject/trunk</strong> pjproject<br>
+           $ cd pjproject</p>
+  </td>
+</tr>
+</tbody></table>
+</p><p>&nbsp;</p>
+
+
+<h4>Keeping The Local Copy Up-to-Date</h4>
+<p>
+Once sources have been downloaded, we can keep the local copy up to
+date by periodically synchronizing the local source with the latest
+revision from the PJ's Subversion trunk. The mailing list provides best
+source of information about the availability of new updates in the
+trunk.
+</p>
+<p>To update the local copy with the latest changes in the main PJ's repository:</p><p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+	<p>$ cd pjproject<br>
+           $ <strong>svn update</strong></p>
+  </td>
+</tr>
+</tbody></table>
+</p><p>&nbsp;</p>
+
+
+<h4>Tracking Local and Remote Changes</h4>
+<p>To see what files have been changed locally:</p><p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+	<p>$ cd pjproject<br>
+           $ <strong>svn status</strong></p>
+  </td>
+</tr>
+</tbody></table>
+</p><p>The above command only compares local file against the original
+local copy, so it doesn't require Internet connection while performing
+the check.</p>
+<p>To see both what files have been changed locally and what files have been updated in the PJ's Subversion repository:</p><p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+	<p>$ cd pjproject<br>
+           $ <strong>svn status -u</strong></p>
+  </td>
+</tr>
+</tbody></table>
+</p><p>Note that this command requires active Internet connection to query the status of PJPROJECT's source repository.</p>
+
+<p>&nbsp;</p>
+
+
+<a name="dirs"></a><h3>1.3 Source Directories Layout</h3>
+<hr>
+<h4>Top-Level Directory Layout</h4>
+<p> The top-level directories (denoted as $TOP here) in the source distribution contains the following sub-directories: 
+</p>
+
+<dl>
+<dt><b>$TOP/build</b>
+</dt><dd><p>Contains makefiles that are common for all projects.</p>
+
+</dd><dt><b>$TOP/build.symbian</b>
+</dt><dd><p>Contains MMP files for building Symbian target.</p>
+
+</dd><dt><b>$TOP/pjlib</b>
+</dt><dd><p>Contains header and source files of PJLIB. PJLIB is the
+base portability and framework library which is used by all other
+libraries</p>
+
+</dd><dt><b>$TOP/pjlib-util</b>
+</dt><dd><p>Contains PJLIB-UTIL header and source files. PJLIB-UTIL is
+an auxiliary library that contains utility functions such as scanner,
+XML, STUN, MD5 algorithm, getopt() implementation, etc.</p>
+
+</dd><dt><b>$TOP/pjnath</b>
+</dt><dd><p>Contains PJNATH header and source files. PJNATH contains STUN, TURN, and ICE implementation.</p>
+
+</dd><dt><b>$TOP/pjmedia</b>
+</dt><dd><p>Contains PJMEDIA and PJMEDIA-CODEC header and source files.
+The sources of various codecs (such as GSM, Speex, and iLBC) can be
+found under this directory.</p>
+
+</dd><dt><b>$TOP/pjsip</b>
+</dt><dd><p>Contains PJSIP header and source files. This library is the SIP protocol stack implementation.</p>
+
+</dd><dt><b>$TOP/pjsip-apps</b>
+</dt><dd><p>Contains source code for PJSUA and various sample applications, including the Python wrapper.</p>
+
+</dd><dt><b>$TOP/third_party</b>
+</dt><dd><p>Contains source code for various third party libraries, such as Speex, iLBC, and GSM codecs.</p>
+
+</dd></dl>
+<p>&nbsp;</p>
+
+
+<h4>Individual Directory Inside Each Project</h4>
+<p>
+Each library directory further contains these sub-directories:
+</p>
+
+<dl>
+<dt><b>bin</b>
+</dt><dd><p>Contains binaries produced by the build process.</p>
+
+</dd><dt><b>build</b>
+</dt><dd><p>Contains build scripts/makefiles, project files, project workspace, etc. to build the project. In particular, it contains one <b>Makefile</b> file to build the project with GNU build systems, and a <b>*.dsw</b> workspace file to build the library with Microsoft Visual Studio 6 or later.</p>
+
+</dd><dt><b>build/output</b>
+</dt><dd><p>The <tt>build/output</tt> directory contains the object
+files and other files generated by the build process. To support
+building multiple targets with a single source tree, each build target
+will occupy a different subdirectory under this directory.</p>
+
+</dd><dt><b>build/wince-evc4</b>
+</dt><dd><p>This directory contains the project/workspace files to
+build Windows CE/WinCE version of the project using Microsoft Embedded
+Visual C++ 4.</p>
+
+</dd><dt><b>build/wince-evc4/output</b>
+</dt><dd><p>This directory contains the library, executable, and object files generated by Windows Mobile build process.</p>
+
+</dd><dt><b>docs</b>
+</dt><dd><p>Contains Doxygen configuration file (doxygen.cfg) to
+generate online documentation from the source files. The output
+documentation will be put in this directory as well (for example,
+docs/html directory for the HTML files).</p>
+<p>(to generate Doxygen documentation from the source tree, just run <tt><b>"doxygen docs/doxygen.cfg"</b></tt> in the individual project directory. The generated files will reside in docs directory).
+</p>
+
+</dd><dt><b>include</b>
+</dt><dd><p>Contains the header files for the project.</p>
+
+</dd><dt><b>lib</b>
+</dt><dd><p>Contains libraries produced by the build process.</p>
+
+</dd><dt><b>src</b>
+</dt><dd><p>Contains the source files of the project.</p>
+</dd></dl>
+
+<p>&nbsp;</p>
+
+
+<a name="config_site.h"></a><h2>2. Build Preparation</h2>
+<hr>
+<a name="config_site.h"></a><h3>2.1 Create config_site.h file</h3>
+<hr>
+
+<p>Before source files can be built, the <tt>pjlib/include/pj/config_site.h</tt> file must be created (it can just be an empty file).</p>
+
+<dl>
+<dt><b>Note:</b>
+</dt><dd><p>When the Makefile based build system is used, this process
+is taken care by the Makefiles. But when non-Makefile based build
+system (such as Visual Studio) is used, the <tt>config_site.h</tt> file must be created manually.</p>
+</dd></dl>
+
+<p>&nbsp;</p>
+<h4>What is config_site.h File</h4>
+<p>The <b><tt>pjlib/include/pj/config_site.h</tt></b> contains local customizations to the libraries.</p>
+
+<p>All customizations should be put in this file instead of modifying
+PJ's files, because if PJ's files get modified, then those modified
+files will not be updated the next time the source is synchronized. Or
+in other case, the local modification may be overwritten with the fresh
+copy from the SVN.</p>
+<p>Putting the local customization to the <tt>config_site.h</tt> solves
+this problem, because this file is not included in the version control,
+so it will never be overwritten by "svn update" command.</p>
+
+<p>Please find list of configuration macros that can be overriden from these files:</p>
+<ul>
+<li><a href="/pjlib/docs/html/group__pj__config.htm">PJLIB Configuration</a> (the <a href="http://www.pjsip.org/cgi-bin/viewcvs.cgi/pjproject/trunk/pjlib/include/pj/config.h?view=markup">pjlib/config.h</a> file)</li>
+<li><a href="/pjlib-util/docs/html/group__PJLIB__UTIL__CONFIG.htm">PJLIB-UTIL Configuration</a>  (the <a href="http://www.pjsip.org/cgi-bin/viewcvs.cgi/pjproject/trunk/pjlib-util/include/pjlib-util/config.h?view=markup">pjlib-util/config.h</a> file)</li>
+<li><a href="/pjnath/docs/html/group__PJNATH__CONFIG.htm">PJNATH Configuration</a>  (the <a href="http://www.pjsip.org/cgi-bin/viewcvs.cgi/pjproject/trunk/pjnath/include/pjnath/config.h?view=markup">pjnath/config.h</a> file)</li>
+<li><a href="/pjmedia/docs/html/group__PJMEDIA__CONFIG.htm">PJMEDIA Configuration</a>  (the <a href="http://www.pjsip.org/cgi-bin/viewcvs.cgi/pjproject/trunk/pjmedia/include/pjmedia/config.h?view=markup">pjmedia/config.h</a> file)</li>
+<li><a href="/pjsip/docs/html/group__PJSIP__CONFIG.htm">PJSIP Configuration</a>  (the <a href="http://www.pjsip.org/cgi-bin/viewcvs.cgi/pjproject/trunk/pjsip/include/pjsip/sip_config.h?view=markup">pjsip/sip_config.h</a> file)</li>
+</ul>
+
+
+<p>A sample config_site.h file is also available in <a href="http://www.pjsip.org/cgi-bin/viewcvs.cgi/pjproject/trunk/pjlib/include/pj/config_site_sample.h?view=markup">pjlib/include/config_site_sample.h</a>.</p>
+
+<p>&nbsp;</p>
+<h4>Creating config_site.h file</h4>
+<p>The simplest way is just to create an empty file, to use whetever default values set by the libraries.</p>
+<p>Another way to create the <tt>config_site.h</tt> file is to write something like the following:</p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="0" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>// Uncomment to get minimum footprint (suitable for 1-2 concurrent calls only)<br>
+       //#define PJ_CONFIG_MINIMAL_SIZE<br>
+       <br>
+       // Uncomment to get maximum performance<br>
+       //#define PJ_CONFIG_MAXIMUM_SPEED<br>
+       <br>
+       #include &lt;pj/config_site_sample.h&gt;
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+<p>&nbsp;</p>
+<a name="disk_space"></a><h3>2.2 Disk Space Requirements</h3>
+<hr>
+<p>The building process needs:</p>
+<ul =""><li>about 50-60 MB of disk space to store the uncompressed source files, and</li>
+<li>another 30-50 MB of additional space for building each target</li>
+</ul>
+<p>(Visual Studio Debug and Release are considered as separate targets)</p>
+
+
+<p>&nbsp;</p>
+
+
+<a name="gnu"></a><h2>3. Building Linux, *nix, *BSD, and MacOS X Targets with GNU Build Systems</h2>
+<hr>
+<a name="gnu_targets"></a><h3>3.1 Supported Targets </h3>
+<hr>
+<p>The new, autoconf based GNU build system can be used to build the libraries/applications for the following targets:</p>
+<ul>
+<li>Linux/uC-Linux (i386, Opteron, Itanium, MIPS, PowerPC, etc.),</li>
+<li>MacOS X (PowerPC),</li>
+<li>mingw (i386),</li>
+<li>FreeBSD and maybe other BSD's (i386, Opteron, etc.),</li>
+<li>RTEMS with cross compilation (ARM, powerpc),</li>
+<li>etc.</li>
+</ul><p>&nbsp;</p>
+<a name="gnu_req"></a><h3>3.2 Requirements</h3>
+<hr>
+<p>In order to use PJ's GNU build system, these typical GNU tools are needed:</p>
+<ul>
+<li>GNU <b>make</b> (other make will not work),</li>
+<li>GNU <b>binutils</b> for the target, and</li>
+<li>GNU <b>gcc</b> for the target.</li>
+</ul>
+
+<p>In addition, the following libraries are optional, but they will be used if they are present:</p>
+<ul>
+<li><b>ALSA</b> header files/libraries (optional) if ALSA support is wanted.</li>
+<li><b>OpenSSL</b> header files/libraries (optional) if TLS support is wanted.</li>
+</ul>
+
+
+<p>The build system is known to work on the following hosts:</p>
+<ul>
+ <li>Linux, many types of distributions.</li>
+ <li>MacOS X 10.2</li>
+ <li>mingw (Win2K, XP)</li>
+ <li>FreeBSD (must use gmake instead of make)</li>
+</ul>
+
+<p>Building Win32 applications with <b>Cygwin</b> is currently not
+supported by the autoconf script (there are some conflicts with Windows
+headers), but one can still use the old configure script by calling <tt><b>./configure-legacy</b></tt>. More over, cross-compilations might also work with Cygwin using this build system.</p>
+
+
+<p>&nbsp;</p>
+<a name="gnu_configure"></a><h3>3.3 Running configure</h3>
+<hr>
+
+<h4>Using Default Settings</h4>
+<p>Run <tt>"./configure"</tt> without any options to let the script detect the appropriate settings for the host:
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>$ cd pjproject<br>
+       $ ./configure<br>
+       ...<br>
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+</p><dl>
+<dt><b>Notes:</b>
+</dt><dd>The default settings build the libraries in "release" mode, with default CFLAGS set to <b><tt>"-O2"</tt></b>. To change the default CFLAGS, we can use the usual <tt><b>"./configure CFLAGS='-g'"</b></tt> construct.
+</dd></dl>
+
+<h4>Features Customization</h4>
+<p>With the new autoconf based build system, most configuration/customization can be specified as <tt>configure</tt> arguments. The list of customizable features can be viewed by running <tt>"./configure --help"</tt> command:</p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>$ cd pjproject<br>
+       $ ./configure --help<br>
+       ...<br>
+    </p>
+
+  Optional Features:
+  <table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr><td>--disable-floating-point&nbsp;&nbsp;</td><td>Disable floating point where possible</td></tr>
+  <tr><td>--disable-sound          </td><td>Exclude sound (i.e. use null sound)</td></tr>
+  <tr><td>--disable-small-filter   </td><td>Exclude small filter in resampling</td></tr>
+  <tr><td>--disable-large-filter   </td><td>Exclude large filter in resampling</td></tr>
+  <tr><td>--disable-g711-plc       </td><td>Exclude G.711 Annex A PLC</td></tr>
+  <tr><td>--disable-speex-aec      </td><td>Exclude Speex Acoustic Echo Canceller/AEC</td></tr>
+  <tr><td>--disable-g711-codec     </td><td>Exclude G.711 codecs from the build</td></tr>
+  <tr><td>--disable-l16-codec      </td><td>Exclude Linear/L16 codec family from the build</td></tr>
+  <tr><td>--disable-gsm-codec      </td><td>Exclude GSM codec in the build</td></tr>
+  <tr><td>--disable-speex-codec    </td><td>Exclude Speex codecs in the build</td></tr>
+  <tr><td>--disable-ilbc-codec     </td><td>Exclude iLBC codec in the build</td></tr>
+  <tr><td>--disable-tls	           </td><td>Force excluding TLS support (default is autodetected based on OpenSSL availability)</td></tr>
+  <tr><td>...</td><td></td></tr>
+  </tbody></table>
+ </td>
+</tr>
+</tbody></table>
+
+
+<h4>Configuring Debug Version and Other Customizations</h4>
+<p>The <tt>configure</tt> script accepts standard customization, which details can be obtained by executing <tt><b>./configure --help</b></tt>.</p>
+
+<p>Below is an example of specifying CFLAGS in configure:</p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>$ ./configure CFLAGS="-O3 -DNDEBUG -msoft-float -fno-builtin"<br>
+       ...<br>
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+
+<h4>Configuring TLS Support</h4>
+<p>By default, TLS support is configured based on the availability of <b>OpenSSL</b>
+header files and libraries. If OpenSSL is available at the default
+include and library path locations, TLS will be enabled by the <tt>configure</tt> script.</p>
+<p>You can explicitly <i>disable</i> TLS support by giving the <tt>configure</tt> script <tt><b>--disable-tls</b></tt> option.</p>
+
+
+<p>&nbsp;</p>
+<a name="gnu_cross"></a><h3>3.4 Cross Compilation</h3>
+<hr>
+<p>Cross compilation should be supported, using the usual autoconf syntax:</p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>$ ./configure --host=arm-elf-linux<br>
+       ...<br>
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+<p>Since cross-compilation is not tested as often as the "normal" build, 
+please watch for the <tt>./configure</tt> output for incorrect settings (well
+ideally this should be done for normal build too).</p><p>
+
+</p><p>Please refer to <a href="/porting.htm">Porting Guide</a> for further information about porting PJ software.</p>
+
+<p>&nbsp;</p>
+<a name="gnu_make"></a><h3>3.5 Running make</h3>
+<hr>
+
+<p>Once the <tt>configure</tt> script completes successfully, start the build process by invoking these commands: </p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>$ cd pjproject<br>
+       $ make dep<br>
+       $ make<br>
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+<dl>
+<dt><b>Note:</b>
+</dt><dd><b>gmake</b> may need to be specified instead of <b>make</b> for some hosts, to invoke GNU make instead of the native make.
+</dd></dl>
+
+
+<p>&nbsp;</p>
+<p>Description of all make targets supported by the Makefile's:</p>
+
+<dl>
+<dt><b>all</b>
+</dt><dd>The default (or first) target to build the libraries/binaries.
+
+</dd><dt><b>dep</b>, <b>depend</b>
+</dt><dd>Build dependencies rule from the source files.
+
+</dd><dt><b>clean</b>
+</dt><dd>Clean the object files for current target, but keep the output library/binary files intact.
+
+</dd><dt><b>distclean</b>, <b>realclean</b>
+</dt><dd>Remove <b>all</b> generated files (object, libraries, binaries, and dependency files) for current target.
+
+</dd></dl>
+<p>&nbsp;</p>
+<dl>
+<dt><b>Note:</b>
+</dt><dd><p><b>make</b> can be invoked either in the top-level PJ directory or in <b>build</b> directory under each project to build only the particular project.</p>
+</dd></dl>
+
+
+<p>&nbsp;</p>
+<a name="cflags"></a><h3>3.6 Build Customizations</h3>
+<hr>
+
+<p>Build features can be customized by specifying the options when running <tt>./configure</tt> as described in <a href="#gnu_configure">Running Configure</a> above. </p>
+
+<p>In addition, additional CFLAGS and LDFLAGS options can be put in <tt>user.mak</tt> file in PJ root directory (this file may need to be created if it doesn't exist). Below is a sample of <tt>user.mak</tt> file contents:</p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>export CFLAGS += -msoft-float -fno-builtin<br>
+       export LDFLAGS += <br>
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+<p>&nbsp;</p>
+
+<a name="vs"></a><h2>4. Building for Windows Targets with Microsoft Visual Studio</h2>
+<hr>
+<a name="vs_req"></a><h3>4.1 Requirements</h3>
+<hr>
+
+<p>The Visual Studio based project files can be used with one of the following tools:</p><p>
+</p><ul>
+<li>Microsoft Visual Studio 6,</li>
+<li>Microsoft Visual Studio .NET 2002,</li>
+<li>Microsoft Visual Studio .NET 2003,</li>
+<li>Microsoft Visual C++ 2005 (including Express edition),</li>
+</ul>
+
+<p>In addition, the following SDK's are needed:
+</p><ul>
+<li>Platform SDK (tested with Platform SDK for Windows Server 2003 SP1). </li>
+<li>DirectX SDK (tested with DirectX version 8 and 9),</li>
+<li><b>OpenSSL</b> development kit (optional) is needed if TLS support is wanted.</li>
+</ul>
+
+<table border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+	<dl>
+	<dt><b>Note:</b>
+	</dt><dd><p>The
+new Platform SDK is still needed for Visual Studio 6, although VS6
+comes with its own Platform SDK. The new Platform SDK is needed for
+Iphlpapi.[h|lib] for the new PJNATH library.</p></dd>
+	</dl>
+  </td>
+</tr>
+</tbody></table>
+
+
+<p>For the host, the following are required:</p>
+<ul>
+<li>Windows NT, 2000, XP, 2003, or later ,</li>
+<li>Windows 95/98 should work too, but this has not been tested,</li>
+<li>Sufficient amount of RAM for the build process.</li>
+</ul>
+
+<p>&nbsp;</p>
+<h4>Installing OpenSSL Library</h4>
+<p>If TLS support is wanted, then OpenSSL SDK must be installed in the development host.</p>
+
+<p>To install OpenSSL SDK from the Win32 binary distribution:</p>
+<ol>
+<li>Install OpenSSL SDK to any folder (e.g. <tt>C:\OpenSSL</tt>)</li>
+<li>Add OpenSSL DLL location to the system <tt>PATH</tt>.</li>
+<li>Add OpenSSL include path to Visual Studio includes search
+directory. Make sure that OpenSSL header files can be accessed from the
+program with <tt>#include &lt;openssl/ssl.h&gt;</tt> construct.</li>
+<li>Add OpenSSL library path to Visual Studio library search directory. Make sure the following libraries are accessible:</li>
+	<ul>
+	<li>For Debug build: <tt>libeay32MTd</tt> and <tt>ssleay32MTd</tt>.</li>
+	<li>For Release build: <tt>libeay32MT</tt> and <tt>ssleay32MT</tt>.</li>
+	</ul>
+</ol>
+
+<p>Then to enable TLS transport support in PJSIP, just add </p>
+<p><b><tt>&nbsp;&nbsp;#define PJSIP_HAS_TLS_TRANSPORT 1</tt></b></p>
+<p>in your <tt>pj/config_site.h</tt>. When this macro is defined, OpenSSL libraries will be automatically linked to the application via the <tt>#pragma</tt> construct in <tt>sip_transport_tls_ossl.c</tt> file.</p>
+
+
+
+<p>&nbsp;</p>
+<a name="vs_build"></a><h3>4.2 Building the Projects</h3>
+<hr>
+<p>Follow the steps below to build the libraries/application using Visual Studio:</p>
+<ol>
+<li>For Visual Studio 6: open <b><tt>pjproject.dsw</tt></b> workspace file.</li>
+<li>For Visual Studio 8 (VS 2005): open <b><tt>pjproject-vs8.sln</tt></b> solution file.</li>
+<li>Set <b>pjsua</b> as Active Project.</li>
+<li>Select <b>Debug</b> or <b>Release</b> build as appropriate.</li>
+<li>Build the project. This will build <b>pjsua</b> application and all libraries needed by <b>pjsua</b>.</li>
+<li>After successful build, the <b>pjsua</b> application will be placed in <b>pjsip-apps/bin</b> directory, and the libraries in <b>lib</b> directory under each projects.</li>
+</ol>
+
+<p>To build the samples:</p>
+<ol>
+<li>(Still using the same workspace)</li>
+<li>Set <b>samples</b> project as Active Project</li>
+<li>Select <b>Debug</b> or <b>Release</b> build as appropriate.</li>
+<li>Build the project. This will build all sample applications and all libraries needed.</li>
+<li>After successful build, the sample applications will be placed in <b>pjsip-apps/bin/samples</b> directory, and the libraries in <b>lib</b> directory under each projects.</li>
+</ol>
+
+
+<p>&nbsp;</p>
+<a name="vs_debug"></a><h3>4.3 Debugging Sample Applications</h3>
+<hr>
+<p>Sample applications are built using <b>Samples.mak</b> makefile,
+therefore it is difficult to setup debugging session in Visual Studio
+for these applications. To solve this issue, the <b>pjsip_apps</b> workspace contain one project called <b>sample_debug</b> which can be used to debug a sample application.</p>
+<p>To setup debugging using <b>sample_debug</b> project:</p>
+<ol>
+<li>Set <b>sample_debug</b> project as Active Project</li>
+<li>Edit <b>debug.c</b> file inside this project.</li>
+<li>Modify the <b>#include</b> line to include the particular sample application to debug</li>
+<li>Select <b>Debug</b> build.</li>
+<li>Build and debug the project.</li>
+</ol>
+
+
+<p>&nbsp;</p>
+<a name="evc"></a><h2>5. Building for Windows Mobile Targets (Windows CE/WinCE/PDA/SmartPhone)</h2>
+<hr>
+
+<p>PJ supports building SIP and media stacks and applications for
+Windows Mobile targets. A very simple WinCE SIP user agent (with media)
+application is provided just as proof of concept that the port works.</p>
+
+<a name="evc_req"></a><h3>5.1 Requirements</h3>
+<hr>
+
+<p>The following development tools is needed to build SIP and media components for Windows Mobile:</p>
+<ul>
+
+<li>Microsoft Visual Studio 2005 with appropriate SDKs for Windows Mobile.</li>
+</ul>
+
+<p>Note that VS2005 Express Edition is not supported because the Windows Mobile SDKs is not supported there.</p>
+
+
+<a name="evc_build"></a><h3>5.2 Building the Projects</h3>
+<hr>
+<p>The Windows Mobile port is included in the main source distribution.
+Please follow the following steps to build the WinCE libraries and
+sample application:</p>
+
+<ol>
+<li>Open&nbsp;<b><tt>pjproject-vs8.sln</tt></b> solution file.</li>
+<li>For Windows Mobile Standard/Smartphone, select <b>pjsua_wince</b>&nbsp;project as the Active Project.</li><li>For Windows Mobile Professional/Pocket PC, both <b>pjsua_wince</b> and&nbsp;<span style="font-weight: bold;">PocketPJ</span> can be chosen.</li>
+<li>Select the appropriate SDK (for example Pocket PC 2003 SDK or SmartPhone 2003 SDK)</li>
+<li>Select the appropriate configuration (for example, Win32 (WCE
+Emulator Debug) to debug the program in emulator, or other
+configurations such as ARMV4, MIPS, SH3, SH4, or whatever suitable for
+the device)</li>
+<li>Select the appropriate device (Emulator or the actual Device).</li>
+<li>Build the project. This will build the sample WinCE application and all libraries (SIP, Media, etc.) needed by this application.</li>
+</ol>
+
+<dl>
+<dt><b>Notes</b>
+</dt><dd>
+<ul>
+<li>If the <a href="config_site.h">config_site.h</a> includes
+config_site_sample.h file, then there are certain configuration in
+config_site_sample.h that get activated for Windows CE targets. Please
+make sure that these configurations are suitable for the application.</li>
+<li>The libraries, binaries and object files produced by the build process are located under <tt>build/wince-evc4/output</tt> directory of each projects.</li>
+</ul>
+</dd></dl>
+
+<p>&nbsp;</p>
+<h2>6. Building for Other Targets</h2>
+<a name="symbian"></a><h3>6.1. Symbian</h3>
+<hr>
+<p>The process for building PJ libraries for Symbian target is described in <a href="/sip_symbian.htm">Porting PJSIP and PJMEDIA Stack to SymbianOS</a> page.</p>
+
+
+<p>&nbsp;</p>
+<a name="non_gnu"></a><h3>6.2. Older PJLIB Build System for Non-Autoconf Targets (e.g. RTEMS)</h3>
+<hr>
+<p>The old PJLIB build system can still be used for building PJ libraries, for example for RTEMS target. Please see the <strong><a href="/pjlib/docs/html/porting_pjlib_pg.htm">Porting PJLIB</a></strong> page in PJLIB Reference documentation for information on how to support new target using this build system.</p>
+
+<a name="non_gnu_targets"></a><h4>Supported Targets </h4>
+The older build system supports building PJ libraries for the following operating systems:
+<ul>
+<li>RTEMS</li>
+<li>Linux</li>
+<li>MacOS X</li>
+<li>Cygwin and Mingw</li>
+</ul>
+
+And it supports the following target architectures:
+<ul>
+<li>i386, x86_64, itanium</li>
+<li>ARM</li>
+<li>mips</li>
+<li>powerpc</li>
+<li>mpc860</li>
+<li>etc.</li>
+</ul>
+
+<p>For other targets, specific files need to be added to the build system, please see the <strong><a href="/pjlib/docs/html/porting_pjlib_pg.htm">Porting PJLIB</a></strong> page in PJLIB Reference documentation for details.</p>
+
+<a name="non_gnu_invoke"></a><h4>Invoking the Build System</h4>
+<p>To invoke the older build system, run the following:</p>
+
+<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+<tbody><tr>
+  <td width="20">&nbsp;</td>
+  <td bgcolor="beige">
+    <p>$ cd pjproject<br>
+       $ ./configure-legacy<br>
+       $ make dep &amp;&amp; make clean &amp;&amp; make<br>
+    </p>
+  </td>
+</tr>
+</tbody></table>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<a name="running"></a><h2>7. Running the Applications</h2>
+<hr>
+<p>Upon successful build, the output libraries (PJLIB, PJLIB-UTIL, PJMEDIA, PJSIP, etc.) are put under <b><tt>./lib</tt></b>
+sub-directory under each project directory. In addition, some
+applications may also be built, and such applications will be put in <b><tt>./bin</tt></b> sub-directory under each project directory.</p>
+
+<p>&nbsp;</p>
+<a name="pjsua"></a><h3>7.1 pjsua</h3>
+<hr>
+<p><tt>pjsua</tt> is the reference implementation for both PJSIP and
+PJMEDIA stack, and is the main target of the build system. Upon
+successful build, <tt>pjsua</tt> application will be put in <b><tt>pjsip-apps/bin</tt></b> directory.</p>
+
+<p>pjsua manual can be found in <b><a href="/pjsua.htm">pjsua Manual Page</a></b>.</p>
+
+
+
+<p>&nbsp;</p>
+<a name="samples"></a><h3>7.2 Sample Applications</h3>
+<hr>
+<p>Sample applications will be built with the Makefile build system.
+For Visual Studio, you have to build the samples manually by selecting
+and building the <b>Samples</b> project inside <tt><b>pjsip-apps/build/pjsip_apps.dsw</b></tt> project workspace.</p>
+
+<p>Upon successful build, the sample applications are put in <tt><b>pjsip-apps/bin/samples</b></tt> directory.</p>
+
+<p>The sample applications are described in <a href="/pjmedia/docs/html/page_pjmedia_samples.htm">PJMEDIA Samples Page</a> and <a href="/pjsip/docs/html/page_pjsip_samples.htm">PJSIP Samples Page</a> in the website.</p>
+
+<p>&nbsp;</p>
+<a name="pjlib_test"></a><h3>7.3 pjlib-test</h3>
+<hr>
+<p><tt>pjlib-test</tt> contains comprehensive tests for testing PJLIB
+functionality. This application will only be built when the Makefile
+build system is used; with Visual Studio, one has to open <tt>pjlib.dsw</tt> project in <tt>pjlib/build</tt> directory to build this application.</p>
+
+<p>If you're porting PJLIB to new target, it is <b>recommended</b> to run this application to make sure that all functionalities works as expected. </p>
+
+
+<p>&nbsp;</p>
+<a name="pjsip-test"></a><h3>7.4 pjsip-test</h3>
+<hr>
+<p><tt>pjsip-test</tt> contains codes for testing various SIP
+functionalities in PJSIP and also to benchmark static performance
+metrics such as message parsing per second.</p>
+
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<a name="using"></a><h2>8. Using PJPROJECT with Applications</h2>
+<hr>
+
+<p>Regardless of the build system being used, the following tasks are
+normally needed to be done in order to build application to use PJSIP
+and PJMEDIA:</p>
+<ol>
+<li>Put these include directories in the include search path:
+  <ul>
+    <li>pjlib/include</li>
+    <li>pjlib-util/include</li>
+    <li>pjnath/include</li>
+    <li>pjmedia/include</li>
+    <li>pjsip/include</li>
+  </ul>
+</li>
+<li>Put these library directories in the library search path:
+  <ul>
+    <li>pjlib/lib</li>
+    <li>pjlib-util/lib</li>
+    <li>pjnath/lib</li>
+    <li>pjmedia/lib</li>
+    <li>pjsip/lib</li>
+  </ul>
+</li>
+<li><p>Include the relevant PJ header files in the application source
+file. For example, using these would include ALL APIs exported by PJ:</p>
+   <table border="1" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td>
+   <tt>&nbsp;&nbsp;&nbsp;#include &lt;pjlib.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjlib-util.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjnath.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjsip.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjsip_ua.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjsip_simple.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjsua-lib/pjsua.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjmedia.h&gt; <br>
+       &nbsp;&nbsp;&nbsp;#include &lt;pjmedia-codec.h&gt; <br>
+   </tt>
+   </td></tr></tbody></table>
+   <p>(Note: the documentation of the relevant libraries should say which header files should be
+    included to get the declaration of the APIs).</p>
+</li>
+<li>
+<p>Declare the OS macros. </p>
+ <ul>
+   <li>For Windows applications built with Visual Studio, we need to declare <b><tt>PJ_WIN32=1</tt></b> macro in the project settings (declaring the macro in the source file may not be sufficient).</li>
+   <li>For Windows Mobile applications build with Visual C++, we need to declare <b><tt>PJ_WIN32_WINCE=1</tt></b> macro in the project settings.</li>
+    <li>For GNU build system/autoconf based build system, we need to declare <b><tt>PJ_AUTOCONF=1</tt></b> macro when compiling the applications.</li>
+ </ul>
+   <p>(Note:
+the old PJ build system requires declaring the target processor with
+PJ_M_XXX=1 macro, but this has been made obsolete. The target processor
+will be detected from compiler's predefined macro by pjlib/config.h
+file).</p>
+</li>
+<li>
+<p>Link with the appropriate PJ libraries. The following libraries will need to be included in the library link specifications:</p>
+    <table border="0" cellpadding="0" cellspacing="0" width="600">
+    <tbody><tr><td>
+    <dl>
+    <dt><tt><b>pjlib</b></tt>
+    </dt><dd>Base library used by all libraries.
+    </dd><dt><tt><b>pjlib-util</b></tt>
+    </dt><dd>Auxiliary library containing scanner, XML, STUN, MD5, getopt, etc, used by the SIP and media stack.
+    </dd><dt><tt><b>pjnath</b></tt>
+    </dt><dd>NAT helper library (STUN, TURN, ICE).
+    </dd><dt><tt><b>pjsip</b></tt>
+    </dt><dd>SIP core stack library.
+    </dd><dt><tt><b>pjsip-ua</b></tt>
+    </dt><dd>SIP user agent library containing INVITE session, call transfer, client registration, etc.
+    </dd><dt><tt><b>pjsip-simple</b></tt>
+    </dt><dd>SIP SIMPLE library for base event framework, presence, instant messaging, etc.
+    </dd><dt><tt><b>pjsua</b></tt>
+    </dt><dd>High level SIP UA library, combining SIP and media stack into high-level easy to use API.
+    </dd><dt><tt><b>pjmedia</b></tt>
+    </dt><dd>The media framework.
+    </dd><dt><tt><b>pjmedia-codec</b></tt>
+    </dt><dd>Container library for various codecs such as GSM, Speex, and iLBC.
+    </dd></dl>
+    </td></tr>
+    </tbody></table>
+    <p>&nbsp;</p>
+    <table border="1" cellpadding="0" cellspacing="0" width="600">
+    <tbody><tr><td>
+   <p>Note: the actual library names will be appended with the target name and the build configuration. For example:</p>
+   <dl>
+   <dt><b>For Visual Studio builds</b>
+   </dt><dd><p>The actual library names will look like <tt><b>pjlib-i386-win32-vc6-debug.lib</b></tt>, <tt><b>pjlib-i386-win32-vc6-release.lib</b></tt>, etc., depending on whether we are building the <b>Debug</b> or <b>Release</b> version of the library. </p>
+       <p>An
+easier way to link with the libraries is to include PJ project files in
+the workspace, and to configure project dependencies so that the
+application depends on the PJ libraries. This way, we don't need to
+manually add each PJ libraries to the input library file specification,
+since VS will automatically link the dependency libraries with the
+application.</p>
+   </dd><dt><b>For Windows Mobile builds</b>
+   </dt><dd><p>Unfortunately the PJ libraries built for Windows Mobile will not be placed in the usual <tt>lib</tt> directory, but rather under the <tt>output</tt> directory under <tt>build/wince-evc4</tt> project directory.</p>
+       <p>An
+easier way to link with the libraries is to include PJ project files in
+the workspace, and to configure project dependencies so that the
+application depends on the PJ libraries. This way, we don't need to
+manually add each PJ libraries to the input library file specification,
+since VS will automatically link the dependency libraries with the
+application.</p>
+    </dd><dt><b>For GNU builds</b>
+    </dt><dd><p>Use the template Makefile below (as described in <a href="http://www.pjsip.org/trac/wiki/Getting_Started_Using">Building Application using PJSIP with GNU Tools</a>):</p>
+	<table class="fixedtable" border="0" cellpadding="4" cellspacing="2" width="600">
+	<tbody><tr>
+	  <td bgcolor="beige">
+		# Modify this to point to the PJSIP location.<br>
+		PJBASE=/home/myself/pjproject-0.5.10.2<br>
+		<br>
+		include $(PJBASE)/build.mak<br>
+		<br>
+		CC      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= $(APP_CC)<br>
+		LDFLAGS = $(APP_LDFLAGS)<br>
+		LDLIBS  &nbsp;= $(APP_LDLIBS)<br>
+		CFLAGS  &nbsp;= $(APP_CFLAGS)<br>
+		CPPFLAGS= ${CFLAGS}<br>
+		<br>
+		# If your application is in a file named myapp.cpp or myapp.c<br>
+		# this is the line you will need to build the binary.<br>
+		all: myapp<br>
+		<br>
+		myapp: myapp.cpp<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        $(CC) -o $@ $&lt; $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)<br>
+		<br>
+		clean:<br>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rm -f myapp.o myapp<br>
+		<br>
+	  </td>
+	</tr>
+	</tbody></table>
+    </dd></dl>
+    </td></tr>
+    </tbody></table>
+    <p>&nbsp;</p>
+</li>
+<li><p>Link with system spesific libraries:</p>
+    <dl>
+    <dt><b>Windows</b>
+    </dt><dd><p>Add (among other things): <tt>wsock32.lib</tt>, <tt>ws2_32.lib</tt>, <tt>ole32.lib</tt>, <tt>dsound.lib</tt></p>
+    </dd><dt><b>Linux, *nix, *BSD</b>
+    </dt><dd><p>Add (among other things): <tt>'-lpthread -lm'</tt> (at least). If you use the template Makefile above, these would have been added by PJ.</p>
+    </dd><dt><b>MacOS X</b>
+    </dt><dd><p>Add (among other things): <tt>'-framework CoreAudio -lpthread -lm'</tt>. If you use the template Makefile above, these would have been added by PJ.</p>
+    </dd></dl>
+</li>
+</ol>
+
+
+
+
+
+<p>&nbsp;</p>
+<a name="problems"></a><h2>Appendix I: Common Problems/Frequently Asked Question (FAQ)</h2>
+<hr>
+<a name="prob1"></a><h3>I.1 fatal error C1083: Cannot open include file: 'pj/config_site.h': No such file or directory</h3>
+<p>This error normally occurs when the <b>config_site.h</b> file has not been created. This file needs to be created manually (an empty file is sufficient). Please follow the <a href="#config_site.h"><b>Build Preparation</b></a> instructions above to create this file.
+
+
+</p><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<dl>
+<dt><b>Feedback:</b>
+</dt><dd> Thanks for using PJ libraries and for reading this document.
+Please send feedbacks or general comments to &lt;bennylp at pjsip dot
+org&gt;.
+</dd></dl>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!-- End of main table -->
+</td><td width="15%">&nbsp;</td></tr>
+</tbody></table>
+
+<!--#include file="footer.html" -->
+</body></html>

@@ -15,8 +15,8 @@ RewriteEngine on
 RewriteRule   trac(.*)             https://docs.pjsip.org
 
 # Rewrite 
-RewriteRule   "/pjlib/(.*)"       "https://docs.pjsip.org/en/latest/api/pjlib/"  [R,L]
-RewriteRule   "/pjlib-util(.*)"   "https://docs.pjsip.org/en/latest/api/pjlib-util/"  [R,L]
-RewriteRule   "/pjnath(.*)"       "https://docs.pjsip.org/en/latest/api/pjnath/"  [R,L]
-RewriteRule   "/pjmedia(.*)"      "https://docs.pjsip.org/en/latest/api/pjmedia/"  [R,L]
-RewriteRule   "/pjsip/(.*)"       "https://docs.pjsip.org/en/latest/api/pjsip/"  [R,L]
+# RewriteRule   "/pjlib/(.*)"       "https://docs.pjsip.org/en/latest/api/pjlib/"  [R,L]
+# RewriteRule   "/pjlib-util(.*)"   "https://docs.pjsip.org/en/latest/api/pjlib-util/"  [R,L]
+# RewriteRule   "/pjnath(.*)"       "https://docs.pjsip.org/en/latest/api/pjnath/"  [R,L]
+# RewriteRule   "/pjmedia(.*)"      "https://docs.pjsip.org/en/latest/api/pjmedia/"  [R,L]
+# RewriteRule   "/pjsip/(.*)"       "https://docs.pjsip.org/en/latest/api/pjsip/"  [R,L]

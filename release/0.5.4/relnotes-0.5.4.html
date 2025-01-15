@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+	<title>Release Notes</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+  </head>
+  <body>
+	<P><STRONG><FONT size="5">RELEASE NOTES</FONT></STRONG></P>
+	<P>Version 0.5.4 2006/03/07
+	  <HR width="100%" SIZE="1">
+	<P></P>
+	<P><STRONG>PJLIB:</STRONG></P>
+	<P>New features:</P>
+	<UL>
+	  <LI>
+	  Added pj_strdup2_with_null() to duplicate a C string and add NULL terminator.
+	  <LI>
+		Added log message containing version info in pj_init().</LI></UL>
+	<P>Bug fixes:</P>
+	<UL>
+	  <LI>
+	  In Linux, select() or epoll() may return non-zero while no descriptor is set, 
+	  causing 100% CPU utilization. Added sleep() as temporary fix until the real 
+	  problem is found.
+	  <LI>
+		Fixed bug in timer heap poll() where it can return negative time, causing 
+		application to wait indefinitely in the next run.</LI></UL>
+	<P><STRONG>PJLIB-UTIL:</STRONG></P>
+	<P>New features:</P>
+	<UL>
+	  <LI>
+		Added PJLIB_UTIL_EINXML in errno.h, for general XML parsing failure.</LI></UL>
+	<P><STRONG>PJMEDIA</STRONG></P>
+	<P>New features:</P>
+	<UL>
+	  <LI>
+	  Major modification in conference bridge, to allow ports with different clock 
+	  rate and ptime to join the bridge.
+	  <LI>
+	  Added resample.c to support wideband and ultra-wideband audio clock-rate 
+	  conversion.
+	  <LI>
+	  Support for missing rtpmap in SDP for static payload type.
+	  <LI>
+	  Support for sending and receiving RTP with different payload number (for 
+	  dynamic payload types).
+	  <LI>
+		File port now reads in chunks instead of the whole (to conserve memory usage).</LI></UL>
+	<P>Bug fixes:</P>
+	<UL>
+	  <LI>
+	  Deadlock in conference bridge when starting/stopping sound device in Linux.
+	  <LI>
+		Fixed SDP negotiation to include stream's clock rate (e.g. for Speex).</LI></UL>
+	<P><STRONG> PJMEDIA-CODEC</STRONG></P>
+	<P>New features:</P>
+	<UL>
+	  <LI>
+		Added Speex narrowband, wideband, and ultra-wideband.</LI></UL>
+	<P>Bug fixes:</P>
+	<UL>
+	  <LI>
+		Fixed broken GSM&nbsp;codec support (encoder and decoder were sharing states!).</LI></UL>
+	<P><STRONG>PJSIP (Core, Ua, and SIMPLE)</STRONG></P>
+	<P>New features:</P>
+	<UL>
+	  <LI>
+	  (SIMPLE) Instant messaging and message composition indication in SIMPLE.
+	  <LI>
+	  (Core) Changed pjsip_endpt_handle_events() to return pj_status_t instead of 
+	  void.
+	  <LI>
+	  (Core) Added&nbsp;optional header and message body&nbsp;arguments in 
+	  pjsip_dlg_respond()
+	  <LI>
+	  (Core) Changed pjsip_msg_body_clone(), added pjsip_msg_body_create().
+	  <LI>
+	  (Core) Maximize the size of UDP's SO_SNDBUF and SO_RCVBUF, for better 
+	  performance.
+	  <LI>
+		(Core, UA, SIMPLE) Added API to terminate dialog/invite/evsub prematurely.</LI></UL>
+	<P>Bug fixes:</P>
+	<UL>
+	  <LI>
+		(SIMPLE) Allow application to send unsubscribe while pending subscribe is in 
+		progress. The last subscribe overrides the previous one.</LI>
+	  <LI>
+		(Core) Fixed bug where rdata's pool&nbsp;is not reset properly causing memory 
+		to grow indefinitely.</LI>
+	  <LI>
+		(Core) Fixed Makefile to adhere to other libraries dependencies.</LI>
+	  <LI>
+		(UA) Fixed bug where dead INVITE session is brought to life again when ACK is 
+		received.</LI>
+	  <LI>
+		(UA) Fixed bug when dialog is gone after it is found (should not happen in real 
+		life?).</LI></UL>
+	<P><STRONG>PJSUA-LIB and PJSUA</STRONG></P>
+	<P>New features:</P>
+	<UL>
+	  <LI>
+	  Added --add-codec option to allow user to specify codec order and specific 
+	  codecs to use.
+	  <LI>
+	  Added&nbsp;--quality and --complexity arguments for codec.
+	  <LI>
+	  Added --uas-duration and --uas-refresh option to specify maximum duration of 
+	  incoming cal and interval to send re-INVITE.
+	  <LI>
+		Renamed getopt to pj_getopt to avoid mistake in linking with LIBC.</LI></UL>
+	<P>Bug fixes:</P>
+	<UL>
+	  <LI>
+		loads of them..</LI></UL>
+	<P>&nbsp;</P>
+  </body>
+</html>

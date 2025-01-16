@@ -10,8 +10,13 @@ AddType text/html .htm
 AddOutputFilter INCLUDES .htm
 SetOutputFilter INCLUDES
 
-# Rewrite rule: pjsip.org/trac ==> trac.pjsip.org
+# Rewrite rule: pjsip.org/trac ==> https://docs.pjsip.org
 RewriteEngine on
-RewriteRule trac(.*) http://trac.pjsip.org/repos$1
+RewriteRule   trac(.*)             https://docs.pjsip.org
 
-
+# Rewrite 
+# RewriteRule   "/pjlib/(.*)"       "https://docs.pjsip.org/en/latest/api/pjlib/"  [R,L]
+# RewriteRule   "/pjlib-util(.*)"   "https://docs.pjsip.org/en/latest/api/pjlib-util/"  [R,L]
+# RewriteRule   "/pjnath(.*)"       "https://docs.pjsip.org/en/latest/api/pjnath/"  [R,L]
+# RewriteRule   "/pjmedia(.*)"      "https://docs.pjsip.org/en/latest/api/pjmedia/"  [R,L]
+# RewriteRule   "/pjsip/(.*)"       "https://docs.pjsip.org/en/latest/api/pjsip/"  [R,L]
